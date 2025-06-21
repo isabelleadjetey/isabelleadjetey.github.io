@@ -4,6 +4,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+h1 {
+  font-family: 'Montserrat', sans-serif; /* cambia il font se ti piace */
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 20px 0;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #e74c3c;
+}
+
 
 /* Stile generale per il body */
 body {
@@ -32,7 +45,7 @@ main {
   max-width: 900px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -62,6 +75,43 @@ section {
   margin: 10px;
   vertical-align: top;
 }
+.certification-pdf {
+  margin: 20px auto;
+  text-align: center;
+  max-width: 800px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.certification-pdf h3 {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.certification-pdf p {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.certification-pdf a {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.certification-pdf a:hover {
+  background-color: #2980b9;
+}
+
 
 /* Footer */
 footer {
