@@ -54,6 +54,21 @@ main {
 section {
   margin-bottom: 40px;
 }
+/* Disposizione orizzontale dei dettagli di contatto */
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;      /* In caso di spazi limitati, passeranno alla riga successiva */
+  align-items: center;
+  justify-content: center;
+  gap: 15px;            /* Spazio tra gli elementi */
+}
+
+/* Stile dei paragrafi per dimensione ridotta */
+.contact-details p {
+  margin: 0;
+  font-size: 0.9rem;    /* Modifica qui la dimensione del testo */
+}
+
 
 /* Sezione Contatti */
 #contact {
