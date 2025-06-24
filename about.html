@@ -1,109 +1,74 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About • Il mio Portfolio</title>
-  <!-- foglio di stile centrale -->
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi sono – Isabelle Adjetey</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- navigazione condivisa -->
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-    </ul>
-  </nav>
+  <header class="hero">
+    <div class="container">
+      <h1>Isabelle Adjetey</h1>
+      <p class="subtitle">Software Developer | Cyber Security Analyst</p>
+      <nav>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">Chi sono</a>
+        <a href="projects.html" class="nav-link">Progetti</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- contenuto principale -->
-  <main>
-    <header>
-      <h1>Chi sono</h1>
-      <p>Isabelle Adjetey</p>
-      <p>Software Developer | Cyber Security Analyst | Aspiring Azure Security Engineer | Learning Microsoft Cloud Security</p>
-    </header>
-    <section id="bio">
-      <h2>Il mio percorso</h2>
+  <main class="container">
+
+    <section>
+      <h2>Chi sono</h2>
       <p>Benvenuto nel mio portfolio!</p>
-      <p> Sono Isabelle, laureata in Informatica, con 5 anni di esperienza come sviluppatrice su Dynamics NAV/Business Central (C/AL, AL).
-        A dicembre 2024 ho completato un bootcamp intensivo in Cybersecurity presso Epicode e attualmente partecipo al 
-        *DevSecOps Program – Global Subsidy-Based Microsoft Certification Scholarships* di Women in Cloud, con l’obiettivo di ottenere 
-        la certificazione AZ-500 come Azure Security Engineer Associate.   
-      </p>
+      <p>Sono Isabelle, laureata in Informatica, con 5 anni di esperienza come sviluppatrice su Dynamics NAV/Business Central (C/AL, AL). A dicembre 2024 ho completato un bootcamp intensivo in Cybersecurity presso Epicode e attualmente partecipo al <em>DevSecOps Program – Global Subsidy-Based Microsoft Certification Scholarships</em> di Women in Cloud, con l’obiettivo di ottenere la certificazione AZ-500 come Azure Security Engineer Associate.</p>
     </section>
 
-    <section id="skills">
+    <section>
       <h2>Competenze</h2>
-      <ul>
+      <ul class="badges">
         <li>Penetration Testing (Kali, Metasploit, Burp Suite)</li>
-        <li>Scansione e Analisi vulnerabilità:Nmap, Nessus</li>
-        <li>Network Security: intercetttazione pacchetti con wireshark</li>
-        <li>Analisi log e SIEM (Splunk)</li>
-        <li>Scripting Python &amp; Bash</li>
-        <li>Cloud Security (Azure AD)</li>
+        <li>Scansione e analisi vulnerabilità – Nmap, Nessus</li>
+        <li>Network Security – intercettazione pacchetti con Wireshark</li>
+        <li>Analisi log e SIEM – Splunk</li>
+        <li>Scripting – Python & Bash</li>
+        <li>Cloud Security – Azure AD</li>
       </ul>
     </section>
 
-    <section id="contact">
-  <h2>Contatti</h2>
-    <div class="contact-details">
-    <p>Email principale: <a href="mailto:isabelle_adjetey@outlook.com">isabelle_adjetey@outlook.com</a></p>
-    <p>Email alternativo: <a href="mailto:adjeteyisabelle@gmail.com">adjeteyisabelle@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/isabelle-adjetey" target="_blank">linkedin.com/in/isabelle-adjetey</a></p>
-  </div>
-</section>
-
-
-  <!-- Sezione curriculum -->
-    <section id="curriculum">
-      <h2>Il mio Curriculum</h2>
-      <p>Clicca sul link per scaricare il mio curriculum in formato PDF:</p>
-      <a href="docs/AdjeteyIsabelleCV.pdf" download>Scarica il Curriculum</a>
+    <section>
+      <h2>Contatti</h2>
+      <div class="buttons">
+        <a href="mailto:isabelle_adjetey@outlook.com" class="btn">Email principale</a>
+        <a href="mailto:adjeteyisabelle@gmail.com" class="btn">Email alternativa</a>
+        <a href="https://linkedin.com/in/isabelle-adjetey" class="btn" target="_blank">LinkedIn</a>
+      </div>
     </section>
-    
-    <!-- Sezione Certificazioni (Badge Digitali) -->
-    <section id="certifications">
-      <h2>Le mie Certificazioni</h2>
-      
-      <!-- Badge 1 -->
-      <div data-iframe-width="150" data-iframe-height="270" 
-           data-share-badge-id="722e61e2-8bd0-4ad1-bd05-fbc820fefb31" 
-           data-share-badge-host="https://www.credly.com">
-      </div>
-      
-      <!-- Badge 2 -->
-      <div data-iframe-width="150" data-iframe-height="270" 
-           data-share-badge-id="16146f01-861c-4809-a0ae-e869282aa263" 
-           data-share-badge-host="https://www.credly.com">
-      </div>
-      
-      <!-- Certificazione BluTeam Network Security (aggiunta manualmente) -->
-   
 
-
-      <div class="certification-blue">
-        <h3>Certificazione BlueTeam Network Security</h3>
-        <p>
-          Visualizza il certificato oppure 
-          <a href="docs/Introduction to Network Analysis-course.pdf" download>scaricalo</a>.
-        </p>
-        <iframe src="docs/Introduction to Network Analysis-course.pdf" width="120" height="210" frameborder="0"></iframe>
-      </div>
-
-
-
+    <section>
+      <h2>Curriculum</h2>
+      <a href="docs/AdjeteyIsabelleCV.pdf" class="btn" download>📄 Scarica il Curriculum</a>
     </section>
+
+    <section>
+      <h2>Certificazioni</h2>
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="722e61e2-8bd0-4ad1-bd05-fbc820fefb31" data-share-badge-host="https://www.credly.com"></div>
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="16146f01-861c-4809-a0ae-e869282aa263" data-share-badge-host="https://www.credly.com"></div>
+    </section>
+
   </main>
-  <!-- script comune -->
- <!-- Carica lo script di Credly una sola volta -->
- <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+
+  <script async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+
   <footer>
-    <p>&copy; 2025 Isabelle</p> 
+    <p>Email: <a href="mailto:isabelle_adjetey@outlook.com">isabelle_adjetey@outlook.com</a> • <a href="https://linkedin.com/in/isabelle-adjetey" target="_blank">LinkedIn</a></p>
+    <p>© 2025 Isabelle</p>
   </footer>
+
 </body>
 </html>
-

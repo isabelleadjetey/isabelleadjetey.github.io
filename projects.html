@@ -1,48 +1,82 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>I miei Progetti</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <title>Progetti Cybersecurity – Isabelle Adjoké Adjetey</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; padding: 2em; margin: 0; }
+    h1 { text-align: center; color: #1a237e; }
+    .project {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1.5em;
+      margin: 2em auto;
+      max-width: 900px;
+    }
+    .project h2 { color: #0d47a1; margin-bottom: 0.5em; }
+    .project p { margin: 0.4em 0; }
+    .project img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin: 1em 0;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 1em;
+    }
+    .tags {
+      color: #555;
+      font-size: 0.9em;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-  <section class="projects">
-    <div class="container">
-      <h2 class="section-title">🚀 Progetti Realizzati</h2>
-      <p class="section-intro">Una selezione dei progetti più significativi che ho affrontato nel mio percorso in cybersecurity e sviluppo.</p>
 
-      <div class="projects-grid">
-        <div class="project-card">
-          <img src="images/project1.jpg" alt="Screenshot progetto VM Azure Vulnerability Scan"/>
-          <div class="card-content">
-            <h3>Scan di Vulnerabilità su Azure VM</h3>
-            <p>Configurazione di macchine virtuali su Azure per il testing e la scansione di vulnerabilità con Nessus, Nmap e strumenti open-source.</p>
-            <a href="https://github.com/tuo-user/progetto-vulnerability-scan" target="_blank">Guarda su GitHub</a>
-          </div>
-        </div>
+  <h1>📁 Progetti in Cybersecurity</h1>
 
-        <div class="project-card">
-          <img src="images/project2.jpg" alt="Screenshot Pentest project"/>
-          <div class="card-content">
-            <h3>Pentest su Infrastruttura Simulata</h3>
-            <p>Attività di penetration testing su una rete virtuale simulata (Kali + Metasploitable), con report finale e analisi delle vulnerabilità.</p>
-            <a href="https://github.com/tuo-user/pentest-lab" target="_blank">Guarda su GitHub</a>
-          </div>
-        </div>
+  <div class="project">
+    <h2>🛠️ Penetration Testing Lab</h2>
+    <p><strong>Tool:</strong> Kali Linux, Nmap, Nessus, Hydra, Burp Suite</p>
+    <p><strong>Obiettivo:</strong> Attacco simulato su macchina Metasploitable</p>
+    <p><strong>Risultato:</strong> Report su ricognizione, exploit ed escalation dei privilegi</p>
+    <img src="https://github.com/tuo-username/progetto1/screenshot.jpg" alt="Screenshot PenTest">
+    <iframe src="https://github.com/tuo-username/progetto1/report.pdf?raw=true" title="PDF PenTest"></iframe>
+    <p class="tags">#pentesting #metasploitable #linux</p>
+  </div>
 
-        <div class="project-card">
-          <img src="images/project3.jpg" alt="Screenshot Automazione Bash Python"/>
-          <div class="card-content">
-            <h3>Automazione Sicurezza con Bash & Python</h3>
-            <p>Scripting per l’automazione di audit su file di log, scansioni, e controllo delle policy di sicurezza su sistemi Linux e Azure.</p>
-            <a href="https://github.com/tuo-user/automazione-sicurezza" target="_blank">Guarda su GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-<script src="js/main.js"></script>
+  <div class="project">
+    <h2>🧠 Automazione Log Analysis con Python</h2>
+    <p><strong>Tool:</strong> Python, Bash, Splunk</p>
+    <p><strong>Obiettivo:</strong> Parsing automatico dei log e detection delle anomalie</p>
+    <img src="https://github.com/tuo-username/progetto2/log-analysis.png" alt="Screenshot Log Analysis">
+    <iframe src="https://github.com/tuo-username/progetto2/report.pdf?raw=true" title="PDF Log Analysis"></iframe>
+    <p class="tags">#SIEM #automation #python</p>
+  </div>
+
+  <div class="project">
+    <h2>☁️ Simulazioni Cloud Security su Azure</h2>
+    <p><strong>Tool:</strong> Azure AD, Microsoft Sentinel, Defender for Cloud</p>
+    <p><strong>Obiettivo:</strong> Implementazione del principio del minimo privilegio</p>
+    <img src="https://github.com/tuo-username/progetto3/azure-security.png" alt="Screenshot Azure Security">
+    <iframe src="https://github.com/tuo-username/progetto3/report.pdf?raw=true" title="PDF Azure"></iframe>
+    <p class="tags">#cloudsecurity #azure #sentinel</p>
+  </div>
+
+  <div class="project">
+    <h2>📊 Incident Response & SIEM Dashboards</h2>
+    <p><strong>Tool:</strong> Splunk, Wireshark</p>
+    <p><strong>Obiettivo:</strong> Creazione di dashboard per eventi sospetti e alert personalizzati</p>
+    <img src="https://github.com/tuo-username/progetto4/splunk-dashboard.png" alt="Dashboard Screenshot">
+    <iframe src="https://github.com/tuo-username/progetto4/report.pdf?raw=true" title="PDF SIEM"></iframe>
+    <p class="tags">#incidentresponse #splunk #logmonitoring</p>
+  </div>
+
 </body>
 </html>

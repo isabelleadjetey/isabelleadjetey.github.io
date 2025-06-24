@@ -1,167 +1,157 @@
-/* Reset di base per margin, padding e box-sizing */
+/* === Variabili base === */
+:root {
+  --primary-color: #0078d4;
+  --accent-color: #e74c3c;
+  --bg-light: #f0f2f5;
+  --bg-section: #ffffff;
+  --text-dark: #2c3e50;
+  --text-muted: #555;
+  --font-main: 'Segoe UI', sans-serif;
+  --font-title: 'Montserrat', sans-serif;
+}
+
+/* === Reset e base === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-h1 {
-  font-family: 'Montserrat', sans-serif; /* cambia il font se ti piace */
-  font-size: 3rem;
-  font-weight: bold;
-  color: #2c3e50;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: 20px 0;
-  text-align: center;
-  padding: 10px 0;
-  border-bottom: 2px solid #e74c3c;
-}
 
-
-/* Stile generale per il body */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f2f5;
-  color: #333;
+  font-family: var(--font-main);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
   line-height: 1.6;
-  padding: 10px;
+  padding: 0 10px;
 }
 
-/* Header: impostazioni per il logo e il menu di navigazione */
-header {
-  background-color: #333;
+/* === Header === */
+header.hero {
+  background-color: var(--text-dark);
   color: #fff;
-  padding: 20px;
   text-align: center;
+  padding: 2rem 1rem;
 }
 
-/* Titoli principali: spazio e dimensioni */
-h1, h2 {
-  margin-bottom: 15px;
+header.hero h1 {
+  font-family: var(--font-title);
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-/* Container del contenuto principale */
-main {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
 }
 
-/* Stile generale per le sezioni */
-section {
-  margin-bottom: 40px;
-}
-/* Disposizione orizzontale dei dettagli di contatto */
-.contact-details {
-  display: flex;
-  flex-wrap: wrap;      /* In caso di spazi limitati, passeranno alla riga successiva */
-  align-items: center;
-  justify-content: center;
-  gap: 15px;            /* Spazio tra gli elementi */
+/* === Nav === */
+nav {
+  margin-top: 1rem;
 }
 
-/* Stile dei paragrafi per dimensione ridotta */
-.contact-details p {
-  margin: 0;
-  font-size: 0.9rem;    /* Modifica qui la dimensione del testo */
-}
-
-
-/* Sezione Contatti */
-#contact {
-  background-color: #fafafa;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-}
-
-/* Sezione Certificazioni: badge layout */
-#certifications {
-  text-align: center;
-  padding-bottom: 20px;
-}
-
-/* Ogni badge sarà un blocco inline con margine */
-#certifications > div {
-  display: inline-block;
-  margin: 10px;
-  vertical-align: top;
-}
-#certifications > div {
-  transform: scale(0.8);
-  transform-origin: top left;
-}
-
-.certification-pdf {
-  margin: 20px auto;
-  text-align: center;
-  max-width: 800px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fafafa;
-}
-
-.certification-pdf h3 {
-  font-family: 'Arial', sans-serif;
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-}
-
-.certification-pdf p {
-  font-family: 'Arial', sans-serif;
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
-.certification-pdf a {
-  display: inline-block;
-  margin-bottom: 15px;
-  padding: 10px 20px;
-  background-color: #3498db;
+.nav-link {
   color: #fff;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.2s ease;
+  margin: 0 1rem;
+  padding-bottom: 2px;
+  transition: border-color 0.3s ease;
 }
 
-.certification-pdf a:hover {
-  background-color: #2980b9;
+.nav-link:hover,
+.nav-link.active {
+  border-bottom: 2px solid var(--primary-color);
 }
 
-.certification-blue {
-  display: inline-block;
-  margin: 10px;
-  text-align: center;
-  vertical-align: top;
+/* === Main Container === */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-.certification-blue iframe,
-.certification-blue img {
-  border: none;
+/* === Sezioni === */
+section {
+  margin-bottom: 3rem;
+  background-color: var(--bg-section);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
+h2 {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 10px;
+  color: var(--text-dark);
+}
 
+p {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
 
+/* === Lista badge stile projects === */
+.badges {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
 
-/* Footer */
+.badges li {
+  background-color: #f9f9f9;
+  padding: 0.8rem 1rem;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* === Pulsanti === */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #005a9e;
+}
+
+/* === Footer === */
 footer {
-  background-color: #333;
+  background-color: var(--text-dark);
   color: #fff;
   text-align: center;
-  padding: 15px;
+  padding: 1rem;
+  font-size: 0.9rem;
 }
 
-/* Media queries per schermi più piccoli */
+footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* === Responsive === */
 @media (max-width: 768px) {
-  main {
-    padding: 10px;
+  header.hero h1 {
+    font-size: 2.2rem;
   }
-  #certifications > div {
-    width: 80%;
-    margin: 10px auto;
+
+  .btn {
+    width: 100%;
+    text-align: center;
   }
 }
