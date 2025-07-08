@@ -60,7 +60,7 @@
   <img src="URL-dello-screenshot-HTTP" alt="Richiesta HTTP in Wireshark">
 
   <div class="project-pdf">
-    <a href="https://github.com/tuo-username/simulazione-client-server/report.pdf?raw=true" target="_blank">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf" target="_blank">
       Scarica il PDF di svolgimento del progetto
     </a>
   </div>
@@ -86,14 +86,13 @@
   <p><strong>Sviluppo del gioco:</strong><br>
     Cercate di completare quanti più livelli possibili
   </p>
-  <div class="project-github">
-    <a href="https://github.com/phyver/GameShell" target="_blank">
-      Vai al repository GitHub di GameShell
+  <div class="project-pdf">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf" target="_blank">
+      Scarica il PDF di svolgimento del progetto
     </a>
   </div>
   <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
 </div>
-
 
 <div class="project">
   <h2>🔍 Vulnerability Assessment & Remediation su Metasploitable</h2>
@@ -107,13 +106,13 @@
   <p><strong>Consegna:</strong></p>
   <ul>
     <li>
-      <a href="https://github.com/tuo-username/metasploitable-remediation/ScansioneInizio.pdf?raw=true" target="_blank">
+      <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneInizio.pdf?raw=true" target="_blank">
         📄 ScansioneInizio.pdf
       </a>  
       (grafico vulnerabilità iniziali)
     </li>
     <li>
-      <a href="https://github.com/tuo-username/metasploitable-remediation/RemediationMeta.pdf?raw=true" target="_blank">
+      <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf?raw=true" target="_blank">
         📄 RemediationMeta.pdf
       </a>  
       (screenshot e spiegazione dei passaggi di remediation)
@@ -150,6 +149,11 @@
     • ip route show (tabella di routing)<br>
     • <em>altri comandi e output rilevanti</em>
   </p>
+  <div class="project-pdf">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf" target="_blank">
+      Scarica il PDF di svolgimento del progetto
+    </a>
+  </div>
   <p class="tags">#JavaRMI #Metasploit #Meterpreter #Exploit #Metasploitable</p>
 </div>
 
@@ -185,39 +189,41 @@
       Introdurre un IDS/IPS centralizzato e segmentazione della rete interna per mitigare ulteriormente gli attacchi (punto 2).
     </li>
   </ol>
+  <div class="project-pdf">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf" target="_blank">
+      Scarica il PDF di svolgimento del progetto
+    </a>
+  </div>
+  //
   <p class="tags">#WebSecurity #SQLi #XSS #DDoS #IncidentResponse #WAF #NetworkSegmentation</p>
 </div>
 
-
-
 <div class="project">
   <h2>📊 Splunk Log Analysis Lab</h2>
-  <p><strong>Tool:</strong> Splunk Enterprise (dati di esempio “tutorialdata.zip”)</p>
+  <p><strong>Tool:</strong> Splunk Enterprise, tutorialdata.zip</p>
   <p><strong>Obiettivi:</strong><br>
-    Importare “tutorialdata.zip” in Splunk ed eseguire query SPL per analizzare autenticazioni SSH e errori server.</p>
+    Importare i dati “tutorialdata.zip” in Splunk ed eseguire query SPL per analizzare autenticazioni SSH e errori server.</p>
   <p><strong>Query Principali:</strong><br>
-    1. Failed password:<br>
-    <code>index=main "Failed password" | table _time, src_ip, user, message</code><br>
+    1. Tentativi di accesso falliti “Failed password”:<br>
+       <code>index=main "Failed password" | table _time, src_ip, user, message</code><br>
     2. Sessioni SSH riuscite per djohnson:<br>
-    <code>index=main "session opened for user" user="djohnson" | table _time, user, uid</code><br>
+       <code>index=main "session opened for user" user="djohnson" | table _time, user, uid</code><br>
     3. Tentativi falliti da 86.212.199.60:<br>
-    <code>index=main "Failed password" src_ip="86.212.199.60" | table _time, user, dest_port</code><br>
+       <code>index=main "Failed password" src_ip="86.212.199.60" | table _time, user, dest_port</code><br>
     4. IP con più di 5 tentativi falliti:<br>
-    <code>index=main "Failed password" | stats count by src_ip | where count > 5</code><br>
+       <code>index=main "Failed password" | stats count by src_ip | where count > 5</code><br>
     5. Internal Server Error:<br>
-    <code>index=main status=500 OR "Internal Server Error" | table _time, src_ip, message</code>
+       <code>index=main status=500 OR "Internal Server Error" | table _time, src_ip, message</code>
   </p>
-  <p><strong>Conclusioni (AI):</strong><br>
-    L'analisi mostra un piccolo cluster di IP responsabili di numerosi tentativi di “Failed password”, suggerendo un attacco brute-force. Gli errori 500 appaiono sporadici, indicativi di possibili instabilità applicativa da approfondire.</p>
+  <p><strong>Conclusioni:</strong><br>
+    L’analisi evidenzia un piccolo cluster di IP responsabili di ripetuti tentativi di “Failed password” (brute-force) e errori 500 sporadici, suggerendo l’introduzione di rate-limiting e ulteriori controlli di stabilità applicativa.</p>
   <div class="project-github">
-    <a href="https://github.com/tuo-username/splunk-log-analysis" target="_blank">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf" target="_blank">
       Vai al repository GitHub di Splunk Log Analysis
     </a>
   </div>
   <p class="tags">#Splunk #LogAnalysis #SSH #SIEM #SecurityAnalytics</p>
 </div>
-
-
 
   <div class="project">
     <h2>🛠️ Penetration Testing Lab</h2>
