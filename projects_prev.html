@@ -4,11 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Progetti – Isabelle Adjetey</title>
-
-  <!-- qui importa il tuo CSS globale -->
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* piccole personalizzazioni per il layout delle card */
+    /* layout quadretti */
     .projects {
       padding: 2rem 0;
     }
@@ -58,7 +56,7 @@
 </head>
 <body>
 
-  <!-- Header e Nav coerenti con le altre pagine -->
+  <!-- Header -->
   <header class="site-header">
     <div class="container">
       <h1>Isabelle Adjetey</h1>
@@ -66,33 +64,29 @@
       <nav class="site-nav">
         <a href="index.html">Home</a>
         <a href="about.html">Chi sono</a>
-        <a href="projects.html">Progetti</a>
+        <a href="projects.html" class="active">Progetti</a>
       </nav>
     </div>
   </header>
 
+  <!-- Main -->
   <main class="main-content">
     <section class="projects">
       <div class="container">
         <h2>📁 Progetti in Cybersecurity</h2>
-
         <div class="projects-list">
 
           <!-- ANZ Forage -->
           <div class="project-item" id="anz">
             <h3>🛡️ ANZ Cyber Security Management – Job Simulation</h3>
             <p><strong>Giugno 2025 – Remoto</strong></p>
-            <p>
-              Virtual internship offerto da ANZ tramite Forage, suddiviso in due attività principali:
-              <ul>
-                <li><strong>Task 1:</strong> analisi di 7 email simulate, identificazione di link malevoli, allegati compromessi e tattiche di social engineering.</li>
-                <li><strong>Task 2:</strong> esame di un file PCAP per estrarre immagini nascoste, documenti mascherati e analizzare traffico anomalo.</li>
-              </ul>
-            </p>
+            <p>Virtual internship ANZ tramite Forage, suddiviso in due task principali:</p>
+            <ul>
+              <li><strong>Task 1:</strong> analisi di 7 email simulate, identificazione di link malevoli, allegati compromessi e tattiche di social engineering.</li>
+              <li><strong>Task 2:</strong> analisi di un file PCAP per estrarre immagini nascoste, documenti mascherati e analizzare traffico anomalo.</li>
+            </ul>
             <p><strong>Certificato di completamento:</strong> 
-              <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/AKkAyEwWc8wjPxx9n/Hf4QMESoFeQwXPsiH_AKkAyEwWc8wjPxx9n_JnnS6HC3k6choTWuP_1749768064410_completion_certificate.pdf" target="_blank">
-                Visualizza qui
-              </a>
+              <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/AKkAyEwWc8wjPxx9n/Hf4QMESoFeQwXPsiH_AKkAyEwWc8wjPxx9n_JnnS6HC3k6choTWuP_1749768064410_completion_certificate.pdf" target="_blank">Visualizza qui</a>
             </p>
             <h4>Link utili</h4>
             <ul>
@@ -106,14 +100,12 @@
           <div class="project-item" id="client-server">
             <h3>🌐 Simulazione Client-Server con Intercettazione HTTPS/HTTP</h3>
             <p><strong>Tool:</strong> Kali Linux, Windows 7, BIND9, Apache, Wireshark</p>
-            <p>
-              Obiettivi:
-              <ul>
-                <li>Configurazione DNS per epicode.internal</li>
-                <li>Server HTTPS con certificato autofirmato</li>
-                <li>Cattura e analisi differenze tra traffico HTTP e HTTPS</li>
-              </ul>
-            </p>
+            <p>Obiettivi:</p>
+            <ul>
+              <li>Configurazione DNS per epicode.internal</li>
+              <li>Server HTTPS con certificato autofirmato</li>
+              <li>Cattura e analisi differenze tra traffico HTTP e HTTPS</li>
+            </ul>
             <p>Risultati: identificati MAC, handshake TLS, payload in chiaro su HTTP.</p>
             <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf" target="_blank">📄 PDF Progetto M1</a></p>
             <p class="tags">#DNS #HTTPS #HTTP #Wireshark</p>
@@ -123,9 +115,7 @@
           <div class="project-item" id="gameshell">
             <h3>🎮 GameShell Shell Familiarization</h3>
             <p><strong>Tool:</strong> Kali Linux, shell utilities, wget</p>
-            <p>
-              Obiettivo: installare e usare GameShell per esercitazioni su comandi di shell in ambiente Kali.
-            </p>
+            <p>Obiettivo: installare e usare GameShell per esercitazioni su comandi di shell in ambiente Kali.</p>
             <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf" target="_blank">📄 PDF Progetto M2</a></p>
             <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
           </div>
@@ -134,19 +124,17 @@
           <div class="project-item" id="vuln">
             <h3>🔍 Vulnerability Assessment &amp; Remediation – Metasploitable</h3>
             <p><strong>Tool:</strong> Nmap, Nessus, iptables</p>
-            <p>
-              Requisiti:
-              <ul>
-                <li>Scansione completa sul target Metasploitable</li>
-                <li>Selezione di 2–4 vulnerabilità critiche</li>
-                <li>Implementazione patch o regole firewall</li>
-                <li>Riesecuzione scansione e confronto risultati</li>
-              </ul>
-            </p>
+            <p>Requisiti:</p>
+            <ul>
+              <li>Scansione completa sul target Metasploitable</li>
+              <li>Selezione di 2–4 vulnerabilità critiche</li>
+              <li>Implementazione patch o regole firewall</li>
+              <li>Riesecuzione scansione e confronto risultati</li>
+            </ul>
             <ul>
               <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneInizio.pdf" target="_blank">📄 Scansione Iniziale</a></li>
               <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf" target="_blank">📄 Remediation</a></li>
-              <li><a href="https://github.com/tuo-username/metasploitable-remediation/ScansioneFine.pdf" target="_blank">📄 Scansione Finale</a></li>
+              <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScansioneFine.pdf" target="_blank">📄 Scansione Finale</a></li>
             </ul>
             <p class="tags">#Metasploitable #Nmap #Nessus #iptables</p>
           </div>
@@ -158,10 +146,12 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <p>© 2025 Isabelle Adjetey</p>
     </div>
   </footer>
+
 </body>
 </html>
