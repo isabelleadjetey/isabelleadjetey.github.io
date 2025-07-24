@@ -202,4 +202,61 @@ footer a {
   color: #666;
   margin-top: 0.5rem;
 }
+/* === Projects grid & cards === */
+.projects {
+  padding: 2rem 0;
+}
+
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.project-item {
+  background-color: var(--bg-section);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1.5rem;
+  flex: 1 1 calc(50% - 2rem);
+  min-width: 300px;
+  transition: box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.project-item h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+.project-item p,
+.project-item ul {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+.project-item ul {
+  padding-left: 1.2rem;
+}
+
+.project-item a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 0.3s ease;
+}
+
+.project-item a:hover {
+  border-color: var(--primary-color);
+}
+
+.project-item .tags {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
 
