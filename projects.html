@@ -13,166 +13,180 @@
       <h1>Isabelle Adjetey</h1>
       <p class="subtitle">Software Developer | Cyber Security Analyst</p>
       <nav>
-        <a href="index.html" class="nav-link active">Home</a>
+        <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">Chi sono</a>
-        <a href="projects.html" class="nav-link">Progetti</a>
+        <a href="projects.html" class="nav-link active">Progetti</a>
       </nav>
     </div>
   </header>
 
-  <!-- Main -->
+
   <main class="main-content">
-    <section class="projects">
-      <div class="container">
-        <h2>📁 Progetti in Cybersecurity</h2>
+    <section class="projects container">
 
-        <div class="projects-list">
+      <h2>📁 Progetti in Cybersecurity</h2>
 
-          <!-- ANZ – Job Simulation -->
-          <div class="project-item" id="anz">
-            <h3>🛡️ ANZ – Job Simulation</h3>
-            <p><strong>Giugno 2025 – Remoto</strong></p>
+      <nav class="project-nav">
+        <ul>
+          <li><a href="#forensics">Forensics</a></li>
+          <li><a href="#network">Network Security</a></li>
+          <li><a href="#webapp">Web/Application Security</a></li>
+        </ul>
+      </nav>
 
-            <ul>
-              <li><strong>Task 1:</strong> Analisi di 7 email simulate, identificazione di link malevoli, allegati compromessi e tattiche di social engineering.</li>
-              <li><strong>Task 2:</strong> Analisi di un file PCAP per estrarre immagini nascoste, documenti mascherati e traffico anomalo.</li>
-            </ul>
 
-            <p><strong>Certificato:</strong>
-              <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/AKkAyEwWc8wjPxx9n/Hf4QMESoFeQwXPsiH_AKkAyEwWc8wjPxx9n_JnnS6HC3k6choTWuP_1749768064410_completion_certificate.pdf"
-                 target="_blank">Visualizza qui</a>
-            </p>
+      <!-- Forensics -->
+      <section id="forensics">
+        <h3>Forensics</h3>
 
-            <h4>Link utili</h4>
-            <ul>
-              <li><a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%201" target="_blank">📧 Task 1 – Analisi Email</a></li>
-              <li><a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%202" target="_blank">📡 Task 2 – Analisi PCAP</a></li>
-            </ul>
+        <article class="project-item" id="anz">
+          <h4>🛡️ ANZ – Job Simulation</h4>
 
-            <p class="tags">#Phishing #PCAP #Steganografia #ANZ #Forage</p>
-          </div>
+          <p>
+            Analisi di email simulate per identificare link malevoli e PCAP per estrarre immagini nascoste e traffico anomalo.
+          </p>
 
-          <!-- Client-Server Simulation -->
-          <div class="project-item" id="client-server">
-            <h3>🌐 Simulazione Client-Server</h3>
-            <p><strong>Tool:</strong> Kali Linux, Windows 7, BIND9, Apache, Wireshark</p>
+          <p>
+            <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/AKkAyEwWc8wjPxx9n/Hf4QMESoFeQwXPsiH_AKkAyEwWc8wjPxx9n_JnnS6HC3k6choTWuP_1749768064410_completion_certificate.pdf"
+               target="_blank">📄 Certificato Forage</a>
+            |
+            <a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%201"
+               target="_blank">📧 Task 1 – Analisi Email</a>
+            |
+            <a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%202"
+               target="_blank">📡 Task 2 – Analisi PCAP</a>
+          </p>
 
-            <ul>
-              <li>Configurazione DNS per epicode.internal</li>
-              <li>Server HTTPS con certificato autofirmato</li>
-              <li>Cattura e analisi differenze tra traffico HTTP e HTTPS</li>
-            </ul>
+          <p class="tags">#Phishing #PCAP #Steganografia</p>
+        </article>
 
-            <p>Risultati: handshake TLS visibile, payload HTTP in chiaro.</p>
 
-            <p>
-              <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf"
-                 target="_blank">📄 PDF Progetto M1</a>
-            </p>
+        <article class="project-item" id="splunk">
+          <h4>📊 Splunk Log Analysis Lab</h4>
 
-            <p class="tags">#DNS #HTTPS #HTTP #Wireshark</p>
-          </div>
+          <p>
+            Configurazione di Splunk Enterprise e writing di query SPL per individuare accessi SSH sospetti ed errori HTTP 500.
+          </p>
 
-          <!-- GameShell Familiarization -->
-          <div class="project-item" id="gameshell">
-            <h3>🎮 GameShell – Shell Familiarization</h3>
-            <p><strong>Tool:</strong> Kali Linux, shell utilities, wget</p>
-            <p>Installazione e utilizzo di GameShell per esercitazioni CLI su Kali Linux.</p>
+          <p>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf"
+               target="_blank">📄 PDF Progetto M6</a>
+          </p>
 
-            <p>
-              <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf"
-                 target="_blank">📄 PDF Progetto M2</a>
-            </p>
+          <p class="tags">#Splunk #LogAnalysis #SIEM</p>
+        </article>
 
-            <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
-          </div>
+      </section>
 
-          <!-- Vulnerability Assessment -->
-          <div class="project-item" id="vuln">
-            <h3>🔍 Vulnerability Assessment – Metasploitable</h3>
-            <p><strong>Tool:</strong> Nmap, Nessus, iptables</p>
 
-            <ul>
-              <li>Scansione completa sul target Metasploitable</li>
-              <li>Selezione di 2–4 vulnerabilità critiche</li>
-              <li>Implementazione patch e regole firewall</li>
-              <li>Riesecuzione scansione e confronto risultati</li>
-            </ul>
+      <!-- Network Security -->
+      <section id="network">
+        <h3>Network Security</h3>
 
-            <ul>
-              <li>
-                <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneIniziale.pdf"
-                   target="_blank">📄 Scansione Iniziale</a>
-              </li>
-              <li>
-                <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf"
-                   target="_blank">📄 Remediation</a>
-              </li>
-              <li>
-                <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScansioneFine.pdf"
-                   target="_blank">📄 Scansione Finale</a>
-              </li>
-            </ul>
+        <article class="project-item" id="client-server">
+          <h4>🌐 Simulazione Client-Server</h4>
 
-            <p class="tags">#Metasploitable #Nmap #Nessus #iptables</p>
-          </div>
+          <p>
+            Configurazione DNS e server HTTPS con certificato autofirmato, cattura traffico per confrontare HTTP in chiaro e handshake TLS.
+          </p>
 
-          <!-- Java RMI Exploitation -->
-          <div class="project-item" id="java-rmi">
-            <h3>🧰 Java RMI Exploitation</h3>
-            <p><strong>Tool:</strong> Metasploit Framework</p>
-            <p>Ottenimento di una sessione Meterpreter sfruttando servizio Java RMI (porta 1099) su Metasploitable.</p>
+          <p>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf"
+               target="_blank">📄 PDF Progetto M1</a>
+          </p>
 
-            <p>
-              <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf"
-                 target="_blank">📄 PDF Progetto M4</a>
-            </p>
+          <p class="tags">#DNS #HTTPS #Wireshark</p>
+        </article>
 
-            <p class="tags">#JavaRMI #Metasploit #Meterpreter</p>
-          </div>
 
-          <!-- Web App Security Analysis -->
-          <div class="project-item" id="webapp-security">
-            <h3>🧱 Web App Security Analysis & Response</h3>
-            <p><strong>Requisiti:</strong> DMZ protection, prevenzione SQLi/XSS, mitigazione DDoS</p>
+        <article class="project-item" id="gameshell">
+          <h4>🎮 GameShell – Shell Familiarization</h4>
 
-            <ul>
-              <li>Filtri WAF e validazione input per SQLi/XSS</li>
-              <li>Mitigazione DDoS (CDN, rate-limiting)</li>
-              <li>Quarantena malware tramite ACL e VLAN dedicate</li>
-            </ul>
+          <p>
+            Esercitazioni CLI su Kali Linux con GameShell per padroneggiare comandi di sistema e tool come wget.
+          </p>
 
-            <p>
-              <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf"
-                 target="_blank">📄 PDF Progetto M5</a>
-            </p>
+          <p>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf"
+               target="_blank">📄 PDF Progetto M2</a>
+          </p>
 
-            <p class="tags">#WebSecurity #SQLi #XSS #DDoS</p>
-          </div>
+          <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
+        </article>
 
-          <!-- Splunk Log Analysis Lab -->
-          <div class="project-item" id="splunk">
-            <h3>📊 Splunk Log Analysis Lab</h3>
-            <p><strong>Tool:</strong> Splunk Enterprise</p>
-            <p>Query SPL su “tutorialdata.zip” per analizzare accessi SSH sospetti ed errori HTTP 500.</p>
 
-            <p>
-              <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf"
-                 target="_blank">📄 PDF Progetto M6</a>
-            </p>
+        <article class="project-item" id="vuln">
+          <h4>🔍 Vulnerability Assessment – Metasploitable</h4>
 
-            <p class="tags">#Splunk #LogAnalysis #SIEM</p>
-          </div>
+          <p>
+            Scansioni Nmap e Nessus su Metasploitable, identificazione di vulnerabilità critiche e remediation con iptables.
+          </p>
 
-        </div>
-      </div>
+          <p>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneIniziale.pdf"
+               target="_blank">📄 Scansione iniziale</a>
+            |
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf"
+               target="_blank">📄 Remediation</a>
+            |
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScansioneFine.pdf"
+               target="_blank">📄 Scansione finale</a>
+          </p>
+
+          <p class="tags">#Nmap #Nessus #iptables</p>
+        </article>
+
+
+        <article class="project-item" id="java-rmi">
+          <h4>🧰 Java RMI Exploitation</h4>
+
+          <p>
+            Sfruttamento del servizio Java RMI via Metasploit per ottenere una sessione Meterpreter su Metasploitable.
+          </p>
+
+          <p>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf"
+               target="_blank">📄 PDF Progetto M4</a>
+          </p>
+
+          <p class="tags">#JavaRMI #Metasploit #Meterpreter</p>
+        </article>
+
+      </section>
+
+
+      <!-- Web/Application Security -->
+      <section id="webapp">
+        <h3>Web/Application Security</h3>
+
+        <article class="project-item" id="webapp-security">
+          <h4>🧱 Web App Security Analysis & Response</h4>
+
+          <p>
+            Progettazione di filtri WAF, validazione input per prevenire SQLi/XSS e mitigazione DDoS con CDN, rate-limiting e VLAN di quarantena.
+          </p>
+
+          <p>
+            <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf"
+               target="_blank">📄 PDF Progetto M5</a>
+          </p>
+
+          <p class="tags">#WebSecurity #SQLi #XSS #DDoS</p>
+        </article>
+
+      </section>
+
     </section>
   </main>
 
-  <!-- Footer -->
-   <footer>
-    <p>Email: <a href="mailto:isabelle_adjetey@outlook.com">isabelle_adjetey@outlook.com</a> • <a href="https://linkedin.com/in/isabelle-adjetey" target="_blank">LinkedIn</a></p>
-    <p>© 2025 Isabelle</p>
+
+  <footer class="container">
+    <p>
+      Email: <a href="mailto:isabelle_adjetey@outlook.com">isabelle_adjetey@outlook.com</a>
+      • LinkedIn: <a href="https://www.linkedin.com/in/isabelle-adjetey/" target="_blank">/isabelle-adjetey</a>
+    </p>
+
+    <p>© 2025 Isabelle Adjetey</p>
   </footer>
 
 </body>
