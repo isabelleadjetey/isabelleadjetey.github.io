@@ -210,3 +210,38 @@ footer a {
     min-width: auto;
   }
 }
+
+#formazione-in-corso .courses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.course {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  flex: 1 1 calc(50% - 1rem);
+  background: #fff;
+}
+
+.course-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.course-info h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.provider,
+.grade {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+  color: #555;
+}
+
