@@ -244,4 +244,6 @@ footer a {
   font-size: 0.875rem;
   color: #555;
 }
-
+.course-tags { margin-top:8px; }
+.tag-btn, .tag-filter { background:#eef; border:1px solid #ccd; padding:4px 8px; margin:2px; border-radius:4px; cursor:pointer; }
+.tag-btn.active { background:#cde; }
