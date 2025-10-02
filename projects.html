@@ -24,6 +24,7 @@
     <section class="projects">
       <div class="container">
         <h2>📁 Progetti in Cybersecurity</h2>
+        <p>Raccolta di laboratori pratici, simulazioni investigative e progetti di sicurezza applicata. Clicca su ogni scheda per aprire dettagli, PDF o repository.</p>
 
         <div class="projects-list">
 
@@ -122,69 +123,58 @@
             <p class="tags">#WebSecurity #SQLi #XSS #DDoS</p>
           </div>
 
-        </div>
-      </div>
+          <!-- SIEM & Splunk Subsection (nested) -->
+          <div class="project-subsection" id="siem-subsection">
+            <h3>📁 SIEM &amp; Splunk Projects</h3>
+            <p>Laboratori pratici e simulazioni investigative con Splunk Enterprise, query SPL e dashboard interattive.</p>
+
+            <div class="projects-list nested">
+
+              <!-- Splunk Log Analysis Lab -->
+              <div class="project-item" id="splunk-log">
+                <h4>📊 Splunk Log Analysis Lab</h4>
+                <p><strong>Tool:</strong> Splunk Enterprise</p>
+                <p>Query SPL su “tutorialdata.zip” per analizzare accessi SSH sospetti ed errori HTTP 500</p>
+                <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf" target="_blank">📄 PDF Progetto M6</a></p>
+                <p class="tags">#Splunk #LogAnalysis #SIEM</p>
+              </div>
+
+              <!-- Monitoraggio Log con Splunk in Docker -->
+              <div class="project-item" id="splunk-docker">
+                <h4>🖥️ Monitoraggio Log con Splunk in Docker</h4>
+                <p><strong>Periodo:</strong> 2025 – Remoto</p>
+                <p><strong>Tool:</strong> Docker, Splunk Enterprise, PowerShell, Bash</p>
+                <p>Configurazione di Splunk Enterprise in un container Docker per esportare, indicizzare e visualizzare file di log .evtx di Windows tramite interfaccia web</p>
+                <ul>
+                  <li>Esportazione dei log Windows in formato .evtx usando PowerShell (<code>wevtutil epl</code>)</li>
+                  <li>Avvio del container Splunk con montaggio della directory contenente i file .evtx</li>
+                  <li>Configurazione del monitoraggio in Splunk Web su <code>/hostlogs/System/*.evtx</code></li>
+                  <li>Verifica dell’indicizzazione con query SPL e costruzione di dashboard interattive</li>
+                </ul>
+                <p><a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/main/docs/Progetti/Splunk-Docker" target="_blank">📄 Dettagli e script su GitHub</a></p>
+                <p class="tags">#Splunk #Docker #PowerShell #Bash #EVTX #LogAnalysis</p>
+              </div>
+
+              <!-- Challenge SIEM – Investigazione Multi-Fase -->
+              <div class="project-item" id="challenge-siem">
+                <h4>🔐 Challenge SIEM – Investigazione Multi-Fase</h4>
+                <p><strong>Tool:</strong> Splunk Enterprise, SPL, Dashboard</p>
+                <ul>
+                  <li>Identificazione di accessi sospetti e correlazione tra eventi di sistema e rete</li>
+                  <li>Analisi multi-step per tracciare la catena dell'incidente</li>
+                  <li>Creazione di dashboard per evidenziare anomalie e timeline investigative</li>
+                  <li>Report PDF con evidenze tecniche e query SPL</li>
+                </ul>
+                <p><a href="docs/Progetti/SIEM/Progetto%20Challenge%20SIEM.pdf" target="_blank">📄 Report PDF – Progetto Challenge SIEM</a></p>
+                <p class="tags">#Splunk #SIEM #SPL #IncidentResponse #Dashboard</p>
+              </div>
+
+            </div> <!-- /.projects-list nested -->
+          </div> <!-- /.project-subsection -->
+
+        </div> <!-- /.projects-list -->
+      </div> <!-- /.container -->
     </section>
-
-    <!-- SIEM & Splunk Projects -->
-    <section aria-labelledby="siem-projects-title" id="siem-projects">
-      <div class="container">
-        <h2 id="siem-projects-title">📁 SIEM &amp; Splunk Projects</h2>
-        <p>Laboratori pratici e simulazioni investigative con Splunk Enterprise, query SPL e dashboard interattive. Ogni progetto include evidenze tecniche, query e report PDF.</p>
-
-        <div class="projects-list">
-
-          <!-- Splunk Log Analysis Lab -->
-          <div class="project-item" id="splunk-log">
-            <h3>📊 Splunk Log Analysis Lab</h3>
-            <p><strong>Tool:</strong> Splunk Enterprise</p>
-            <p>Query SPL su “tutorialdata.zip” per analizzare accessi SSH sospetti ed errori HTTP 500</p>
-            <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf" target="_blank">📄 PDF Progetto M6</a></p>
-            <p class="tags">#Splunk #LogAnalysis #SIEM</p>
-          </div>
-
-          <!-- Monitoraggio Log con Splunk in Docker -->
-          <div class="project-item" id="splunk-docker">
-            <h3>🖥️ Monitoraggio Log con Splunk in Docker</h3>
-            <p><strong>Periodo:</strong> 2025 – Remoto</p>
-            <p><strong>Tool:</strong> Docker, Splunk Enterprise, PowerShell, Bash</p>
-            <p>Configurazione di Splunk Enterprise in un container Docker per esportare, indicizzare e visualizzare file di log .evtx di Windows tramite interfaccia web</p>
-            <ul>
-              <li>Esportazione dei log Windows in formato .evtx usando PowerShell (<code>wevtutil epl</code>)</li>
-              <li>Avvio del container Splunk con montaggio della directory contenente i file .evtx</li>
-              <li>Configurazione del monitoraggio in Splunk Web su <code>/hostlogs/System/*.evtx</code></li>
-              <li>Verifica dell’indicizzazione con query SPL e costruzione di dashboard interattive</li>
-            </ul>
-            <p><a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/main/docs/Progetti/Splunk-Docker" target="_blank">📄 Dettagli e script su GitHub</a></p>
-            <p class="tags">#Splunk #Docker #PowerShell #Bash #EVTX #LogAnalysis</p>
-          </div>
-
-          <!-- Challenge SIEM – Investigazione Multi-Fase -->
-          <div class="project-item" id="challenge-siem">
-            <h3>🔐 Challenge SIEM – Investigazione Multi-Fase</h3>
-            <p><strong>Tool:</strong> Splunk Enterprise, SPL, Dashboard</p>
-            <ul>
-              <li>Identificazione di accessi sospetti e correlazione tra eventi di sistema e rete</li>
-              <li>Analisi multi-step per tracciare la catena dell'incidente</li>
-              <li>Creazione di dashboard per evidenziare anomalie e timeline investigative</li>
-              <li>Report PDF con evidenze tecniche e query SPL</li>
-            </ul>
-            <p><a href="docs/Progetti/SIEM/Progetto%20Challenge%20SIEM.pdf" target="_blank">📄 Report PDF – Progetto Challenge SIEM</a></p>
-            <p class="tags">#Splunk #SIEM #SPL #IncidentResponse #Dashboard</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Azure Cloud Engineer Projects -->
-    <section aria-labelledby="azure-projects-title" id="azure-projects">
-      <div class="container">
-        <h2 id="azure-projects-title">📁 Azure Cloud Engineer Projects</h2>
-        <p>Progetti pratici realizzati in ambiente Azure: deployment, sicurezza, automazione e gestione di risorse cloud. Clicca su ogni scheda per aprire dettagli, PDF o repository.</p>
-      </div>
-    </section>
-
   </main>
 
   <footer>
