@@ -1,0 +1,54 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: |
+          pytest -q
+
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 .
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t flask-devops:${{ github.sha }} .
+
+      - name: Run Trivy scan on image
+        uses: aquasecurity/trivy-action@v2
+        with:
+          image-ref: flask-devops:${{ github.sha }}
+          format: 'table'
+          output: 'trivy-report/report.txt'
+          severity: CRITICAL,HIGH,MEDIUM
+
+      - name: Upload Trivy report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-report
+          path: trivy-report/report.txt
