@@ -139,7 +139,48 @@
                 <p class="tags">#Splunk #LogAnalysis #SIEM</p>
               </div>
 
+              <div class="project-card project-banner project-card--dark" id="progetti-siem" style="background:#070707;color:#ffffff;padding:20px;border-radius:8px">
+  <header style="margin-bottom:12px">
+    <h3 style="margin:0;font-size:18px">Progetti SIEM</h3>
+    <p style="margin:6px 0 0;color:#cbd5e1">
+      Tre laboratori riproducibili che dimostrano competenze operative in ingestione, detection e  dashboarding. Per ogni progetto sono inclusi dataset di esempio, pdf soluzione.
+    </p>
+  </header>
+
+  <div class="project-list" style="display:grid;gap:12px">
+    <section class="project" id="proj-dns" aria-labelledby="proj-dns-title" style="padding:12px;background:rgba(255,255,255,0.02);border-radius:6px">
+      <h4 id="proj-dns-title" style="margin:0 0 6px;font-size:16px">Analisi DNS</h4>
+      <p style="margin:0 0 8px;color:#9fb0c8">
+        Monitoraggio delle risoluzioni DNS per individuare domini anomali, NXDOMAIN ricorrenti, e possibili DGA. Dashboard operative e runbook per escalation, blocco e arricchimento dei segnali.
+      </p>
+      <p style="margin:0 0 4px;color:#9ca3af"><strong>Artefatti:</strong> dns_logs_sample.json · dashboard_DNS.pdf · runbook_DNS.pdf</p>
+      <p class="project__caption" style="margin:6px 0 0;color:#9ca3af"><strong>Caption:</strong> Pipeline di monitoraggio DNS per identificare domini sospetti e automatizzare risposte.</p>
+    </section>
+
+    <section class="project" id="proj-ssh" aria-labelledby="proj-ssh-title" style="padding:12px;background:rgba(255,255,255,0.02);border-radius:6px">
+      <h4 id="proj-ssh-title" style="margin:0 0 6px;font-size:16px">Detection SSH</h4>
+      <p style="margin:0 0 8px;color:#9fb0c8">
+        Rilevazione di brute‑force, scanning orizzontale e sequenze failed→success indicative di takeover. Dashboard con top offender, timeline degli eventi e transaction view; runbook per triage e containment.
+      </p>
+      <p style="margin:0 0 4px;color:#9ca3af"><strong>Artefatti:</strong> ssh_logs_sample.json · dashboard_SSH.pdf · runbook_SSH.pdf</p>
+      <p class="project__caption" style="margin:6px 0 0;color:#9ca3af"><strong>Caption:</strong> Playbook operativo e dashboard per identificare e contenere tentativi SSH sospetti.</p>
+    </section>
+
+    <section class="project" id="proj-http" aria-labelledby="proj-http-title" style="padding:12px;background:rgba(255,255,255,0.02);border-radius:6px">
+      <h4 id="proj-http-title" style="margin:0 0 6px;font-size:16px">Analisi HTTP</h4>
+      <p style="margin:0 0 8px;color:#9fb0c8">
+        Analisi di endpoint ad alto traffico: errori 5xx, user‑agent sospetti, trasferimenti anomali di dati e pattern di bot. Dashboard e runbook per verifica legittimità, mitigazione via WAF e rate‑limit.
+      </p>
+      <p style="margin:0 0 4px;color:#9ca3af"><strong>Artefatti:</strong> http_logs_sample.json · dashboard_HTTP.pdf · runbook_HTTP.pdf</p>
+      <p class="project__caption" style="margin:6px 0 0;color:#9ca3af"><strong>Caption:</strong> Monitoraggio web per identificare errori critici, bot activity e trasferimenti di dati sospetti.</p>
+    </section>
+  </div>
+
+</div>
+
+
               <!-- Monitoraggio Log con Splunk in Docker -->
+               <!--
               <div class="project-item" id="splunk-docker">
                 <h4>🖥️ Monitoraggio Log con Splunk in Docker</h4>
                 <p><strong>Periodo:</strong> 2025 – Remoto</p>
@@ -155,45 +196,7 @@
                 <p class="tags">#Splunk #Docker #PowerShell #Bash #EVTX #LogAnalysis</p>
               </div>
 
-              <section id="siem-projects" aria-label="Progetti SIEM">
-  <div class="container">
-    <h2>Progetti SIEM — Panoramica rapida</h2>
-    <p class="lead">Tre laboratori riproducibili pensati per mostrare competenze operative in ingestion, detection, dashboarding e playbook: DNS, SSH e HTTP. Per ciascun progetto fornisco dataset, dashboard (PDF) e runbook (PDF).</p>
-
-    <div class="grid">
-      <!-- DNS -->
-      <article class="card" id="proj-dns">
-        <h3>Analisi DNS</h3>
-        <div class="meta">Obiettivo: monitoraggio e detection su log DNS</div>
-        <p>Laboratorio per identificare domini anomali, NXDOMAIN/DGA, e pattern di abuse su risoluzioni. Dashboard PDF con: Top queried domains, breakdown qtype, NXDOMAIN offenders e timeline; runbook PDF con playbook per escalation e mitigazione DNS.</p>
-        <p class="small"><strong>Artefatti:</strong> dns_logs_sample.json; dashboard_DNS.pdf; runbook_DNS.pdf</p>
-      </article>
-
-      <!-- SSH -->
-      <article class="card" id="proj-ssh">
-        <h3>Detection SSH</h3>
-        <div class="meta">Obiettivo: rilevazione brute‑force, scanning e takeover</div>
-        <p>Workflow operativo per individuare tentativi SSH falliti, scanning orizzontale e sequenze failed→success indicative di compromesso. Dashboard PDF con top offender, timechart e lista transaction; runbook PDF con playbook di triage e containment.</p>
-        <p class="small"><strong>Artefatti:</strong> ssh_logs_sample.json; dashboard_SSH.pdf; runbook_SSH.pdf</p>
-      </article>
-
-      <!-- HTTP -->
-      <article class="card" id="proj-http">
-        <h3>Analisi HTTP</h3>
-        <div class="meta">Obiettivo: traffic analysis, errori e bot detection</div>
-        <p>Analisi di endpoint ad alto traffico, errori 5xx, User‑Agent sospetti e grandi trasferimenti. Dashboard PDF con top endpoints, trend errori e suspicious agents; runbook PDF per investigare e mitigare incidenti web.</p>
-        <p class="small"><strong>Artefatti:</strong> http_logs_sample.json; dashboard_HTTP.pdf; runbook_HTTP.pdf</p>
-      </article>
-    </div>
-
-    <div class="notes card">
-      <h4>Nota</h4>
-      <p class="muted">Includi per ogni progetto: README con istruzioni di riproduzione, screenshot dashboard (PDF) e runbook operativo (PDF).</p>
-    </div>
-  </div>
-</section>
-
-
+-->
             </div> <!-- /.projects-list nested -->
           </div> <!-- /.project-subsection -->
 
