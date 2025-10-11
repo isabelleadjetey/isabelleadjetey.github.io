@@ -161,69 +161,36 @@
                     target="_blank">📄 PDF Progetto M6</a></p>
                 <p class="tags">#Splunk #LogAnalysis #SIEM</p>
               </div>
+              <!-- Progetti Challenge SIEM Splunk: inserire subito sotto la sezione SIEM & Splunk Projects -->
+              <div class="project-item" id="progetti-challenge-siem-splunk">
+                <h4>📊  Progetti Challenge SIEM Splunk</h4>
+                <p><strong>Periodo:</strong> 2025 – Remoto</p>
+                <p><strong>Tool:</strong> Splunk Enterprise, Docker, PowerShell, Bash, Zeek/Suricata (esempi)</p>
+                <p>Laboratori pratici e riproducibili per dimostrare competenze operative in ingestion, detection,
+                  dashboarding e playbook su Splunk. Scarica un unico ZIP contenente per ogni challenge dataset,
+                  dashboard PDF, runbook PDF e README.</p>
 
-              <!-- Div coerente con lo stile dei progetti esistenti, include tag (hashtag-style) e link ZIP unico -->
-              <div id="progetti-challenge-siem-splunk" class="project"
-                aria-labelledby="progetti-challenge-siem-splunk-title">
-                <h3 id="progetti-challenge-siem-splunk-title">Progetti Challenge SIEM Splunk</h3>
+                <ul>
+                  <li><strong>Analisi DNS</strong> — Monitoraggio di risoluzioni DNS per individuare domini anomali,
+                    NXDOMAIN ricorrenti e possibili DGA; dashboard con top queried domains, NXDOMAIN offenders e
+                    timeline; runbook operativo per escalation e mitigazione.</li>
+                  <li><strong>Detection SSH</strong> — Rilevazione di brute‑force, scanning orizzontale e sequenze
+                    failed→success indicative di takeover; dashboard con top offender, timechart e transaction view;
+                    runbook per triage e containment.</li>
+                  <li><strong>Analisi HTTP</strong> — Analisi di endpoint ad alto traffico per errori 5xx, user‑agent
+                    sospetti, grandi trasferimenti e pattern di bot; dashboard e runbook per investigazione e
+                    mitigazione (WAF, rate‑limit).</li>
+                </ul>
+
                 <p>
-                  Laboratori pratici e riproducibili pensati per dimostrare competenze operative in ingestion,
-                  detection, dashboarding e playbook su Splunk Enterprise.
+                  <a href="https://github.com/isabelleadjetey/siem-challenges/releases/download/v1.0/all-projects.zip"
+                    target="_blank" rel="noopener">📥 Scarica ZIP unico: Progetti Challenge SIEM Splunk</a>
                 </p>
 
-                <div class="project__tags" style="margin:8px 0">
-                  <a class="tag" href="/tags/splunk">#Splunk</a>
-                  <a class="tag" href="/tags/siem">#SIEM</a>
-                  <a class="tag" href="/tags/detection">#Detection</a>
-                  <a class="tag" href="/tags/dashboard">#Dashboard</a>
-                  <a class="tag" href="/tags/dataset">#Dataset</a>
-                </div>
+                <p class="tags">#Splunk #SIEM #DNS #SSH #HTTP #Detection #Dashboard #Runbook #Dataset</p>
 
-                <div class="project-list" style="display:grid;gap:12px;margin-top:12px">
-                  <div id="proj-dns" class="project" aria-labelledby="proj-dns-title">
-                    <h4 id="proj-dns-title">Analisi DNS</h4>
-                    <p>
-                      Monitoraggio e detection su log DNS per individuare domini anomali, NXDOMAIN ricorrenti e
-                      possibili DGA. Dashboard PDF con top queried domains, NXDOMAIN offenders e timeline; runbook
-                      operativo per escalation e mitigazione.
-                    </p>
-                    <p><strong>Artefatti:</strong> dns_logs_sample.json · dashboard_DNS.pdf · runbook_DNS.pdf</p>
-                    <p class="project__caption"><a href="/tags/dns">#DNS</a> <a href="/tags/dga">#DGA</a></p>
-                  </div>
-
-                  <div id="proj-ssh" class="project" aria-labelledby="proj-ssh-title">
-                    <h4 id="proj-ssh-title">Detection SSH</h4>
-                    <p>
-                      Rilevazione di brute-force, scanning orizzontale e sequenze failed→success indicative di takeover.
-                      Dashboard PDF con top offender, timechart e transaction view; runbook operativo per triage e
-                      containment.
-                    </p>
-                    <p><strong>Artefatti:</strong> ssh_logs_sample.json · dashboard_SSH.pdf · runbook_SSH.pdf</p>
-                    <p class="project__caption"><a href="/tags/ssh">#SSH</a> <a href="/tags/bruteforce">#BruteForce</a>
-                    </p>
-                  </div>
-
-                  <div id="proj-http" class="project" aria-labelledby="proj-http-title">
-                    <h4 id="proj-http-title">Analisi HTTP</h4>
-                    <p>
-                      Analisi di endpoint ad alto traffico per errori 5xx, user-agent sospetti, grandi trasferimenti e
-                      pattern di bot. Dashboard PDF con top endpoints, trend errori e suspicious agents; runbook
-                      operativo per mitigazione (WAF, rate-limit).
-                    </p>
-                    <p><strong>Artefatti:</strong> http_logs_sample.json · dashboard_HTTP.pdf · runbook_HTTP.pdf</p>
-                    <p class="project__caption"><a href="/tags/http">#HTTP</a> <a
-                        href="/tags/botdetection">#BotDetection</a></p>
-                  </div>
-                </div>
-
-                <p style="margin-top:12px">
-                  <a class="project-download"
-                    href="https://github.com/isabelleadjetey/siem-challenges/releases/download/v1.0/all-projects.zip"
-                    target="_blank" rel="noopener" style="font-weight:600;text-decoration:underline">
-                    (ZIP unico per i 3 progetti)
-                  </a>
-                </p>
-
+                <p><a href="https://github.com/isabelleadjetey/siem-challenges" target="_blank" rel="noopener">📄
+                    Repository completo su GitHub</a></p>
               </div>
 
               <!-- Monitoraggio Log con Splunk in Docker -->
