@@ -155,19 +155,44 @@
                 <p class="tags">#Splunk #Docker #PowerShell #Bash #EVTX #LogAnalysis</p>
               </div>
 
-              <!-- Challenge SIEM – Investigazione Multi-Fase -->
-              <div class="project-item" id="challenge-siem">
-                <h4>🔐 Challenge SIEM – Investigazione Multi-Fase</h4>
-                <p><strong>Tool:</strong> Splunk Enterprise, SPL, Dashboard</p>
-                <ul>
-                  <li>Identificazione di accessi sospetti e correlazione tra eventi di sistema e rete</li>
-                  <li>Analisi multi-step per tracciare la catena dell'incidente</li>
-                  <li>Creazione di dashboard per evidenziare anomalie e timeline investigative</li>
-                  <li>Report PDF con evidenze tecniche e query SPL</li>
-                </ul>
-                <p><a href="docs/Progetti/SIEM/Progetto%20Challenge%20SIEM.pdf" target="_blank">📄 Report PDF – Progetto Challenge SIEM</a></p>
-                <p class="tags">#Splunk #SIEM #SPL #IncidentResponse #Dashboard</p>
-              </div>
+              <section id="siem-projects" aria-label="Progetti SIEM">
+  <div class="container">
+    <h2>Progetti SIEM — Panoramica rapida</h2>
+    <p class="lead">Tre laboratori riproducibili pensati per mostrare competenze operative in ingestion, detection, dashboarding e playbook: DNS, SSH e HTTP. Per ciascun progetto fornisco dataset, dashboard (PDF) e runbook (PDF).</p>
+
+    <div class="grid">
+      <!-- DNS -->
+      <article class="card" id="proj-dns">
+        <h3>Analisi DNS</h3>
+        <div class="meta">Obiettivo: monitoraggio e detection su log DNS</div>
+        <p>Laboratorio per identificare domini anomali, NXDOMAIN/DGA, e pattern di abuse su risoluzioni. Dashboard PDF con: Top queried domains, breakdown qtype, NXDOMAIN offenders e timeline; runbook PDF con playbook per escalation e mitigazione DNS.</p>
+        <p class="small"><strong>Artefatti:</strong> dns_logs_sample.json; dashboard_DNS.pdf; runbook_DNS.pdf</p>
+      </article>
+
+      <!-- SSH -->
+      <article class="card" id="proj-ssh">
+        <h3>Detection SSH</h3>
+        <div class="meta">Obiettivo: rilevazione brute‑force, scanning e takeover</div>
+        <p>Workflow operativo per individuare tentativi SSH falliti, scanning orizzontale e sequenze failed→success indicative di compromesso. Dashboard PDF con top offender, timechart e lista transaction; runbook PDF con playbook di triage e containment.</p>
+        <p class="small"><strong>Artefatti:</strong> ssh_logs_sample.json; dashboard_SSH.pdf; runbook_SSH.pdf</p>
+      </article>
+
+      <!-- HTTP -->
+      <article class="card" id="proj-http">
+        <h3>Analisi HTTP</h3>
+        <div class="meta">Obiettivo: traffic analysis, errori e bot detection</div>
+        <p>Analisi di endpoint ad alto traffico, errori 5xx, User‑Agent sospetti e grandi trasferimenti. Dashboard PDF con top endpoints, trend errori e suspicious agents; runbook PDF per investigare e mitigare incidenti web.</p>
+        <p class="small"><strong>Artefatti:</strong> http_logs_sample.json; dashboard_HTTP.pdf; runbook_HTTP.pdf</p>
+      </article>
+    </div>
+
+    <div class="notes card">
+      <h4>Nota</h4>
+      <p class="muted">Includi per ogni progetto: README con istruzioni di riproduzione, screenshot dashboard (PDF) e runbook operativo (PDF).</p>
+    </div>
+  </div>
+</section>
+
 
             </div> <!-- /.projects-list nested -->
           </div> <!-- /.project-subsection -->
