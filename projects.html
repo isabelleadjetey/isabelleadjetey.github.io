@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Progetti – Isabelle Adjetey</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
 
+  <!-- Header -->
   <header class="hero">
     <div class="container">
       <h1>Isabelle Adjetey</h1>
@@ -22,206 +21,133 @@
     </div>
   </header>
 
+  <!-- Main -->
   <main class="main-content">
-    <section class="projects">
-      <div class="container">
-        <h2>📁 Progetti in Cybersecurity</h2>
-        <p>Raccolta di laboratori pratici, simulazioni investigative e progetti di sicurezza applicata. Clicca su ogni
-          scheda per aprire dettagli, PDF o repository.</p>
+    <section class="projects container">
+      <h2>📁 Progetti in Cybersecurity</h2>
+      <p>Laboratori pratici, simulazioni investigative e progetti di sicurezza applicata.</p>
 
-        <div class="projects-list">
+      <!-- Panorama Attacchi -->
+      <article class="project" id="panorama-attacchi">
+        <h3>📖 Panorama degli Attacchi Informatici</h3>
+        <p><strong>Periodo:</strong> Agosto 2025 — <strong>Ruolo:</strong> Cybersecurity Analyst</p>
+        <ul>
+          <li>Mappatura categorie: Malware, Phishing, DoS/DDoS, MITM, SQLi, XSS, CSRF...</li>
+          <li>Definizione vettori di attacco e raccolta IoC</li>
+          <li>Procedure di containment, forensics e recovery</li>
+          <li>Linee guida di prevenzione: EPP, patch management, IAM, network segmentation...</li>
+        </ul>
+        <a href="docs/Progetti/Panorama Attachi/Panorama attacchi.pdf" target="_blank">📄 PDF Playbook</a>
+        <p class="tags">#Cybersecurity #ThreatPlaybook #Remediation #Prevenzione</p>
+      </article>
 
-          <!-- Panorama degli Attacchi Informatici -->
-          <div class="project-item" id="panorama-attacchi">
-            <h3>📖 Panorama degli Attacchi Informatici: Remediation &amp; Prevenzione</h3>
-            <p><strong>Periodo:</strong> Agosto 2025</p>
-            <p><strong>Ruolo:</strong> Cybersecurity Analyst</p>
-            <ul>
-              <li>Mappatura delle categorie di attacco: Malware, Phishing/Smishing/Vishing, DoS/DDoS, MITM, Web App
-                (SQLi, XSS, CSRF), Zero-Day, Supply Chain, Cloud Misconfiguration, IoT</li>
-              <li>Definizione dei vettori di attacco e raccolta degli IoC (Indicatori di Compromissione)</li>
-              <li>Stesura delle procedure di containment, forensics e recovery</li>
-              <li>Elaborazione delle linee guida di prevenzione: EPP, patch management, policy IAM, network
-                segmentation, framework IaC, security testing</li>
-            </ul>
-            <p><a href="docs/Progetti/Panorama Attachi/Panorama attacchi.pdf" target="_blank">📄 PDF Playbook</a></p>
-            <p class="tags">#Cybersecurity #ThreatPlaybook #Remediation #Prevenzione</p>
-          </div>
+      <!-- ANZ Job Simulation -->
+      <article class="project" id="anz">
+        <h3>🛡️ ANZ – Job Simulation</h3>
+        <p><strong>Giugno 2025 – Remoto</strong></p>
+        <ul>
+          <li><strong>Task 1:</strong> Analisi email simulate con link malevoli e allegati compromessi</li>
+          <li><strong>Task 2:</strong> Analisi PCAP per immagini nascoste e traffico anomalo</li>
+        </ul>
+        <p><strong>Certificato:</strong> <a href="...completion_certificate.pdf" target="_blank">Visualizza qui</a></p>
+        <ul>
+          <li><a href="...Task%201" target="_blank">📧 Task 1 – Analisi Email</a></li>
+          <li><a href="...Task%202" target="_blank">📡 Task 2 – Analisi PCAP</a></li>
+        </ul>
+        <p class="tags">#Phishing #PCAP #Steganografia #ANZ #Forage</p>
+      </article>
 
-          <!-- ANZ – Job Simulation -->
-          <div class="project-item" id="anz">
-            <h3>🛡️ ANZ – Job Simulation</h3>
-            <p><strong>Giugno 2025 – Remoto</strong></p>
-            <ul>
-              <li><strong>Task 1:</strong> Analisi di 7 email simulate, identificazione di link malevoli, allegati
-                compromessi e tattiche di social engineering</li>
-              <li><strong>Task 2:</strong> Analisi di un file PCAP per estrarre immagini nascoste, documenti mascherati
-                e traffico anomalo</li>
-            </ul>
-            <p><strong>Certificato:</strong> <a
-                href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/AKkAyEwWc8wjPxx9n/Hf4QMESoFeQwXPsiH_AKkAyEwWc8wjPxx9n_JnnS6HC3k6choTWuP_1749768064410_completion_certificate.pdf"
-                target="_blank">Visualizza qui</a></p>
-            <h4>Link utili</h4>
-            <ul>
-              <li><a
-                  href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%201"
-                  target="_blank">📧 Task 1 – Analisi Email</a></li>
-              <li><a
-                  href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%202"
-                  target="_blank">📡 Task 2 – Analisi PCAP</a></li>
-            </ul>
-            <p class="tags">#Phishing #PCAP #Steganografia #ANZ #Forage</p>
-          </div>
+      <!-- Client-Server -->
+      <article class="project" id="client-server">
+        <h3>🌐 Simulazione Client-Server</h3>
+        <p><strong>Tool:</strong> Kali Linux, Windows 7, BIND9, Apache, Wireshark</p>
+        <ul>
+          <li>Configurazione DNS per epicode.internal</li>
+          <li>Server HTTPS con certificato autofirmato</li>
+          <li>Analisi differenze tra traffico HTTP e HTTPS</li>
+        </ul>
+        <a href="ProgettoM1.pdf" target="_blank">📄 PDF Progetto M1</a>
+        <p class="tags">#DNS #HTTPS #HTTP #Wireshark</p>
+      </article>
 
-          <!-- Client-Server Simulation -->
-          <div class="project-item" id="client-server">
-            <h3>🌐 Simulazione Client-Server</h3>
-            <p><strong>Tool:</strong> Kali Linux, Windows 7, BIND9, Apache, Wireshark</p>
-            <ul>
-              <li>Configurazione DNS per epicode.internal</li>
-              <li>Server HTTPS con certificato autofirmato</li>
-              <li>Cattura e analisi differenze tra traffico HTTP e HTTPS</li>
-            </ul>
-            <p>Risultati: handshake TLS visibile, payload HTTP in chiaro</p>
-            <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf"
-                target="_blank">📄 PDF Progetto M1</a></p>
-            <p class="tags">#DNS #HTTPS #HTTP #Wireshark</p>
-          </div>
+      <!-- GameShell -->
+      <article class="project" id="gameshell">
+        <h3>🎮 GameShell – Shell Familiarization</h3>
+        <p><strong>Tool:</strong> Kali Linux, shell utilities, wget</p>
+        <p>Installazione e utilizzo di GameShell per esercitazioni CLI su Kali Linux</p>
+        <a href="ProgettoM2.pdf" target="_blank">📄 PDF Progetto M2</a>
+        <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
+      </article>
 
-          <!-- GameShell Familiarization -->
-          <div class="project-item" id="gameshell">
-            <h3>🎮 GameShell – Shell Familiarization</h3>
-            <p><strong>Tool:</strong> Kali Linux, shell utilities, wget</p>
-            <p>Installazione e utilizzo di GameShell per esercitazioni CLI su Kali Linux</p>
-            <p><a
-                href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf"
-                target="_blank">📄 PDF Progetto M2</a></p>
-            <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
-          </div>
+      <!-- Vulnerability Assessment -->
+      <article class="project" id="vuln">
+        <h3>🔍 Vulnerability Assessment – Metasploitable</h3>
+        <p><strong>Tool:</strong> Nmap, Nessus, iptables</p>
+        <ul>
+          <li>Scansione completa sul target Metasploitable</li>
+          <li>Selezione di vulnerabilità critiche</li>
+          <li>Implementazione patch e regole firewall</li>
+          <li>Riesecuzione scansione e confronto risultati</li>
+        </ul>
+        <a href="ScansioneIniziale.pdf" target="_blank">📄 Scansione Iniziale</a> |
+        <a href="RemediationMeta.pdf" target="_blank">📄 Remediation</a> |
+        <a href="ScansioneFine.pdf" target="_blank">📄 Scansione Finale</a>
+        <p class="tags">#Metasploitable #Nmap #Nessus #iptables</p>
+      </article>
 
-          <!-- Vulnerability Assessment -->
-          <div class="project-item" id="vuln">
-            <h3>🔍 Vulnerability Assessment – Metasploitable</h3>
-            <p><strong>Tool:</strong> Nmap, Nessus, iptables</p>
-            <ul>
-              <li>Scansione completa sul target Metasploitable</li>
-              <li>Selezione di 2–4 vulnerabilità critiche</li>
-              <li>Implementazione patch e regole firewall</li>
-              <li>Riesecuzione scansione e confronto risultati</li>
-            </ul>
-            <ul>
-              <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneIniziale.pdf"
-                  target="_blank">📄 Scansione Iniziale</a></li>
-              <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf"
-                  target="_blank">📄 Remediation</a></li>
-              <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScansioneFine.pdf"
-                  target="_blank">📄 Scansione Finale</a></li>
-            </ul>
-            <p class="tags">#Metasploitable #Nmap #Nessus #iptables</p>
-          </div>
+      <!-- Java RMI -->
+      <article class="project" id="java-rmi">
+        <h3>🧰 Java RMI Exploitation</h3>
+        <p><strong>Tool:</strong> Metasploit Framework</p>
+        <p>Ottenimento di una sessione Meterpreter sfruttando servizio Java RMI (porta 1099)</p>
+        <a href="ProgettoM4.pdf" target="_blank">📄 PDF Progetto M4</a>
+        <p class="tags">#JavaRMI #Metasploit #Meterpreter</p>
+      </article>
 
-          <!-- Java RMI Exploitation -->
-          <div class="project-item" id="java-rmi">
-            <h3>🧰 Java RMI Exploitation</h3>
-            <p><strong>Tool:</strong> Metasploit Framework</p>
-            <p>Ottenimento di una sessione Meterpreter sfruttando servizio Java RMI (porta 1099) su Metasploitable</p>
-            <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf"
-                target="_blank">📄 PDF Progetto M4</a></p>
-            <p class="tags">#JavaRMI #Metasploit #Meterpreter</p>
-          </div>
+      <!-- Web App Security -->
+      <article class="project" id="webapp-security">
+        <h3>🧱 Web App Security Analysis & Response</h3>
+        <p><strong>Requisiti:</strong> DMZ protection, prevenzione SQLi/XSS, mitigazione DDoS</p>
+        <ul>
+          <li>Filtri WAF e validazione input</li>
+          <li>Mitigazione DDoS (CDN, rate-limiting)</li>
+          <li>Quarantena malware tramite ACL e VLAN dedicate</li>
+        </ul>
+        <a href="ProgettoM5.pdf" target="_blank">📄 PDF Progetto M5</a>
+        <p class="tags">#WebSecurity #SQLi #XSS #DDoS</p>
+      </article>
 
-          <!-- Web App Security Analysis -->
-          <div class="project-item" id="webapp-security">
-            <h3>🧱 Web App Security Analysis &amp; Response</h3>
-            <p><strong>Requisiti:</strong> DMZ protection, prevenzione SQLi/XSS, mitigazione DDoS</p>
-            <ul>
-              <li>Filtri WAF e validazione input per SQLi/XSS</li>
-              <li>Mitigazione DDoS (CDN, rate-limiting)</li>
-              <li>Quarantena malware tramite ACL e VLAN dedicate</li>
-            </ul>
-            <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf"
-                target="_blank">📄 PDF Progetto M5</a></p>
-            <p class="tags">#WebSecurity #SQLi #XSS #DDoS</p>
-          </div>
 
-          <!-- SIEM & Splunk Subsection (nested) -->
-          <div class="project-subsection" id="siem-subsection">
-            <h3>📁 SIEM &amp; Splunk Projects</h3>
-            <p>Laboratori pratici e simulazioni investigative con Splunk Enterprise, query SPL e dashboard interattive.
-            </p>
+      <!-- SIEM & Splunk -->
+      <section class="project-subsection" id="siem-splunk">
+        <h3>📁 SIEM & Splunk Projects</h3>
+        <p>Laboratori pratici con Splunk Enterprise, query SPL e dashboard interattive.</p>
 
-            <div class="projects-list nested">
+        <article class="project" id="splunk-log">
+          <h4>📊 Splunk Log Analysis Lab</h4>
+          <p><strong>Tool:</strong> Splunk Enterprise</p>
+          <p>Analisi accessi SSH sospetti ed errori HTTP 500 con query SPL</p>
+          <a href="ProgettoM6.pdf" target="_blank">📄 PDF Progetto M6</a>
+          <p class="tags">#Splunk #LogAnalysis #SIEM</p>
+        </article>
 
-              <!-- Splunk Log Analysis Lab -->
-              <div class="project-item" id="splunk-log">
-                <h4>📊 Splunk Log Analysis Lab</h4>
-                <p><strong>Tool:</strong> Splunk Enterprise</p>
-                <p>Query SPL su “tutorialdata.zip” per analizzare accessi SSH sospetti ed errori HTTP 500</p>
-                <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf"
-                    target="_blank">📄 PDF Progetto M6</a></p>
-                <p class="tags">#Splunk #LogAnalysis #SIEM</p>
-              </div>
-              <!-- Progetti Challenge SIEM Splunk -->
-              <div class="project-item" id="progetti-challenge-siem-splunk">
-                <h4>📊  Progetti Challenge SIEM Splunk</h4>
-                <p><strong>Tool:</strong> Splunk Enterprise, Docker, PowerShell, Bash, Zeek/Suricata (esempi)</p>
-                <p>Laboratori pratici e riproducibili per dimostrare competenze operative in ingestion, detection e
-                  dashboarding su Splunk.</p>
-                <ul>
-                  <li><strong>Analisi DNS</strong> — Monitoraggio di risoluzioni DNS per individuare domini anomali,
-                    NXDOMAIN ricorrenti e possibili DGA; dashboard con top queried domains, NXDOMAIN offenders e
-                    timeline.</li>
-                  <li><strong>Detection SSH</strong> — Rilevazione di brute‑force, scanning orizzontale e sequenze
-                    failed→success indicative di takeover; dashboard con top offender, timechart e transaction view.</li>
-                  <li><strong>Analisi HTTP</strong> — Analisi di endpoint ad alto traffico per errori 5xx, user‑agent
-                    sospetti, grandi trasferimenti e pattern di bot; e dashboard.</li>
-                </ul>
+    <!-- Cloud Security -->
+<section class="project-subsection" id="cloud-security">
+  <h3>🔐 Cloud Security</h3>
+  <p>Progetti e laboratori focalizzati sulla sicurezza in ambienti Microsoft Azure.</p>
 
-                <p>
-                  <a href="https://github.com/isabelleadjetey/siem-challenges/releases/download/v1.0/all-projects.zip"
-                    target="_blank" rel="noopener">📥 Scarica ZIP unico: Progetti Challenge SIEM Splunk</a>
-                </p>
-
-                <p class="tags">#Splunk #SIEM #DNS #SSH #HTTP #Detection #Dashboard #Runbook #Dataset</p>
-
-                <p><a href="https://github.com/isabelleadjetey/siem-challenges" target="_blank" rel="noopener">📄
-                    Repository completo su GitHub</a></p>
-              </div>
-
-              <!-- Monitoraggio Log con Splunk in Docker -->
-              <!--
-              <div class="project-item" id="splunk-docker">
-                <h4>🖥️ Monitoraggio Log con Splunk in Docker</h4>
-                <p><strong>Periodo:</strong> 2025 – Remoto</p>
-                <p><strong>Tool:</strong> Docker, Splunk Enterprise, PowerShell, Bash</p>
-                <p>Configurazione di Splunk Enterprise in un container Docker per esportare, indicizzare e visualizzare file di log .evtx di Windows tramite interfaccia web</p>
-                <ul>
-                  <li>Esportazione dei log Windows in formato .evtx usando PowerShell (<code>wevtutil epl</code>)</li>
-                  <li>Avvio del container Splunk con montaggio della directory contenente i file .evtx</li>
-                  <li>Configurazione del monitoraggio in Splunk Web su <code>/hostlogs/System/*.evtx</code></li>
-                  <li>Verifica dell’indicizzazione con query SPL e costruzione di dashboard interattive</li>
-                </ul>
-                <p><a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/main/docs/Progetti/Splunk-Docker" target="_blank">📄 Dettagli e script su GitHub</a></p>
-                <p class="tags">#Splunk #Docker #PowerShell #Bash #EVTX #LogAnalysis</p>
-              </div>
-
--->
-            </div> <!-- /.projects-list nested -->
-          </div> <!-- /.project-subsection -->
-
-        </div> <!-- /.projects-list -->
-      </div> <!-- /.container -->
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>Email: <a href="mailto:isabelle_adjetey@outlook.com">isabelle_adjetey@outlook.com</a> • <a
-          href="https://linkedin.com/in/isabelle-adjetey" target="_blank">LinkedIn</a></p>
-      <p>© 2025 Isabelle Adjetey</p>
-    </div>
-  </footer>
-
-</body>
-
-</html>
+  <!-- AZ-500 Project -->
+  <article class="project" id="az-500">
+    <h4>☁️ AZ-500 – Microsoft Azure Security Engineer</h4>
+    <p><strong>Focus:</strong> Sicurezza su Microsoft Azure, gestione identità, protezione dati e monitoraggio.</p>
+    <ul>
+      <li>Configurazione di Azure Security Center per monitoraggio e remediation automatica</li>
+      <li>Implementazione di Azure Sentinel con regole di detection e dashboard SIEM</li>
+      <li>Gestione identità e accessi con Azure AD Conditional Access</li>
+      <li>Protezione dati con Azure Key Vault e rotazione segreti</li>
+      <li>Hardening risorse cloud tramite policy e blueprint</li>
+    </ul>
+    <a href="docs/Progetti/AzureSecurity/AzureSecurityPlaybook.pdf" target="_blank">📄 PDF Playbook</a>
+    <p class="tags">#AZ500 #Azure #CloudSecurity #Sentinel #IAM #KeyVault</p>
+  </article>
+</section>

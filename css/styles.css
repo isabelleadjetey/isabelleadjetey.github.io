@@ -405,3 +405,136 @@ a:focus, button:focus{
   outline-offset: 2px;
   border-radius: 6px;
 }
+/* Reset di base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+  background: #f4f6f8;
+  color: #333;
+}
+
+/* Header */
+header.hero {
+  background: #1f2937;
+  color: #fff;
+  padding: 2rem 0;
+}
+
+header .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+header .subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #d1d5db;
+}
+
+nav .nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  font-weight: 500;
+}
+
+nav .nav-link.active {
+  border-bottom: 2px solid #3b82f6;
+}
+
+/* Main content */
+.main-content {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.projects h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #1f2937;
+}
+
+/* Project cards */
+.project {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.project h3, .project h4 {
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.project ul {
+  margin: 0.5rem 0 0.8rem 1.2rem;
+}
+
+.project a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.project a:hover {
+  text-decoration: underline;
+}
+
+.tags {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+/* Subsections (Cloud Security, SIEM & Splunk, ecc.) */
+.project-subsection {
+  background: #e0f2fe; /* azzurro chiaro per distinguere */
+  border: 2px solid #38bdf8;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.project-subsection h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: #0c4a6e;
+}
+
+.project-subsection p {
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+/* Footer */
+footer {
+  background: #1f2937;
+  color: #fff;
+  padding: 1.5rem 0;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+footer a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
