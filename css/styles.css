@@ -1,124 +1,333 @@
-/* Reset */
-* {
+/* ====== DARK TECH THEME ====== */
+/* Minimal variables for easy tuning */
+:root{
+  --bg-900: #03040a;
+  --bg-800: #071026;
+  --panel: #071428;
+  --accent: #38bdf8;        /* blu glow */
+  --accent-2: #0ea5e9;
+  --muted: #9aa6b2;
+  --text: #e6f0fb;
+  --card-radius: 14px;
+  --glass: rgba(255,255,255,0.03);
+  --soft-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  --glow: 0 6px 28px rgba(56,189,248,0.12), 0 2px 8px rgba(56,189,248,0.06);
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body{
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(56,189,248,0.03), transparent 8%),
+              linear-gradient(180deg, var(--bg-800) 0%, var(--bg-900) 100%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  padding-bottom: 48px;
 }
 
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  line-height: 1.6;
-  background: #f9fafb;
-  color: #333;
-}
-
-/* Header */
-header.hero {
-  background: #1f2937;
-  color: #fff;
-  padding: 2rem 0;
-}
-
-header .container {
-  max-width: 1000px;
+/* Container */
+.container {
+  max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
+  padding: 28px;
 }
 
-header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+/* Header / Hero */
+.hero {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(4px);
 }
-
-header .subtitle {
-  font-size: 1.1rem;
-  color: #d1d5db;
+.hero .container {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
-nav .nav-link {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 1rem;
-}
-
-nav .nav-link.active {
-  border-bottom: 2px solid #3b82f6;
-}
-
-/* Main content */
-.main-content {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.projects h2 {
-  margin-bottom: 1rem;
+.hero h1 {
   font-size: 1.6rem;
-  color: #111827;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-/* Project cards */
-.project {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 1rem 1.2rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+/* Nav */
+nav {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
-
-.project h3, .project h4 {
-  margin-bottom: 0.5rem;
-  color: #1f2937;
-}
-
-.project ul {
-  margin: 0.5rem 0 0.8rem 1.2rem;
-}
-
-.project a {
-  color: #2563eb;
+.nav-link {
+  color: var(--muted);
   text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 160ms ease, color 160ms ease, background 160ms ease;
+}
+.nav-link:hover { transform: translateY(-2px); color: var(--accent); }
+.nav-link.active {
+  color: var(--accent);
+  background: linear-gradient(90deg, rgba(56,189,248,0.08), rgba(14,165,233,0.04));
+  box-shadow: var(--glow);
+  border: 1px solid rgba(56,189,248,0.08);
 }
 
-.project a:hover {
-  text-decoration: underline;
+/* Main */
+.main-content { padding: 28px 0 40px; }
+.projects h2 { font-size: 1.2rem; margin-bottom: 6px; }
+.projects p { color: var(--muted); margin-bottom: 18px; }
+
+/* Projects grid */
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 18px;
 }
 
+/* Project card */
+.project-item {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: var(--card-radius);
+  padding: 18px;
+  box-shadow: var(--soft-shadow);
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms;
+  position: relative;
+  overflow: hidden;
+}
+.project-item::before{
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at 10% 10%, rgba(56,189,248,0.03), transparent 20%);
+  pointer-events: none;
+  transition: transform 420ms ease, opacity 220ms ease;
+  transform: translateY(6px);
+  opacity: 0;
+}
+.project-item:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(2,6,23,0.7);
+}
+.project-item:hover::before{ transform: translateY(-6px); opacity: 1; }
+
+/* Titles and text */
+.project-item h3, .project-item h4 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: var(--text);
+}
+.project-item p, .project-item li {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 6px 0;
+}
+.project-item ul { margin-left: 18px; margin-bottom: 8px; }
+
+/* Links */
+.project-item a {
+  color: var(--accent-2);
+  text-decoration: none;
+  font-weight: 700;
+}
+.project-item a:hover { text-decoration: underline; }
+
+/* Badge style with glow */
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(56,189,248,0.12), rgba(14,165,233,0.06));
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.78rem;
+  border: 1px solid rgba(56,189,248,0.12);
+  box-shadow: 0 6px 18px rgba(56,189,248,0.08), 0 2px 6px rgba(14,165,233,0.04);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+/* Strong glow on hover for badges */
+.project-item:hover .badge {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(56,189,248,0.18), 0 4px 12px rgba(14,165,233,0.08);
+}
+
+/* Tags line with subtle neon pills */
 .tags {
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-top: 0.5rem;
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tags .tag {
+  font-size: 0.82rem;
+  color: #cfeffd;
+  background: linear-gradient(90deg, rgba(56,189,248,0.06), rgba(14,165,233,0.03));
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(56,189,248,0.06);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.35) inset;
 }
 
-/* Subsections (Cloud Security, SIEM & Splunk) */
+/* Subsection styling */
 .project-subsection {
-  margin: 2rem 0;
-  border-top: 2px solid #e5e7eb;
-  padding-top: 1rem;
-}
-
-.project-subsection h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
-  color: #111827;
+  grid-column: 1 / -1;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(56,189,248,0.02), rgba(255,255,255,0.01));
+  border: 1px dashed rgba(56,189,248,0.06);
 }
 
 /* Footer */
 footer {
-  background: #1f2937;
-  color: #fff;
-  padding: 1.5rem 0;
-  text-align: center;
-  margin-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  padding: 18px 0;
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
-footer a {
-  color: #3b82f6;
+/* Accessibility focus */
+a:focus, .nav-link:focus {
+  outline: 3px solid rgba(56,189,248,0.14);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .projects-list { grid-template-columns: 1fr; }
+  nav { width: 100%; justify-content: flex-start; margin-top: 8px; }
+  .hero .container { align-items: flex-start; }
+}
+/* ====== Fix visibilità certificazioni ====== */
+.project-item a {
+  color: var(--accent-2, #0ea5e9) !important;
+  background: linear-gradient(90deg, rgba(56,189,248,0.06), transparent);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(56,189,248,0.10);
+  box-shadow: 0 6px 18px rgba(14,165,233,0.06);
   text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  transition: transform 160ms ease, box-shadow 160ms ease, color 160ms ease;
+  z-index: 2;
 }
 
-footer a:hover {
-  text-decoration: underline;
+/* evidenzia al passaggio del mouse */
+.project-item a:hover {
+  transform: translateY(-3px);
+  color: #bff0ff;
+  box-shadow: 0 12px 36px rgba(56,189,248,0.18);
+}
+
+/* assicurati che i link non siano coperti da pseudo-elementi */
+.project-item,
+.project-item * {
+  position: relative;
+  z-index: 1;
+}
+
+/* se il PDF è in una riga con altre info, separalo e rendilo più visibile */
+.project-item p a[target="_blank"] {
+  margin-top: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* migliora contrasto tag/hashtag */
+.tags {
+  color: #cfeffd;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+
+
+/* ====== FIX SOVRAPPOSIZIONI ====== */
+/* Assicura che pseudo-elementi non coprano i link */
+.project-item::before,
+.project-item::after,
+.project-group::before,
+.project-group::after {
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Metti i contenuti cliccabili in primo piano */
+.project-item,
+.project-item * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Forza link e badge sopra ogni pseudo-layer */
+.project-item a,
+.project-item p a,
+.project-item .badge,
+.project-item .tags,
+.project-item h3,
+.project-item h4 {
+  position: relative;
+  z-index: 6;
+}
+
+/* Se il gruppo collapsible taglia il contenuto, rendi overflow visibile */
+.group-content,
+.project-group,
+.project-item {
+  overflow: visible;
+}
+
+/* Evita che header/nav si sovrapponga ai contenuti quando sticky */
+.hero,
+nav {
+  position: relative;
+  z-index: 20;
+}
+
+/* Aumenta spazio interno per evitare sovrapposizioni su schermi piccoli */
+.project-item {
+  padding: 18px 20px;
+}
+
+/* Riduci la dimensione dei pseudo-gradient se causa overlay visivo */
+.project-item::before {
+  opacity: 0.9;
+  transform: none;
+  inset: -10%;
+}
+
+/* Se i badge escono dal contenitore, limita overflow e aggiusta margine */
+.badge {
+  z-index: 8;
+  margin-left: 8px;
+}
+
+/* Se i link PDF risultano nascosti dietro immagini o gradienti, forzali visibili */
+.project-item p a[target="_blank"] {
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(56,189,248,0.06), transparent);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(56,189,248,0.08);
+  z-index: 9;
+}
+
+/* Mobile: aumenta gap per evitare sovrapposizioni verticali */
+@media (max-width: 900px) {
+  .projects-list { gap: 20px; }
+  .project-item { padding: 16px; }
 }
