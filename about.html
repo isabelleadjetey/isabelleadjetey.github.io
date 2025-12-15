@@ -24,10 +24,31 @@
   <main class="container">
 
     <section>
-      <h2>Chi sono</h2>
-      <p>Benvenuto nel mio portfolio!</p>
-      <p>Sono Isabelle, laureata in Informatica, con 5 anni di esperienza come sviluppatrice su Dynamics NAV/Business Central (C/AL, AL). A dicembre 2024 ho completato un bootcamp intensivo in Cybersecurity presso Epicode e attualmente partecipo al <em>DevSecOps Program – Global Subsidy-Based Microsoft Certification Scholarships</em> di Women in Cloud, con l’obiettivo di ottenere la certificazione AZ-500 come Azure Security Engineer Associate.</p>
-    </section>
+  <h2>Chi sono</h2>
+  <p>Benvenuto nel mio portfolio!</p>
+  <p>
+    Sono Isabelle, laureata in Informatica, con un background ibrido tra sviluppo,
+    system engineering e sicurezza informatica. Ho maturato 5 anni di esperienza
+    nello sviluppo e nell’integrazione di soluzioni Microsoft Dynamics NAV/Business
+    Central (C/AL, AL), affiancata da un ruolo operativo come 
+    <strong>System Support Engineer</strong>, dove mi sono occupata di
+    troubleshooting, networking, firewalling e gestione di sistemi critici in ambienti
+    produttivi.
+  </p>
+  <p>
+    A dicembre 2024 ho completato un bootcamp intensivo in Cybersecurity presso Epicode
+    e attualmente partecipo al 
+    <em>DevSecOps Program – Global Subsidy-Based Microsoft Certification Scholarships</em>
+    di Women in Cloud, con l’obiettivo di ottenere la certificazione AZ-500 come Azure
+    Security Engineer Associate.
+  </p>
+  <p>
+    Oggi mi sto specializzando in cloud security, automazione e DevSecOps, con un forte
+    interesse per la costruzione di soluzioni sicure, scalabili e automatizzate che
+    uniscono sviluppo, sicurezza e cloud.
+  </p>
+</section>
+
 
     <section>
       <h2>Competenze</h2>
@@ -87,126 +108,6 @@
   </footer>
 
 
-  <script>
-/* Script per leggere data-tags da .course, mostrare tag sotto ogni corso e creare barra filtri globale */
-(() => {
-  const normalize = s => s.trim().replace(/\s+/g, ' ').replace(/Entra ID/i, 'Entra ID').replace(/Azure AD/i, 'Azure AD');
-  const courses = Array.from(document.querySelectorAll('.course'));
-  if (!courses.length) return;
-
-  // Crea container toolbar per filtri globali
-  const coursesWrapper = document.querySelector('.courses');
-  const toolbar = document.createElement('div');
-  toolbar.className = 'tags-toolbar';
-  toolbar.setAttribute('role', 'toolbar');
-  toolbar.style.margin = '0 0 12px 0';
-  toolbar.style.display = 'flex';
-  toolbar.style.flexWrap = 'wrap';
-  toolbar.style.gap = '6px';
-
-  // Raccogli tutti i tag unici
-  const tagSet = new Set();
-  courses.forEach(c => {
-    const raw = c.dataset.tags || '';
-    const list = raw.split(';').map(t => normalize(t)).filter(Boolean);
-    c._tags = list;
-    list.forEach(t => tagSet.add(t));
-  });
-
-  // Funzione per mostrare corsi filtrati (accetta array di tag, match OR)
-  const showFiltered = (tag) => {
-    courses.forEach(c => {
-      if (!tag) {
-        c.style.display = '';
-        return;
-      }
-      const has = c._tags.includes(tag);
-      c.style.display = has ? '' : 'none';
-    });
-  };
-
-  // Pulsante reset
-  const resetBtn = document.createElement('button');
-  resetBtn.type = 'button';
-  resetBtn.className = 'tag-filter reset';
-  resetBtn.textContent = 'Mostra tutti';
-  resetBtn.addEventListener('click', () => {
-    showFiltered(null);
-    // de-attiva eventuali pulsanti attivi
-    toolbar.querySelectorAll('.active').forEach(b => b.classList.remove('active'));
-  });
-  toolbar.appendChild(resetBtn);
-
-  // Crea pulsanti per ogni tag
-  Array.from(tagSet).sort().forEach(tag => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'tag-filter';
-    b.textContent = tag;
-    b.dataset.tag = tag;
-    b.style.cursor = 'pointer';
-    b.addEventListener('click', () => {
-      const currentlyActive = b.classList.contains('active');
-      toolbar.querySelectorAll('.active').forEach(btn => btn.classList.remove('active'));
-      if (!currentlyActive) {
-        b.classList.add('active');
-        showFiltered(tag);
-      } else {
-        showFiltered(null);
-      }
-    });
-    toolbar.appendChild(b);
-  });
-
-  // Inserisci toolbar sopra la lista dei corsi
-  if (coursesWrapper) coursesWrapper.parentNode.insertBefore(toolbar, coursesWrapper);
-
-  // Per ogni course: crea container tag e pulsanti locali
-  courses.forEach(article => {
-    const tags = article._tags || [];
-    if (!tags.length) return;
-    const tagContainer = document.createElement('div');
-    tagContainer.className = 'course-tags';
-    tagContainer.style.marginTop = '8px';
-    tagContainer.style.display = 'flex';
-    tagContainer.style.flexWrap = 'wrap';
-    tagContainer.style.gap = '6px';
-
-    tags.forEach(t => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tag-btn';
-      btn.textContent = t;
-      btn.dataset.tag = t;
-      btn.style.padding = '4px 8px';
-      btn.style.borderRadius = '6px';
-      btn.style.border = '1px solid #ccd';
-      btn.style.background = '#f4f7fb';
-      btn.style.cursor = 'pointer';
-      btn.addEventListener('click', () => {
-        // applica filtro globale al click su tag locale
-        toolbar.querySelectorAll('.active').forEach(x => x.classList.remove('active'));
-        // attiva corrispondente pulsante nella toolbar se presente
-        const globalBtn = toolbar.querySelector(`button[data-tag="${t}"]`);
-        if (globalBtn) globalBtn.classList.add('active');
-        showFiltered(t);
-      });
-      tagContainer.appendChild(btn);
-    });
-
-    article.appendChild(tagContainer);
-  });
-
-  // Stili minimi aggiuntivi per accessibilità via JS (se non vuoi modificare CSS)
-  const style = document.createElement('style');
-  style.textContent = `
-    .tag-filter, .tag-btn, .tag-filter.reset { font: 14px/1 Arial, sans-serif; }
-    .tag-filter.active, .tag-btn.active { outline: 2px solid #2b6cb0; background: #cfe8ff; }
-    .tag-filter.reset { background: #fff; border: 1px solid #bbb; }
-  `;
-  document.head.appendChild(style);
-})();
-</script>
 
 </body>
 </html>
