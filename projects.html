@@ -228,23 +228,25 @@
               </div>
 
           <!-- Kitchen Manager Cloud Architecture -->
-          <div class="project-item" id="kitchen-manager-arch">
+          <section class="project">
             <h3>🌩️ Kitchen Manager: Cloud Architecture & Security (AWS / Azure)</h3>
-            <p><strong>Architettura e Sicurezza Cloud per Applicazione Full-Stack (React + Django)</strong></p>
+            <p><strong>Descrizione:</strong> Progettazione dell'architettura e della pipeline di sicurezza cloud per un'applicazione Full-Stack dedicata alla gestione ordini e personale nei ristoranti (React + Django).</p>
+            <p><strong>Tecnologie:</strong> AWS (S3, CloudFront, Elastic Beanstalk, RDS, SQS, Lambda, Secrets Manager, Amazon Comprehend), Azure (App Service, DB for PostgreSQL, Key Vault, Managed Identities, Entra ID).</p>
+            <p><strong>Attività principali:</strong></p>
             <ul>
-              <li><strong>Hosting & Frontend:</strong> S3 + Global CDN (Amazon CloudFront) per deployment React/Vite.</li>
-              <li><strong>Backend & Database:</strong> Elastic Beanstalk (PaaS) connesso in sicurezza a RDS PostgreSQL tramite Security Groups e VNet Integration isolate da Internet.</li>
-              <li><strong>Gestione API AI e Segreti:</strong> Archiviazione della SECRET_KEY di Django e delle API Key dell'IA in Azure Key Vault / AWS Secrets Manager bloccando i leak tramite chiamate zero-trust con Managed Identities.</li>
-              <li><strong>Integrazione AI e Decoupling:</strong> Analisi sentiment (es. Amazon Comprehend) richiamata in background tramite SQS e AWS Lambda per non paralizzare l'app Kitchen Manager.</li>
-              <li><strong>Access Management:</strong> Conditional Access in Microsoft Entra ID permettendo accesso limitato agli IP del Wi-Fi del ristorante (Trusted IPs).</li>
+              <li>Configurazione di S3 e CDN globale (Amazon CloudFront) per deployment e caching del frontend React/Vite.</li>
+              <li>Provisioning automatizzato con Elastic Beanstalk (PaaS) per eseguire Django.</li>
+              <li>Connessione sicura al DB PostgreSQL isolando le reti pubbliche tramite Security Groups e VNet Integration.</li>
+              <li>Centralizzazione e protezione di password e API Key dell'AI in Azure Key Vault / AWS Secrets Manager lette via Managed Identities (Zero-Trust).</li>
+              <li>Analisi del testo asincrona con Amazon Comprehend (AI) disaccoppiata tramite code SQS e AWS Lambda.</li>
+              <li>Configurazione di Conditional Access in Microsoft Entra ID per consentire il login dello staff solo dal Wi-Fi aziendale autorizzato.</li>
             </ul>
-            <p><strong>Deliverable dello Studio Architetturale:</strong></p>
+            <p><strong>Deliverable:</strong> Piani di architettura (diagrammi strutturali), best practices, report di implementazione Cloud AWS/Azure.</p>
             <ul>
-              <li><a href="docs/Progetti/Cloud Architecture/study_plan_aws_pract_detailed.html" target="_blank">📄 AWS Architecture Plan Overview</a></li>
-              <li><a href="docs/Progetti/Cloud Architecture/study_plan_az500_detailed.html" target="_blank">📄 Azure Security Plan (AZ-500)</a></li>
+              <li><a href="docs/Progetti/Cloud Architecture/study_plan_aws_pract_detailed.html" target="_blank">📄 Visualizza AWS Architecture Plan</a></li>
+              <li><a href="docs/Progetti/Cloud Architecture/study_plan_az500_detailed.html" target="_blank">📄 Visualizza Azure Security Plan</a></li>
             </ul>
-            <p class="tags">#AWS #Azure #EntraID #KeyVault #React #Django #Serverless #Security</p>
-          </div>
+          </section>
 
         </div> <!-- /.projects-list -->
         
