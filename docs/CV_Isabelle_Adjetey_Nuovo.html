@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Isabelle Adjetey</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #0d9488;
+            --secondary-color: #f0fdfa;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --text-dark: #0f172a;
+            --bg-sidebar: #0f172a;
+            --text-sidebar: #f8fafc;
+            --sidebar-accent: #2dd4bf;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #cbd5e1;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+        }
+
+        .cv-container {
+            width: 210mm;
+            min-height: 297mm;
+            background-color: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .sidebar {
+            width: 32%;
+            background-color: var(--bg-sidebar);
+            color: var(--text-sidebar);
+            padding: 40px 25px;
+            box-sizing: border-box;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: white;
+            line-height: 1.1;
+        }
+
+        .profile-title {
+            font-size: 14px;
+            color: var(--sidebar-accent);
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 35px;
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            border-bottom: 2px solid var(--sidebar-accent);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item {
+            font-size: 12px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            color: #cbd5e1;
+        }
+
+        .contact-item strong {
+            color: white;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .contact-item a {
+            color: var(--sidebar-accent);
+            text-decoration: none;
+        }
+
+        .skill-group {
+            margin-bottom: 15px;
+        }
+
+        .skill-group-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--sidebar-accent);
+            margin-bottom: 5px;
+        }
+
+        .skill-list {
+            margin: 0;
+            padding-left: 15px;
+            font-size: 12px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .language-item {
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .language-level {
+            color: var(--sidebar-accent);
+            font-weight: 600;
+        }
+
+        .main-content {
+            width: 68%;
+            padding: 40px 35px;
+            box-sizing: border-box;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profile-text {
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .experience-item {
+            margin-bottom: 25px;
+        }
+
+        .job-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 3px 0;
+        }
+
+        .job-company {
+            font-size: 13px;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .job-date {
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .job-description {
+            margin: 0;
+            padding-left: 15px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-main);
+        }
+
+        .job-description li {
+            margin-bottom: 4px;
+        }
+
+        .education-item, .cert-item {
+            margin-bottom: 15px;
+        }
+
+        .edu-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 3px 0;
+        }
+
+        .edu-school {
+            font-size: 12px;
+            color: var(--text-light);
+            margin: 0 0 5px 0;
+        }
+
+        .edu-desc {
+            font-size: 12px;
+            line-height: 1.4;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .privacy-note {
+            font-size: 10px;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 30px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+        }
+
+        .cert-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .cert-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 13px;
+            gap: 12px;
+        }
+
+        .cert-icon {
+            height: 32px;
+            width: auto;
+            display: block;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .cert-status {
+            font-size: 11px;
+            color: var(--text-light);
+            font-style: italic;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        @media print {
+            body { background-color: white; }
+            .cv-container { margin: 0; box-shadow: none; width: 100%; height: 100%; }
+            .sidebar {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: var(--bg-sidebar) !important;
+                color: var(--text-sidebar) !important;
+            }
+            .sidebar-title { color: white !important; }
+            .contact-item strong { color: white !important; }
+            .cert-icon {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cv-container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h1 class="profile-name">ISABELLE<br>ADJETEY</h1>
+            <div class="profile-title">NETWORK & CLOUD SECURITY ENGINEER</div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Contatti</h2>
+                <div class="contact-item">
+                    <strong>Indirizzo</strong>
+                    85028, PZ
+                </div>
+                <div class="contact-item">
+                    <strong>Telefono</strong>
+                    +39 389 594 6126
+                </div>
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    isabelle_adjetey@outlook.com<br>
+                    adjeteyisabelle@gmail.com
+                </div>
+                <div class="contact-item">
+                    <strong>LinkedIn</strong>
+                    <a href="https://linkedin.com/in/isabelle-adjetey" target="_blank">linkedin.com/in/isabelle-adjetey</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Portfolio</strong>
+                    <a href="https://isabelleadjetey.github.io/" target="_blank">isabelleadjetey.github.io/</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Hard Skills</h2>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Cybersecurity & Network</div>
+                    <ul class="skill-list">
+                        <li>FortiOS, VPN/ACL, Firewall, NAT</li>
+                        <li>Nmap, Nessus (Vulnerability)</li>
+                        <li>Wireshark, Burp Suite, Hydra</li>
+                        <li>Threat Intelligence, IR</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Cloud & DevOps</div>
+                    <ul class="skill-list">
+                        <li>Azure (Identity, Defender, NSG)</li>
+                        <li>Azure DevOps, Git, CI/CD</li>
+                        <li>Docker</li>
+                        <li>Splunk (SIEM)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Sviluppo Software</div>
+                    <ul class="skill-list">
+                        <li>C, Python, SQL</li>
+                        <li>C/AL, AL (Microsoft NAV/BC)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Scripting & OS</div>
+                    <ul class="skill-list">
+                        <li>Bash, PowerShell</li>
+                        <li>Linux (Kali), Windows</li>
+                        <li>VirtualBox, Metasploitable</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Lingue</h2>
+                <div class="language-item">
+                    <span>Italiano</span>
+                    <span class="language-level">C2 (Bilingue)</span>
+                </div>
+                <div class="language-item">
+                    <span>Francese</span>
+                    <span class="language-level">C2 (Madrelingua)</span>
+                </div>
+                <div class="language-item">
+                    <span>Inglese</span>
+                    <span class="language-level">C1 (Professionale)</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section" style="margin-top: 40px; text-align: center;">
+                <p style="font-size: 11px; color: #94a3b8; font-style: italic;">
+                    Data di Nascita: 22-02-1994<br>
+                    Patente: B
+                </p>            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+
+            <h2 class="section-title">Profilo Professionale</h2>
+            <p class="profile-text">
+                Laureata in Informatica con un background ibrido tra Sviluppo Software (Microsoft NAV/Business Central)
+                e System Support/Networking. Negli ultimi anni mi sono fortemente specializzata in ambito Cybersecurity,
+                Cloud e DevSecOps, ottenendo certificazioni (CompTIA Security+, Azure Security AZ-500,
+                Fortinet). Attualmente sto consolidando le mie competenze su infrastrutture Cloud, automazione e Product
+                Management tramite la Dev, Cloud & Product Academy. Il mio obiettivo è unire l'esperienza maturata nello
+                sviluppo con la mia passione per la sicurezza informatica, per contribuire a proteggere reti,
+                infrastrutture e applicazioni cloud.
+            </p>
+
+            <h2 class="section-title">Esperienze Lavorative</h2>
+
+            <div class="experience-item">
+  <h3 class="job-title">Junior Network Engineer</h3>
+  <div class="job-company">
+    <span>Sorint.lab | Remote</span>
+    <span class="job-date">02/2026 - Attuale</span>
+  </div>
+  <ul class="job-description">
+    <li><strong>Supporto operativo:</strong> Gestione quotidiana di switch e router; monitoraggio e segnalazione anomalie.</li>
+    <li><strong>Configurazioni:</strong> VLAN, interfacce e regole di accesso sotto supervisione.</li>
+    <li><strong>Troubleshooting:</strong> Diagnosi iniziale di connettività (ping, traceroute, ARP) e documentazione.</li>
+    <li><strong>Documentazione:</strong> Aggiornamento diagrammi e procedure operative.</li>
+  </ul>
+</div>
+
+            <div class="experience-item">
+                <h3 class="job-title">System Support Engineer</h3>
+                <div class="job-company">
+                    <span>Swisslog | Maranello</span>
+                    <span class="job-date">05/2023 - 07/2024</span>
+                </div>
+                <ul class="job-description">
+                    <li><strong>Supporto e Ottimizzazione:</strong> Gestito il supporto per il sistema di magazzino Autostore, ottimizzando i processi di troubleshooting e riducendo i tempi di intervento su guasti.</li>
+                    <li><strong>Network Security:</strong> Amministrato centralmente i firewall FortiGate per la protezione della rete aziendale.</li>
+                    <li><strong>Gestione Policy:</strong> Implementato policy di sicurezza avanzate (regole di accesso, NAT, filtraggio del traffico).</li>
+                    <li><strong>Identity & Access Management:</strong> Configurato impostazioni di sicurezza e gestito accessi in modo granulare per gruppi e singoli utenti.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="job-title">NAV/Business Central Developer</h3>
+                <div class="job-company">
+                    <span>ALTEN SpA | Remote</span>
+                    <span class="job-date">10/2021 - 05/2023</span>
+                </div>
+                <ul class="job-description">
+                    <li><strong>Sviluppo ERP:</strong> Analisi dei requisiti e sviluppo di soluzioni sul gestionale Microsoft NAV/Business Central (C/AL e AL).</li>
+                    <li><strong>Integrazioni & Automazione:</strong> Creato query SQL complesse per integrazioni e sviluppato flussi automatizzati tramite Power Automate.</li>
+                    <li><strong>Pratiche DevOps:</strong> Gestito il ciclo di vita applicativo tramite Azure DevOps (gestione repository Git, pipeline CI/CD).</li>
+                    <li><strong>Containerizzazione & Design:</strong> Utilizzo di Docker ed elaborazione di oggetti core come Table, Report, Page, XmlPort e Query.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="job-title">NAV/Business Central Developer</h3>
+                <div class="job-company">
+                    <span>EOS Solutions SpA | Hybrid</span>
+                    <span class="job-date">09/2019 - 09/2021</span>
+                </div>
+                <ul class="job-description">
+                    <li><strong>Sviluppo e Personalizzazione:</strong> Progettazione e sviluppo di moduli per Microsoft NAV/Business Central (C/AL e AL).</li>
+                    <li><strong>DevOps e Versioning:</strong> Adozione proattiva di Azure DevOps per il controllo di versione e l'automazione dei processi di build.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">Istruzione e Formazione</h2>
+
+            <div class="education-item">
+                <h3 class="edu-title">Dev, Cloud & Product Academy</h3>
+                <div class="edu-school">Edgemony | 11/2025 - 03/2026</div>
+                <p class="edu-desc">Percorso pratico intensivo su architetture Cloud, pratiche DevOps, sviluppo software moderno e product management.</p>
+            </div>
+
+            <div class="education-item">
+                <h3 class="edu-title">Corso in Cyber Security & Ethical Hacking</h3>
+                <div class="edu-school">EPICODE (remote) | 11/2024 - 04/2025</div>
+                <p class="edu-desc">Percorso teorico-pratico. Moduli principali: Sicurezza di rete, App Security, Crittografia, Forensics, Cloud & Mobile Security, Incident Response, AI in Cybersecurity.</p>
+            </div>
+
+            <div class="education-item">
+                <h3 class="edu-title">Laurea Magistrale in Ingegneria Elettronica e Informatica</h3>
+                <div class="edu-school">Università degli Studi di Trieste | 09/2016 - In corso (Sospesa per motivi lavorativi)</div>
+                
+                <div style="margin-left: 20px; margin-top: 12px; position: relative;">
+                    <h3 class="edu-title">Progetto Erasmus+</h3>
+                    <div class="edu-school">University College Dublin, Irlanda | 09/2018 - 01/2019<br>Master in Electronic and Computer Engineering</div>
+                </div>
+            </div>
+
+            <div class="education-item">
+                <h3 class="edu-title">Laurea Triennale in Informatica (Computer Science)</h3>
+                <div class="edu-school">Università degli Studi di Ferrara | 07/2016</div>
+            </div>
+
+            <h2 class="section-title">Certificazioni</h2>
+
+            <div class="cert-item">
+                <ul class="cert-list">
+                    <li>
+                        <svg class="cert-icon" style="fill: #232F3E;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.295.072-.583.16-.862.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.439.43.662 1.085.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.263-.168.311a.51.51 0 0 1-.303.08h-.687c-.151 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.167.064-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167zM21.698 16.207c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.272-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.383.607zM22.792 14.961c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.695-2.994z"/></svg>
+                        <span>AWS Certified Cloud Practitioner</span>
+                        <span class="cert-status">In corso</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" style="fill: #1BA0D7;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.331 18.171V17.06l-.022.01c-.25.121-.522.19-.801.203a1.186 1.186 0 01-.806-.237 1.038 1.038 0 01-.352-.498 1.21 1.21 0 01-.023-.667c.052-.225.178-.426.357-.569.16-.134.355-.218.562-.242a1.85 1.85 0 011.061.198l.024.013v-1.117l-.051-.014a2.862 2.862 0 00-1.011-.132 2.34 2.34 0 00-.903.206c-.287.132-.54.327-.739.571a2.221 2.221 0 00-.04 2.705c.295.378.709.645 1.175.756.491.12 1.006.102 1.487-.052l.082-.023M5.336 18.171V17.06l-.022.01c-.25.121-.522.19-.801.203a1.183 1.183 0 01-.806-.237 1.03 1.03 0 01-.351-.498 1.202 1.202 0 01-.024-.667c.052-.225.177-.426.357-.569.16-.134.355-.218.562-.242a1.85 1.85 0 011.061.198l.024.013v-1.117l-.051-.014a2.862 2.862 0 00-1.011-.132 2.344 2.344 0 00-.903.206 2.08 2.08 0 00-.74.571 2.224 2.224 0 00-.041 2.705 2.11 2.11 0 001.176.756c.491.12 1.005.102 1.487-.052l.083-.023M9.26 17.249l-.004.957.07.012c.22.041.441.069.664.085.195.019.391.022.587.012.187-.014.372-.049.551-.104.21-.06.405-.163.571-.305a1.16 1.16 0 00.333-.478 1.31 1.31 0 00-.007-.96 1.068 1.068 0 00-.298-.414 1.261 1.261 0 00-.438-.255l-.722-.268a.388.388 0 01-.197-.188.245.245 0 01.008-.219.382.382 0 01.154-.142.798.798 0 01.257-.074c.153-.022.308-.021.46.005.18.02.358.051.533.096l.038.008v-.883l-.069-.015a4.749 4.749 0 00-.543-.097 2.844 2.844 0 00-.714-.003c-.3.027-.585.143-.821.33-.16.126-.281.293-.351.484-.104.29-.105.608 0 .899.054.145.14.274.252.381.097.093.207.173.327.236.157.084.324.149.497.195.057.017.114.035.17.054l.085.031.024.01c.084.03.162.078.226.14.045.042.08.094.101.151a.325.325 0 01.001.161.339.339 0 01-.166.198.856.856 0 01-.275.086 2.032 2.032 0 01-.427.021 5.208 5.208 0 01-.557-.074 9.195 9.195 0 01-.287-.067l-.033-.006zm-2.475.995h1.05v-4.167h-1.05v4.167zm12.162-2.936a1.095 1.095 0 011.541.158 1.094 1.094 0 01-.157 1.541l-.017.014a1.096 1.096 0 01-1.367-1.713m-1.525.854a2.193 2.193 0 002.666 2.107 2.139 2.139 0 00.701-3.937 2.207 2.207 0 00-3.367 1.83M22.961 10.728a.52.52 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155M20.117 10.728a.522.522 0 001.041 0V8.139a.521.521 0 00-1.04 0v2.589M17.231 11.771a.521.521 0 001.039 0V6.17a.52.52 0 00-1.039 0v5.601M14.393 10.728a.521.521 0 001.04 0V8.139a.52.52 0 00-1.039 0v2.589M11.494 10.728a.522.522 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155M8.624 10.728a.52.52 0 001.039 0V8.139a.52.52 0 00-1.039 0v2.589M5.737 11.771a.52.52 0 001.039 0V6.17a.52.52 0 00-1.039 0v5.601M2.876 10.728a.522.522 0 001.04 0V8.139a.52.52 0 00-1.039 0v2.589M0 10.728a.521.521 0 001.039 0V9.573a.52.52 0 00-1.039 0v1.155"/></svg>
+                        <span>Cisco Certified Network Associate (CCNA)</span>
+                        <span class="cert-status">In corso</span>
+                     </li>
+                    <li>
+                        <svg class="cert-icon" style="fill: #0078D4;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.379 23.343a1.62 1.62 0 0 0 1.536-2.14v.002L17.35 1.76A1.62 1.62 0 0 0 15.816.657H8.184A1.62 1.62 0 0 0 6.65 1.76L.086 21.204a1.62 1.62 0 0 0 1.536 2.139h4.741a1.62 1.62 0 0 0 1.535-1.103l.977-2.892 4.947 3.675c.28.208.618.32.966.32m-3.084-12.531 3.624 10.739a.54.54 0 0 1-.51.713v-.001h-.03a.54.54 0 0 1-.322-.106l-9.287-6.9h4.853m6.313 7.006c.116-.326.13-.694.007-1.058L9.79 1.76a1.722 1.722 0 0 0-.007-.02h6.034a.54.54 0 0 1 .512.366l6.562 19.445a.54.54 0 0 1-.338.684"/></svg>
+                        <span>Microsoft Azure Cloud Security Engineer (AZ-500)</span>
+                        <span class="cert-status">11/2025</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" style="fill: #C81326;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.785h6.788v4.454H0zm8.666-6.33h6.668v4.453H8.666zm0 12.637h6.668v4.454H8.666zm8.522-6.307H24v4.454h-6.812zM2.792 3.455C1.372 3.814.265 5.404 0 7.425v.506h6.788V3.454zM0 16.091v.554c.24 1.926 1.276 3.466 2.624 3.9h4.188v-4.454zm24-8.184v-.506c-.265-1.998-1.372-3.587-2.792-3.972h-4.02v4.454H24zM21.376 20.57c1.324-.458 2.36-1.974 2.624-3.9v-.554h-6.812v4.454Z"/></svg>
+                        <span>Fortinet Associate Cybersecurity / FortiGate Operator</span>
+                        <span class="cert-status">01/2025</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" style="fill: #C8202F;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.8292 11.7067v1.8524a.608.608 0 0 1-.6016-.6136v-1.2366a.5728.5728 0 0 0-1.1428 0v1.8502a.5988.5988 0 0 1-.5998-.5978v-1.2524a.5746.5746 0 0 0-1.1455 0v1.2431a.608.608 0 0 1-.5998.6071V11.709c.0097-.6352.5325-1.1422 1.1676-1.1325h.0013c.331-.0046.6486.1302.8754.3713a1.1752 1.1752 0 0 1 .868-.3713c.6372-.013 1.1642.493 1.1772 1.1303zm7.0156-2.2917v3.563a.597.597 0 0 0 .6006.5811v-3.563a.5969.5969 0 0 0-.6006-.5811zM24 13.5258c-.324.0269-.675-.0697-.8011-.3435l-.3185-.6852h-2.1306l-.3157.7037c-.1494.2785-.544.3667-.8476.3667l1.738-3.8063a.5292.5292 0 0 1 .4762-.3435.5367.5367 0 0 1 .481.3435L24 13.5258zm-1.3759-1.6182-.8059-1.7671-.8038 1.767h1.6097zm-19.166.6387a1.8463 1.8463 0 0 1-1.1817.4373c-.9312 0-1.6888-.6824-1.6888-1.5133s.7604-1.5058 1.6888-1.5058c.501.0002.98.2055 1.3257.5682a.5812.5812 0 0 0 .7417.0827c-.362-.7502-1.1763-1.2376-2.0693-1.2376C1.0212 9.3778 0 10.3164 0 11.4722c0 1.1558 1.0175 2.0953 2.2745 2.0953a2.3846 2.3846 0 0 0 1.2885-.3713c.2605-.162.4823-.379.6499-.636a.5886.5886 0 0 0-.7548-.0139zm11.43-2.539h1.2877v2.9512a.5904.5904 0 0 0 .5728.6006h.0278v-3.5518h1.284a.5941.5941 0 0 0 .5932-.5932h-4.3503a.5904.5904 0 0 0 .5848.5932zm-7.3108 2.0665c0 .8364-.726 1.4853-1.6507 1.4853-.9283 0-1.6505-.6498-1.6505-1.4853s.725-1.4947 1.6505-1.4947c.9256 0 1.6507.6583 1.6507 1.4947zm-.6007-.0028c0-.5004-.4641-.894-1.05-.894-.5876 0-1.0509.3927-1.0509.894 0 .5013.4643.8875 1.051.8875s1.05-.387 1.05-.8875zm6.7975-1.5002c-.9506 0-1.6395.6433-1.6395 1.5178v2.5335a.596.596 0 0 0 .6016-.5857v-1.9496c0-.6313.5162-.9172 1.038-.9172.5486 0 .9812.3982.9812.9051 0 .4874-.4326.8754-.9813.8754-.3686 0-.6452-.0928-.8132-.2785v.0056a.7503.7503 0 0 0-.0381.1068.596.596 0 0 0 .4112.7241c.1462.0314.2953.0463.4447.0446.8885 0 1.581-.6508 1.5736-1.4761a1.4647 1.4647 0 0 0-.4642-1.075 1.642 1.642 0 0 0-1.114-.4308z"/></svg>
+                        <span>CompTIA Security+ (SY0-701)</span>
+                        <span class="cert-status">12/2024</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="privacy-note">
+                Autorizzo il trattamento dei miei dati personali ai fini della selezione, ai sensi del Regolamento UE 2016/679 (GDPR).
+            </div>
+
+        </div><!-- fine main-content -->
+    </div><!-- fine cv-container -->
+
+</body>
+
+</html>
+
+

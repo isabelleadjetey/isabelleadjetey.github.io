@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>AWS Certified Cloud Practitioner - Piano Dettagliato</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #232F3E; border-bottom: 3px solid #FF9900; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { color: #FF9900; margin-top: 35px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        h3 { color: #232F3E; margin-top: 25px; margin-bottom: 10px; }
+        p { margin-bottom: 15px; text-align: justify; }
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        strong { color: #000; }
+        @media print {
+            body { max-width: 100%; border: none; padding: 0; margin: 0; font-size: 11pt; color: #000; }
+            h1 { font-size: 18pt; border-bottom: 2px solid #000; color: #000; page-break-after: avoid; }
+            h2 { font-size: 14pt; color: #333; border-bottom: 1px solid #ccc; page-break-after: avoid; margin-top: 20px;}
+            h3 { font-size: 12pt; page-break-after: avoid; }
+            p, ul, li { page-break-inside: avoid; }
+            @page { margin: 2.5cm; }
+        }
+    </style>
+</head>
+<body>
+    <h1>AWS Certified Cloud Practitioner - Piano di Battaglia Dettagliato</h1>
+    <p><strong>(Periodo: 7 Aprile - 25 Aprile)</strong></p>
+    <p>L'obiettivo di questo esame base è dimostrare di padroneggiare concetti generali ad alto livello. Questo piano mappa la teoria direttamente sull'architettura reale del tuo progetto <strong>Kitchen Manager (React + Vite + Django)</strong>, offrendoti così la possibilità di applicare concetti enterprise alla tua codebase vera.</p>
+    
+    <h2>7 - 12 Aprile: La Teoria Mappata sul Kitchen Manager</h2>
+    <p>Finisci il corso Essentials su AWS Skill Builder tenendo sempre a mente come i servizi ospiteranno il tuo codice.</p>
+    
+    <h3>Il Tuo Frontend (React + Vite):</h3>
+    <ul>
+        <li>Al momento generi i file statici usando <code>vite build</code>. Su AWS, l'intera cartella <code>dist/</code> verrà caricata su <strong>Amazon S3</strong>, configurato come servizio di <em>Static Website Hosting</em>.</li>
+        <li>Per garantire tempi di risposta fulminei all'interfaccia usata dai camerieri e cuochi, S3 verrà collegato ad <strong>Amazon CloudFront</strong>, la CDN nativa che distribuirà il sito tramite le edge location in tutto il mondo garantendone anche la crittografia HTTPS e la protezione tramite WAF (Web Application Firewall).</li>
+    </ul>
+
+    <h3>Il Tuo Backend (Python / Django):</h3>
+    <ul>
+        <li>Il tuo codice back-end (in cui usi librerie come <code>asgiref</code> e <code>anyio</code>) richiede potenza di calcolo (Compute). Il modo più semplice e gestito per testare l'infrastruttura web su AWS è usare <strong>AWS Elastic Beanstalk</strong> (categoria PaaS).</li>
+        <li>Beanstalk configurerà tutto da solo: avvierà le istanze <strong>Amazon EC2</strong> e aggiungerà un server di Auto Scaling. Se il ristorante si riempie il sabato sera, Beanstalk scalerà le risorse EC2 automaticamente senza il tuo intervento e ne ridurrà il numero il lunedì mattina (Elasticity).</li>
+    </ul>
+
+    <h3>Il Tuo Database:</h3>
+    <ul>
+        <li>I dati degli ordini staranno su <strong>Amazon RDS (Relational Database Service)</strong> con engine PostgreSQL.</li>
+        <li>RDS implementa i backup automatizzati e l'amministrazione delle patch. Sulla Virtual Private Cloud (VPC), collegherai Backend e RDS protetti l'uno dall'altro usando i <strong>Security Groups</strong> (permettono al backend l'accesso solo alla porta 5432).</li>
+    </ul>
+
+    <h3>Intelligenza Artificiale (AI) e API Keys:</h3>
+    <ul>
+        <li>Poiché hai curato tu stessa l'integrazione AI, il servizio di riferimento sarà <strong>Amazon Comprehend</strong>: il servizio di elaborazione del linguaggio naturale (NLP) perfetto per analizzare automaticamente sentiment e testi (potenzialmente di recensioni ristorante) senza addestrare modelli custom.</li>
+        <li><strong>Gestione delle API Key:</strong> All'esame la best-practice aziendale impone di NON salvare MAI le chiavi per modelli AI o database nel codice. Il servizio da studiare per ruotare e gestire le chiavi è <strong>AWS Secrets Manager</strong> (o AWS Systems Manager Parameter Store).</li>
+    </ul>
+
+    <h3>Il Disaccoppiamento (Decoupling)</h3>
+    <ul>
+        <li>Un sistema integrato come l'AI bloccherebbe Django se eseguito sincronicamente col cliente in attesa. Il backend avvia il processo spedendo un file in una coda <strong>Amazon SQS</strong>.
+        <li>Una <strong>AWS Lambda</strong> (serverless function) prenderà il lavoro e interrogherà le API dell'AI in background, usando le API Key tratte segretamente dal Secrets Manager.</li>
+    </ul>
+
+    <h2>13 - 18 Aprile: Le Prove del Fuoco</h2>
+    <p>Fai simulazioni ufficiali. Concentrati sempre sul leggere i distrattori. Se una domanda parla di un database per documenti JSON (tipo MongoDB), ricordati che la risposta AWS è DynamoDB, non RDS! Ogni opzione sbagliata è in realtà la risposta giusta per un'altra domanda potenziale.</p>
+
+    <h2>19 - 22 Aprile: Le Argomentazioni Normative (30% dei Punti)</h2>
+    <ul>
+        <li><strong>Well-Architected Framework:</strong> I pilastri su cui si baserà il tuo Kitchen Manager.</li>
+        <li><strong>Modello di Responsabilità Condivisa:</strong> AWS garantisce la sicurezza "del" cloud. Tu garantisci la sicurezza "nel" cloud.</li>
+        <li><strong>Identity and Access Management (IAM):</strong> Implementerai in AWS le policy Least Privilege come faresti con i ruoli interni all'app per "Admin", "Cameriere" e "Cuoco".</li>
+    </ul>
+
+    <h2>23 - 25 Aprile: Vittoria</h2>
+    <p>Rileggi i tuoi appunti prestando attenzione alle differenze nomenclature chiave (es: CloudFormation vs Beanstalk, CloudTrail per gli audit vs CloudWatch per le performance).</p>
+    <p>Il 25 Aprile, affronta l'esame con molta consapevolezza.</p>
+</body>
+</html>
