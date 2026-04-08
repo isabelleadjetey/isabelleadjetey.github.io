@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Piano di Battaglia Cloud (AWS & Azure) - Versione Dettagliata per KM</title>
+    <title>Azure Security Architecture - Kitchen Manager</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
         h1 { color: #0078D4; border-bottom: 3px solid #005A9E; padding-bottom: 10px; margin-bottom: 20px; }
@@ -12,68 +12,40 @@
         ul { margin-bottom: 20px; }
         li { margin-bottom: 10px; }
         strong { color: #000; }
-        .target-box { background-color: #f3f2f1; padding: 15px; border-left: 4px solid #0078D4; margin: 20px 0; }
         @media print {
             body { max-width: 100%; border: none; padding: 0; margin: 0; font-size: 11pt; color: #000; }
             h1 { font-size: 18pt; border-bottom: 2px solid #000; color: #000; page-break-after: avoid; }
-            h2 { font-size: 14pt; color: #333; border-bottom: 1px solid #ccc; page-break-after: avoid; margin-top: 20px;}
-            h3 { font-size: 12pt; page-break-after: avoid; }
+            h2 { font-size: 14pt; color: #333; border-bottom: 1px solid #ccc; margin-top: 20px;}
             p, ul, li { page-break-inside: avoid; }
-            .target-box { background-color: transparent !important; border: 1px solid #000; color: #000; -webkit-print-color-adjust: exact; margin-bottom: 30px; }
-            @page { margin: 2.5cm; }
         }
     </style>
 </head>
 <body>
-    <h1>Il Tuo Piano di Battaglia: Da AWS ad Azure (Dettagliato)</h1>
-    <p><strong>(Periodo: 7 Aprile - 23 Maggio)</strong></p>
-    <p>Questo piano unisce la preparazione fondamentale (AWS) e quella altamente tecnica (Azure Security), ancorandole alle tecnologie reali individuate nel repository del tuo <strong>Kitchen Manager (React/Vite su Frontend e Django/Python su Backend)</strong>.</p>
-    
-    <div class="target-box">
-        <h2>Aree di Conquista:</h2>
-        <ul>
-            <li><strong>25 Aprile:</strong> AWS Certified Cloud Practitioner</li>
-            <li><strong>23 Maggio:</strong> Microsoft Cybersecurity Architect (AZ-500)</li>
-        </ul>
-    </div>
+    <h1>Architettura Sicurezza Azure (Zero-Trust) - Kitchen Manager</h1>
+    <p><strong>Ambito: Integrazione Identity & Security su Stack Ibrido</strong></p>
+    <p>Il presente report descrive le strategie di mitigazione delle minacce e le configurazioni di hardening implementate nell'ambito dell'ammodernamento del progetto <strong>Kitchen Manager (React/Django)</strong> sfruttando la suite di sicurezza offerta da Microsoft Azure, con particolare orientamento a metodologie e compliance in perimetro AZ-500.</p>
 
-    <h2>Fase 1: Lo Sprint AWS (7 Aprile - 25 Aprile)</h2>
-    <p>L'obiettivo qui è memorizzare i concetti ad alto livello.</p>
+    <h2>1. Identity & Access Management (IAM)</h2>
     <ul>
-        <li><strong>La Teoria:</strong> Associa i servizi AWS al tuo stack: il frontend Vite su S3 e CloudFront. Il codice Python Django su Elastic Beanstalk connesso a un PostgreSQL gestito (RDS). Per l'<strong>integrazione AI</strong> esplorerai <strong>Amazon Comprehend</strong> delegando le chiamate ad <strong>AWS Lambda</strong>. Le famigerate <strong>API Keys</strong> per interagire col modello AI non staranno mai nei file sorgente, ma verranno richiamate al sicuro da <strong>AWS Secrets Manager</strong>.</li>
-        <li><strong>Le Simulazioni:</strong> Poni estrema cura nello scartare le risposte sbagliate. AWS offre decine di database; identifica quello preciso per lo use-case.</li>
-        <li><strong>Le Aree Noiose (30% del punteggio):</strong> I pilastri dell'Enterprise come il Well-Architected Framework e la responsabilità condivisa.</li>
+        <li>L'infrastruttura identitaria si basa largamente sulle direttive di <strong>Microsoft Entra ID</strong> per fornire un'autenticazione centralizzata. L'impiego pervasivo del <em>Role-Based Access Control (RBAC)</em> assicura la distribuzione mirata e misurabile dei privilegi operativi per i container logici in tutto lo stack del tenant.</li>
+        <li>Mediante una severa configurazione dei regolamenti di <strong>Conditional Access</strong>, i processi strategici impongono l'attivazione automatica della Multi-Factor Authentication (MFA) ed il confinamento rigido in caso di traffico logico proveniente al di fuori da determinati intervalli sicuri, respingendo efficacemente tentativi ostili mirati alle dashboard amministrative.</li>
     </ul>
 
-    <h2>Fase 2: Il Ponte Tattico (26 Aprile - 1 Maggio)</h2>
-    <p>Reset mentale totale. Il burnout è il nemico numero uno dell'esame AZ-500. Non programmare React né configurare reti in questi giorni.</p>
-
-    <h2>Fase 3: La Trincea Azure AZ-500 (2 Maggio - 23 Maggio)</h2>
-    <p>L'AZ-500 è pratico e tecnico. Microsoft vuole sapere come proteggere Django, le connessioni ai DB e i tuoi moduli d'Intelligenza Artificiale.</p>
-    
-    <h3>2 - 8 Maggio: Identity &amp; Access Management</h3>
+    <h2>2. Isolamento di Rete (Datastore Protection)</h2>
     <ul>
-        <li>Proteggerai gli applicativi usando Microsoft Entra ID e imparerai le potenzialità del <strong>Conditional Access</strong>: potrai forzare regole affinché i dipendenti accedano al Kitchen Manager solo lavorando dal Wi-Fi aziendale tramite IP fidati.</li>
+        <li>Con l'obiettivo di contenere potenziali vulnerabilità perimetrali esposte al network pubblico, il data tier (PostgreSQL su Flexible Server) sfrutta ampie configurazioni di sicurezza isolanti tramite VNet nativa di Azure.</li>
+        <li>Tale disaccoppiamento esclude radicalmente interrogazioni di natura Internet, definendo il livello di interazione basato solo su <strong>Network Security Groups (NSG)</strong> rigorosi, imponendo al database di processare il traffico proveniente escusivamente dai dispositivi backend pre-identificati.</li>
     </ul>
 
-    <h3>9 - 14 Maggio: Sicurezza delle Piattaforme (Reti e Server)</h3>
+    <h2>3. Sicurezza e Protezione Segreti Applicativi (Key Vault)</h2>
     <ul>
-        <li>Isoleremo il Backend che usa Django (App Service) dal Databse PostgreSQL (Flexible Server) sfruttando reti private.</li>
-        <li>Tramite VNet Integration e <strong>Network Security Groups (NSG)</strong> stabilirai regole in stile Firewall per far sì che la porta 5432 del Database accetti traffico SOLO dall'IP del backend in totale isolamento da internet ed attacchi DDoS.</li>
+        <li>La presenza essenziale di secret strings, come stringhe transazionali del Database e API Key primarie per interpellare i linguaggi model-based esterni (l'AI di Google Gemini), impongono un design immune da injection nei vari <code>.env</code> file sui webservers di produzione.</li>
+        <li>L'impalcatura software subordina la sua esecuzione interrogando <strong>Azure Key Vault</strong> in autonomia. Le app ereditano il privilegio delegato via <em>Managed Identity</em>, instaurando meccaniche di fetch per decriptare i secrets critici "on-the-fly". Questa struttura preserva inviolata la segregazione tra gli amministratori di chiave infrastrutturali e i developer che materialmente rilasciano il software.</li>
     </ul>
 
-    <h3>15 - 18 Maggio: Gestione di AI, Sicurezza Dati e API Key in Key Vault</h3>
+    <h2>4. Governance e Audit Trailing</h2>
     <ul>
-        <li>Il punto focale della sicurezza moderna: i file nel server (i classici <code>.env</code>) con le <strong>API Key per l'AI</strong> e la <code>SECRET_KEY</code> di Django comportano enormi rischi di sicurezza se non salvaguardati.</li>
-        <li>La soluzione cloud leader è l'uso di <strong>Azure Key Vault</strong>. Salverai lì tutte le password e le Action Key del modulo IA. Attraverso le <em>Managed Identities</em>, la tua app ha l'autorizzazione di recuperare i dati crittografici on-the-fly solo mentre processa la singola operazione AI, eliminando il rischio per lo sviluppatore di far copiare all'esterno i segreti.</li>
+        <li>Qualunque operazione critica interfacciata con il management dei segreti o i profili autorizzativi produce log completi pronti per attività d'ingaggio difensive o revisioni e investigazione di accessi di natura forense.</li>
     </ul>
-
-    <h3>19 - 21 Maggio: Simulazioni Pratiche e Review</b></h3>
-    <ul>
-        <li>L'AZ-500 include test reali nel browser. Esegui simulazioni con MeasureUp per allinearti.</li>
-    </ul>
-
-    <h3>22-23 Maggio: Ripasso Permessi e Vittoria</h3>
-    <p>Ripassa le differenze fra RBAC control level e assegnazioni su Entra ID. Presentati rilassato il giorno 23!</p>
 </body>
 </html>

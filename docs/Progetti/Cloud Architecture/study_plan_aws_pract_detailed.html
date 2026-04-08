@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>AWS Certified Cloud Practitioner - Piano Dettagliato</title>
+    <title>AWS Cloud Architecture - Kitchen Manager</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
         h1 { color: #232F3E; border-bottom: 3px solid #FF9900; padding-bottom: 10px; margin-bottom: 20px; }
@@ -15,63 +15,44 @@
         @media print {
             body { max-width: 100%; border: none; padding: 0; margin: 0; font-size: 11pt; color: #000; }
             h1 { font-size: 18pt; border-bottom: 2px solid #000; color: #000; page-break-after: avoid; }
-            h2 { font-size: 14pt; color: #333; border-bottom: 1px solid #ccc; page-break-after: avoid; margin-top: 20px;}
-            h3 { font-size: 12pt; page-break-after: avoid; }
+            h2 { font-size: 14pt; color: #333; border-bottom: 1px solid #ccc; margin-top: 20px;}
             p, ul, li { page-break-inside: avoid; }
-            @page { margin: 2.5cm; }
         }
     </style>
 </head>
 <body>
-    <h1>AWS Certified Cloud Practitioner - Piano di Battaglia Dettagliato</h1>
-    <p><strong>(Periodo: 7 Aprile - 25 Aprile)</strong></p>
-    <p>L'obiettivo di questo esame base è dimostrare di padroneggiare concetti generali ad alto livello. Questo piano mappa la teoria direttamente sull'architettura reale del tuo progetto <strong>Kitchen Manager (React + Vite + Django)</strong>, offrendoti così la possibilità di applicare concetti enterprise alla tua codebase vera.</p>
+    <h1>Architettura AWS Cloud - Kitchen Manager</h1>
+    <p><strong>Report: Migrazione e Implementazione Cloud-Native</strong></p>
+    <p>Il presente documento illustra l'architettura cloud ideata per il progetto <strong>Kitchen Manager (Stack: React, Vite, Django, PostgreSQL)</strong> su infrastruttura Amazon Web Services. L'obiettivo dell'implementazione è mappare un ambiente monolitico locale verso un set di componenti cloud-native per garantire scalabilità, sicurezza ed alta disponibilità.</p>
     
-    <h2>7 - 12 Aprile: La Teoria Mappata sul Kitchen Manager</h2>
-    <p>Finisci il corso Essentials su AWS Skill Builder tenendo sempre a mente come i servizi ospiteranno il tuo codice.</p>
-    
-    <h3>Il Tuo Frontend (React + Vite):</h3>
+    <h2>1. Livello Frontend (React + Vite)</h2>
     <ul>
-        <li>Al momento generi i file statici usando <code>vite build</code>. Su AWS, l'intera cartella <code>dist/</code> verrà caricata su <strong>Amazon S3</strong>, configurato come servizio di <em>Static Website Hosting</em>.</li>
-        <li>Per garantire tempi di risposta fulminei all'interfaccia usata dai camerieri e cuochi, S3 verrà collegato ad <strong>Amazon CloudFront</strong>, la CDN nativa che distribuirà il sito tramite le edge location in tutto il mondo garantendone anche la crittografia HTTPS e la protezione tramite WAF (Web Application Firewall).</li>
+        <li>Il bundle statico autogenerato dal framework frontend risiede all'interno di <strong>Amazon S3</strong>, configurato specificatamente in modalità <em>Static Website Hosting</em>.</li>
+        <li>La distribuzione globale dei contenuti e l'accelerazione delle tempistiche di risposta sono garantite attraverso <strong>Amazon CloudFront (CDN)</strong>, che offre caching a livello globale, crittografia avanzata nativa (HTTPS via ACM) e un primo layer difensivo mediante AWS WAF (Web Application Firewall).</li>
     </ul>
 
-    <h3>Il Tuo Backend (Python / Django):</h3>
+    <h2>2. Livello Backend (Compute & PaaS)</h2>
     <ul>
-        <li>Il tuo codice back-end (in cui usi librerie come <code>asgiref</code> e <code>anyio</code>) richiede potenza di calcolo (Compute). Il modo più semplice e gestito per testare l'infrastruttura web su AWS è usare <strong>AWS Elastic Beanstalk</strong> (categoria PaaS).</li>
-        <li>Beanstalk configurerà tutto da solo: avvierà le istanze <strong>Amazon EC2</strong> e aggiungerà un server di Auto Scaling. Se il ristorante si riempie il sabato sera, Beanstalk scalerà le risorse EC2 automaticamente senza il tuo intervento e ne ridurrà il numero il lunedì mattina (Elasticity).</li>
+        <li>L'applicativo backend Python/Django richiede risorse computazionali in grado di scalare dinamicamente nei picchi di carico. Per l'hosting è impiegato <strong>AWS Elastic Beanstalk</strong>, una nota componente Platform as a Service (PaaS).</li>
+        <li>Il servizio orchestra la fornitura delle istanze <strong>Amazon EC2</strong>, automatizzando il bilanciamento del carico in ingresso per reagire in tempo reale alle variazioni di traffico, assicurando scalabilità orizzontale e massima resilienza.</li>
     </ul>
 
-    <h3>Il Tuo Database:</h3>
+    <h2>3. Livello Dati (Relational Database)</h2>
     <ul>
-        <li>I dati degli ordini staranno su <strong>Amazon RDS (Relational Database Service)</strong> con engine PostgreSQL.</li>
-        <li>RDS implementa i backup automatizzati e l'amministrazione delle patch. Sulla Virtual Private Cloud (VPC), collegherai Backend e RDS protetti l'uno dall'altro usando i <strong>Security Groups</strong> (permettono al backend l'accesso solo alla porta 5432).</li>
+        <li>Tutte le transazioni e i dati di gestione sono delegati al servizio gestito <strong>Amazon RDS (PostgreSQL Engine)</strong>.</li>
+        <li>RDS si fa carico dell'automazione integrale dei backup e della manutenzione. La comunicazione Backend-Database avviene sul perimetro di una singola Virtual Private Cloud (VPC), con una rigorosa segregazione via <strong>Security Groups</strong> organizzati in chiave Least Privilege, esponendo la porta 5432 esplicitamente al solo gruppo di sicurezza relativo ai layer computazionali di backend.</li>
     </ul>
 
-    <h3>Intelligenza Artificiale (AI) e API Keys:</h3>
+    <h2>4. Integrazione AI e Gestione dei Segreti (Decoupling)</h2>
     <ul>
-        <li>Poiché hai curato tu stessa l'integrazione AI, il servizio di riferimento sarà <strong>Amazon Comprehend</strong>: il servizio di elaborazione del linguaggio naturale (NLP) perfetto per analizzare automaticamente sentiment e testi (potenzialmente di recensioni ristorante) senza addestrare modelli custom.</li>
-        <li><strong>Gestione delle API Key:</strong> All'esame la best-practice aziendale impone di NON salvare MAI le chiavi per modelli AI o database nel codice. Il servizio da studiare per ruotare e gestire le chiavi è <strong>AWS Secrets Manager</strong> (o AWS Systems Manager Parameter Store).</li>
+        <li>Al fine di evitare restrizioni o blocchi sui thread dei server Web principali, le funzionalità di elaborazione del linguaggio supportate dall'AI (come l'AI Google Gemini) vengono eseguite fuori dal flusso di richiesta dell'interfaccia utente. Le chiamate sono processate da una coda <strong>Amazon SQS</strong> che scatena le esecuzioni mediante <strong>AWS Lambda</strong>.</li>
+        <li>Rispettando le norme Enterprise zero-trust, le chiavi identificative associate ai modelli AI non vengono hardcodate internamente alle funzioni analizzatrici, ma prelevate contestualmente alle esecuzioni dalle istanze sicure di <strong>AWS Secrets Manager</strong>.</li>
     </ul>
 
-    <h3>Il Disaccoppiamento (Decoupling)</h3>
+    <h2>5. Compliance e Security Posture</h2>
     <ul>
-        <li>Un sistema integrato come l'AI bloccherebbe Django se eseguito sincronicamente col cliente in attesa. Il backend avvia il processo spedendo un file in una coda <strong>Amazon SQS</strong>.
-        <li>Una <strong>AWS Lambda</strong> (serverless function) prenderà il lavoro e interrogherà le API dell'AI in background, usando le API Key tratte segretamente dal Secrets Manager.</li>
+        <li>L'intera architettura in esenzione si rifà alle stringenti normative del <strong>Well-Architected Framework</strong> delineato da AWS, e segue le corrette attribuzioni descritte nel <em>Shared Responsibility Model</em>.</li>
+        <li>Le configurazioni identitarie seguono policy modulari in ecosistema <strong>AWS IAM</strong>, scongiurando l'abuso dei privilegi da parte di singole classi dell'applicativo (es. operatori in front e backofice).</li>
     </ul>
-
-    <h2>13 - 18 Aprile: Le Prove del Fuoco</h2>
-    <p>Fai simulazioni ufficiali. Concentrati sempre sul leggere i distrattori. Se una domanda parla di un database per documenti JSON (tipo MongoDB), ricordati che la risposta AWS è DynamoDB, non RDS! Ogni opzione sbagliata è in realtà la risposta giusta per un'altra domanda potenziale.</p>
-
-    <h2>19 - 22 Aprile: Le Argomentazioni Normative (30% dei Punti)</h2>
-    <ul>
-        <li><strong>Well-Architected Framework:</strong> I pilastri su cui si baserà il tuo Kitchen Manager.</li>
-        <li><strong>Modello di Responsabilità Condivisa:</strong> AWS garantisce la sicurezza "del" cloud. Tu garantisci la sicurezza "nel" cloud.</li>
-        <li><strong>Identity and Access Management (IAM):</strong> Implementerai in AWS le policy Least Privilege come faresti con i ruoli interni all'app per "Admin", "Cameriere" e "Cuoco".</li>
-    </ul>
-
-    <h2>23 - 25 Aprile: Vittoria</h2>
-    <p>Rileggi i tuoi appunti prestando attenzione alle differenze nomenclature chiave (es: CloudFormation vs Beanstalk, CloudTrail per gli audit vs CloudWatch per le performance).</p>
-    <p>Il 25 Aprile, affronta l'esame con molta consapevolezza.</p>
 </body>
 </html>
