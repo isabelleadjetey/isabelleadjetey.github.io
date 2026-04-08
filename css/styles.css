@@ -1,17 +1,17 @@
-/* ====== MODERN CLEAN LIGHT THEME (MUSTARD ACCENT) ====== */
+/* ====== MODERN CLEAN LIGHT THEME (BROWN & MUSTARD ACCENT) ====== */
 :root {
-  --bg-color: #f8fafc;
+  --bg-color: #fffbeb;      /* Warm beige background */
   --surface: #ffffff;
-  --text-main: #1e293b;
-  --text-muted: #475569;
-  --accent: #d97706;        /* Senape Elegante / Amber-600 */
-  --accent-hover: #b45309;
-  --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
-  --accent-light: #fef3c7;
-  --border-light: #e2e8f0;
+  --text-main: #422006;     /* Deep Brown text */
+  --text-muted: #78350f;    /* Medium Brown text */
+  --accent: #d97706;        /* Senape / Mustard */
+  --accent-hover: #b45309;  /* Dark Senape */
+  --accent-gradient: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+  --accent-light: #fef3c7;  /* Light Mustard */
+  --border-light: #fde68a;  /* Amber-200 Border */
   --card-radius: 16px;
-  --shadow-sm: 0 4px 6px -1px rgba(217, 119, 6, 0.05), 0 2px 4px -1px rgba(217, 119, 6, 0.03);
-  --shadow-md: 0 10px 25px -5px rgba(217, 119, 6, 0.1), 0 8px 10px -6px rgba(217, 119, 6, 0.04);
+  --shadow-sm: 0 4px 6px -1px rgba(120, 53, 15, 0.05), 0 2px 4px -1px rgba(120, 53, 15, 0.03);
+  --shadow-md: 0 10px 25px -5px rgba(120, 53, 15, 0.1), 0 8px 10px -6px rgba(120, 53, 15, 0.04);
   --transition: all 0.25s ease-in-out;
 }
 
@@ -40,7 +40,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 10px rgba(120,53,15,0.03);
 }
 
 .hero .container {
@@ -58,6 +58,7 @@ body {
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text; /* compatibilità std */
   letter-spacing: -0.02em;
 }
 
@@ -130,6 +131,22 @@ ul {
 }
 li { margin-bottom: 8px; }
 
+/* FIX PER I PUNTI ELENCO DAVANTI AI BOTTONI */
+ul:has(a[target="_blank"]),
+ul:has(.btn) {
+  list-style: none !important;
+  padding-left: 0 !important;
+  display: flex !important;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+ul:has(a[target="_blank"]) li,
+ul:has(.btn) li {
+  margin-bottom: 0;
+}
+/* FINE FIX */
+
 /* Grids for Project Lists */
 .projects-list {
   display: grid;
@@ -153,7 +170,7 @@ li { margin-bottom: 8px; }
 .project-item:hover, .project:hover, section.project:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: #fcd34d; /* Soft Senape border su hover */
+  border-color: #fca5a5; /* Hover soft line */
 }
 
 .project-item h3, .project h3, section.project h3 {
@@ -167,7 +184,7 @@ li { margin-bottom: 8px; }
   background: var(--bg-color);
   padding: 30px;
   border-radius: var(--card-radius);
-  border: 1px dashed #cbd5e1;
+  border: 1px dashed #fcd34d;
   margin-bottom: 24px;
 }
 
@@ -184,7 +201,7 @@ a {
 }
 
 a:hover {
-  color: #92400e;
+  color: #92400e; /* Brown */
   text-decoration: underline;
 }
 
@@ -233,7 +250,7 @@ a:hover {
 
 .tags, .tag, .tags p {
   background: var(--accent-light);
-  color: #92400e !important; /* Senape iper scuro per ottimo contrasto  */
+  color: #92400e !important; 
   font-size: 0.85rem;
   font-weight: 700;
   padding: 6px 12px;
