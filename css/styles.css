@@ -1,17 +1,17 @@
-/* ====== MODERN CLEAN LIGHT THEME (BROWN & MUSTARD ACCENT) ====== */
+/* ====== MODERN CLEAN LIGHT THEME (MUSTARD, MAROON & SLATE) ====== */
 :root {
-  --bg-color: #fffbeb;      /* Warm beige background */
+  --bg-color: #ffffff;      
   --surface: #ffffff;
-  --text-main: #422006;     /* Deep Brown text */
-  --text-muted: #78350f;    /* Medium Brown text */
-  --accent: #d97706;        /* Senape / Mustard */
-  --accent-hover: #b45309;  /* Dark Senape */
-  --accent-gradient: linear-gradient(135deg, #d97706 0%, #92400e 100%);
-  --accent-light: #fef3c7;  /* Light Mustard */
-  --border-light: #fde68a;  /* Amber-200 Border */
+  --text-main: #481621;     /* Maroon/Bordeaux scuro */
+  --text-muted: #646670;    /* Grigio Ardesia / Slate */
+  --accent: #dc9e2e;        /* Giallo Senape / Mustard */
+  --accent-hover: #bf8824;  /* Senape Scuro */
+  --accent-gradient: linear-gradient(135deg, #dc9e2e 0%, #481621 100%);
+  --accent-light: #fdf6ea;  
+  --border-light: #e5e7eb;  
   --card-radius: 16px;
-  --shadow-sm: 0 4px 6px -1px rgba(120, 53, 15, 0.05), 0 2px 4px -1px rgba(120, 53, 15, 0.03);
-  --shadow-md: 0 10px 25px -5px rgba(120, 53, 15, 0.1), 0 8px 10px -6px rgba(120, 53, 15, 0.04);
+  --shadow-sm: 0 4px 6px -1px rgba(72, 22, 33, 0.05), 0 2px 4px -1px rgba(72, 22, 33, 0.03);
+  --shadow-md: 0 10px 25px -5px rgba(72, 22, 33, 0.1), 0 8px 10px -6px rgba(72, 22, 33, 0.04);
   --transition: all 0.25s ease-in-out;
 }
 
@@ -40,7 +40,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(120,53,15,0.03);
+  box-shadow: 0 2px 10px rgba(72,22,33,0.03);
 }
 
 .hero .container {
@@ -58,7 +58,7 @@ body {
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text; /* compatibilità std */
+  background-clip: text; 
   letter-spacing: -0.02em;
 }
 
@@ -114,7 +114,7 @@ section:first-child h2 { margin-top: 24px; }
 h3, h4 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--accent); /* Usiamo senape per i titoletti delle card */
   margin-top: 24px;
   margin-bottom: 12px;
 }
@@ -144,6 +144,7 @@ ul:has(.btn) {
 ul:has(a[target="_blank"]) li,
 ul:has(.btn) li {
   margin-bottom: 0;
+  list-style: none !important;
 }
 /* FINE FIX */
 
@@ -170,21 +171,16 @@ ul:has(.btn) li {
 .project-item:hover, .project:hover, section.project:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: #fca5a5; /* Hover soft line */
-}
-
-.project-item h3, .project h3, section.project h3 {
-  margin-top: 0;
-  color: var(--accent);
+  border-color: #dc9e2e; /* Bordo diventa senape su hover */
 }
 
 /* Nested Subsection */
 .project-subsection {
   grid-column: 1 / -1;
-  background: var(--bg-color);
+  background: #fdfbf9;
   padding: 30px;
   border-radius: var(--card-radius);
-  border: 1px dashed #fcd34d;
+  border: 1px dashed #e5e7eb;
   margin-bottom: 24px;
 }
 
@@ -194,14 +190,14 @@ ul:has(.btn) li {
 
 /* Links & Buttons */
 a {
-  color: #b45309; /* Senape scuro */
+  color: var(--text-main); /* Maroon scuro per il testo dei link base */
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   transition: var(--transition);
 }
 
 a:hover {
-  color: #92400e; /* Brown */
+  color: var(--accent); /* Diventa senape su hover */
   text-decoration: underline;
 }
 
@@ -236,7 +232,7 @@ a:hover {
   color: white;
   text-decoration: none;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+  box-shadow: 0 4px 12px rgba(220, 158, 46, 0.3);
 }
 
 /* Badges / Tags */
@@ -250,18 +246,18 @@ a:hover {
 
 .tags, .tag, .tags p {
   background: var(--accent-light);
-  color: #92400e !important; 
+  color: var(--text-main) !important; /* Maroon scuro elegante sul tag chiaro */
   font-size: 0.85rem;
   font-weight: 700;
   padding: 6px 12px;
   border-radius: 999px;
   letter-spacing: 0.5px;
   margin: 0;
-  border: none;
+  border: 1px solid rgba(72, 22, 33, 0.05);
 }
 
 .tags a {
-  color: #92400e !important; 
+  color: var(--text-main) !important; 
   text-decoration: none;
 }
 
@@ -274,7 +270,7 @@ a:hover {
 }
 
 .badges li {
-  background: #f1f5f9;
+  background: #fdfbf9;
   padding: 12px 18px;
   border-radius: 8px;
   border-left: 4px solid var(--accent);
