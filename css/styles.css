@@ -1,17 +1,17 @@
-/* ====== MODERN CLEAN LIGHT THEME (VIBRANT INDIGO ACCENT) ====== */
+/* ====== MODERN CLEAN LIGHT THEME (BORDEAUX ACCENT) ====== */
 :root {
   --bg-color: #f8fafc;
   --surface: #ffffff;
   --text-main: #1e293b;
   --text-muted: #475569;
-  --accent: #4f46e5;        /* Deep Indigo / Vibrant Blue portante */
-  --accent-hover: #4338ca;
-  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
-  --accent-light: #e0e7ff;
+  --accent: #9f1239;        /* Elegante Bordeaux */
+  --accent-hover: #881337;
+  --accent-gradient: linear-gradient(135deg, #be123c 0%, #881337 100%);
+  --accent-light: #ffe4e6;
   --border-light: #e2e8f0;
   --card-radius: 16px;
-  --shadow-sm: 0 4px 6px -1px rgba(79, 70, 229, 0.05), 0 2px 4px -1px rgba(79, 70, 229, 0.03);
-  --shadow-md: 0 10px 25px -5px rgba(79, 70, 229, 0.1), 0 8px 10px -6px rgba(79, 70, 229, 0.04);
+  --shadow-sm: 0 4px 6px -1px rgba(159, 18, 57, 0.05), 0 2px 4px -1px rgba(159, 18, 57, 0.03);
+  --shadow-md: 0 10px 25px -5px rgba(159, 18, 57, 0.1), 0 8px 10px -6px rgba(159, 18, 57, 0.04);
   --transition: all 0.25s ease-in-out;
 }
 
@@ -153,7 +153,7 @@ li { margin-bottom: 8px; }
 .project-item:hover, .project:hover, section.project:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: #818cf8; /* Soft Indigo */
+  border-color: #fda4af; /* Soft rose for hover */
 }
 
 .project-item h3, .project h3, section.project h3 {
@@ -177,14 +177,14 @@ li { margin-bottom: 8px; }
 
 /* Links & Buttons */
 a {
-  color: #2563eb;
+  color: #1d4ed8;
   text-decoration: none;
   font-weight: 600;
   transition: var(--transition);
 }
 
 a:hover {
-  color: var(--accent-hover);
+  color: #1e3a8a;
   text-decoration: underline;
 }
 
@@ -219,7 +219,7 @@ a:hover {
   color: white;
   text-decoration: none;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 4px 12px rgba(159, 18, 57, 0.3);
 }
 
 /* Badges / Tags */
@@ -233,7 +233,7 @@ a:hover {
 
 .tags, .tag, .tags p {
   background: var(--accent-light);
-  color: var(--accent) !important; 
+  color: #881337 !important; /* Deep Bordeaux */
   font-size: 0.85rem;
   font-weight: 700;
   padding: 6px 12px;
@@ -244,7 +244,7 @@ a:hover {
 }
 
 .tags a {
-  color: var(--accent) !important; 
+  color: #881337 !important; 
   text-decoration: none;
 }
 
