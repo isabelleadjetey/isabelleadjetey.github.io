@@ -1,17 +1,17 @@
-/* ====== MODERN CLEAN LIGHT THEME (BORDEAUX ACCENT) ====== */
+/* ====== MODERN CLEAN LIGHT THEME (MUSTARD ACCENT) ====== */
 :root {
   --bg-color: #f8fafc;
   --surface: #ffffff;
   --text-main: #1e293b;
   --text-muted: #475569;
-  --accent: #9f1239;        /* Elegante Bordeaux */
-  --accent-hover: #881337;
-  --accent-gradient: linear-gradient(135deg, #be123c 0%, #881337 100%);
-  --accent-light: #ffe4e6;
+  --accent: #d97706;        /* Senape Elegante / Amber-600 */
+  --accent-hover: #b45309;
+  --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+  --accent-light: #fef3c7;
   --border-light: #e2e8f0;
   --card-radius: 16px;
-  --shadow-sm: 0 4px 6px -1px rgba(159, 18, 57, 0.05), 0 2px 4px -1px rgba(159, 18, 57, 0.03);
-  --shadow-md: 0 10px 25px -5px rgba(159, 18, 57, 0.1), 0 8px 10px -6px rgba(159, 18, 57, 0.04);
+  --shadow-sm: 0 4px 6px -1px rgba(217, 119, 6, 0.05), 0 2px 4px -1px rgba(217, 119, 6, 0.03);
+  --shadow-md: 0 10px 25px -5px rgba(217, 119, 6, 0.1), 0 8px 10px -6px rgba(217, 119, 6, 0.04);
   --transition: all 0.25s ease-in-out;
 }
 
@@ -153,7 +153,7 @@ li { margin-bottom: 8px; }
 .project-item:hover, .project:hover, section.project:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: #fda4af; /* Soft rose for hover */
+  border-color: #fcd34d; /* Soft Senape border su hover */
 }
 
 .project-item h3, .project h3, section.project h3 {
@@ -177,14 +177,14 @@ li { margin-bottom: 8px; }
 
 /* Links & Buttons */
 a {
-  color: #1d4ed8;
+  color: #b45309; /* Senape scuro */
   text-decoration: none;
   font-weight: 600;
   transition: var(--transition);
 }
 
 a:hover {
-  color: #1e3a8a;
+  color: #92400e;
   text-decoration: underline;
 }
 
@@ -219,7 +219,7 @@ a:hover {
   color: white;
   text-decoration: none;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(159, 18, 57, 0.3);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
 }
 
 /* Badges / Tags */
@@ -233,7 +233,7 @@ a:hover {
 
 .tags, .tag, .tags p {
   background: var(--accent-light);
-  color: #881337 !important; /* Deep Bordeaux */
+  color: #92400e !important; /* Senape iper scuro per ottimo contrasto  */
   font-size: 0.85rem;
   font-weight: 700;
   padding: 6px 12px;
@@ -244,7 +244,7 @@ a:hover {
 }
 
 .tags a {
-  color: #881337 !important; 
+  color: #92400e !important; 
   text-decoration: none;
 }
 
