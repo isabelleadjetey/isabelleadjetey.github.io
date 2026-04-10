@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>CCNA 200-301 - Network Architecture & Routing Protocol Report</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #049fd9; border-bottom: 3px solid #005073; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { color: #049fd9; margin-top: 35px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        h3 { color: #333; margin-top: 25px; margin-bottom: 10px; }
+        p { margin-bottom: 15px; text-align: justify; }
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        strong { color: #000; }
+        @media print {
+            body { max-width: 100%; border: none; padding: 0; margin: 0; font-size: 11pt; color: #000; }
+            h1 { font-size: 18pt; border-bottom: 2px solid #000; color: #000; page-break-after: avoid; }
+            h2 { font-size: 14pt; color: #333; border-bottom: 1px solid #ccc; margin-top: 20px;}
+            p, ul, li { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Architettura di Rete e Routing Protocl - CCNA 200-301</h1>
+    <p><strong>Report: Consolidamento Infrastrutture On-Premises & Cloud Ready</strong></p>
+    <p>Il presente documento traccia le traiettorie architetturali e i costrutti fondamentali necessari per garantire reti sicure, instradabili e ad alte prestazioni. La profonda padronanza dei framework di routing e dello switching Layer 2 costituisce il fondamento critico per la gestione del traffico logico in ecosistemi complessi Cloud/On-Premise.</p>
+    
+    <h2>1. Network Fundamentals (Astrazione & Livello Fisico)</h2>
+    <ul>
+        <li>Padronanza consolidata degli stack protocollari OSI e TCP/IP, elementi cardine per la diagnosi granulare delle cadute di servizio (Root Cause Analysis).</li>
+        <li>Progettazione topologica Enterprise basata su architetture 2-Tier (Collapsed Core) e 3-Tier. Comprensione radicata delle dinamiche trasmissive IPv4 e IPv6 e tecniche avanzate di Subnetting via VLSM (Variable Length Subnet Mask) dirette a minimizzare lo spreco di indirizzamenti.</li>
+    </ul>
+
+    <h2>2. Network Access (Switching & L2 Resiliency)</h2>
+    <ul>
+        <li>Segmentazione logica del dominio di broadcast aziendale tramite configurazione estesa delle <strong>VLAN</strong>.</li>
+        <li>Implementazione solida di trunking (protocollo 802.1Q) e instradamento cross-subnet mediante "Router-on-a-Stick" e Switch L3 (SVI - Switch Virtual Interfaces).</li>
+        <li>Mitigazione preventiva dei bridging loops implementando varianti evolute dello Spanning Tree Protocol (Rapid PVST+). Elementi avanzati di wireless LAN controller (WLC) in tandem ad Access Point alleggeriti.</li>
+    </ul>
+
+    <h2>3. IP Connectivity & Dynamic Routing</h2>
+    <ul>
+        <li>La gestione dell'inoltro logico esula dal semplice "routing statico". L'impalcatura prevede l'installazione e manipolazione di vettori d'instradamento dinamici link-state, tra cui <strong>OSPFv2</strong> (Open Shortest Path First) integrato in implementazioni single-area, misurando e manipolando le metriche di costo logico.</li>
+        <li>Affidabilità del First Hop Redundancy Protocol (FHRP) implementando gateway virtuali condivisi (es. standard HSRP).</li>
+    </ul>
+
+    <h2>4. IP Services & L3 Translation</h2>
+    <ul>
+        <li>Conservazione aggressiva degli IP pubblici instradabili tramite manipolazione delle tabelle <strong>NAT (Network Address Translation)</strong> e PAT (Port Address Translation) statiche e dinamiche, a cui è assoggettato tutto il perimetro Internet-Facing aziendale.</li>
+        <li>Centralizzazione dei servizi basilari mediante configurazione formale su apparati Cisco di DHCP Server, NTP, monitoraggio centralizzato via SNMP e ricezione logging su backend Syslog (integrabile con engine tipo Splunk).</li>
+    </ul>
+
+    <h2>5. Security Fundamentals (Hardening & Contenimento)</h2>
+    <ul>
+        <li>Perimetrazione del traffico in base alla classificazione IP implementando selettive <strong>Access Control Lists (ACL)</strong> —sia in standard format che esteso (L3/L4)— filtrando il traffico abusivo inter-VLAN.</li>
+        <li>Difesa feroce del piano di Data Link contro attacchi Man-in-the-Middle e manomissione tabelle CAM mediante l'attivazione rigorosa su ogni interfaccia terminale di: <strong>Port Security</strong>, <strong>Dynamic ARP Inspection (DAI)</strong> e filtraggio di DHCP non autorizzati (DHCP Snooping).</li>
+    </ul>
+
+    <h2>6. Automation & Programmability (SDN Era)</h2>
+    <ul>
+        <li>Evoluzione moderna del network con paradigmi SDN (Software Defined Networking: Controller-based Networking).</li>
+        <li>Abbassamento del footprint manuale ricorrendo ad apparati gestibili in scala via <strong>Cisco DNA Center</strong> e profonda iterazione attraverso interfacce REST API interagendo con payload format in JSON.</li>
+    </ul>
+</body>
+</html>
