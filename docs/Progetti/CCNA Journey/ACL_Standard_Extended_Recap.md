@@ -53,3 +53,38 @@ ip access-list extended PROTEZIONE_WEB
 3.  **Wildcard Mask:** Ricorda che è l'opposto della Subnet Mask (es. /24 è `0.0.0.255`).
 
 ---
+
+## 6. Il "Mondo a Parte": IPv6 ACLs
+Le ACL in IPv6 funzionano in modo molto simile, ma ci sono **3 grandi differenze** che chiedono sempre all'esame:
+1.  **Niente Wildcard Mask:** In IPv6 si usa direttamente il prefisso di rete (es. `/64`), molto più logico!
+2.  **Solo Named ACLs:** In IPv6 non esistono più i "numeri" (niente 1-99), devi sempre usare un nome.
+3.  **Le 3 Regole Invisibili:** Alla fine di un'ACL IPv6, oltre all'ovvio `deny ipv6 any any`, ci sono **prima** due regole `permit` invisibili fondamentali per far funzionare la rete locale (Neighbor Discovery):
+    *   `permit icmp any any nd-na` (Neighbor Advertisement)
+    *   `permit icmp any any nd-ns` (Neighbor Solicitation)
+    *   `deny ipv6 any any`
+
+*Esempio Config IPv6:*
+```text
+ipv6 access-list BLOCCA_IPV6_GUEST
+ deny ipv6 2001:DB8:ACAD:A::/64 any
+ permit ipv6 any any
+
+interface GigabitEthernet 0/1
+ ipv6 traffic-filter BLOCCA_IPV6_GUEST in   <-- Si usa 'traffic-filter', non 'access-group'!
+```
+
+---
+
+## 7. Proteggere le "Porte Virtuali" (VTY Lines)
+Nello SNOC, non vorrai mai che chiunque possa tentare di loggarsi in SSH sul tuo router. Si usa un'ACL per permettere l'accesso solo all'IP del Management Server o del PC del sistemista.
+*   **La trappola dell'Esame:** Per applicare un'ACL a un'interfaccia fisica usi `ip access-group`. Ma sulle linee VTY si usa una parola completamente diversa: **`access-class`**.
+
+*Esempio Config VTY:*
+```text
+! 1. Crea un'ACL Standard
+access-list 10 permit 192.168.100.5   <-- Permette solo al PC del Sistemista
+
+! 2. Applica alla linea virtuale
+line vty 0 4
+ access-class 10 in                   <-- Usa 'access-class'! Questo è importantissimo.
+```

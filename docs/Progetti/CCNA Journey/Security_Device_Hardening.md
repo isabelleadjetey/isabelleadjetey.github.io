@@ -61,7 +61,52 @@ login block-for 180 attempts 3 within 60
 
 ---
 
-## 5. I Ferri del Mestiere (Troubleshooting)
+## 5. Hardening Avanzato (Best Practices SNOC)
+
+Per passare da una configurazione base a una configurazione Enterprise sicura, dobbiamo applicare ulteriori restrizioni.
+
+### Limitare l'accesso con le ACL (Management ACL)
+Anche se un utente ha la password, non dovrebbe poter accedere al router se non proviene da una rete fidata (es. la subnet dello SNOC).
+```text
+! 1. Crea una ACL con gli IP autorizzati
+access-list 10 permit 192.168.100.0 0.0.0.255
+
+! 2. Applica l'ACL alle linee VTY
+line vty 0 15
+ access-class 10 in
+```
+
+### Timeout di Inattività e Logging
+Evitiamo che una sessione rimanga aperta se l'amministratore si allontana dal PC.
+```text
+line vty 0 15
+ exec-timeout 5 0             <-- Chiude la sessione dopo 5 minuti di inattività
+ logging synchronous          <-- Evita che i log interrompano la digitazione dei comandi
+```
+*Nota: Questa configurazione andrebbe applicata anche sulla `line con 0`.*
+
+### Disabilitare i Servizi Pericolosi e CDP
+Minore è la superficie di attacco, più il dispositivo è sicuro.
+```text
+no ip http server             <-- Disabilita l'accesso Web HTTP (non cifrato)
+no ip http secure-server      <-- Disabilita l'accesso Web HTTPS (se non gestito dal team)
+
+! Su interfacce rivolte verso reti non fidate disabilitiamo il CDP
+interface GigabitEthernet0/1
+ no cdp enable
+```
+
+### Physical Layer Hardening
+Regola d'oro: **se una porta non è in uso, spegnila.**
+```text
+interface range GigabitEthernet0/2 - 24
+ shutdown
+ description UNUSED_PORT_RESERVED
+```
+
+---
+
+## 6. I Ferri del Mestiere (Troubleshooting)
 1.  **`show run | include password`**: Per vedere se ci sono password rimaste in chiaro.
 2.  **`show ip ssh`**: Per verificare che la versione 2 di SSH sia attiva.
 3.  **`show line vty 0 4`**: Per controllare chi è collegato al router in questo momento.

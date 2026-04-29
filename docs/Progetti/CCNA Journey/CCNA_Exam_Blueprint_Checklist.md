@@ -27,9 +27,11 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
 
 ---
 
-## 🗺️ Dominio 3: IP Connectivity (25%) - [/] IN CORSO
+## 🗺️ Dominio 3: IP Connectivity (25%) - [x] COMPLETATO
 *   `[x]` Interpretare i componenti della routing table (Prefix, Mask, Next Hop, AD, Metric).
 *   `[x]` Routing Statico (Default route, Network route, Floating static).
+    *   *🛠️ Lab:* [Lab_Static_Routing_Return_Routes.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Lab_Static_Routing_Return_Routes.md)
+    *   *🛠️ Lab:* [Lab_Static_Routing_Ring_Topology.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Lab_Static_Routing_Ring_Topology.md)
 *   `[x]` **OSPFv2 Single Area**: Configurazione e neighbor adjacency.
     *   *📄 Recap:* [OSPF_Lab_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/OSPF_Lab_Recap.md)
 *   `[x]` **FHRP (First Hop Redundancy Protocol)**: Concetti e HSRP.
@@ -43,7 +45,8 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
     *   *📄 Recap:* [NAT_Lab_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/NAT_Lab_Recap.md)
 *   `[x]` **DHCP**: Client, Server e Relay Agent (ip helper-address).
     *   *📄 Recap:* [DHCP_Lab_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/DHCP_Lab_Recap.md)
-*   `[ ]` NTP, SNMP, Syslog (Configurazione e analisi).
+*   `[x]` NTP, SNMP, Syslog (Configurazione e analisi).
+    *   *📄 Recap:* [IP_Services_Monitoring_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/IP_Services_Monitoring_Recap.md)
 *   `[ ]` Perceptive di QoS (Quality of Service): Classification, Marking, Queuing.
 
 ---
@@ -53,6 +56,7 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
     *   *📄 Recap:* [Security_Device_Hardening.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Security_Device_Hardening.md)
 *   `[x]` **Access Control Lists (ACL)**: Standard ed Estese.
     *   *📄 Recap:* [ACL_Standard_Extended_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/ACL_Standard_Extended_Recap.md)
+    *   *🛠️ Lab:* [Lab_ACL_Practical_Guide.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Lab_ACL_Practical_Guide.md)
 *   `[x]` Layer 2 Security: Port Security, DHCP Snooping, Dynamic ARP Inspection (DAI).
     *   *📄 Recap:* [L2_Security_Hardening_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/L2_Security_Hardening_Recap.md)
 *   `[x]` VPN Concepts: IPsec e GRE.
