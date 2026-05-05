@@ -10,7 +10,7 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
 *   `[x]` Confrontare i protocolli OSI vs TCP/IP.
 *   `[x]` IPv4: Subnetting (VLSM) e configurazione.
 *   `[x]` IPv6: Unicast, Anycast, Link-local e configurazione base.
-*   `[x]` Fondamenti di Virtualizzazione e Cloud.
+*   `[]` Fondamenti di Virtualizzazione e Cloud.
 
 ---
 
@@ -19,6 +19,7 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
     *   *📄 Recap:* [VLAN_Trunking_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/VLAN_Trunking_Recap.md)
 *   `[x]` Configurazione del **Trunking** (802.1Q) e Native VLAN.
 *   `[x]` Protocolli di scoperta: CDP e LLDP.
+    *   *📄 Recap [M2]:* [CDP_LLDP_Fundamentals_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/CDP_LLDP_Fundamentals_Recap.md)
 *   `[x]` **STP (Spanning Tree Protocol)**: Concetti base e Rapid PVST+.
     *   *📄 Recap:* [STP_RSTP_Fundamentals.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/STP_RSTP_Fundamentals.md)
 *   `[x]` **EtherChannel** (LACP): Aggregazione di link.
@@ -30,13 +31,11 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
 ## 🗺️ Dominio 3: IP Connectivity (25%) - [x] COMPLETATO
 *   `[x]` Interpretare i componenti della routing table (Prefix, Mask, Next Hop, AD, Metric).
 *   `[x]` Routing Statico (Default route, Network route, Floating static).
-    *   *🛠️ Lab:* [Lab_Static_Routing_Return_Routes.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Lab_Static_Routing_Return_Routes.md)
-    *   *🛠️ Lab:* [Lab_Static_Routing_Ring_Topology.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Lab_Static_Routing_Ring_Topology.md)
 *   `[x]` **OSPFv2 Single Area**: Configurazione e neighbor adjacency.
     *   *📄 Recap:* [OSPF_Lab_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/OSPF_Lab_Recap.md)
 *   `[x]` **FHRP (First Hop Redundancy Protocol)**: Concetti e HSRP.
     *   *📄 Recap:* [HSRP_FHRP_Lab_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/HSRP_FHRP_Lab_Recap.md)
-*   `[x]` OSPFv2 Multi-area (Completato tramite Lab 20-1).
+*   `[x]` OSPFv2 Multi-area (Approfondimento richiesto).
 
 ---
 
@@ -45,23 +44,17 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
     *   *📄 Recap:* [NAT_Lab_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/NAT_Lab_Recap.md)
 *   `[x]` **DHCP**: Client, Server e Relay Agent (ip helper-address).
     *   *📄 Recap:* [DHCP_Lab_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/DHCP_Lab_Recap.md)
-*   `[x]` NTP, SNMP, Syslog (Configurazione e analisi).
-    *   *📄 Recap:* [IP_Services_Monitoring_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/IP_Services_Monitoring_Recap.md)
+*   `[/]` NTP, SNMP, Syslog (Configurazione e analisi).
+    *   *📄 Lab:* [Lab_NTP_Syslog_Monitoring.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Lab_NTP_Syslog_Monitoring.md)
 *   `[ ]` Perceptive di QoS (Quality of Service): Classification, Marking, Queuing.
 
 ---
 
-## 🔐 Dominio 5: Security Fundamentals (15%) - [/] IN CORSO
+## 🔐 Dominio 5: Security Fundamentals (15%) - [ ] DA INIZIARE
 *   `[x]` Password Policy, Password Encryption, SSH.
-    *   *📄 Recap:* [Security_Device_Hardening.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Security_Device_Hardening.md)
-*   `[x]` **Access Control Lists (ACL)**: Standard ed Estese.
-    *   *📄 Recap:* [ACL_Standard_Extended_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/ACL_Standard_Extended_Recap.md)
-    *   *🛠️ Lab:* [Lab_ACL_Practical_Guide.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Lab_ACL_Practical_Guide.md)
-*   `[x]` Layer 2 Security: Port Security, DHCP Snooping, Dynamic ARP Inspection (DAI).
-    *   *📄 Recap:* [L2_Security_Hardening_Recap.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/L2_Security_Hardening_Recap.md)
-*   `[x]` VPN Concepts: IPsec e GRE.
-    *   *📄 Recap:* [VPN_Concepts_Fundamentals.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/VPN_Concepts_Fundamentals.md)
-*   `[ ]` Configurare e verificare il wireless security (WPA, WPA2, WPA3).
+*   `[X]` **Access Control Lists (ACL)**: Standard ed Estese.
+*   `[ ]` Layer 2 Security: Port Security, DHCP Snooping, Dynamic ARP Inspection (DAI).
+*   `[ ]` VPN Concepts: IPsec e GRE.
 
 ---
 
@@ -78,6 +71,10 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
 *   `[x]` Laboratorio Pratico di Peering eBGP.
     *   *📄 Lab:* [Lab_BGP_Peer_Basic.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Lab_BGP_Peer_Basic.md)
 *   `[x]` Analisi pacchetti BGP con Wireshark.
+
+## 🏆 Final Consolidation (Exam Ready) - [ ] IN CORSO
+*   `[ ]` **Mega Lab: Sede Centrale Sorint** (VLAN, STP, OSPF, NAT, Monitoring).
+    *   *📄 Lab:* [Mega_Lab_CCNA_Consolidation.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/Mega_Lab_CCNA_Consolidation.md)
 
 ---
 

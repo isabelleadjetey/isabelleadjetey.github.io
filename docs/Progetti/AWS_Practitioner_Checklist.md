@@ -1,6 +1,6 @@
 # AWS Certified Cloud Practitioner (CLF-C02) Checklist
 
-Usa questa checklist insieme al [Piano Decennale](./AWS_Cloud_Practitioner_10Day_Plan.md) per monitorare i tuoi passi verso il 2 Maggio.
+Usa questa checklist insieme al [Piano Decennale](./AWS_Cloud_Practitioner_10Day_Plan.md) per monitorare i tuoi passi verso il 9 Maggio.
 
 ---
 

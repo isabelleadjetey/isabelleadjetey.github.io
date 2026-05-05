@@ -1,6 +1,6 @@
 # Road to AWS Cloud Practitioner: 10-Day Intensive Plan
 
-*📅 **Target Date:** 2 Maggio*
+*📅 **Target Date:** 9 Maggio*
 *📚 **Primary Resource:** [AWS Skill Builder - Cloud Practitioner Essentials](https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials)*
 
 Questo è il tuo piano di battaglia per ottenere la certificazione in soli 10 giorni, sfruttando la tua mentalità da "Networking Engineer".

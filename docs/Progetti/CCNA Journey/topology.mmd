@@ -1,0 +1,29 @@
+graph TD
+    %% Nodi
+    ISP((ISP Router<br/>Internet))
+    R1((R1<br/>Edge Router))
+    CORE[SW-CORE<br/>Switch L3]
+    ACC[SW-ACC<br/>Switch Accesso]
+    PC[PC-1<br/>Utente VLAN 10]
+    SRV[SRV-MGMT<br/>Syslog/NTP VLAN 20]
+
+    %% Connessioni Layer 3
+    ISP <-->|Gi0/0 - Rete Pubblica| R1
+    
+    %% Connessioni Trunk
+    R1 <-->|Gi0/1 - Trunk 802.1Q| CORE
+    
+    %% Connessioni Layer 2 (EtherChannel)
+    CORE ==== |Fa0/1, Fa0/2 - EtherChannel LACP| ACC
+    
+    %% Connessioni Accesso
+    ACC ---|Fa0/10 - VLAN 10| PC
+    ACC ---|Fa0/20 - VLAN 20| SRV
+
+    %% Stili
+    style ISP fill:#ff9999,stroke:#cc0000,stroke-width:2px
+    style R1 fill:#99ccff,stroke:#0066cc,stroke-width:2px
+    style CORE fill:#cc99ff,stroke:#6600cc,stroke-width:2px
+    style ACC fill:#cc99ff,stroke:#6600cc,stroke-width:2px
+    style PC fill:#99ff99,stroke:#009900,stroke-width:2px
+    style SRV fill:#ffff99,stroke:#cc9900,stroke-width:2px
