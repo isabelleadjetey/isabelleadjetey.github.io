@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>CCNA 200-301 Detailed Blueprint - Isabelle</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.5; color: #2c3e50; max-width: 1000px; margin: 30px auto; padding: 20px; background-color: #f8f9fa; }
+        .container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h1 { color: #1a5276; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 15px; margin-bottom: 30px; }
+        .domain { margin-bottom: 25px; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; }
+        .domain-header { background: #1a5276; color: white; padding: 12px 20px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .domain-content { padding: 20px; }
+        .sub-category { font-weight: bold; color: #2980b9; margin-top: 15px; margin-bottom: 10px; border-bottom: 1px solid #eee; }
+        ul { list-style-type: none; padding-left: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        li { padding: 5px 10px; display: flex; align-items: center; font-size: 0.95em; }
+        .checkbox { width: 18px; height: 18px; border: 2px solid #bdc3c7; border-radius: 3px; margin-right: 10px; display: flex; align-items: center; justify-content: center; }
+        .checked { background-color: #2ecc71; border-color: #27ae60; color: white; }
+        .checked::after { content: "✓"; font-size: 14px; }
+        .badge { font-size: 0.75em; padding: 3px 10px; border-radius: 12px; font-weight: normal; }
+        .badge-done { background: #d4efdf; color: #1d8348; }
+        .badge-todo { background: #fdebd0; color: #9c640c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 CCNA 200-301: Detailed Technical Proficiency</h1>
+
+        <!-- DOMINIO 1 -->
+        <div class="domain">
+            <div class="domain-header">
+                1. Network Fundamentals <span class="badge badge-done">100% Covered</span>
+            </div>
+            <div class="domain-content">
+                <div class="sub-category">Infrastruttura & Cablaggio</div>
+                <ul>
+                    <li><div class="checkbox checked"></div> L2/L3 Switches, Routers, Firewalls</li>
+                    <li><div class="checkbox checked"></div> Architetture 2-Tier, 3-Tier, Spine-Leaf</li>
+                    <li><div class="checkbox checked"></div> Fibra: SMF vs MMF (Cores, OS1/2, OM1-4)</li>
+                    <li><div class="checkbox checked"></div> PoE: 802.3af, 802.3at (PoE+), 802.3bt</li>
+                </ul>
+                <div class="sub-category">IP Addressing (IPv4 & IPv6)</div>
+                <ul>
+                    <li><div class="checkbox checked"></div> Subnetting VLSM (FLSM vs VLSM)</li>
+                    <li><div class="checkbox checked"></div> IPv4: Private RFC 1918 (10, 172.16, 192.168)</li>
+                    <li><div class="checkbox checked"></div> IPv6: GUA, Link-Local (FE80::), Unique Local</li>
+                    <li><div class="checkbox checked"></div> IPv6: EUI-64, SLAAC, Stateless/Stateful DHCP</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DOMINIO 2 -->
+        <div class="domain">
+            <div class="domain-header">
+                2. Network Access <span class="badge badge-done">100% Covered</span>
+            </div>
+            <div class="domain-content">
+                <div class="sub-category">Switching Avanzato</div>
+                <ul>
+                    <li><div class="checkbox checked"></div> VLANs & Voice VLAN (802.1Q)</li>
+                    <li><div class="checkbox checked"></div> Trunking: DTP (Dynamic Trunking Protocol)</li>
+                    <li><div class="checkbox checked"></div> Spanning Tree: PVST+, Rapid PVST+, MSTP</li>
+                    <li><div class="checkbox checked"></div> EtherChannel: LACP (Standard) vs PAgP</li>
+                </ul>
+                <div class="sub-category">Wireless (WLAN)</div>
+                <ul>
+                    <li><div class="checkbox checked"></div> WLC Models: Centralized, Converged, FlexConnect</li>
+                    <li><div class="checkbox checked"></div> Tunneling CAPWAP (Control & Data)</li>
+                    <li><div class="checkbox checked"></div> SSID, Encryption (WPA, WPA2, WPA3)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DOMINIO 3 -->
+        <div class="domain">
+            <div class="domain-header">
+                3. IP Connectivity <span class="badge badge-done">100% Covered</span>
+            </div>
+            <div class="domain-content">
+                <div class="sub-category">Routing Protocols</div>
+                <ul>
+                    <li><div class="checkbox checked"></div> Static Routing: Default, Network, Floating (AD)</li>
+                    <li><div class="checkbox checked"></div> OSPFv2: Area 0, DR/BDR Election, Hello Timers</li>
+                    <li><div class="checkbox checked"></div> OSPF LSA Types (1, 2, 3) & Metric Calc</li>
+                    <li><div class="checkbox checked"></div> FHRP: HSRP (Hot Standby Router Protocol)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DOMINIO 4 -->
+        <div class="domain">
+            <div class="domain-header">
+                4. IP Services <span class="badge badge-todo">60% Covered</span>
+            </div>
+            <div class="domain-content">
+                <div class="sub-category">Network Services</div>
+                <ul>
+                    <li><div class="checkbox checked"></div> NAT: Static, Dynamic, PAT (Overload)</li>
+                    <li><div class="checkbox checked"></div> DHCP Server & Relay Agent (IP Helper)</li>
+                    <li><div class="checkbox checked"></div> NTP (Network Time Protocol) - Stratum</li>
+                    <li><div class="checkbox"></div> SNMP (v2c vs v3), Syslog Severity Levels</li>
+                </ul>
+                <div class="sub-category">QoS (Quality of Service)</div>
+                <ul>
+                    <li><div class="checkbox"></div> Classification & Marking (CoS vs DSCP)</li>
+                    <li><div class="checkbox"></div> Queuing: WFQ, LLQ, CBWFQ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DOMINIO 5 -->
+        <div class="domain">
+            <div class="domain-header">
+                5. Security Fundamentals <span class="badge badge-todo">70% Covered</span>
+            </div>
+            <div class="domain-content">
+                <div class="sub-category">Security Policies</div>
+                <ul>
+                    <li><div class="checkbox checked"></div> Standard vs Extended ACLs (L3/L4 filtering)</li>
+                    <li><div class="checkbox checked"></div> SSH vs Telnet (Encryption)</li>
+                    <li><div class="checkbox checked"></div> Device Hardening (Console/VTY, Enable Secret)</li>
+                    <li><div class="checkbox"></div> L2 Security: DHCP Snooping, DAI, Port-Security</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SNOC SPECIAL -->
+        <div class="domain" style="border-color: #8e44ad;">
+            <div class="domain-header" style="background: #8e44ad;">
+                🚀 SNOC Special: BGP & Tools <span class="badge badge-done">Completed</span>
+            </div>
+            <div class="domain-content">
+                <ul>
+                    <li><div class="checkbox checked"></div> eBGP Peering: AS Numbers, States (Idle, Active, Est.)</li>
+                    <li><div class="checkbox checked"></div> BGP Messages: Open, Keepalive, Update, Notification</li>
+                    <li><div class="checkbox checked"></div> Wireshark: Analisi Frame/Pacchetti L2-L4</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

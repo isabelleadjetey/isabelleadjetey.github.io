@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Lab CCNA - Network Engineering Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+    :root {
+  --primary: #005073;
+  --primary-light: #e6f2f7;
+  --secondary: #00bce1;
+  --text: #2d3748;
+  --text-muted: #718096;
+  --bg: #ffffff;
+  --bg-alt: #f7fafc;
+  --border: #e2e8f0;
+  --code-bg: #1a202c;
+  --code-text: #f7fafc;
+  --accent: #ed8936;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 40px 20px;
+  border-right: 1px solid var(--border);
+  background-color: var(--bg-alt);
+  overflow-y: auto;
+  display: none; /* Hidden by default, shown in JS if needed */
+}
+
+main {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 800px;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  border-bottom: 4px solid var(--secondary);
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1.2em;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: var(--bg-alt);
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--primary-light);
+  border-left: 6px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  color: var(--primary);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+pre {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9rem;
+  position: relative;
+  margin: 1.5rem 0;
+  border: 1px solid #2d3748;
+}
+
+code {
+  font-family: inherit;
+  background-color: #edf2f7;
+  color: #e53e3e;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+pre:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* Callouts */
+.callout {
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.callout-info { background: #e6fffa; border-color: #38b2ac; color: #234e52; }
+.callout-warning { background: #fffaf0; border-color: #ed8936; color: #7b341e; }
+.callout-danger { background: #fff5f5; border-color: #f56565; color: #742a2a; }
+
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-shutdown { background: #fed7d7; color: #9b2c2c; }
+.badge-restrict { background: #fef3c7; color: #92400e; }
+.badge-protect { background: #e6fffa; color: #234e52; }
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+  }
+  .sidebar {
+    display: none !important;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div style="margin-bottom: 2rem;">
+                <h3 style="margin-top: 0; color: var(--primary);">Mega Lab CCNA</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Network Engineering Lab</p>
+            </div>
+            <nav id="toc"></nav>
+        </aside>
+        <main>
+            <article id="content">
+                <h1>Mega Lab CCNA: Consolidamento Totale &quot;Sede Enterprise&quot;</h1>
+<blockquote>
+<p><strong>OBIETTIVO:</strong>
+Il presente laboratorio documenta l&#39;implementazione di un&#39;infrastruttura di rete aziendale completa (&quot;Sede Enterprise&quot;), integrando i protocolli di Layer 2, Layer 3, i Servizi IP e le policy di Sicurezza richiesti per l&#39;operatività in un ambiente SNOC.</p>
+</blockquote>
+<h2>Descrizione Architetturale</h2>
+<p>L&#39;infrastruttura simula un ambiente enterprise strutturato, basato sui seguenti moduli tecnologici:</p>
+<ol>
+<li><strong>Network Access (Layer 2):</strong> Segmentazione del traffico tramite VLAN e implementazione della ridondanza fisica tramite aggregazione dei link (<strong>EtherChannel LACP</strong>). Ottimizzazione della topologia loop-free mediante il protocollo <strong>STP</strong> (elezione del Root Bridge).</li>
+<li><strong>IP Connectivity (Layer 3):</strong> Routing inter-VLAN basato su architettura <strong>Router-on-a-Stick</strong>. Configurazione del protocollo di routing dinamico <strong>OSPF</strong> per la propagazione della rotta di default e l&#39;annuncio delle reti locali.</li>
+<li><strong>IP Services:</strong> Automazione dell&#39;indirizzamento tramite <strong>DHCP Server</strong> e abilitazione della connettività esterna mediante <strong>NAT Overload (PAT)</strong> sull&#39;interfaccia di frontiera.</li>
+<li><strong>Sicurezza &amp; Monitoring:</strong> Hardening dei dispositivi tramite SSH e Port-Security. Sincronizzazione temporale <strong>NTP</strong> e centralizzazione dei log di sistema tramite <strong>Syslog</strong> verso un server di management dedicato.</li>
+</ol>
+<h2>1. Topologia di Rete</h2>
+<p>Di seguito è riportato lo schema logico della rete. Si richiede di replicare la topologia su ambiente di simulazione (PNETLab o Cisco Packet Tracer), rispettando l&#39;assegnazione delle interfacce.</p>
+<p>(Topologia di rete configurata: ISP -&gt; R1 -&gt; SW-CORE -&gt; SW-ACC -&gt; End Devices)</p>
+<blockquote>
+<p><strong>IMPORTANTE - Cablaggio Cruciale:</strong> Assicurati di usare due cavi separati tra <code>SW-CORE</code> e <code>SW-ACC</code> sulle porte <code>Fa0/1</code> e <code>Fa0/2</code> per poter configurare correttamente l&#39;EtherChannel!</p>
+</blockquote>
+<hr>
+<h2>2. Tabella di Indirizzamento IP</h2>
+<p>Usa questa tabella come riferimento unico per assegnare gli indirizzi IP durante il lab.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Dispositivo</th>
+<th align="left">Interfaccia / VLAN</th>
+<th align="left">Indirizzo IP</th>
+<th align="left">Subnet Mask</th>
+<th align="left">Gateway (Next Hop)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>R1</strong></td>
+<td align="left"><code>Gi0/0</code> (Verso ISP)</td>
+<td align="left"><code>203.0.113.2</code></td>
+<td align="left"><code>255.255.255.252</code></td>
+<td align="left"><code>203.0.113.1</code> (Default)</td>
+</tr>
+<tr>
+<td align="left"><strong>R1</strong></td>
+<td align="left"><code>Gi0/1.10</code> (VLAN 10)</td>
+<td align="left"><code>192.168.10.254</code></td>
+<td align="left"><code>255.255.255.0</code></td>
+<td align="left">N/A</td>
+</tr>
+<tr>
+<td align="left"><strong>R1</strong></td>
+<td align="left"><code>Gi0/1.20</code> (VLAN 20)</td>
+<td align="left"><code>192.168.20.254</code></td>
+<td align="left"><code>255.255.255.0</code></td>
+<td align="left">N/A</td>
+</tr>
+<tr>
+<td align="left"><strong>PC-1</strong></td>
+<td align="left">NIC (VLAN 10)</td>
+<td align="left"><em>DHCP</em></td>
+<td align="left"><em>DHCP</em></td>
+<td align="left"><em>DHCP</em></td>
+</tr>
+<tr>
+<td align="left"><strong>PC-2</strong></td>
+<td align="left">NIC (VLAN 10)</td>
+<td align="left"><em>DHCP</em></td>
+<td align="left"><em>DHCP</em></td>
+<td align="left"><em>DHCP</em></td>
+</tr>
+<tr>
+<td align="left"><strong>SRV-MGMT</strong></td>
+<td align="left">NIC (VLAN 20)</td>
+<td align="left"><code>192.168.20.100</code></td>
+<td align="left"><code>255.255.255.0</code></td>
+<td align="left"><code>192.168.20.254</code></td>
+</tr>
+<tr>
+<td align="left"><strong>ISP</strong></td>
+<td align="left"><code>Gi0/0</code> (Verso R1)</td>
+<td align="left"><code>203.0.113.1</code></td>
+<td align="left"><code>255.255.255.252</code></td>
+<td align="left">N/A</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Step 1: Layer 2 (VLAN, Trunk e EtherChannel)</h2>
+<p>Configurazione dell&#39;infrastruttura di commutazione locale. Le VLAN garantiscono l&#39;isolamento dei domini di broadcast, mentre l&#39;EtherChannel fornisce ridondanza e incremento della larghezza di banda.</p>
+<blockquote>
+<p><strong>NOTA:</strong><br>I seguenti comandi devono essere eseguiti su entrambi gli switch di rete (<code>SW-CORE</code> e <code>SW-ACC</code>):</p>
+</blockquote>
+<pre><code class="language-text">enable
+configure terminal
+
+! 1. Creazione delle VLAN
+vlan 10
+ name DATI_UTENTI
+vlan 20
+ name MANAGEMENT
+exit
+
+! 2. Creazione EtherChannel (LACP) tra gli switch
+interface range FastEthernet 0/1 - 2
+ channel-group 1 mode active
+ exit
+
+! 3. Configurazione del Trunk sul canale aggregato
+interface Port-channel 1
+ switchport mode trunk
+ switchport nonegotiate
+ switchport trunk allowed vlan 10,20
+ exit
+</code></pre>
+<blockquote>
+<p><strong>ATTENZIONE:</strong><br>I seguenti comandi sono destinati esclusivamente allo switch di distribuzione (<code>SW-CORE</code>):</p>
+</blockquote>
+<pre><code class="language-text">! Porta verso the Router R1
+interface GigabitEthernet 0/1
+ switchport mode trunk
+ switchport nonegotiate
+ switchport trunk allowed vlan 10,20
+ exit
+
+! SW-CORE deve essere il Root Bridge per evitare cicli
+spanning-tree vlan 10,20 root primary
+</code></pre>
+<blockquote>
+<p><strong>NOTA:</strong><br>I seguenti comandi sono destinati esclusivamente allo switch di accesso (<code>SW-ACC</code>):</p>
+</blockquote>
+<pre><code class="language-text">! Configurazione porta PC con Port Security
+ interface FastEthernet 0/10
+  switchport mode access
+  switchport access vlan 10
+  spanning-tree portfast
+  switchport port-security
+  switchport port-security maximum 2
+  switchport port-security violation restrict
+  switchport port-security mac-address sticky
+  exit
+ 
+ ! Configurazione porta PC-2 con Port Security
+ interface FastEthernet 0/11
+  switchport mode access
+  switchport access vlan 10
+  spanning-tree portfast
+  switchport port-security
+  switchport port-security maximum 2
+  switchport port-security violation restrict
+  switchport port-security mac-address sticky
+  exit
+
+! Configurazione porta Server
+interface FastEthernet 0/20
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ exit
+</code></pre>
+<hr>
+<h2>Step 2: Layer 3 (Routing Inter-VLAN e OSPF)</h2>
+<p>Implementazione del routing inter-VLAN tramite architettura <strong>Router-on-a-Stick</strong> e configurazione dell&#39;accesso alla rete geografica tramite protocollo OSPF.</p>
+<blockquote>
+<p><strong>IMPORTANTE:</strong><br>Le configurazioni descritte in questa sezione devono essere applicate al router di frontiera <strong>R1</strong>.</p>
+</blockquote>
+<pre><code class="language-text">enable
+configure terminal
+
+! Accendiamo l&#39;interfaccia fisica verso lo switch
+interface GigabitEthernet 0/1
+ no shutdown
+ exit
+
+! Sub-interface per la VLAN 10 (Utenti)
+interface GigabitEthernet 0/1.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.254 255.255.255.0
+ exit
+
+! Sub-interface per la VLAN 20 (Management)
+interface GigabitEthernet 0/1.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.254 255.255.255.0
+ exit
+
+! Interfaccia esterna (Verso l&#39;ISP)
+interface GigabitEthernet 0/0
+ ip address 203.0.113.2 255.255.255.252
+ no shutdown
+ exit
+
+! Configurazione OSPF e Rotta di Default
+router ospf 1
+ ! Sicurezza: Evitiamo di inviare messaggi OSPF verso le LAN
+ passive-interface GigabitEthernet 0/1.10
+ passive-interface GigabitEthernet 0/1.20
+ ! Annunciamo le nostre reti locali
+ network 192.168.10.0 0.0.0.255 area 0
+ network 192.168.20.0 0.0.0.255 area 0
+ ! Iniettiamo la rotta di default nel dominio OSPF
+ default-information originate
+ exit
+
+! Rotta statica globale per uscire su Internet
+ip route 0.0.0.0 0.0.0.0 203.0.113.1
+</code></pre>
+<blockquote>
+<p><strong>NOTA:</strong>
+<strong>Configurazione Router ISP (Simulazione Internet):</strong>
+L&#39;ISP ha bisogno di un indirizzo IP, una loopback per simulare Google (<code>8.8.8.8</code>) e, fondamentale, <strong>una rotta di ritorno</strong> verso i nostri IP pubblici NAT!</p>
+</blockquote>
+<pre><code class="language-text">! Sul Router ISP
+enable
+configure terminal
+interface GigabitEthernet 0/0
+ ip address 203.0.113.1 255.255.255.252
+ no shutdown
+ exit
+
+! Loopback per simulare un sito Internet
+interface loopback 0
+ ip address 8.8.8.8 255.255.255.255
+ exit
+
+! La &quot;Rotta di Ritorno&quot; vitale per evitare i ping in Timeout!
+ip route 0.0.0.0 0.0.0.0 203.0.113.2
+</code></pre>
+<hr>
+<h2>Step 3: IP Services (DHCP e NAT Overload)</h2>
+<p>Configurazione dell&#39;assegnazione dinamica degli indirizzi IP per gli end-device e abilitazione della Network Address Translation (PAT) per la connettività esterna.</p>
+<blockquote>
+<p><strong>NOTA:</strong><br>I comandi devono essere eseguiti sul router <strong>R1</strong>.</p>
+</blockquote>
+<pre><code class="language-text">! 1. Definizione di quali interfacce sono &quot;Dentro&quot; e quali &quot;Fuori&quot;
+interface GigabitEthernet 0/1.10
+ ip nat inside
+ exit
+interface GigabitEthernet 0/1.20
+ ip nat inside
+ exit
+interface GigabitEthernet 0/0
+ ip nat outside
+ exit
+
+! 2. Creazione dell&#39;Access-List per il NAT (Quali IP possono navigare?)
+access-list 1 permit 192.168.10.0 0.0.0.255
+access-list 1 permit 192.168.20.0 0.0.0.255
+
+! 3. Abilitazione del PAT (Port Address Translation) sull&#39;interfaccia esterna
+ip nat inside source list 1 interface GigabitEthernet 0/0 overload
+
+! 4. Configurazione del DHCP Server per i dipendenti (VLAN 10)
+ip dhcp excluded-address 192.168.10.254
+ip dhcp pool POOL_UTENTI
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.254
+ dns-server 8.8.8.8
+ exit
+</code></pre>
+<hr>
+<h2>Step 4: Sicurezza e Monitoraggio (SNOC Ready)</h2>
+<p>Implementazione delle direttive operative e di sicurezza: sincronizzazione del protocollo NTP, inoltro dei log di sistema verso il server centralizzato <code>SRV-MGMT</code> e hardening degli accessi remoti.</p>
+<blockquote>
+<p><strong>SUGGERIMENTO:</strong><br>Verificare che il server <code>SRV-MGMT</code> disponga dell&#39;indirizzamento IP statico <code>192.168.20.100</code> con Default Gateway <code>192.168.20.254</code>.</p>
+</blockquote>
+<pre><code class="language-text">! Sul router R1
+configure terminal
+
+! 1. Allineamento orario (Il Metronomo)
+ntp server 192.168.20.100
+
+! 2. Centralizzazione dei Log (Il Diario)
+logging host 192.168.20.100
+service timestamps log datetime msec
+logging trap notifications
+
+! 3. Hardening degli Accessi (SSH)
+hostname R1
+ip domain-name enterprise.lab
+crypto key generate rsa modulus 2048
+username admin privilege 15 secret MegaLab2026!
+line vty 0 4
+ login local
+ transport input ssh
+ exit
+</code></pre>
+<hr>
+<h2>Step 5: Validazione e Troubleshooting</h2>
+<p>Fase di collaudo e verifica del corretto instradamento dei pacchetti attraverso l&#39;infrastruttura. Utilizzare i seguenti comandi diagnostici:</p>
+<ol>
+<li><strong>End-Device (PC-1):</strong><ul>
+<li>Abilitare il protocollo DHCP sull&#39;interfaccia di rete e verificare l&#39;assegnazione corretta della classe IP <code>192.168.10.0/24</code>.</li>
+<li>Eseguire il comando <code>ping 8.8.8.8</code> per confermare il corretto funzionamento di <strong>VLAN, Routing inter-VLAN e NAT</strong>.</li>
+</ul>
+</li>
+<li><strong>Distribuzione (SW-CORE):</strong><ul>
+<li>Eseguire <code>show etherchannel summary</code> e accertarsi che il Port-channel <code>Po1</code> si trovi in stato logico <code>(SU)</code>.</li>
+<li>Eseguire <code>show spanning-tree vlan 10</code> e verificare la presenza della dicitura <em>&quot;This bridge is the root&quot;</em>.</li>
+</ul>
+</li>
+<li><strong>Gateway L3 (R1):</strong><ul>
+<li>Eseguire <code>show ip nat translations</code> durante un test ICMP da PC-1 verso l&#39;esterno per osservare la corretta traslazione PAT dell&#39;IP sorgente privato.</li>
+<li>Eseguire <code>show ntp status</code> per verificare che lo strato di sincronizzazione risulti &quot;synchronized&quot;.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>ATTENZIONE:</strong><br>In caso di anomalie (es. &quot;Request Timeout&quot; durante il test ICMP), verificare attentamente la presenza e la correttezza della rotta di ritorno statica configurata sul router ISP.</p>
+</blockquote>
+<hr>
+<h2>Step 6: Risoluzione dei Problemi Frequenti (Troubleshooting)</h2>
+<p>Il troubleshooting è la competenza fondamentale per la certificazione CCNA e per l&#39;operatività quotidiana nello SNOC. Se la validazione del punto precedente fallisce, procedere con questa checklist metodologica:</p>
+<h3>1. Fallimento del Ping Inter-VLAN (Layer 3)</h3>
+<p><strong>Sintomo:</strong> Il PC (VLAN 10) non riesce a comunicare con il Server (VLAN 20).</p>
+<ul>
+<li><strong>Diagnosi (Segmentation Fault Analysis):</strong><ul>
+<li>Eseguire il ping dal PC verso il proprio Default Gateway (<code>192.168.10.254</code>). Se fallisce, il problema è a Livello 2 (VLAN/Trunk).</li>
+<li>Eseguire il ping dal Server verso il proprio Default Gateway (<code>192.168.20.254</code>). Se fallisce, verificare l&#39;assegnazione IP del Server.</li>
+</ul>
+</li>
+<li><strong>Causa più frequente:</strong> Assenza o errata configurazione del Default Gateway nelle proprietà TCP/IP del Server. Senza il gateway, il Server non sa come instradare i pacchetti di risposta verso reti esterne.</li>
+</ul>
+<h3>2. PC non riceve l&#39;indirizzo IP dal DHCP (Layer 2/3)</h3>
+<p><strong>Sintomo:</strong> Il PC riceve un indirizzo APIPA (<code>169.254.x.x</code>) o fallisce la richiesta DHCP.</p>
+<ul>
+<li><strong>Diagnosi:</strong> <ul>
+<li>Verificare che l&#39;interfaccia del router (<code>Gi0/1.10</code>) sia attiva (<code>no shutdown</code>) e assegnata correttamente.</li>
+<li>Controllare a quale porta fisica dello switch di accesso (<code>SW-ACC</code>) è collegato il PC.</li>
+</ul>
+</li>
+<li><strong>Causa più frequente:</strong> La porta dello switch a cui è collegato il PC è rimasta nella VLAN di default (VLAN 1). Per risolvere, assegnare esplicitamente la porta fisica alla VLAN corretta:<pre><code class="language-text">interface FastEthernet 0/10
+ switchport mode access
+ switchport access vlan 10
+</code></pre>
+</li>
+</ul>
+<h3>3. Ping verso l&#39;Esterno Fallito (Routing / NAT)</h3>
+<p><strong>Sintomo:</strong> I dispositivi interni comunicano tra loro, ma il ping verso <code>8.8.8.8</code> fallisce.</p>
+<ul>
+<li><strong>Diagnosi con Traceroute:</strong> <ul>
+<li>Lanciare il comando <code>tracert 8.8.8.8</code> dal PC.</li>
+<li>Se il traceroute si ferma a <code>192.168.10.254</code> (R1), il problema è nel NAT o nella rotta di default di R1.</li>
+<li>Se il traceroute arriva a <code>203.0.113.1</code> (ISP) ma non riceve risposta, manca la &quot;Rotta di Ritorno&quot; sull&#39;ISP.</li>
+</ul>
+</li>
+<li><strong>Comandi di Verifica:</strong> <ul>
+<li><code>show ip route</code> su R1 (per verificare la rotta di default <code>0.0.0.0</code>).</li>
+<li><code>show ip nat statistics</code> su R1 (per assicurarsi che le interfacce Inside/Outside siano state dichiarate correttamente).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>Step 7: Sfide di Troubleshooting (SNOC Level)</h2>
+<p>Una volta che tutto funziona, prova a &quot;rompere&quot; la rete per simulare un ticket reale:</p>
+<ol>
+<li><strong>Mismatch di VLAN:</strong> Cambia la VLAN sulla porta dello switch ma non sulla sub-interface del router. Cosa succede al traffico?</li>
+<li><strong>Native VLAN Mismatch:</strong> Cambia la Native VLAN su <code>SW-CORE</code> ma non su <code>SW-ACC</code>. Quale errore CDP vedi in console?</li>
+<li><strong>Port-Channel down:</strong> Disabilita una delle due porte dell&#39;EtherChannel. Il traffico si interrompe o continua a fluire?</li>
+</ol>
+<hr>
+<h2>Step 8: Espansione Dual-Stack (IPv6)</h2>
+<p>Come ultima sfida, abilitiamo l&#39;IPv6 in parallelo all&#39;IPv4 su R1 per renderlo un gateway moderno.</p>
+<pre><code class="language-text">! Sul router R1
+enable
+configure terminal
+ipv6 unicast-routing
+
+! Abilitazione IPv6 sulla VLAN 10 (Utenti)
+interface GigabitEthernet 0/1.10
+ ipv6 address 2001:db8:acad:10::254/64
+ ipv6 address fe80::1 link-local
+ exit
+
+! Abilitazione IPv6 sulla VLAN 20 (Server)
+interface GigabitEthernet 0/1.20
+ ipv6 address 2001:db8:acad:20::254/64
+ ipv6 address fe80::1 link-local
+ exit
+
+! Verifica
+! Esegui &#39;show ipv6 interface brief&#39; per vedere gli indirizzi GUA e LLA attivi.
+</code></pre>
+<hr>
+<h2>Step 5: Sicurezza e Hardening Avanzato (SNOC Standards)</h2>
+<p>In questa fase finale, implementiamo le misure di sicurezza necessarie per proteggere l&#39;accesso ai dispositivi e garantire la stabilità della rete locale contro attacchi comuni di Layer 2.</p>
+<h3>1. Configurazione Accesso Remoto Sicuro (SSH)</h3>
+<p><em>Applicabile a tutti i dispositivi (R1, SW-CORE, SW-ACC).</em><br>Sostituiamo il protocollo Telnet (in chiaro) con SSH (criptato).</p>
+<pre><code class="language-text">enable
+configure terminal
+
+! 1. Parametri necessari per SSH
+ip domain-name enterprise.lab
+
+! 2. Generazione delle chiavi RSA (scegliere 1024 o superiore)
+crypto key generate rsa
+&gt; 1024
+
+! 3. Configurazione utente locale con privilegi massimi
+username admin privilege 15 secret MegaLab2026!
+
+! 4. Abilitazione SSH sulle linee virtuali e blocco Telnet
+line vty 0 4
+ login local
+ transport input ssh
+ exit
+</code></pre>
+<h3>2. DHCP Snooping (Prevenzione Rogue DHCP)</h3>
+<p><em>Applicabile principalmente allo switch di accesso <strong>SW-ACC</strong>.</em><br>Configuriamo lo switch affinché accetti offerte DHCP solo dalla porta collegata al router ufficiale.</p>
+<pre><code class="language-text">enable
+configure terminal
+
+! Abilitazione globale e per le VLAN specifiche
+ip dhcp snooping
+ip dhcp snooping vlan 10,20
+
+! Impostazione della porta &quot;Trusted&quot; (le porte fisiche verso lo SW-CORE/R1)
+interface range fastEthernet 0/1 - 2
+ ip dhcp snooping trust
+ exit
+
+! Nota: Disabilitare l&#39;opzione 82 se il server DHCP (R1) non la supporta
+no ip dhcp snooping information option
+</code></pre>
+<h3>3. Banner di Sicurezza (Legal Warning)</h3>
+<p>Aggiungiamo un avviso legale che compare al login per scoraggiare accessi non autorizzati.</p>
+<pre><code class="language-text">banner motd #
+****************************************************************
+* ATTENZIONE: ACCESSO RISERVATO AL PERSONALE AUTORIZZATO        *
+* TUTTE LE ATTIVITA&#39; SONO MONITORATE E REGISTRATE.             *
+* L&#39;ACCESSO NON AUTORIZZATO E&#39; PERSEGUITO A NORMA DI LEGGE.    *
+****************************************************************
+#
+</code></pre>
+<hr>
+<hr>
+<h2>Focus Tecnico: Port Security Deep Dive</h2>
+<p>La <strong>Port Security</strong> è un meccanismo di difesa di Layer 2 che permette di controllare quali dispositivi (identificati dal loro MAC address) possono connettersi a una specifica porta dello switch.</p>
+<h3>1. Metodi di Apprendimento MAC</h3>
+<ul>
+<li><strong>Statico:</strong> Il MAC viene configurato manualmente (massima sicurezza, alta manutenzione).</li>
+<li><strong>Dinamico:</strong> Lo switch impara il MAC e lo tiene in RAM (perso al riavvio).</li>
+<li><strong>Sticky:</strong> Il metodo usato nel lab. Lo switch impara il MAC e lo scrive automaticamente nella <code>running-config</code>. Se salvi, il MAC rimane memorizzato anche dopo il riavvio.</li>
+</ul>
+<h3>2. Violation Modes: Cosa succede in caso di attacco?</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Modalità</th>
+<th align="left">Stato Porta</th>
+<th align="left">Log (Syslog)</th>
+<th align="left">Contatore Violazioni</th>
+<th align="left">Traffico</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><span class="badge badge-shutdown">Shutdown</span></td>
+<td align="left"><strong>Disabled (err-disable)</strong></td>
+<td align="left">Sì</td>
+<td align="left">Incrementa</td>
+<td align="left">Bloccato</td>
+</tr>
+<tr>
+<td align="left"><span class="badge badge-restrict">Restrict</span></td>
+<td align="left">Up</td>
+<td align="left">Sì</td>
+<td align="left">Incrementa</td>
+<td align="left">Scartato</td>
+</tr>
+<tr>
+<td align="left"><span class="badge badge-protect">Protect</span></td>
+<td align="left">Up</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">Scartato</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>PERCHÈ RESTRICT?</strong>
+Nel nostro laboratorio abbiamo usato <code>restrict</code>. È una scelta &quot;SNOC-Ready&quot; perché blocca l&#39;attaccante e invia immediatamente una notifica al server di monitoraggio, senza però spegnere la porta (evitando interventi manuali per riattivarla).</p>
+</blockquote>
+<hr>
+<h2>Conclusioni e Verifica Finale</h2>
+<p>Con l&#39;implementazione di questi ultimi passaggi, il <strong>CCNA Mega Lab</strong> rispetta gli standard di sicurezza aziendale:</p>
+<ol>
+<li><strong>Segregazione:</strong> VLAN dedicate per utenti e management.</li>
+<li><strong>Resilienza:</strong> EtherChannel per la ridondanza dei link.</li>
+<li><strong>Dinamicità:</strong> Routing OSPF e DHCP automatico.</li>
+<li><strong>Sicurezza:</strong> Port Security, DHCP Snooping e accesso SSH criptato.</li>
+</ol>
+<p><strong>Comandi di verifica consigliati:</strong></p>
+<ul>
+<li><code>show ip dhcp snooping</code> (Verifica stato sicurezza DHCP)</li>
+<li><code>show ip ssh</code> (Verifica versione e chiavi SSH)</li>
+<li><code>show port-security interface ...</code> (Verifica protezione porte)</li>
+</ul>
+
+            </article>
+        </main>
+    </div>
+
+    <script>
+        // Auto-generate Table of Contents
+        const toc = document.getElementById('toc');
+        const content = document.getElementById('content');
+        const headers = content.querySelectorAll('h2, h3');
+        const sidebar = document.getElementById('sidebar');
+
+        if (headers.length > 0) {
+            sidebar.style.display = 'block';
+            headers.forEach((header, index) => {
+                const id = 'header-' + index;
+                header.id = id;
+                
+                const link = document.createElement('a');
+                link.href = '#' + id;
+                link.textContent = header.textContent;
+                link.style.display = 'block';
+                link.style.padding = '5px 0';
+                link.style.fontSize = header.tagName === 'H2' ? '0.9rem' : '0.8rem';
+                link.style.paddingLeft = header.tagName === 'H2' ? '0' : '15px';
+                link.style.color = 'var(--text-muted)';
+                link.style.fontWeight = header.tagName === 'H2' ? '600' : '400';
+                
+                link.addEventListener('click', (e) => {
+                    // Smooth scroll
+                    e.preventDefault();
+                    header.scrollIntoView({ behavior: 'smooth' });
+                    window.history.pushState(null, null, '#' + id);
+                });
+
+                toc.appendChild(link);
+            });
+        }
+
+        // Add Copy buttons to code blocks
+        document.querySelectorAll('pre').forEach(block => {
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.textContent = 'Copia';
+            
+            button.addEventListener('click', () => {
+                const code = block.querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    button.textContent = 'Copiato!';
+                    setTimeout(() => { button.textContent = 'Copia'; }, 2000);
+                });
+            });
+            
+            block.appendChild(button);
+        });
+
+        // Simple Callout transformation (Optional, based on markdown content)
+        // This looks for blockquotes and checks if they start with specific words
+        document.querySelectorAll('blockquote').forEach(bq => {
+            const text = bq.innerText.toUpperCase();
+            if (text.includes('IMPORTANTE') || text.includes('ATTENZIONE')) {
+                bq.className = 'callout callout-danger';
+            } else if (text.includes('NOTA')) {
+                bq.className = 'callout callout-info';
+            } else if (text.includes('SUGGERIMENTO')) {
+                bq.className = 'callout callout-warning';
+            }
+        });
+    </script>
+</body>
+</html>

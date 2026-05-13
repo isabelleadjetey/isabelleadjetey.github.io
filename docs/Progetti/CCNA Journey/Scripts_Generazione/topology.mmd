@@ -5,6 +5,7 @@ graph TD
     CORE[SW-CORE<br/>Switch L3]
     ACC[SW-ACC<br/>Switch Accesso]
     PC[PC-1<br/>Utente VLAN 10]
+    PC2[PC-2<br/>Utente VLAN 10]
     SRV[SRV-MGMT<br/>Syslog/NTP VLAN 20]
 
     %% Connessioni Layer 3
@@ -18,6 +19,7 @@ graph TD
     
     %% Connessioni Accesso
     ACC ---|Fa0/10 - VLAN 10| PC
+    ACC ---|Fa0/11 - VLAN 10| PC2
     ACC ---|Fa0/20 - VLAN 20| SRV
 
     %% Stili
@@ -26,4 +28,5 @@ graph TD
     style CORE fill:#cc99ff,stroke:#6600cc,stroke-width:2px
     style ACC fill:#cc99ff,stroke:#6600cc,stroke-width:2px
     style PC fill:#99ff99,stroke:#009900,stroke-width:2px
+    style PC2 fill:#99ff99,stroke:#009900,stroke-width:2px
     style SRV fill:#ffff99,stroke:#cc9900,stroke-width:2px
