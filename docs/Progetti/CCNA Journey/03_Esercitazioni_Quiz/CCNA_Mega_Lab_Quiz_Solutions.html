@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Solutions - CCNA Mega Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+    :root {
+  --primary: #005073;
+  --primary-light: #e6f2f7;
+  --secondary: #00bce1;
+  --text: #2d3748;
+  --text-muted: #718096;
+  --bg: #ffffff;
+  --bg-alt: #f7fafc;
+  --border: #e2e8f0;
+  --code-bg: #1a202c;
+  --code-text: #f7fafc;
+  --accent: #ed8936;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 40px 20px;
+  border-right: 1px solid var(--border);
+  background-color: var(--bg-alt);
+  overflow-y: auto;
+  display: none; /* Hidden by default, shown in JS if needed */
+}
+
+main {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 800px;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  border-bottom: 4px solid var(--secondary);
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1.2em;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: var(--bg-alt);
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--primary-light);
+  border-left: 6px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  color: var(--primary);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+pre {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9rem;
+  position: relative;
+  margin: 1.5rem 0;
+  border: 1px solid #2d3748;
+}
+
+code {
+  font-family: inherit;
+  background-color: #edf2f7;
+  color: #e53e3e;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+pre:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* Callouts */
+.callout {
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.callout-info { background: #e6fffa; border-color: #38b2ac; color: #234e52; }
+.callout-warning { background: #fffaf0; border-color: #ed8936; color: #7b341e; }
+.callout-danger { background: #fff5f5; border-color: #f56565; color: #742a2a; }
+
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-shutdown { background: #fed7d7; color: #9b2c2c; }
+.badge-restrict { background: #fef3c7; color: #92400e; }
+.badge-protect { background: #e6fffa; color: #234e52; }
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+  }
+  .sidebar {
+    display: none !important;
+  }
+}
+
+
+    strong { color: var(--primary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main style="max-width: 900px; margin: 0 auto;">
+            <article id="content">
+                <h1>CCNA Journey: Soluzioni del Super Quiz &quot;Enterprise Core&quot; ✅</h1>
+<p>In questo documento trovi le domande del quiz integrate con le relative soluzioni commentate. Usalo per il ripasso finale e per verificare la tua comprensione dei concetti chiave.</p>
+<hr>
+<h3>Sezione 1: Layer 2 (Switching &amp; STP)</h3>
+<ol>
+<li><p><strong>DOMANDA: Se hai un EtherChannel LACP composto da 4 link fisici e uno di questi si rompe, cosa succede alla banda totale e allo stato del Port-channel?</strong>
+<strong>SOLUZIONE:</strong> La banda totale diminuisce (es. da 400Mbps a 300Mbps), ma il Port-channel resta in stato &quot;Up&quot; (SU). Il traffico viene ridistribuito sui link restanti in modo trasparente e senza interruzioni di servizio.</p>
+</li>
+<li><p><strong>DOMANDA: Qual è il parametro principale che STP usa per eleggere il Root Bridge e ogni quanto viene inviato il messaggio BPDU?</strong>
+<strong>SOLUZIONE:</strong> STP usa il <strong>Bridge ID</strong>, composto da <strong>Bridge Priority</strong> (default 32768) e MAC Address. I messaggi BPDU (Bridge Protocol Data Units) vengono inviati ogni <strong>2 secondi</strong>.</p>
+</li>
+<li><p><strong>DOMANDA: Una porta in modalità &quot;Access&quot; può trasportare traffico di più VLAN contemporaneamente? Perché?</strong>
+<strong>SOLUZIONE:</strong> No. Una porta in modalità Access appartiene a una sola VLAN per definizione. Per trasportare traffico di più VLAN su un unico collegamento fisico è necessario un <strong>Trunk</strong>, che aggiunge i Tag 802.1Q ai frame.</p>
+</li>
+<li><p><strong>DOMANDA: Quali sono i due stati di transizione che una porta attraversa prima di arrivare in &quot;Forwarding&quot; nell&#39;STP classico (802.1D)? Quanto dura ciascuno?</strong>
+<strong>SOLUZIONE:</strong> La porta attraversa gli stati di <strong>Listening</strong> (15 secondi) e <strong>Learning</strong> (15 secondi). In totale, occorrono 30 secondi prima che il traffico inizi a fluire.</p>
+</li>
+<li><p><strong>DOMANDA: Perché in una rete sicura (SNOC) è consigliabile usare il comando <code>switchport nonegotiate</code>?</strong>
+<strong>SOLUZIONE:</strong> Per prevenire attacchi di <strong>VLAN Hopping</strong>. Disabilitando il protocollo DTP (Dynamic Trunking Protocol), impediamo che un malintenzionato possa negoziare un trunk non autorizzato e accedere a VLAN a cui non dovrebbe avere accesso.</p>
+</li>
+</ol>
+<hr>
+<h3>Sezione 2: Layer 3 (Routing &amp; OSPF)</h3>
+<ol start="6">
+<li><p><strong>DOMANDA: Perché è necessario il protocollo 802.1Q (dot1Q) su un&#39;interfaccia Router-on-a-Stick?</strong>
+<strong>SOLUZIONE:</strong> Serve a permettere al router di &quot;capire&quot; a quale VLAN appartiene ogni frame che arriva sull&#39;interfaccia fisica condivisa. Senza il tag 802.1Q, il router non saprebbe a quale sotto-interfaccia logica (sub-interface) destinare il pacchetto.</p>
+</li>
+<li><p><strong>DOMANDA: Qual è la metrica predefinita usata da OSPF e come viene calcolata?</strong>
+<strong>SOLUZIONE:</strong> La metrica è il <strong>Costo</strong>. Viene calcolata dividendo la <em>Reference Bandwidth</em> (default 100 Mbps) per la larghezza di banda dell&#39;interfaccia. Minore è il costo, migliore è la rotta.</p>
+</li>
+<li><p><strong>DOMANDA: Se un router impara la rotta per la stessa rete sia tramite OSPF (AD 110) che tramite una Rotta Statica (AD 1), quale sceglierà di inserire nella tabella di routing?</strong>
+<strong>SOLUZIONE:</strong> Sceglierà la <strong>Rotta Statica</strong>, perché ha l&#39;Administrative Distance (AD) più bassa. Il router preferisce sempre la fonte di routing che ritiene più affidabile (AD minore).</p>
+</li>
+<li><p><strong>DOMANDA: Qual è l&#39;ordine di priorità per l&#39;elezione del OSPF Router ID?</strong>
+<strong>SOLUZIONE:</strong> 1. Comando manuale (<code>router-id</code>), 2. IP più alto tra le interfacce Loopback attive, 3. IP più alto tra le interfacce fisiche attive.</p>
+</li>
+<li><p><strong>DOMANDA: Qual è il comando OSPF per propagare la rotta di default verso gli altri router della rete?</strong>
+<strong>SOLUZIONE:</strong> Il comando è <code>default-information originate</code> (all&#39;interno della configurazione <code>router ospf</code>).</p>
+</li>
+</ol>
+<hr>
+<h3>Sezione 3: IP Services (NAT &amp; DHCP)</h3>
+<ol start="11">
+<li><p><strong>DOMANDA: In una configurazione NAT Overload (PAT), cos&#39;è che permette a centinaia di PC di navigare usando un solo indirizzo IP pubblico?</strong>
+<strong>SOLUZIONE:</strong> L&#39;uso dei <strong>numeri di porta</strong> (TCP/UDP) univoci. Il router mappa la coppia &quot;IP Privato + Porta Sorgente&quot; a una porta univoca sull&#39;IP Pubblico esterno.</p>
+</li>
+<li><p><strong>DOMANDA: Cosa fa il comando <code>ip helper-address</code> e dove va configurato esattamente?</strong>
+<strong>SOLUZIONE:</strong> Trasforma i broadcast DHCP provenienti dai client in messaggi unicast diretti a un server DHCP remoto. Va configurato sull&#39;interfaccia (o sub-interface) che fa da Gateway per i client.</p>
+</li>
+<li><p><strong>DOMANDA: Qual è il terzo passaggio del processo DHCP (la &quot;R&quot; di DORA) e chi invia quel messaggio?</strong>
+<strong>SOLUZIONE:</strong> È il <strong>DHCP Request</strong>. Viene inviato dal Client (PC) per confermare al server che accetta l&#39;offerta di indirizzo IP ricevuta precedentemente.</p>
+</li>
+<li><p><strong>DOMANDA: Se vuoi evitare che il server DHCP assegni l&#39;IP del gateway (es. .254) a un PC, quale comando devi usare?</strong>
+<strong>SOLUZIONE:</strong> Bisogna usare il comando in configurazione globale: <code>ip dhcp excluded-address 192.168.10.254</code>.</p>
+</li>
+<li><p><strong>DOMANDA: In quale scenario useresti un NAT Statico 1-a-1 invece del PAT?</strong>
+<strong>SOLUZIONE:</strong> Quando hai un <strong>Server interno</strong> (es. Web o Mail) che deve essere sempre raggiungibile dall&#39;esterno su un IP pubblico dedicato e fisso, senza dipendere dal cambio dinamico delle porte.</p>
+</li>
+</ol>
+<hr>
+<h3>Sezione 4: Security (Hardening &amp; Port Security)</h3>
+<ol start="16">
+<li><p><strong>DOMANDA: Qual è la differenza tra la violazione <code>Shutdown</code> e <code>Restrict</code> in termini di stato della porta fisica?</strong>
+<strong>SOLUZIONE:</strong> Con <code>Shutdown</code> la porta viene disabilitata completamente (stato <code>err-disabled</code>). Con <code>Restrict</code>, la porta rimane <code>Up</code> (accesa), ma scarta il traffico non autorizzato, incrementa un contatore e invia un avviso Syslog.</p>
+</li>
+<li><p><strong>DOMANDA: Qual è il vantaggio principale di usare <code>sticky</code> invece dell&#39;apprendimento dinamico standard nel Port Security?</strong>
+<strong>SOLUZIONE:</strong> Il comando <code>sticky</code> scrive automaticamente i MAC address imparati nella configurazione in esecuzione (<code>running-config</code>). Questo li rende persistenti anche dopo un riavvio (previa salvataggio).</p>
+</li>
+<li><p><strong>DOMANDA: Cosa succede se uno switch riceve un messaggio &quot;DHCP Offer&quot; su una porta classificata come &quot;Untrusted&quot;?</strong>
+<strong>SOLUZIONE:</strong> Lo switch scarta immediatamente il pacchetto. Questo previene l&#39;attacco di &quot;Rogue DHCP Server&quot;, dove un PC malevolo tenta di fingersi il server DHCP della rete.</p>
+</li>
+<li><p><strong>DOMANDA: Quali sono i due requisiti fondamentali sul router/switch prima di poter generare le chiavi RSA per l&#39;SSH?</strong>
+<strong>SOLUZIONE:</strong> Il dispositivo deve avere configurato un <strong>Hostname</strong> e un <strong>IP Domain-name</strong>.</p>
+</li>
+<li><p><strong>DOMANDA: Perché il comando <code>spanning-tree portfast</code> va configurato SOLO sulle porte verso i PC e mai tra gli switch?</strong>
+<strong>SOLUZIONE:</strong> Perché Portfast disabilita i controlli STP per prevenire loop. Se collegato a un altro switch, un errore di cablaggio creerebbe un loop istantaneo che farebbe cadere l&#39;intera rete.</p>
+</li>
+</ol>
+<hr>
+<h3>Sezione 5: IPv6, Monitoraggio &amp; Troubleshooting</h3>
+<ol start="21">
+<li><p><strong>DOMANDA: Comprimi il seguente indirizzo IPv6: <code>2001:0DB8:0000:0000:0000:ABCD:0000:0001</code>.</strong>
+<strong>SOLUZIONE:</strong> <code>2001:DB8::ABCD:0:1</code> (Si rimuovono gli zeri iniziali e la sequenza più lunga di gruppi di soli zeri viene sostituita da <code>::</code>).</p>
+</li>
+<li><p><strong>DOMANDA: Qual è il prefisso standard degli indirizzi Link-Local in IPv6? A cosa servono?</strong>
+<strong>SOLUZIONE:</strong> Il prefisso è <code>FE80::/10</code>. Servono per la comunicazione all&#39;interno del singolo segmento di rete (Layer 2) e per l&#39;auto-configurazione delle interfacce.</p>
+</li>
+<li><p><strong>DOMANDA: Perché è fondamentale avere un server Syslog centralizzato in uno SNOC invece di guardare i log localmente?</strong>
+<strong>SOLUZIONE:</strong> Per tre motivi: 1. I log non vanno persi se il dispositivo si riavvia. 2. È possibile correlare eventi tra diversi dispositivi. 3. Gli switch hanno una memoria limitata per i log locali (buffer).</p>
+</li>
+<li><p><strong>DOMANDA: Se il comando <code>show etherchannel summary</code> mostra lo stato <code>(SD)</code>, cosa sta succedendo al link?</strong>
+<strong>SOLUZIONE:</strong> <code>S</code> significa Layer 2, <code>D</code> significa Down. Il Port-channel è configurato ma non è attivo, indicando probabilmente un mismatch nei protocolli o nei parametri tra i due switch.</p>
+</li>
+<li><p><strong>DOMANDA: Perché è considerato una falla di sicurezza lasciare CDP attivo sulle porte rivolte verso l&#39;esterno dell&#39;azienda?</strong>
+<strong>SOLUZIONE:</strong> Perché il protocollo CDP trasmette informazioni sensibili (modello del dispositivo, versione IOS, indirizzi IP di management) in chiaro, fornendo a un potenziale attaccante una mappa dettagliata della nostra rete.</p>
+</li>
+</ol>
+<hr>
+<p><em>(Creato per Isabelle - CCNA Allineamento 2026)</em></p>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>

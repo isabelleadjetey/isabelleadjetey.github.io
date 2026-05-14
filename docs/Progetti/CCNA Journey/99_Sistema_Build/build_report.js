@@ -10,7 +10,7 @@ try {
 
 const { marked } = require('marked');
 
-const md = fs.readFileSync('../Riepilogo_Allineamento/Report_Progressi_CCNA_SNOC.md', 'utf8');
+const md = fs.readFileSync('../01_Output_Allineamento/Report_Progressi_CCNA_SNOC.md', 'utf8');
 const css = fs.readFileSync('pdf_style.css', 'utf8');
 
 let htmlContent = marked.parse(md);
@@ -87,5 +87,5 @@ const fullHtml = `<!DOCTYPE html>
 </body>
 </html>`;
 
-fs.writeFileSync('../Riepilogo_Allineamento/Report_Progressi_CCNA_SNOC.html', fullHtml);
+fs.writeFileSync('../01_Output_Allineamento/Report_Progressi_CCNA_SNOC.html', fullHtml);
 console.log("Progress Report HTML generated successfully.");

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Specs - CCNA Mega Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+    :root {
+  --primary: #005073;
+  --primary-light: #e6f2f7;
+  --secondary: #00bce1;
+  --text: #2d3748;
+  --text-muted: #718096;
+  --bg: #ffffff;
+  --bg-alt: #f7fafc;
+  --border: #e2e8f0;
+  --code-bg: #1a202c;
+  --code-text: #f7fafc;
+  --accent: #ed8936;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 40px 20px;
+  border-right: 1px solid var(--border);
+  background-color: var(--bg-alt);
+  overflow-y: auto;
+  display: none; /* Hidden by default, shown in JS if needed */
+}
+
+main {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 800px;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  border-bottom: 4px solid var(--secondary);
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1.2em;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: var(--bg-alt);
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--primary-light);
+  border-left: 6px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  color: var(--primary);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+pre {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9rem;
+  position: relative;
+  margin: 1.5rem 0;
+  border: 1px solid #2d3748;
+}
+
+code {
+  font-family: inherit;
+  background-color: #edf2f7;
+  color: #e53e3e;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+pre:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* Callouts */
+.callout {
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.callout-info { background: #e6fffa; border-color: #38b2ac; color: #234e52; }
+.callout-warning { background: #fffaf0; border-color: #ed8936; color: #7b341e; }
+.callout-danger { background: #fff5f5; border-color: #f56565; color: #742a2a; }
+
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-shutdown { background: #fed7d7; color: #9b2c2c; }
+.badge-restrict { background: #fef3c7; color: #92400e; }
+.badge-protect { background: #e6fffa; color: #234e52; }
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+  }
+  .sidebar {
+    display: none !important;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main style="max-width: 900px; margin: 0 auto;">
+            <article id="content">
+                <h1>Technical Specifications: CCNA Mega Lab &quot;Enterprise Core&quot;</h1>
+<blockquote>
+<p><strong>DOCUMENTO DI SPECIFICA TECNICA</strong><br><strong>Oggetto:</strong> Implementazione e Hardening di un&#39;infrastruttura di rete Enterprise.<br><strong>Status:</strong> Challenge / Assessment.</p>
+</blockquote>
+<hr>
+<h2>1. Obiettivo del Progetto</h2>
+<p>L&#39;obiettivo è la realizzazione di una rete gerarchica resiliente e sicura. Il candidato deve configurare l&#39;intera infrastruttura partendo dai dispositivi &quot;factory default&quot;, assicurando connettività end-to-end, ridondanza di Layer 2 e protezione contro gli attacchi comuni.</p>
+<hr>
+<h2>2. Topologia di Rete</h2>
+<p><img src="../04_Risorse_Tecniche/mega_lab_topology.png" alt="Topologia di Rete CCNA Mega Lab"></p>
+<hr>
+<h2>3. Tabella di Indirizzamento (Requisiti IP)</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Dispositivo</th>
+<th align="left">Interfaccia / VLAN</th>
+<th align="left">Indirizzo IP</th>
+<th align="left">Gateway</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>R1</strong></td>
+<td align="left">Gi0/0 (Verso ISP)</td>
+<td align="left">203.0.113.2/30</td>
+<td align="left">ISP IP</td>
+</tr>
+<tr>
+<td align="left"><strong>R1</strong></td>
+<td align="left">Sub-interfaces</td>
+<td align="left">VLAN 10 &amp; 20</td>
+<td align="left">N/A</td>
+</tr>
+<tr>
+<td align="left"><strong>PC-1</strong></td>
+<td align="left">VLAN 10</td>
+<td align="left">DHCP</td>
+<td align="left">DHCP</td>
+</tr>
+<tr>
+<td align="left"><strong>PC-2</strong></td>
+<td align="left">VLAN 10</td>
+<td align="left">DHCP</td>
+<td align="left">DHCP</td>
+</tr>
+<tr>
+<td align="left"><strong>SRV-MGMT</strong></td>
+<td align="left">VLAN 20</td>
+<td align="left">192.168.20.100/24</td>
+<td align="left">192.168.20.254</td>
+</tr>
+<tr>
+<td align="left"><strong>Loopback ISP</strong></td>
+<td align="left">Simulazione Internet</td>
+<td align="left">8.8.8.8/32</td>
+<td align="left">N/A</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>3. Elenco dei Task Operativi</h2>
+<h3>Task 1: Infrastruttura Layer 2 (Switching)</h3>
+<ol>
+<li><strong>Segmentazione</strong>: Creare le VLAN 10 (DATI) e 20 (MGMT) su tutti gli switch.</li>
+<li><strong>Ridondanza Link</strong>: Configurare un EtherChannel LACP (modalità attiva) tra SW-ACC e SW-CORE.</li>
+<li><strong>Trunking</strong>: Configurare i link tra gli switch e verso il router come Trunk 802.1Q, permettendo solo le VLAN necessarie.</li>
+<li><strong>Ottimizzazione STP</strong>: Eleggere forzatamente lo SW-CORE come Root Bridge per tutte le VLAN.</li>
+<li><strong>Accesso Rapido</strong>: Abilitare PortFast sulle porte dedicate ai PC e al Server.</li>
+</ol>
+<h3>Task 2: Connettività Layer 3 (Routing)</h3>
+<ol>
+<li><strong>Inter-VLAN Routing</strong>: Implementare l&#39;architettura Router-on-a-Stick su R1.</li>
+<li><strong>Routing Dinamico</strong>: Configurare OSPF (Area 0) per scambiare le rotte interne.</li>
+<li><strong>Gateway Esterno</strong>: Configurare una rotta di default verso l&#39;ISP.</li>
+<li><strong>Propagazione</strong>: Assicurarsi che R1 annunci automaticamente la rotta di default agli altri dispositivi OSPF.</li>
+</ol>
+<h3>Task 3: Servizi Enterprise</h3>
+<ol>
+<li><strong>Indirizzamento</strong>: Configurare R1 come DHCP Server per la VLAN 10, escludendo gli IP dei gateway.</li>
+<li><strong>Risoluzione Nomi</strong>: Integrare il DNS di Google (8.8.8.8) nelle offerte DHCP.</li>
+<li><strong>Connettività WAN</strong>: Implementare il NAT Overload (PAT) sull&#39;interfaccia esterna di R1.</li>
+<li><strong>Sincronizzazione</strong>: Configurare i dispositivi per sincronizzare l&#39;orario con il server di management.</li>
+</ol>
+<h3>Task 4: Sicurezza e Hardening (SNOC Standard)</h3>
+<ol>
+<li><strong>Accesso Criptato</strong>: Disabilitare Telnet e abilitare SSH (RSA 1024+).</li>
+<li><strong>Protezione Layer 2</strong>: <ul>
+<li>Configurare il Port Security (Sticky MAC) sulle porte degli utenti.</li>
+<li>Implementare il DHCP Snooping per prevenire Rogue DHCP Server.</li>
+</ul>
+</li>
+<li><strong>Legal Warning</strong>: Aggiungere un Banner MOTD con avviso legale su ogni dispositivo.</li>
+</ol>
+<hr>
+<h2>4. Criteri di Accettazione (Verifica)</h2>
+<p>Il progetto si considera concluso con successo solo se:</p>
+<ul>
+<li><input disabled="" type="checkbox"> PC-1 riceve un indirizzo IP corretto via DHCP.</li>
+<li><input disabled="" type="checkbox"> PC-1 riesce a completare un <code>ping 8.8.8.8</code>.</li>
+<li><input disabled="" type="checkbox"> L&#39;EtherChannel rimane operativo anche se uno dei link fisici viene rimosso.</li>
+<li><input disabled="" type="checkbox"> L&#39;accesso SSH è protetto da utente locale e password secret.</li>
+</ul>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>

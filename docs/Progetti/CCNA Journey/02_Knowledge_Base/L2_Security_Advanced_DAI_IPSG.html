@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced L2 Security - CCNA Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+    :root {
+  --primary: #005073;
+  --primary-light: #e6f2f7;
+  --secondary: #00bce1;
+  --text: #2d3748;
+  --text-muted: #718096;
+  --bg: #ffffff;
+  --bg-alt: #f7fafc;
+  --border: #e2e8f0;
+  --code-bg: #1a202c;
+  --code-text: #f7fafc;
+  --accent: #ed8936;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 40px 20px;
+  border-right: 1px solid var(--border);
+  background-color: var(--bg-alt);
+  overflow-y: auto;
+  display: none; /* Hidden by default, shown in JS if needed */
+}
+
+main {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 800px;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  border-bottom: 4px solid var(--secondary);
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1.2em;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: var(--bg-alt);
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--primary-light);
+  border-left: 6px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  color: var(--primary);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+pre {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9rem;
+  position: relative;
+  margin: 1.5rem 0;
+  border: 1px solid #2d3748;
+}
+
+code {
+  font-family: inherit;
+  background-color: #edf2f7;
+  color: #e53e3e;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+pre:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* Callouts */
+.callout {
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.callout-info { background: #e6fffa; border-color: #38b2ac; color: #234e52; }
+.callout-warning { background: #fffaf0; border-color: #ed8936; color: #7b341e; }
+.callout-danger { background: #fff5f5; border-color: #f56565; color: #742a2a; }
+
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-shutdown { background: #fed7d7; color: #9b2c2c; }
+.badge-restrict { background: #fef3c7; color: #92400e; }
+.badge-protect { background: #e6fffa; color: #234e52; }
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+  }
+  .sidebar {
+    display: none !important;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main style="max-width: 900px; margin: 0 auto;">
+            <article id="content">
+                <h1>Advanced Layer 2 Security: DAI &amp; IP Source Guard</h1>
+<p>Queste tecnologie rappresentano il livello superiore della sicurezza negli switch Enterprise e sono fondamentali per proteggere la rete da attacchi di &quot;Man-in-the-Middle&quot; e &quot;Spoofing&quot;.</p>
+<hr>
+<h2>1. DAI: Dynamic ARP Inspection 🛡️</h2>
+<p>Il DAI serve a prevenire l&#39;<strong>ARP Spoofing</strong> (o ARP Poisoning).</p>
+<h3>Il Problema: ARP Spoofing</h3>
+<p>L&#39;ARP è un protocollo &quot;ingenuo&quot;: se un PC dice &quot;Io sono il Gateway&quot;, gli altri gli credono e iniziano a mandargli tutto il traffico. Un hacker può intercettare tutto così.</p>
+<h3>La Soluzione: DAI</h3>
+<p>Lo switch non si fida più delle risposte ARP che riceve sulle porte &quot;untrusted&quot;. Ogni volta che arriva un pacchetto ARP, lo switch lo confronta con il database del <strong>DHCP Snooping</strong>.</p>
+<ul>
+<li>Se il MAC e l&#39;IP nel pacchetto ARP <strong>corrispondono</strong> a quelli registrati nel DHCP Snooping -&gt; <strong>Passa</strong>.</li>
+<li>Se <strong>non corrispondono</strong> -&gt; Lo switch <strong>scarta</strong> il pacchetto e blocca l&#39;attacco.</li>
+</ul>
+<h3>Comandi Chiave:</h3>
+<pre><code class="language-text">ip dhcp snooping
+ip arp inspection vlan [ID]
+
+! Sulle porte verso il router (Trust)
+interface [INT]
+ ip arp inspection trust
+</code></pre>
+<hr>
+<h2>2. IP Source Guard (IPSG) 🔒</h2>
+<p>L&#39;IPSG serve a prevenire l&#39;<strong>IP Spoofing</strong>.</p>
+<h3>Il Problema: IP Spoofing</h3>
+<p>Un utente cambia manualmente il suo indirizzo IP con quello di un server o di un altro utente per superare i controlli delle ACL o per rubare l&#39;identità.</p>
+<h3>La Soluzione: IPSG</h3>
+<p>Lo switch crea un filtro automatico sulla porta. Permette il traffico solo se il pacchetto ha come &quot;Sorgente&quot; l&#39;indirizzo IP che quel PC ha ricevuto via DHCP. Se l&#39;utente si inventa un IP, la porta non lo fa passare.</p>
+<h3>Comandi Chiave:</h3>
+<pre><code class="language-text">interface [INT]
+ ip verify source [port-security]
+</code></pre>
+<hr>
+<h2>3. Sintesi Operativa (Il &quot;Trio della Sicurezza&quot;)</h2>
+<p>Per una porta utente sicura al 100%, la configurazione ideale è:</p>
+<ol>
+<li><strong>DHCP Snooping</strong>: La base (crea il database).</li>
+<li><strong>DAI</strong>: Protegge l&#39;identità a livello MAC/ARP.</li>
+<li><strong>IPSG</strong>: Protegge l&#39;identità a livello IP.</li>
+<li><strong>Port Security</strong>: Protegge il numero di MAC address sulla porta.</li>
+</ol>
+<hr>
+<p><em>(Recap per Isabelle - Fase Finale CCNA)</em></p>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>

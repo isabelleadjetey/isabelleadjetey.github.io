@@ -54,7 +54,7 @@ Questo documento serve a tracciare i progressi del tuo **CCNA Journey**. La list
 *   `[x]` Password Policy, Password Encryption, SSH.
 *   `[X]` **Access Control Lists (ACL)**: Standard ed Estese.
 *   `[ ]` Layer 2 Security: Port Security, DHCP Snooping, Dynamic ARP Inspection (DAI).
-*   `[ ]` VPN Concepts: IPsec e GRE.
+*   `[x]` VPN Concepts: IPsec e GRE (Conoscenza Teorica).
 
 ---
 

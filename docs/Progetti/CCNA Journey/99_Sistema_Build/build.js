@@ -10,7 +10,7 @@ try {
 
 const { marked } = require('marked');
 
-const md = fs.readFileSync('../Riepilogo_Allineamento/Mega_Lab_CCNA_Consolidation.md', 'utf8');
+const md = fs.readFileSync('../01_Output_Allineamento/Mega_Lab_CCNA_Consolidation.md', 'utf8');
 const css = fs.readFileSync('pdf_style.css', 'utf8');
 
 const htmlContent = marked.parse(md);
@@ -109,6 +109,6 @@ const fullHtml = `<!DOCTYPE html>
 </body>
 </html>`;
 
-fs.writeFileSync('../Riepilogo_Allineamento/Mega_Lab_CCNA_Consolidation.html', fullHtml);
+fs.writeFileSync('../01_Output_Allineamento/Mega_Lab_CCNA_Consolidation.html', fullHtml);
 console.log("HTML generated successfully with modern layout.");
 

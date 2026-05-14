@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPN Specialization Plan - CCNA Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+    :root {
+  --primary: #005073;
+  --primary-light: #e6f2f7;
+  --secondary: #00bce1;
+  --text: #2d3748;
+  --text-muted: #718096;
+  --bg: #ffffff;
+  --bg-alt: #f7fafc;
+  --border: #e2e8f0;
+  --code-bg: #1a202c;
+  --code-text: #f7fafc;
+  --accent: #ed8936;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 40px 20px;
+  border-right: 1px solid var(--border);
+  background-color: var(--bg-alt);
+  overflow-y: auto;
+  display: none; /* Hidden by default, shown in JS if needed */
+}
+
+main {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 800px;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  border-bottom: 4px solid var(--secondary);
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1.2em;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: var(--bg-alt);
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--primary-light);
+  border-left: 6px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  color: var(--primary);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+pre {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9rem;
+  position: relative;
+  margin: 1.5rem 0;
+  border: 1px solid #2d3748;
+}
+
+code {
+  font-family: inherit;
+  background-color: #edf2f7;
+  color: #e53e3e;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+pre:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* Callouts */
+.callout {
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.callout-info { background: #e6fffa; border-color: #38b2ac; color: #234e52; }
+.callout-warning { background: #fffaf0; border-color: #ed8936; color: #7b341e; }
+.callout-danger { background: #fff5f5; border-color: #f56565; color: #742a2a; }
+
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-shutdown { background: #fed7d7; color: #9b2c2c; }
+.badge-restrict { background: #fef3c7; color: #92400e; }
+.badge-protect { background: #e6fffa; color: #234e52; }
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+  }
+  .sidebar {
+    display: none !important;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main style="max-width: 900px; margin: 0 auto;">
+            <article id="content">
+                <h1>VPN Specialization: Road to SNOC Operations 🛡️</h1>
+<p>Questo piano di studio è focalizzato sull&#39;approfondimento delle tecnologie VPN (Virtual Private Network), con un&#39;enfasi particolare sugli standard industriali richiesti per lavorare in un Security Network Operations Center (SNOC).</p>
+<hr>
+<h2>📅 Fase 1: Fondamenta della Criptografia (Teoria)</h2>
+<p>Per capire le VPN, bisogna capire come vengono protetti i dati.</p>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Criptazione Simmetrica vs Asimmetrica</strong>: Differenza tra AES (veloce) e RSA (scambio chiavi).</li>
+<li><input disabled="" type="checkbox"> <strong>Hashing (Integrità)</strong>: Comprendere algoritmi come SHA-256 e MD5 per la verifica dei dati.</li>
+<li><input disabled="" type="checkbox"> <strong>Autenticazione</strong>: Uso di Pre-Shared Keys (PSK) e Certificati Digitali.</li>
+</ul>
+<h2>📅 Fase 2: Il Protocollo IPsec (Deep Dive)</h2>
+<p>IPsec è lo standard per le VPN Site-to-Site.</p>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>IKE (Internet Key Exchange)</strong>:<ul>
+<li><strong>Fase 1 (ISAKMP)</strong>: Creazione del canale sicuro tra i router (Policy, DH Group).</li>
+<li><strong>Fase 2 (IPsec SA)</strong>: Creazione del tunnel per i dati degli utenti (Transform Set).</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>AH vs ESP</strong>: Perché ESP (Encapsulating Security Payload) è il protocollo preferito (offre criptazione, AH no).</li>
+<li><input disabled="" type="checkbox"> <strong>Tunnel vs Transport Mode</strong>: Quando si usa l&#39;uno o l&#39;altro.</li>
+</ul>
+<h2>📅 Fase 3: Tipologie di VPN Enterprise</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Site-to-Site VPN</strong>: Collegamento tra due uffici tramite Router Cisco.</li>
+<li><input disabled="" type="checkbox"> <strong>Remote Access VPN (AnyConnect)</strong>: Introduzione all&#39;accesso SSL/TLS per gli utenti remoti.</li>
+<li><input disabled="" type="checkbox"> <strong>GRE over IPsec</strong>: Come trasportare il traffico di routing (OSPF/EIGRP) all&#39;interno di un tunnel sicuro.</li>
+</ul>
+<h2>📅 Fase 4: Troubleshooting Operativo (SNOC Skills)</h2>
+<p>La capacità più richiesta in uno SNOC è capire <em>perché</em> una VPN non funziona.</p>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Show Commands</strong>:<ul>
+<li><code>show crypto isakmp sa</code>: Verifica della Fase 1.</li>
+<li><code>show crypto ipsec sa</code>: Verifica della Fase 2 e conteggio dei pacchetti criptati.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Debug Commands</strong>:<ul>
+<li><code>debug crypto isakmp</code>: Analisi della negoziazione (mismatch di password o algoritmi).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>🚀 Obiettivo Finale: Il Laboratorio VPN</h3>
+<p>Creare un tunnel IPsec Site-to-Site tra due router in PNETLab, far passare il traffico OSPF al suo interno e simulare un guasto per analizzare i log di errore.</p>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>

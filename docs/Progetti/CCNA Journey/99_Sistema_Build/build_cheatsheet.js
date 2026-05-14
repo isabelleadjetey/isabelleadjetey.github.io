@@ -9,7 +9,7 @@ try {
 
 const { marked } = require('marked');
 
-const md = fs.readFileSync('../Riepilogo_Allineamento/CCNA_IOS_Commands_CheatSheet.md', 'utf8');
+const md = fs.readFileSync('../01_Output_Allineamento/CCNA_IOS_Commands_CheatSheet.md', 'utf8');
 const css = fs.readFileSync('pdf_style.css', 'utf8');
 
 let htmlContent = marked.parse(md);
@@ -67,5 +67,5 @@ const fullHtml = `<!DOCTYPE html>
 </body>
 </html>`;
 
-fs.writeFileSync('../Riepilogo_Allineamento/CCNA_IOS_Commands_CheatSheet.html', fullHtml);
+fs.writeFileSync('../01_Output_Allineamento/CCNA_IOS_Commands_CheatSheet.html', fullHtml);
 console.log("Cheat Sheet HTML generated successfully.");
