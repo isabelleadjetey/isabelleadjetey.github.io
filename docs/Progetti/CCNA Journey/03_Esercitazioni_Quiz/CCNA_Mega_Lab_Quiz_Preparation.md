@@ -50,3 +50,4 @@ Le soluzioni sono state spostate in un file separato per permetterti di testare 
 👉 **[CCNA_Mega_Lab_Quiz_Solutions.md](file:///c:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/CCNA_Mega_Lab_Quiz_Solutions.md)**
 
 Buona fortuna con il test! 🚀
+

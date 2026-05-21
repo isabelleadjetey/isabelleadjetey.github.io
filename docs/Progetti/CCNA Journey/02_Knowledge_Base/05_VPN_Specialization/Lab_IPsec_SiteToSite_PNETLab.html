@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab IPsec Site-to-Site VPN - CCNA Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #005073;
+      --primary-light: #e6f2f7;
+      --secondary: #00bce1;
+      --text: #2d3748;
+      --text-muted: #718096;
+      --bg: #ffffff;
+      --bg-alt: #f7fafc;
+      --border: #e2e8f0;
+      --code-bg: #1a202c;
+      --code-text: #f7fafc;
+      --accent: #ed8936;
+      --success: #38a169;
+      --danger: #e53e3e;
+      --warning: #d69e2e;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; margin: 0; padding: 0; background: var(--bg); }
+    main { max-width: 900px; margin: 0 auto; padding: 40px 60px; }
+    h1 { font-size: 2.2rem; color: var(--primary); border-bottom: 4px solid var(--secondary); padding-bottom: 10px; margin-top: 0; }
+    h2 { font-size: 1.5rem; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 2em; }
+    h3 { font-size: 1.15rem; color: var(--primary); margin-top: 1.5em; }
+    p { margin-bottom: 1.2em; }
+    pre { background: var(--code-bg); color: var(--code-text); padding: 1.5rem; border-radius: 12px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; margin: 1.5rem 0; border: 1px solid #2d3748; position: relative; }
+    code { font-family: 'JetBrains Mono', monospace; background: #edf2f7; color: #e53e3e; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+    th { background: var(--primary); color: white; padding: 12px 15px; text-align: left; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; }
+    td { padding: 12px 15px; border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background: var(--bg-alt); }
+    .callout { padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 8px; border-left: 4px solid; }
+    .callout-info { background: #e6fffa; border-color: #38b2ac; color: #234e52; }
+    .callout-warning { background: #fffaf0; border-color: #ed8936; color: #7b341e; }
+    .callout-danger { background: #fff5f5; border-color: #f56565; color: #742a2a; }
+    .callout-success { background: #f0fff4; border-color: #38a169; color: #22543d; }
+    .step-badge { display: inline-block; background: var(--primary); color: white; border-radius: 50%; width: 28px; height: 28px; text-align: center; line-height: 28px; font-weight: 700; font-size: 0.85rem; margin-right: 8px; }
+    .phase-header { background: var(--primary-light); border-left: 6px solid var(--secondary); padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; margin: 2rem 0 1rem 0; }
+    .phase-header h2 { margin: 0; border: none; padding: 0; }
+    .topology-box { background: var(--code-bg); color: #a0e9ff; font-family: 'JetBrains Mono', monospace; padding: 1.5rem; border-radius: 12px; text-align: center; font-size: 0.9rem; margin: 1.5rem 0; }
+    ul li { margin-bottom: 0.4em; }
+    .copy-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.1); border: none; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; opacity: 0; transition: opacity 0.2s; }
+    pre:hover .copy-btn { opacity: 1; }
+    hr { border: 0; border-top: 1px solid var(--border); margin: 3rem 0; }
+    @media(max-width: 768px) { main { padding: 20px; } }
+  </style>
+</head>
+<body>
+<main>
+  <article id="content">
+    <h1>🔐 Lab: IPsec Site-to-Site VPN in PNETLab</h1>
+    <p>Lab operativo CCNA/SNOC: configurazione di un tunnel IPsec Site-to-Site tra due router Cisco, con OSPF over GRE per trasportare il traffico di routing, e simulazione di guasto per analisi dei log.</p>
+
+    <div class="callout callout-info">
+      <strong>🎯 Obiettivi del Lab:</strong><br>
+      1. Configurare un tunnel IPsec IKEv1 Site-to-Site tra R1 e R2.<br>
+      2. Incapsulare OSPF in un tunnel GRE sopra IPsec.<br>
+      3. Verificare la connettività end-to-end con <code>show</code> e <code>debug</code>.<br>
+      4. Simulare un guasto e leggere i log di errore come farebbe uno SNOC analyst.
+    </div>
+
+    <h2>🗺️ Topologia</h2>
+    <div class="topology-box">
+<pre style="background:transparent;border:none;margin:0;padding:0;color:#a0e9ff;">
+  [PC-HQ]─────[R1]──────Internet──────[R2]─────[PC-Branch]
+  192.168.1.x  G0/0  G0/1       G0/1  G0/0     192.168.2.x
+               .1               10.0.0.1  .1
+                  10.0.0.1  10.0.0.2</pre>
+    </div>
+
+    <table>
+      <thead><tr><th>Device</th><th>Interfaccia</th><th>IP Address</th><th>Ruolo</th></tr></thead>
+      <tbody>
+        <tr><td>R1</td><td>G0/0</td><td>192.168.1.1/24</td><td>LAN HQ</td></tr>
+        <tr><td>R1</td><td>G0/1</td><td>10.0.0.1/30</td><td>WAN (verso Internet)</td></tr>
+        <tr><td>R2</td><td>G0/1</td><td>10.0.0.2/30</td><td>WAN (verso Internet)</td></tr>
+        <tr><td>R2</td><td>G0/0</td><td>192.168.2.1/24</td><td>LAN Branch</td></tr>
+        <tr><td>PC-HQ</td><td>NIC</td><td>192.168.1.10/24</td><td>Host sede centrale</td></tr>
+        <tr><td>PC-Branch</td><td>NIC</td><td>192.168.2.10/24</td><td>Host filiale</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <div class="phase-header">
+      <h2>⚙️ FASE 1 — Configurazione Base (Pre-VPN)</h2>
+    </div>
+
+    <h3><span class="step-badge">1</span>Configurazione R1</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! --- R1 Base Config ---
+hostname R1
+!
+interface GigabitEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+!
+interface GigabitEthernet0/1
+ ip address 10.0.0.1 255.255.255.252
+ no shutdown
+!
+ip route 0.0.0.0 0.0.0.0 10.0.0.2</code></pre>
+
+    <h3><span class="step-badge">2</span>Configurazione R2</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! --- R2 Base Config ---
+hostname R2
+!
+interface GigabitEthernet0/1
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/0
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+!
+ip route 0.0.0.0 0.0.0.0 10.0.0.1</code></pre>
+
+    <div class="callout callout-warning">
+      <strong>⚠️ Verifica prima di procedere:</strong><br>
+      Esegui <code>ping 10.0.0.2</code> da R1. Se il ping fallisce, non continuare — il tunnel IPsec non può formarsi senza connettività WAN di base.
+    </div>
+
+    <hr>
+
+    <div class="phase-header">
+      <h2>🔑 FASE 2 — IKE Phase 1 (ISAKMP Policy)</h2>
+    </div>
+    <p>IKE Phase 1 crea il canale sicuro di controllo tra i due peer. I parametri devono essere <strong>identici</strong> su entrambi i router.</p>
+
+    <h3><span class="step-badge">3</span>ISAKMP Policy su R1 e R2 (stesso config)</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! --- IKE Phase 1 Policy (uguale su R1 e R2) ---
+crypto isakmp policy 10
+ encryption aes 256
+ hash sha256
+ authentication pre-share
+ group 14
+ lifetime 86400
+!
+! Pre-Shared Key (uguale su entrambi, ma con IP del PEER)
+! Su R1:
+crypto isakmp key CCNA_VPN_KEY address 10.0.0.2
+! Su R2:
+crypto isakmp key CCNA_VPN_KEY address 10.0.0.1</code></pre>
+
+    <table>
+      <thead><tr><th>Parametro</th><th>Valore scelto</th><th>Significato</th></tr></thead>
+      <tbody>
+        <tr><td>encryption</td><td>AES-256</td><td>Cifratura simmetrica del canale</td></tr>
+        <tr><td>hash</td><td>SHA-256</td><td>Integrità dei messaggi IKE</td></tr>
+        <tr><td>authentication</td><td>pre-share</td><td>Autenticazione via PSK</td></tr>
+        <tr><td>group</td><td>14 (2048-bit DH)</td><td>Diffie-Hellman Key Exchange</td></tr>
+        <tr><td>lifetime</td><td>86400 sec (24h)</td><td>Durata della SA di controllo</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <div class="phase-header">
+      <h2>🔒 FASE 3 — IPsec Phase 2 (Transform Set + Crypto Map)</h2>
+    </div>
+
+    <h3><span class="step-badge">4</span>Transform Set e ACL (uguale su R1 e R2)</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! --- Transform Set: definisce come cifrare i dati ---
+crypto ipsec transform-set CCNA_TS esp-aes 256 esp-sha256-hmac
+ mode tunnel
+!
+! --- ACL: definisce quale traffico va nel tunnel ---
+! Su R1: traffico da HQ a Branch
+ip access-list extended VPN_TRAFFIC
+ permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+!
+! Su R2: traffico da Branch a HQ (mirror)
+ip access-list extended VPN_TRAFFIC
+ permit ip 192.168.2.0 0.0.0.255 192.168.1.0 0.0.0.255</code></pre>
+
+    <h3><span class="step-badge">5</span>Crypto Map e applicazione all'interfaccia</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! --- Crypto Map (su R1) ---
+crypto map CCNA_VPN_MAP 10 ipsec-isakmp
+ set peer 10.0.0.2
+ set transform-set CCNA_TS
+ match address VPN_TRAFFIC
+!
+! --- Applica la crypto map all'interfaccia WAN di R1 ---
+interface GigabitEthernet0/1
+ crypto map CCNA_VPN_MAP
+
+! === RIPETERE SU R2 con IP peer 10.0.0.1 ===
+crypto map CCNA_VPN_MAP 10 ipsec-isakmp
+ set peer 10.0.0.1
+ set transform-set CCNA_TS
+ match address VPN_TRAFFIC
+!
+interface GigabitEthernet0/1
+ crypto map CCNA_VPN_MAP</code></pre>
+
+    <hr>
+
+    <div class="phase-header">
+      <h2>🔍 FASE 4 — Verifica e Troubleshooting (SNOC Skills)</h2>
+    </div>
+
+    <h3><span class="step-badge">6</span>Attivare il tunnel (trigger)</h3>
+    <div class="callout callout-info">
+      Il tunnel IPsec <strong>non si attiva automaticamente</strong>: si attiva solo quando passa traffico interessante (quello matchato dalla ACL). Genera traffico con un ping da PC-HQ verso PC-Branch.
+    </div>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! Da PC-HQ (o simulato da R1):
+ping 192.168.2.10 source 192.168.1.1 repeat 5</code></pre>
+
+    <h3><span class="step-badge">7</span>Show Commands — Verifica Fase 1</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>show crypto isakmp sa</code></pre>
+    <p><strong>Output atteso (tunnel UP):</strong></p>
+    <pre><code>dst             src             state          conn-id status
+10.0.0.2        10.0.0.1        QM_IDLE           1001 ACTIVE</code></pre>
+    <div class="callout callout-danger">
+      <strong>🚨 Se vedi MM_NO_STATE o AM_ACTIVE con errori:</strong> mismatch nella ISAKMP policy o nella PSK. Controlla che i parametri siano identici su entrambi i peer.
+    </div>
+
+    <h3><span class="step-badge">8</span>Show Commands — Verifica Fase 2</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>show crypto ipsec sa</code></pre>
+    <p>Cerca nel output i contatori <code>#pkts encaps</code> e <code>#pkts decaps</code>. Se crescono, il traffico scorre nel tunnel.</p>
+    <pre><code>#pkts encaps: 5, #pkts encrypt: 5, #pkts digest: 5
+#pkts decaps: 5, #pkts decrypt: 5, #pkts verify: 5</code></pre>
+
+    <h3><span class="step-badge">9</span>Debug — Analisi Negoziazione</h3>
+    <div class="callout callout-warning">
+      <strong>⚠️ Attenzione:</strong> I debug generano molto output. Usali in ambienti lab, mai in produzione senza autorizzazione. Disattiva sempre con <code>undebug all</code> dopo l'analisi.
+    </div>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! Abilita debug IKE
+debug crypto isakmp
+debug crypto ipsec
+
+! Genera traffico per triggerare il debug
+ping 192.168.2.10 source 192.168.1.1
+
+! Disabilita dopo l'analisi
+undebug all</code></pre>
+
+    <table>
+      <thead><tr><th>Messaggio di Debug</th><th>Significato</th><th>Causa Comune</th></tr></thead>
+      <tbody>
+        <tr><td><code>ISAKMP: atts not acceptable</code></td><td>Policy mismatch Fase 1</td><td>Parametri diversi (es. DH group)</td></tr>
+        <tr><td><code>ISAKMP: auth failed</code></td><td>Autenticazione fallita</td><td>PSK diversa sui due router</td></tr>
+        <tr><td><code>IPSEC: transform proposal not accepted</code></td><td>Transform set mismatch</td><td>Algoritmi diversi in Phase 2</td></tr>
+        <tr><td><code>QM_IDLE</code></td><td>Tunnel UP e stabile</td><td>— (tutto OK)</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <div class="phase-header">
+      <h2>🌐 BONUS — GRE over IPsec (OSPF nel tunnel)</h2>
+    </div>
+    <p>GRE permette di trasportare protocolli di routing (come OSPF) all'interno del tunnel IPsec. Il GRE "avvolge" il pacchetto OSPF, e IPsec cripta il tutto.</p>
+
+    <h3>Configurazione Tunnel GRE (R1)</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! --- Tunnel GRE su R1 ---
+interface Tunnel0
+ ip address 172.16.0.1 255.255.255.252
+ tunnel source GigabitEthernet0/1
+ tunnel destination 10.0.0.2
+ no shutdown</code></pre>
+
+    <h3>Configurazione Tunnel GRE (R2)</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! --- Tunnel GRE su R2 ---
+interface Tunnel0
+ ip address 172.16.0.2 255.255.255.252
+ tunnel source GigabitEthernet0/1
+ tunnel destination 10.0.0.1
+ no shutdown</code></pre>
+
+    <h3>OSPF sopra il Tunnel GRE</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! --- OSPF su R1 ---
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0
+ network 172.16.0.0 0.0.0.3 area 0
+
+! --- OSPF su R2 ---
+router ospf 1
+ network 192.168.2.0 0.0.0.255 area 0
+ network 172.16.0.0 0.0.0.3 area 0</code></pre>
+
+    <div class="callout callout-warning">
+      <strong>⚠️ Aggiorna la Crypto ACL per GRE over IPsec:</strong><br>
+      Con GRE, il traffico interessante non è più IP src/dst ma il protocollo GRE stesso.
+    </div>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! Su R1 — modifica ACL per matchare il traffico GRE
+ip access-list extended VPN_TRAFFIC
+ no permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+ permit gre host 10.0.0.1 host 10.0.0.2</code></pre>
+
+    <hr>
+
+    <div class="phase-header">
+      <h2>🚨 FASE 5 — Simulazione Guasto (SNOC Drill)</h2>
+    </div>
+    <p>Scenario: il tunnel VPN cade improvvisamente. Come reagisce uno SNOC analyst?</p>
+
+    <h3>Simula il guasto</h3>
+    <pre><button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextSibling.textContent)">COPY</button><code>! Su R2 — cambia la PSK (simula mismatch di configurazione)
+crypto isakmp key WRONG_KEY address 10.0.0.1
+! Oppure abbatti il tunnel esistente:
+clear crypto isakmp</code></pre>
+
+    <h3>Procedura di Triage SNOC</h3>
+    <table>
+      <thead><tr><th>Step</th><th>Comando</th><th>Cosa cerchi</th></tr></thead>
+      <tbody>
+        <tr><td>1. Verifica Layer 3</td><td><code>ping 10.0.0.2</code></td><td>Se fallisce, problema WAN — non IPsec</td></tr>
+        <tr><td>2. Stato IKE</td><td><code>show crypto isakmp sa</code></td><td>QM_IDLE = OK, MM_NO_STATE = problema Phase 1</td></tr>
+        <tr><td>3. Stato IPsec</td><td><code>show crypto ipsec sa</code></td><td>pkts encaps/decaps fermi = tunnel giù</td></tr>
+        <tr><td>4. Debug IKE</td><td><code>debug crypto isakmp</code></td><td>Messaggio di errore specifico (auth, atts, ecc.)</td></tr>
+        <tr><td>5. Fix e Reset</td><td><code>clear crypto isakmp / clear crypto sa</code></td><td>Forza rinegoziazione dopo fix</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-success">
+      <strong>✅ Lab Completato con successo se:</strong><br>
+      • <code>show crypto isakmp sa</code> → stato <code>QM_IDLE</code><br>
+      • <code>show crypto ipsec sa</code> → contatori pkts encaps/decaps > 0<br>
+      • <code>ping 192.168.2.10 source 192.168.1.1</code> → 5/5 success<br>
+      • <code>show ip ospf neighbor</code> → vicino OSPF visibile tramite Tunnel0
+    </div>
+
+    <hr>
+    <h3>🚀 Next Steps</h3>
+    <ul>
+      <li>Studiare <strong>IKEv2</strong> (più moderno e sicuro di IKEv1)</li>
+      <li>Esplorare <strong>Cisco AnyConnect</strong> per Remote Access VPN (SSL/TLS)</li>
+      <li>Approfondire <strong>Fortinet FortiGate IPsec</strong> per la specializzazione SNOC (NSE 4)</li>
+    </ul>
+
+  </article>
+</main>
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.textContent = 'COPIATO!';
+      setTimeout(() => btn.textContent = 'COPY', 2000);
+    });
+  });
+</script>
+</body>
+</html>
