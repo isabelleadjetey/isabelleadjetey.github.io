@@ -15,6 +15,12 @@ Questo cheat sheet esteso contiene la totalità dei servizi e dei concetti coper
 *   **Elasticity (Elasticità):** La capacità del cloud di scalare in automatico *sia verso l'alto che verso il basso* (es. Auto Scaling) a seconda della domanda istantanea.
 
 ### 1.2 I Modelli di Servizio (IaaS, PaaS, SaaS, FaaS)
+```mermaid
+graph LR
+    IaaS[IaaS: EC2<br>Gestisci OS] --> PaaS[PaaS: Beanstalk<br>Gestisci App]
+    PaaS --> SaaS[SaaS: Zoom<br>Tutto gestito]
+    PaaS --> FaaS[FaaS: Lambda<br>Solo Funzione]
+```
 *   **IaaS (Infrastructure as a Service):** *Es. Amazon EC2.* Ti danno l'hardware virtuale. Tu gestisci OS, database e app.
 *   **PaaS (Platform as a Service):** *Es. Elastic Beanstalk.* Tu scrivi solo il codice. AWS gestisce l'infrastruttura, il server e il sistema operativo.
 *   **SaaS (Software as a Service):** *Es. Gmail, Zoom.* Software pronto all'uso gestito interamente dal fornitore.
@@ -42,6 +48,18 @@ I 6 Pilastri (Prospettive) per adottare il Cloud:
 ## 🔒 DOMINIO 2: Security & Compliance
 
 ### 2.1 Shared Responsibility Model (Chi fa cosa?)
+```mermaid
+graph TD
+    subgraph Cliente [Security IN the Cloud]
+        A(Dati Utente) --> B(IAM / Password)
+        B --> C(OS / Patch EC2 / Firewall)
+    end
+    subgraph AWS [Security OF the Cloud]
+        D(Hypervisor) --> E(Rete Globale AWS)
+        E --> F(Sicurezza Fisica Datacenter)
+    end
+    Cliente -.-> AWS
+```
 *   **Security OF the Cloud (AWS):** Sicurezza FISICA. (I datacenter, l'hardware, i cavi, il software che gestisce la virtualizzazione).
 *   **Security IN the Cloud (Tu/Cliente):** Sicurezza LOGICA. (I tuoi dati, password IAM, aprire porte sul firewall di rete VPC, aggiornare l'antivirus su EC2, crittografare i file).
 

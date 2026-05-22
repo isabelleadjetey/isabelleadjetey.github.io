@@ -118,6 +118,10 @@
             }
         }
     </style>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#f8f9fa', primaryBorderColor: '#232f3e', primaryTextColor: '#232f3e', fontSize: '14px'} });
+    </script>
 </head>
 <body>
 
@@ -140,6 +144,16 @@
     </ul>
 
     <h3>1.2 I Modelli di Servizio</h3>
+    <div class="mermaid" style="text-align: center; margin: 20px 0;">
+        graph LR
+        IaaS[IaaS: EC2<br>Gestisci tu l'OS] --> PaaS[PaaS: Beanstalk<br>Gestisci solo l'App]
+        PaaS --> SaaS[SaaS: Zoom<br>Usi e basta]
+        PaaS --> FaaS[FaaS: Lambda<br>Esegui solo la Funzione]
+        style IaaS fill:#e2e8f0,stroke:#232f3e,stroke-width:2px
+        style PaaS fill:#e2e8f0,stroke:#232f3e,stroke-width:2px
+        style SaaS fill:#e2e8f0,stroke:#232f3e,stroke-width:2px
+        style FaaS fill:#ff9900,stroke:#232f3e,stroke-width:2px,color:#fff
+    </div>
     <ul>
         <li><strong>IaaS (Infrastructure as a Service):</strong> Es. EC2. Hardware virtuale, tu gestisci OS e patch.</li>
         <li><strong>PaaS (Platform as a Service):</strong> Es. Elastic Beanstalk. Tu scrivi il codice, AWS gestisce l'infrastruttura.</li>
@@ -156,6 +170,18 @@
     <h2 class="domain-title page-break">DOMINIO 2: Security & Compliance</h2>
 
     <h3>2.1 Shared Responsibility Model</h3>
+    <div class="mermaid" style="text-align: center; margin: 20px 0;">
+        graph TD
+        subgraph Cliente ["Security IN the Cloud (Tuo Compito)"]
+            A(Dati Utente) --> B(IAM / Password)
+            B --> C(OS / Patch EC2 / Firewall)
+        end
+        subgraph AWS ["Security OF the Cloud (Compito AWS)"]
+            D(Hypervisor) --> E(Rete Globale AWS)
+            E --> F(Sicurezza Fisica Datacenter)
+        end
+        Cliente -.-> AWS
+    </div>
     <ul>
         <li><strong>Security OF the Cloud (AWS):</strong> Sicurezza Fisica (Hardware, Datacenter, Rete globale).</li>
         <li><strong>Security IN the Cloud (Cliente):</strong> Sicurezza Logica (Dati, Password IAM, Firewall VPC, Patch OS).</li>
