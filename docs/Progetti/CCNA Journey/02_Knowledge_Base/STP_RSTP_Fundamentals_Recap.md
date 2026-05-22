@@ -71,4 +71,7 @@ spanning-tree mode rapid-pvst  <-- (Comando standard da usare sempre nei lab mod
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **Elezioni Root:** Priorit minima vince (default 32768 + VLAN ID), poi MAC address minore.
+- **Stati classici (802.1D):** Blocking -> Listening -> Learning -> Forwarding (50 sec).
+- **RSTP (802.1w):** Discarding -> Learning -> Forwarding (Meno di 5 sec).

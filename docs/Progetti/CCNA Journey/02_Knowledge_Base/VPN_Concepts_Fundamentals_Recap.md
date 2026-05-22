@@ -57,4 +57,7 @@ Per essere sicuro, un tunnel IPsec deve garantire 4 cose:
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **IPsec:** Cripta, Autentica, Integra, Anti-Replay.
+- **GRE:** Crea tunnel e supporta multicast/routing, ma NON cripta.
+- **GRE over IPsec:** Il mix perfetto usato nelle aziende.

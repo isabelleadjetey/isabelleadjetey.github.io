@@ -67,4 +67,7 @@ interface f0/1
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **DORA:** Discover (B), Offer (U), Request (B), Acknowledge (U).
+- **Relay:** `ip helper-address [IP]` applicato sulla SVI del gateway.
+- **Exclude:** `ip dhcp excluded-address [IP]` si fa prima del pool.

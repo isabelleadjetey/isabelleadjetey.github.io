@@ -36,4 +36,7 @@ Se il cliente lamenta che la voce "scatta" solo quando l'ufficio è pieno, il pr
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **VoIP:** DSCP EF (46) / CoS 5.
+- **LLQ:** Coda con priorit assoluta (per voce).
+- **Policing vs Shaping:** Policing taglia (drop), Shaping rallenta (buffer).

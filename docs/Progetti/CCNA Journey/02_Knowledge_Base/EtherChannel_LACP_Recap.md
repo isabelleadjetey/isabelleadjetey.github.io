@@ -68,4 +68,7 @@ Se le porte non hanno parametri **identici**, l'EtherChannel non salirà mai. De
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **LACP (Open):** Active / Passive.
+- **PAgP (Cisco):** Desirable / Auto.
+- **Requisiti:** Stessa velocit, duplex, VLAN su tutti i link fisici.

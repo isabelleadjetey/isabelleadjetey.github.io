@@ -66,4 +66,7 @@ Se i PC in VLAN 10 non si pingano tra switch diversi, controlla questi comandi:
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **Trunk:** Trasporta pi VLAN aggiungendo un Tag 802.1Q (4 byte).
+- **Native VLAN:** Traffico non taggato sul trunk (default VLAN 1).
+- **DTP:** Dynamic Trunking Protocol (Cisco). Meglio disabilitarlo `switchport nonegotiate`.

@@ -66,4 +66,7 @@ Questi comandi sono il pane quotidiano del Network Engineer:
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **CDP:** Cisco proprietary. Abilitato di default. `show cdp neighbors`.
+- **LLDP:** Open standard (IEEE 802.1AB). Disabilitato di default. `show lldp neighbors`.
+- **Sicurezza:** Disabilitare verso le porte di accesso end-user.

@@ -70,4 +70,7 @@ Durante il lab abbiamo incontrato degli ostacoli utilissimi per capire come ragi
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **HSRP (Cisco):** Active / Standby. Virtual MAC: 0000.0c07.acXX.
+- **VRRP (Open):** Master / Backup.
+- **Preemption:** Disabilitata di default, serve per far riprendere il ruolo all'Active se torna online.

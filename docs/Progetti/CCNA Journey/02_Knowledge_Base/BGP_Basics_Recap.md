@@ -78,4 +78,7 @@ Nello SNOC userai questi comandi ogni giorno:
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **eBGP:** Tra AS diversi. AD = 20.
+- **iBGP:** Stesso AS. AD = 200.
+- **Comando:** `router bgp [ASN]` -> `neighbor [IP] remote-as [ASN]`.

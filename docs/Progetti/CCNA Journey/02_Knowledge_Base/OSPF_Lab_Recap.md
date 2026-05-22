@@ -103,4 +103,7 @@ Nello SNOC vedrai il Multi-Area per **isolare i problemi**: se c'è un malfunzio
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **AD:** 110. **Metrica:** Cost (Reference BW / Interface BW).
+- **DR/BDR Election:** Si fa su reti Multiaccess (Ethernet). Vince Priority pi alta, poi Router ID pi alto.
+- **Router ID:** 1) Manuale, 2) Max Loopback, 3) Max Interfaccia fisica.

@@ -122,4 +122,7 @@ interface range GigabitEthernet0/2 - 24
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **Password:** `enable secret` usa hash (Type 5 MD5, Type 9 scrypt).
+- **SSH:** Serve hostname, domain-name, e chiavi RSA (`crypto key generate rsa`).
+- **VTY:** `transport input ssh` per bloccare Telnet.

@@ -66,4 +66,7 @@ interface FastEthernet 0/1
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **Port Security:** `switchport port-security`. Default: max 1 MAC, violazione Shutdown.
+- **Violazioni:** Protect (droppa, no log), Restrict (droppa, log), Shutdown (err-disable).
+- **Sticky:** Salva il MAC in running-config.

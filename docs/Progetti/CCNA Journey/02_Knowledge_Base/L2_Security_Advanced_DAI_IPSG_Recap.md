@@ -63,4 +63,7 @@ Per una porta utente sicura al 100%, la configurazione ideale è:
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **DHCP Snooping:** Blocca DHCP rogue. Porte trunk = trust.
+- **DAI (Dynamic ARP Inspection):** Blocca ARP spoofing usando il database del DHCP Snooping.
+- **IPSG:** Blocca IP spoofing.

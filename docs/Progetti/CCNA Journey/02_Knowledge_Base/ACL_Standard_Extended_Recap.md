@@ -98,4 +98,7 @@ line vty 0 4
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **Standard ACL:** Controlla solo Source IP (1-99). Applicala vicino alla DEstination.
+- **Extended ACL:** Controlla Source/Dest IP e Port (100-199). Applicala vicino alla SOurce.
+- **Regola d'oro:** Implicit Deny alla fine di ogni ACL.

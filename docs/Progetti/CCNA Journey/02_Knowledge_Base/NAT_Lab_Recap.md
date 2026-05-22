@@ -103,4 +103,7 @@ Combinando i termini otteniamo i 4 elementi della tua tabella `show ip nat trans
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **Static NAT:** 1 a 1 (Server interni verso Internet).
+- **Dynamic NAT:** Pool di IP pubblici.
+- **PAT (NAT Overload):** Molti IP privati su 1 IP pubblico usando porte (Overload).

@@ -72,4 +72,7 @@ logging trap notifications     <-- Invia solo dai log di livello 5 in su (evita 
 ---
 
 ### 🎯 Cheat Sheet per l'Esame
-*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
+
+- **NTP:** Sincronizza orologi (UDP 123). Stratum 1 = Orologio atomico.
+- **Syslog:** UDP 514. Livelli da 0 (Emergencies) a 7 (Debugging).
+- **TFTP vs FTP:** TFTP (UDP 69, no auth), FTP (TCP 20/21, auth).
