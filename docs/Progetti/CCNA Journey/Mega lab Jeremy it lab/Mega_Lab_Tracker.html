@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCNA Mega Lab Tracker</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --container-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --success-color: #10b981;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-container {
+            background: var(--container-bg);
+            border-radius: 999px;
+            height: 12px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-color), var(--success-color));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .part-card {
+            background: var(--container-bg);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .part-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .part-title {
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .task-item:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .checkbox-custom {
+            min-width: 20px;
+            height: 20px;
+            border: 2px solid var(--text-secondary);
+            border-radius: 4px;
+            margin-right: 12px;
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .task-item.completed .checkbox-custom {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+        }
+
+        .task-item.completed .checkbox-custom::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .task-item.completed .task-text {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .task-text {
+            flex: 1;
+            transition: color 0.2s ease;
+        }
+
+        .code-snippet {
+            background: #000;
+            color: #a78bfa;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        button.reset-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 2rem;
+            font-family: inherit;
+        }
+
+        button.reset-btn:hover {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Mega Lab CCNA Tracker</h1>
+        <p style="color: var(--text-secondary);">Il tuo compagno di viaggio interattivo per la simulazione d'esame. I tuoi progressi vengono salvati localmente.</p>
+        
+        <!-- TOPOLOGIA -->
+        <div style="margin: 2rem 0; padding: 1rem; background: var(--container-bg); border-radius: 12px; border: 1px solid var(--border-color);">
+            <h3 style="margin-top: 0; color: #e2e8f0; font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; text-align: left;">Mappa di Rete (Topologia)</h3>
+            <img src="topology.png" alt="Topologia Mega Lab" style="max-width: 100%; border-radius: 8px; display: block; margin: 0 auto; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);">
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p id="progressText" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">0% completato</p>
+    </header>
+
+    <div id="tracker-content"></div>
+
+    <div style="text-align: center;">
+        <button class="reset-btn" onclick="resetProgress()">Reset Progressi</button>
+    </div>
+</div>
+
+<script>
+    const labData = [
+        {
+            title: "Part 1 - Initial setup",
+            tasks: [
+                "Configurare l'Hostname corretto su ogni router e switch.",
+                "Impostare l'enable secret <span class='code-snippet'>jeremysitlab</span> (usare Type 9 se disponibile, altrimenti Type 5).",
+                "Creare l'utente locale <span class='code-snippet'>cisco</span> con secret <span class='code-snippet'>ccna</span> (Type 9 o 5).",
+                "Configurare la console (line con 0): login local, exec-timeout 30 0, logging synchronous."
+            ]
+        },
+        {
+            title: "Part 2 - VLANs, Layer-2 EtherChannel",
+            tasks: [
+                "Office A: Layer-2 EtherChannel 'PortChannel1' tra DSW-A1 e DSW-A2 usando PAgP (Cisco-proprietary).",
+                "Office B: Layer-2 EtherChannel 'PortChannel1' tra DSW-B1 e DSW-B2 usando LACP (Open standard).",
+                "Configurare come Trunk tutti i link tra Access e Distribution: disabilitare DTP (<span class='code-snippet'>switchport nonegotiate</span>), impostare Native VLAN 1000, e limitare le allowed VLANs (10, 20, 40, 99 per A | 10, 20, 30, 99 per B).",
+                "VTPv2: Configurare un DSW per ufficio come Server (Domain <span class='code-snippet'>JeremysITLab</span>), e tutti gli ASW come Client.",
+                "Creare le VLAN sui DSW Server e verificare la propagazione: 10(PCs), 20(Phones), 30(Servers/Office B), 40(Wi-Fi/Office A), 99(Management).",
+                "Configurare le porte d'accesso sugli ASW (assegnare le VLAN corrette, disabilitare DTP).",
+                "Configurare il link tra ASW-A1 e WLC1: Trunk per VLAN 40 e 99(Untagged/Native), disabilitare DTP.",
+                "Disabilitare (shutdown) amministrativamente tutte le porte non utilizzate."
+            ]
+        },
+        {
+            title: "Part 3 - IP Addresses, Layer-3 EtherChannel, HSRP",
+            tasks: [
+                "Abilitare IPv4 routing (<span class='code-snippet'>ip routing</span>) su tutti i Core e Distribution switches.",
+                "Configurare R1: G0/0/0 e G0/1/0 come DHCP client, IP statici per G0/0, G0/1 e Loopback0.",
+                "Creare Layer-3 EtherChannel tra CSW1 e CSW2 usando PAgP (no switchport, ip address).",
+                "Configurare IP point-to-point su tutte le interfacce routed dei CSW e DSW.",
+                "Configurare l'IP statico sul Server SRV1.",
+                "Configurare gli IP di Management (interface vlan 99) sugli switch Access con default gateway.",
+                "Configurare HSRPv2 su tutti i DSW per le rispettive VLAN. Aumentare la priority a 105 per il router Active desiderato e abilitare la preemption."
+            ]
+        },
+        {
+            title: "Part 4 - Rapid Spanning Tree Protocol",
+            tasks: [
+                "Configurare <span class='code-snippet'>spanning-tree mode rapid-pvst</span> su Access e Distribution.",
+                "Allineare il Root Bridge STP con l'Active Router HSRP (priority 0) e il Secondary con lo Standby HSRP (priority 4096).",
+                "Abilitare PortFast e BPDU Guard su tutte le porte verso gli end-hosts (incluso il WLC1)."
+            ]
+        },
+        {
+            title: "Part 5 - Static and Dynamic Routing",
+            tasks: [
+                "Configurare OSPFv2 (Process 1, Area 0) su R1, CSW e DSW. Usare l'IP di Loopback come Router ID.",
+                "Usare il comando <span class='code-snippet'>network</span> sugli switch per includere le interfacce, mentre su R1 abilitare OSPF a livello interfaccia.",
+                "Impostare <span class='code-snippet'>passive-interface</span> su tutte le Loopback e sulle SVI (tranne la SVI 99 Management).",
+                "Impostare network type <span class='code-snippet'>point-to-point</span> sui link fisici OSPF (per evitare elezione DR/BDR). Non applicarlo all'EtherChannel L3.",
+                "Configurare rotta statica di default ricorsiva verso Internet su R1.",
+                "Configurare rotta statica di default Floating (AD maggiore) come backup.",
+                "Iniettare la rotta di default in OSPF da R1 con <span class='code-snippet'>default-information originate</span>."
+            ]
+        },
+        {
+            title: "Part 6 - Network Services (DHCP, NAT, NTP, SNMP...)",
+            tasks: [
+                "Creare i Pool DHCP su R1 per PC, Telefoni, Wi-Fi e Mgmt (escludendo i primi 10 IP, impostando default-router e dns-server).",
+                "Configurare <span class='code-snippet'>ip helper-address</span> (puntando alla Loopback di R1) sulle SVI dei Distribution switch.",
+                "Configurare le entry DNS (A records) sul server SRV1 (google, youtube, jeremysitlab).",
+                "R1 diventa NTP Master (Stratum 5), gli altri switch si sincronizzano e autenticano con R1.",
+                "Configurare SNMP (RO, stringa <span class='code-snippet'>SNMPSTRING</span>) per permettere messaggi GET.",
+                "Abilitare il logging verso il server Syslog SRV1.",
+                "Aggiornare l'IOS di R1 scaricando l'immagine dal server FTP (SRV1), riavviare e cancellare l'IOS vecchio.",
+                "Configurare SSH (RSA 1024 bit, version 2). Creare ACL 1 per permettere l'accesso solo alla VLAN 99 e applicarla alle VTY lines.",
+                "Configurare NAT Statico su R1 per il Server SRV1.",
+                "Configurare PAT Dinamico (Overload) su R1 per permettere agli host di navigare in Internet (usando ACL 2 e POOL1).",
+                "Disabilitare globalmente CDP (<span class='code-snippet'>no cdp run</span>) e abilitare LLDP. Disabilitare la trasmissione LLDP sulle porte d'accesso."
+            ]
+        },
+        {
+            title: "Part 7 - Security (ACLs e L2 Security)",
+            tasks: [
+                "Creare Extended ACL 'OfficeA_to_OfficeB': permettere ICMP tra i PC, bloccare il resto del traffico verso B, permettere tutto il resto verso Internet.",
+                "Port Security sulle porte F0/1 d'accesso: max MAC address necessari, azione 'restrict', apprendimento 'sticky'.",
+                "Abilitare DHCP Snooping per tutte le VLAN. Rendere 'trust' le porte Trunk. Disabilitare Option 82. Impostare rate-limit sulle porte d'accesso.",
+                "Abilitare Dynamic ARP Inspection (DAI) per le VLAN. Rendere 'trust' le porte Trunk. Abilitare le validazioni opzionali (mac, ip)."
+            ]
+        },
+        {
+            title: "Part 8 - IPv6",
+            tasks: [
+                "Abilitare routing IPv6: <span class='code-snippet'>ipv6 unicast-routing</span>.",
+                "Configurare gli indirizzi IPv6 specifici sulle interfacce di R1 verso Internet.",
+                "Configurare indirizzi IPv6 usando <span class='code-snippet'>eui-64</span> sui link tra R1 e i Core switch.",
+                "Abilitare IPv6 solo con indirizzi Link-Local (usando <span class='code-snippet'>ipv6 enable</span>) sui PortChannel L3 tra CSW1 e CSW2.",
+                "Configurare le due rotte statiche di default IPv6 (una normale, una Floating fully-specified) verso Internet."
+            ]
+        },
+        {
+            title: "Part 9 - Wireless",
+            tasks: [
+                "Accedere alla GUI del WLC1 via browser da un PC (https://10.0.0.7, admin/adminPW12).",
+                "Creare una 'Dynamic Interface' per la WLAN Wi-Fi mappata alla VLAN 40 (IP .4, GW .1, DHCP 10.0.0.76).",
+                "Creare e abilitare la WLAN (SSID 'Wi-Fi', WPA2, AES, PSK 'cisco123').",
+                "Verificare che i Lightweight AP si siano associati correttamente al WLC."
+            ]
+        }
+    ];
+
+    const contentDiv = document.getElementById('tracker-content');
+    let totalTasks = 0;
+
+    // Initialize content
+    labData.forEach((section, sIndex) => {
+        const card = document.createElement('div');
+        card.className = 'part-card';
+        
+        const title = document.createElement('h2');
+        title.className = 'part-title';
+        title.innerHTML = section.title;
+        card.appendChild(title);
+
+        const list = document.createElement('ul');
+        list.className = 'task-list';
+
+        section.tasks.forEach((task, tIndex) => {
+            totalTasks++;
+            const taskId = `task_${sIndex}_${tIndex}`;
+            
+            const li = document.createElement('li');
+            li.className = 'task-item';
+            li.id = taskId;
+            
+            const checkbox = document.createElement('div');
+            checkbox.className = 'checkbox-custom';
+            
+            const text = document.createElement('span');
+            text.className = 'task-text';
+            text.innerHTML = task;
+
+            li.appendChild(checkbox);
+            li.appendChild(text);
+
+            // Check local storage
+            if (localStorage.getItem(taskId) === 'true') {
+                li.classList.add('completed');
+            }
+
+            // Click event to toggle state
+            li.addEventListener('click', () => {
+                li.classList.toggle('completed');
+                localStorage.setItem(taskId, li.classList.contains('completed'));
+                updateProgress();
+            });
+
+            list.appendChild(li);
+        });
+
+        card.appendChild(list);
+        contentDiv.appendChild(card);
+    });
+
+    function updateProgress() {
+        const completed = document.querySelectorAll('.task-item.completed').length;
+        const percentage = totalTasks > 0 ? Math.round((completed / totalTasks) * 100) : 0;
+        
+        document.getElementById('progressBar').style.width = percentage + '%';
+        document.getElementById('progressText').innerText = `${percentage}% completato (${completed}/${totalTasks})`;
+    }
+
+    function resetProgress() {
+        if(confirm("Sei sicuro di voler resettare tutti i progressi del lab?")) {
+            localStorage.clear();
+            document.querySelectorAll('.task-item').forEach(li => li.classList.remove('completed'));
+            updateProgress();
+        }
+    }
+
+    // Initial progress update
+    updateProgress();
+</script>
+
+</body>
+</html>
