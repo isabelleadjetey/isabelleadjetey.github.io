@@ -145,6 +145,28 @@
             background: rgba(255, 153, 0, 0.2);
             border-color: #ff9900;
         }
+        .option-label.correct {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+        }
+        .option-label.wrong {
+            background: rgba(255, 94, 98, 0.2);
+            border-color: #ff5e62;
+        }
+        .explanation-box {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .explanation-box img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
         
         .btn-container {
             display: flex;
@@ -155,9 +177,9 @@
             background: linear-gradient(135deg, #ff9900, #ff8c00);
             color: #fff;
             border: none;
-            padding: 12px 30px;
+            padding: 12px 25px;
             border-radius: 30px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -248,9 +270,11 @@
 
     <div class="question-text" id="questionText"></div>
     <div id="optionsContainer"></div>
+    <div id="explanationBox" class="explanation-box" style="display:none;"></div>
 
     <div class="btn-container">
         <button id="prevBtn" class="action-btn" onclick="prevQuestion()" style="background: rgba(255,255,255,0.1); color: white; box-shadow: none;">⬅ Precedente</button>
+        <button id="checkBtn" class="action-btn" onclick="checkAnswer()" style="background: linear-gradient(135deg, #3498db, #2980b9); box-shadow: 0 4px 15px rgba(52,152,219,0.3);">🔍 Verifica Risposta</button>
         <button id="nextBtn" class="action-btn" onclick="nextQuestion()">Successiva ➡</button>
     </div>
 </div>
@@ -303,17 +327,23 @@
         const optionsContainer = document.getElementById('optionsContainer');
         optionsContainer.innerHTML = '';
         
+        document.getElementById('explanationBox').style.display = 'none';
+        document.getElementById('checkBtn').style.display = 'inline-block';
+        
         const alphabet = "abcdefghijklmnopqrstuvwxyz";
         const savedAns = userAnswers[index] || [];
+        // Check if question was already "checked" (we can store a flag)
+        const isAlreadyChecked = window.checkedQuestions && window.checkedQuestions[index];
 
         q.prompt.answers.forEach((ans, i) => {
             const letter = alphabet[i];
             const isChecked = savedAns.includes(letter);
             
             const label = document.createElement('label');
-            label.className = `option-label ${isChecked ? 'selected' : ''}`;
+            label.className = `option-label ${isChecked && !isAlreadyChecked ? 'selected' : ''}`;
+            label.id = `label_${letter}`;
             label.innerHTML = `
-                <input type="${isMulti ? 'checkbox' : 'radio'}" name="option" value="${letter}" ${isChecked ? 'checked' : ''}>
+                <input type="${isMulti ? 'checkbox' : 'radio'}" name="option" value="${letter}" ${isChecked ? 'checked' : ''} ${isAlreadyChecked ? 'disabled' : ''}>
                 ${ans.replace(/<p>|<\/p>/g, '')}
             `;
             
@@ -334,6 +364,10 @@
 
             optionsContainer.appendChild(label);
         });
+
+        if (isAlreadyChecked) {
+            checkAnswer(true); // Re-run check visually without changing logic
+        }
 
         document.getElementById('prevBtn').disabled = index === 0;
         
@@ -359,6 +393,42 @@
             currentIdx--;
             showQuestion(currentIdx);
         }
+    }
+
+    function checkAnswer(isRecheck = false) {
+        if (!window.checkedQuestions) window.checkedQuestions = {};
+        window.checkedQuestions[currentIdx] = true;
+
+        const q = questions[currentIdx];
+        const correctArr = q.correct_response;
+        const userArr = userAnswers[currentIdx] || [];
+
+        // Disable all inputs
+        document.querySelectorAll('input[name="option"]').forEach(input => {
+            input.disabled = true;
+        });
+
+        // Hide Check Button
+        document.getElementById('checkBtn').style.display = 'none';
+
+        // Highlight options
+        document.querySelectorAll('.option-label').forEach(label => {
+            const input = label.querySelector('input');
+            const letter = input.value;
+            
+            label.classList.remove('selected');
+
+            if (correctArr.includes(letter)) {
+                label.classList.add('correct');
+            } else if (userArr.includes(letter) && !correctArr.includes(letter)) {
+                label.classList.add('wrong');
+            }
+        });
+
+        // Show Explanation
+        const explBox = document.getElementById('explanationBox');
+        explBox.style.display = 'block';
+        explBox.innerHTML = `<strong>Spiegazione Ufficiale AWS:</strong><br><br>${q.prompt.explanation}`;
     }
 
     function finishExam() {
