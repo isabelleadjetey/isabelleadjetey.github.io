@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Cloud Practitioner - Esame Simulato</title>
+    <style>
+        :root {
+            --primary: #232f3e;
+            --secondary: #ff9900;
+            --bg: #f8f9fa;
+            --text: #333;
+            --success: #28a745;
+            --danger: #dc3545;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+        .setup-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+        select, button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #e68a00;
+        }
+        .question-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .question-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .answers label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f1f5f9;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .answers label:hover {
+            background: #e2e8f0;
+        }
+        .answers input {
+            margin-right: 10px;
+        }
+        .correct-answer {
+            background-color: #d4edda !important;
+            border-color: var(--success) !important;
+        }
+        .wrong-answer {
+            background-color: #f8d7da !important;
+            border-color: var(--danger) !important;
+        }
+        .explanation {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #eaf4fc;
+            border-left: 5px solid #3498db;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        .explanation img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        .results-section {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .score-circle {
+            font-size: 40px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+        .module-stats {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .module-stat-bar {
+            background: #eee;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .module-stat-fill {
+            height: 24px;
+            background: var(--secondary);
+            width: 0%;
+            transition: width 1s;
+        }
+        .module-stat-text {
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            font-weight: bold;
+            color: #000;
+        }
+        .advice {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .advice.ready {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .advice.not-ready {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>☁️ Simulatore Esame AWS Cloud Practitioner</h1>
+    
+    <div class="setup-section" id="setup">
+        <p>Seleziona quale Quiz globale vuoi affrontare (65 domande ciascuno, format ufficiale).</p>
+        <p><i>Nota: Apri questo file usando Live Server su VS Code per evitare blocchi CORS sui file JSON locali.</i></p>
+        <select id="quizSelector">
+            <option value="quiz_1.json">Simulazione Completa 1</option>
+            <option value="quiz_2.json">Simulazione Completa 2</option>
+            <option value="quiz_3.json">Simulazione Completa 3</option>
+            <option value="quiz_4.json">Simulazione Completa 4</option>
+            <option value="quiz_5.json">Simulazione Completa 5</option>
+            <option value="quiz_6.json">Simulazione Completa 6</option>
+        </select>
+        <button onclick="loadQuiz()">Inizia Esame</button>
+    </div>
+
+    <div id="quizContainer" style="display:none;"></div>
+    
+    <div style="text-align: center;">
+        <button id="submitBtn" style="display:none; margin-top: 20px; padding: 15px 30px; font-size: 18px;" onclick="submitExam()">Consegna Esame e Calcola Punteggio</button>
+    </div>
+
+    <div class="results-section" id="results">
+        <h2>📊 Risultati dell'Esame</h2>
+        <div class="score-circle" id="totalScore">0%</div>
+        <div class="advice" id="adviceBox"></div>
+        
+        <h3>Analisi per Dominio</h3>
+        <div class="module-stats" id="moduleStats"></div>
+        
+        <p style="margin-top:20px;"><i>Scorri in alto per vedere le correzioni e le spiegazioni dettagliate per ogni domanda.</i></p>
+        <button onclick="location.reload()">Fai un altro Quiz</button>
+    </div>
+</div>
+
+<script>
+    let currentQuestions = [];
+
+    async function loadQuiz() {
+        const file = document.getElementById('quizSelector').value;
+        try {
+            const response = await fetch(file);
+            if (!response.ok) throw new Error("File non trovato o bloccato dal CORS");
+            const data = await response.json();
+            currentQuestions = data.results;
+            renderQuiz();
+        } catch (error) {
+            alert("Errore nel caricamento del file JSON. Assicurati di aver aperto il file HTML tramite un web server locale (es. Live Server su VS Code) e non facendo doppio clic sul file. Dettaglio: " + error.message);
+        }
+    }
+
+    function renderQuiz() {
+        document.getElementById('setup').style.display = 'none';
+        const container = document.getElementById('quizContainer');
+        container.style.display = 'block';
+        container.innerHTML = '';
+
+        currentQuestions.forEach((q, index) => {
+            const isMulti = q.assessment_type === 'multi-select';
+            const inputType = isMulti ? 'checkbox' : 'radio';
+            const qTypeLabel = isMulti ? "Scelta Multipla (Seleziona più di una)" : "Scelta Singola";
+
+            let answersHtml = '';
+            // Map a, b, c, d to index 0, 1, 2, 3
+            const alphabet = "abcdefghijklmnopqrstuvwxyz";
+            
+            q.prompt.answers.forEach((ans, ansIndex) => {
+                const letter = alphabet[ansIndex];
+                answersHtml += `
+                    <label id="label_${index}_${letter}">
+                        <input type="${inputType}" name="q_${index}" value="${letter}">
+                        ${letter.toUpperCase()}) ${ans.replace(/<p>|<\/p>/g, '')}
+                    </label>
+                `;
+            });
+
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.innerHTML = `
+                <span class="badge">${q.section}</span> <span class="badge" style="background:#555;">${qTypeLabel}</span>
+                <div class="question-text">${index + 1}. ${q.prompt.question}</div>
+                <div class="answers" id="answers_${index}">
+                    ${answersHtml}
+                </div>
+                <div class="explanation" id="expl_${index}">
+                    <strong>Spiegazione Ufficiale:</strong><br>
+                    ${q.prompt.explanation}
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        document.getElementById('submitBtn').style.display = 'inline-block';
+    }
+
+    function submitExam() {
+        let correctCount = 0;
+        let moduleStats = {};
+
+        currentQuestions.forEach((q, index) => {
+            // Track module totals
+            if (!moduleStats[q.section]) {
+                moduleStats[q.section] = { total: 0, correct: 0 };
+            }
+            moduleStats[q.section].total++;
+
+            const inputs = document.querySelectorAll(`input[name="q_${index}"]:checked`);
+            const selectedLetters = Array.from(inputs).map(i => i.value).sort();
+            const correctLetters = [...q.correct_response].sort();
+
+            const isCorrect = JSON.stringify(selectedLetters) === JSON.stringify(correctLetters);
+
+            if (isCorrect) {
+                correctCount++;
+                moduleStats[q.section].correct++;
+            }
+
+            // Highlight answers
+            const allInputs = document.querySelectorAll(`input[name="q_${index}"]`);
+            allInputs.forEach(input => {
+                const letter = input.value;
+                const label = document.getElementById(`label_${index}_${letter}`);
+                input.disabled = true; // lock input
+
+                if (correctLetters.includes(letter)) {
+                    label.classList.add('correct-answer');
+                } else if (input.checked && !correctLetters.includes(letter)) {
+                    label.classList.add('wrong-answer');
+                }
+            });
+
+            // Show explanation
+            document.getElementById(`expl_${index}`).style.display = 'block';
+        });
+
+        showResults(correctCount, currentQuestions.length, moduleStats);
+    }
+
+    function showResults(correct, total, stats) {
+        document.getElementById('submitBtn').style.display = 'none';
+        const resultsSection = document.getElementById('results');
+        resultsSection.style.display = 'block';
+
+        const percentage = Math.round((correct / total) * 100);
+        document.getElementById('totalScore').innerText = `${percentage}% (${correct}/${total})`;
+
+        const adviceBox = document.getElementById('adviceBox');
+        if (percentage >= 75) {
+            adviceBox.className = 'advice ready';
+            adviceBox.innerHTML = `✅ SEI PRONTA PER L'ESAME! <br><span style="font-size:16px;font-weight:normal;">Hai superato la soglia di sbarramento (70%). Ti consiglio di prenotare l'esame o affrontare il test vero e proprio con questa fiducia.</span>`;
+        } else {
+            adviceBox.className = 'advice not-ready';
+            adviceBox.innerHTML = `⚠️ C'È ANCORA DA LAVORARE. <br><span style="font-size:16px;font-weight:normal;">Non sei ancora in zona di sicurezza (richiesto 70%). Analizza i moduli deboli qui sotto e ripassa il Cheat Sheet.</span>`;
+        }
+
+        let statsHtml = '';
+        for (const [module, data] of Object.entries(stats)) {
+            const modPercent = Math.round((data.correct / data.total) * 100);
+            let barColor = modPercent >= 70 ? 'var(--success)' : 'var(--danger)';
+            
+            statsHtml += `
+                <div style="margin-top:15px; font-size:14px;">${module}</div>
+                <div class="module-stat-bar">
+                    <div class="module-stat-fill" style="width: ${modPercent}%; background-color: ${barColor};"></div>
+                    <div class="module-stat-text">${modPercent}% (${data.correct}/${data.total})</div>
+                </div>
+            `;
+        }
+        document.getElementById('moduleStats').innerHTML = statsHtml;
+
+        // Scroll to results
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
