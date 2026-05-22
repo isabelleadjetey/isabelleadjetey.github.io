@@ -1,4 +1,9 @@
-# Recap CCNA: Security Device Hardening (5.3 & 5.4)
+# 📘 CCNA Knowledge Base: Security Device Hardening (5.3 & 5.4)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Questo documento copre le basi della messa in sicurezza del router/switch stesso. Nello SNOC, prima di proteggere i dati del cliente, bisogna assicurarsi che nessuno possa "bucare" l'interfaccia di gestione degli apparati.
 
@@ -112,3 +117,9 @@ interface range GigabitEthernet0/2 - 24
 3.  **`show line vty 0 4`**: Per controllare chi è collegato al router in questo momento.
 
 ---
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

@@ -1,4 +1,9 @@
-# Recap CCNA: EtherChannel e LACP (Dominio 2)
+# 📘 CCNA Knowledge Base: EtherChannel e LACP (Dominio 2)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 *📚 **Riferimento di Studio:** [Jeremy's IT Lab (Day 17)](https://www.youtube.com/playlist?list=PLQQoNK6GeB_YfshLIX7YjEq946_S7xT03)*
 
@@ -58,3 +63,9 @@ Se le porte non hanno parametri **identici**, l'EtherChannel non salirà mai. De
 3.  **`show etherchannel load-balance`**: Per capire come lo switch distribuisce i pacchetti tra i vari cavi (es. in base all'IP o al MAC).
 
 ---
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

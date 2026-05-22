@@ -1,4 +1,9 @@
-# Recap CCNA: BGP (Border Gateway Protocol)
+# 📘 CCNA Knowledge Base: BGP (Border Gateway Protocol)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Questo documento riassume le basi del protocollo che "tiene in piedi Internet". A differenza di OSPF, il BGP non serve a trovare la strada più veloce tra due switch, ma a negoziare il passaggio dei dati tra intere nazioni digitali.
 
@@ -68,3 +73,9 @@ Nello SNOC userai questi comandi ogni giorno:
 > [!WARNING]
 > **Il Sogno (o Incubo) dello SNOC: BGP Prefix Hijacking**
 > Succede quando un AS annuncia per errore (o cattiveria) di possedere degli IP non suoi (es. gli IP di Google). Il BGP, se non filtrato bene, si fida e devia tutto il traffico mondiale verso l'impostore. È un'emergenza da "codice rosso" che solo i Senior sanno gestire!
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

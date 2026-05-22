@@ -1,4 +1,9 @@
-# Recap CCNA: L2 Security Hardening (5.7)
+# 📘 CCNA Knowledge Base: L2 Security Hardening (5.7)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 La sicurezza di Layer 2 protegge il "punto di accesso" fisico alla rete. Nello SNOC, queste sono le misure che impediscono a un utente malintenzionato (o distratto) di attaccare un dispositivo abusivo a una presa al muro dell'ufficio.
 
@@ -56,3 +61,9 @@ interface FastEthernet 0/1
 3.  **`errdisable recovery cause psecure-violation`**: Un trucco utile per far riaccendere la porta automaticamente dopo un po' di tempo.
 
 ---
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

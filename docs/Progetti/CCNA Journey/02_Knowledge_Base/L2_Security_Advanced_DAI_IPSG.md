@@ -1,4 +1,9 @@
-# Advanced Layer 2 Security: DAI & IP Source Guard
+# 📘 CCNA Knowledge Base: Advanced Layer 2 Security: DAI & IP Source Guard
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Queste tecnologie rappresentano il livello superiore della sicurezza negli switch Enterprise e sono fondamentali per proteggere la rete da attacchi di "Man-in-the-Middle" e "Spoofing".
 
@@ -53,3 +58,9 @@ Per una porta utente sicura al 100%, la configurazione ideale è:
 
 ---
 *(Recap per Isabelle - Fase Finale CCNA)*
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

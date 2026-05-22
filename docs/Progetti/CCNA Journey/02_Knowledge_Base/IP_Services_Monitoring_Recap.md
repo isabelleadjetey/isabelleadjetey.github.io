@@ -1,4 +1,9 @@
-# Recap CCNA: Monitoring & Management (NTP, SNMP, Syslog)
+# 📘 CCNA Knowledge Base: Monitoring & Management (NTP, SNMP, Syslog)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Questi tre servizi sono gli "occhi e le orecchie" dello SNOC. Senza di loro, saresti cieca: non sapresti quando un link cade, chi sta consumando banda o se l'ora degli eventi è corretta.
 
@@ -62,3 +67,9 @@ logging trap notifications     <-- Invia solo dai log di livello 5 in su (evita 
 3.  **`show snmp`**: Per vedere quanti pacchetti di monitoraggio sono arrivati.
 
 ---
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

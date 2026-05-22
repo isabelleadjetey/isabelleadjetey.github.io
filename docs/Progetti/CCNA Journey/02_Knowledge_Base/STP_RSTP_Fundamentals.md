@@ -1,4 +1,9 @@
-# Recap CCNA: STP e RSTP (Loop Prevention)
+# 📘 CCNA Knowledge Base: STP e RSTP (Loop Prevention)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 *📚 **Riferimento di Studio:** [Jeremy's IT Lab (Day 20-22)](https://www.youtube.com/playlist?list=PLQQoNK6GeB_YfshLIX7YjEq946_S7xT03)*
 
@@ -61,3 +66,9 @@ spanning-tree mode rapid-pvst  <-- (Comando standard da usare sempre nei lab mod
 2.  **`show spanning-tree summary`**: Per vedere velocemente se PortFast o BPDU Guard sono attivi.
 
 ---
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

@@ -1,4 +1,9 @@
-# Recap Lab CCNA: OSPF (Open Shortest Path First)
+# 📘 CCNA Knowledge Base: Recap Lab CCNA: OSPF (Open Shortest Path First)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 *📄 **File Esercizio Originale:** [20-1 OSPF Configuration Lab Exercise.pdf](file:///C:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/20-1%20OSPF%20Configuration%20Lab%20Exercise.pdf)*
 
@@ -93,3 +98,9 @@ router ospf 1
 Nello SNOC vedrai il Multi-Area per **isolare i problemi**: se c'è un malfunzionamento (flap) in Area 10, i router in Area 0 non dovranno ricalcolare tutta la loro mappa, ma riceveranno solo un "riassunto" dall'ABR. Questo mantiene la rete stabile e veloce.
 
 ---
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

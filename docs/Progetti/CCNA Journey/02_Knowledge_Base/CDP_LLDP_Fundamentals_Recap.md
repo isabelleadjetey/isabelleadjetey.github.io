@@ -1,4 +1,4 @@
-# Recap CCNA: CDP e LLDP (Protocolli di Scoperta)
+# 📘 CCNA Knowledge Base: CDP e LLDP (Protocolli di Scoperta)
 
 *🎯 **Obiettivo:** Riconoscere le differenze tra CDP e LLDP, saperli configurare e comprendere come mappare una rete sconosciuta tramite i "neighbors".*
 
@@ -61,3 +61,9 @@ Questi comandi sono il pane quotidiano del Network Engineer:
 *   **Il problema:** CDP e LLDP inviano pacchetti multicasting **in chiaro** (senza alcuna crittografia).
 *   **Il rischio:** Se lasci CDP attivo su una porta attaccata a un PC o rivolta verso Internet, un utente malintenzionato o un malware può usare Wireshark per "sniffare" la rete e scoprire l'IP del tuo router, il modello esatto e la versione di IOS (per poi cercare vulnerabilità specifiche di quella versione).
 *   **Best Practice CCNA:** Spegni sempre CDP/LLDP (`no cdp enable` / `no lldp transmit`) sulle "Edge Ports", ovvero le porte collegate agli Endpoints o a reti non sicure. Mantienili attivi solo sui link tra Switch-e-Switch o Switch-e-Router.
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

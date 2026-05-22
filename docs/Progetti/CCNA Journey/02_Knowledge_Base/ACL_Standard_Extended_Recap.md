@@ -1,4 +1,9 @@
-# Recap CCNA: ACL Standard ed Estese (5.6)
+# 📘 CCNA Knowledge Base: ACL Standard ed Estese (5.6)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Le **ACL (Access Control Lists)** sono le regole fondamentali per filtrare il traffico. Senza ACL, la rete è un'autostrada senza caselli dove chiunque può andare ovunque.
 
@@ -88,3 +93,9 @@ access-list 10 permit 192.168.100.5   <-- Permette solo al PC del Sistemista
 line vty 0 4
  access-class 10 in                   <-- Usa 'access-class'! Questo è importantissimo.
 ```
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

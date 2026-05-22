@@ -1,4 +1,9 @@
-# Recap: FHRP e HSRP (Lab Pratico)
+# 📘 CCNA Knowledge Base: Recap: FHRP e HSRP (Lab Pratico)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Questo documento riassume i concetti chiave e i passaggi pratici affrontati durante il laboratorio su **FHRP (First Hop Redundancy Protocol)**, con focus specifico su **HSRP (Hot Standby Router Protocol)**.
 
@@ -60,3 +65,9 @@ Durante il lab abbiamo incontrato degli ostacoli utilissimi per capire come ragi
 
 3.  **Visualizzare lo stato magico:**
     Il comando definitivo per controllare se preemption, priorità e IP virtuali stanno funzionando correttamente è `show standby brief` lanciato direttamente sul terminale del router.
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

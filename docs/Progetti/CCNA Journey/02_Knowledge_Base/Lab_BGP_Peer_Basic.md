@@ -1,4 +1,9 @@
-# Lab CCNA: eBGP Peering (PNETLab Edition)
+# 📘 CCNA Knowledge Base: Lab CCNA: eBGP Peering (PNETLab Edition)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Questo laboratorio ti guida nella configurazione di una sessione **eBGP** tra la tua rete aziendale e un Internet Service Provider (ISP). In PNETLab, puoi usare nodi Cisco IOL (IOS on Linux) o Dynamips per questo esercizio.
 
@@ -113,3 +118,9 @@ Per attivare questa "super-vista" sui tuoi router:
 1.  Fai **tasto destro sull'icona del Router** (es. R1).
 2.  Seleziona **Capture** -> Scegli l'interfaccia collegata al vicino (es. `G0/0` o `E0/0`).
 3.  Se Wireshark è già aperto e la sessione è già *Established*, lancia il comando `clear ip bgp * soft` sul router per forzare lo scambio di nuovi messaggi da osservare.
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

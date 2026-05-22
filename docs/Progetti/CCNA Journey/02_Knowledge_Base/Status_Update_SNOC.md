@@ -1,4 +1,4 @@
-# CCNA & SNOC Integration: Status Update
+# 📘 CCNA Knowledge Base: CCNA & SNOC Integration: Status Update
 
 **Data:** Maggio 2026
 **Obiettivo:** Condivisione sintetica dei progressi di studio e allineamento per l'operatività all'interno del team SNOC.
@@ -37,3 +37,9 @@ Le mie priorità per le prossime due settimane si dividono tra chiusura del prog
     *   Verifica allarmi su tool di monitoraggio (SNMP).
     *   Ricerca e analisi eventi sui log accentrati (Syslog).
     *   Verifiche di base sulla connettività interna e tabelle di routing.
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

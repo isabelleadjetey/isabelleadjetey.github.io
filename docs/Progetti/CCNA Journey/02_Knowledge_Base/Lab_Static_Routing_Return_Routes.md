@@ -1,4 +1,4 @@
-# Lab CCNA: Rotte Statiche e il Mistero delle "Rotte di Ritorno" 
+# 📘 CCNA Knowledge Base: Lab CCNA: Rotte Statiche e il Mistero delle "Rotte di Ritorno"
 
 *🎯 **Obiettivo:** Comprendere a fondo il routing statico e risolvere il classico ticket SNOC del "Ping in Timeout" causato da una rotta di ritorno mancante.*
 
@@ -144,3 +144,9 @@ ip route 192.168.10.0 255.255.255.0 10.0.23.1
 ```
 
 Dal **PC 1** prova a pingare `8.8.8.8`. Riuscirà ad arrivarci grazie a R1, attraverserà R2 e, grazie alla rotta di ritorno su R3, il pacchetto tornerà indietro vivo e vegeto!
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

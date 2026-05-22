@@ -1,4 +1,9 @@
-# Recap CCNA & SNOC: SNMP (Simple Network Management Protocol)
+# 📘 CCNA Knowledge Base: & SNOC: SNMP (Simple Network Management Protocol)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Mentre il *Syslog* permette al router di dirti quando qualcosa non va (inviando log), l'**SNMP** è lo strumento che permette al tuo sistema di monitoraggio (NMS, come Zabbix, PRTG o SolarWinds) di **interrogare costantemente** l'apparato per sapere come sta.
 

@@ -1,4 +1,4 @@
-# Recap CCNA: QoS (Quality of Service) Fundamentals
+# 📘 CCNA Knowledge Base: QoS (Quality of Service) Fundamentals
 
 *🎯 **Obiettivo:** Comprendere come i router danno priorità al traffico importante (come la voce) rispetto al traffico meno critico (come i download).*
 
@@ -31,3 +31,9 @@ Servono a limitare la banda consumata (Traffic Conditioning).
 
 ### 💡 SNOC Pro-Tip
 Se il cliente lamenta che la voce "scatta" solo quando l'ufficio è pieno, il problema non è la linea "guasta", ma probabilmente la coda LLQ non sta funzionando: i pacchetti VoIP stanno facendo la fila insieme ai download di Windows Update!
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

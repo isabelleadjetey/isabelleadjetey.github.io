@@ -1,4 +1,9 @@
-# Recap CCNA: Wireless — Fondamentali, Architetture e Sicurezza
+# 📘 CCNA Knowledge Base: Wireless — Fondamentali, Architetture e Sicurezza
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Questo documento copre tutti i sotto-argomenti wireless del Blueprint CCNA 200-301:
 - **Dominio 1:** Fondamentali wireless — frequenze, canali, standard 802.11, CSMA/CA
@@ -296,12 +301,12 @@ Ogni utente ha le **proprie credenziali individuali** (username + password).
 
 ### 3. Tabella Comparativa — Per l'Esame
 
-| Protocollo | Cifratura | Auth Personal | Auth Enterprise | Sicurezza |
-|---|---|---|---|---|
-| **WEP** | RC4 (statico) | Chiave statica | ❌ | ❌ Rotto |
-| **WPA** | TKIP (dinamico) | PSK | 802.1X | ⚠️ Debole |
-| **WPA2** | **AES-CCMP** | PSK | **802.1X** | ✅ Standard |
-| **WPA3** | **AES-GCMP-256** | **SAE** | 802.1X (Enhanced) | ✅✅ Migliore |
+| Protocollo | Cifratura       | Auth Personal | Auth Enterprise  | Sicurezza    |
+|------------|-----------------|---------------|------------------|--------------|
+| **WEP**    | RC4 (statico)   | Chiave statica| ❌               | ❌ Rotto     |
+| **WPA**    | TKIP (dinamico) | PSK           | 802.1X           | ⚠️ Debole     |
+| **WPA2**   | **AES-CCMP**    | PSK           | **802.1X**       | ✅ Standard   |
+| **WPA3**   | **AES-GCMP-256**| **SAE**       | 802.1X (Enhanced) | ✅✅ Migliore |
 
 
 ---
@@ -309,7 +314,7 @@ Ogni utente ha le **proprie credenziali individuali** (username + password).
 ## 🧠 Cheat Sheet per l'Esame
 
 | Domanda tipo | Risposta |
-|---|---|
+|--- ----------|---|
 | "AP gestiti centralmente" | **Lightweight AP + WLC** |
 | "Protocollo tra LAP e WLC" | **CAPWAP (UDP 5246/5247)** |
 | "AP che funziona anche senza WLC" | **FlexConnect** |

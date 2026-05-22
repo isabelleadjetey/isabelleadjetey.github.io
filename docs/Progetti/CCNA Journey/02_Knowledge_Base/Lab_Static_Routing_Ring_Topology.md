@@ -1,4 +1,4 @@
-# Lab CCNA: Routing Ad Anello e Floating Static Routes
+# 📘 CCNA Knowledge Base: Lab CCNA: Routing Ad Anello e Floating Static Routes
 
 *🎯 **Obiettivo:** Gestire rotte statiche in una topologia Enterprise ad anello per evitare Loop, garantendo ridondanza in caso di failover grazie alle **Floating Static Routes** (manipolazione della Administrative Distance).*
 
@@ -98,3 +98,9 @@ Una volta configurato l'anello, usa `show ip route` su R1: la Floating Route con
 Ora stacca virtualmente in PNETLab il cavo che collega R1 a R2 e osserva:
 1. Ridai il comando `show ip route` su R1: la rotta verso `10.0.12.2` è sparita, ed **è magicamente apparsa la rotta verso `10.0.13.2`**.
 2. Il Ping da PC1 a PC2, a parte magari uno o due pacchetti persi per il timeout di convergenza, **tornerà a funzionare**, facendo il mega giro via R3.
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

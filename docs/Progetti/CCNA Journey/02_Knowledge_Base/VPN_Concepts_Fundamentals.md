@@ -1,4 +1,9 @@
-# Recap CCNA: VPN Concepts & Fundamentals (5.5)
+# 📘 CCNA Knowledge Base: VPN Concepts & Fundamentals (5.5)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 Le VPN (Virtual Private Networks) sono la tecnologia che permette alle aziende di far comunicare le proprie sedi o i propri dipendenti remoti usando Internet come se fosse un cavo privato e sicuro.
 
@@ -47,3 +52,9 @@ Per essere sicuro, un tunnel IPsec deve garantire 4 cose:
 *   **Tunnel Interface:** L'interfaccia "virtuale" che il tecnico vede sul router per gestire il traffico VPN.
 
 ---
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

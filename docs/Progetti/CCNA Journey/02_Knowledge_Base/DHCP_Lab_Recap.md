@@ -1,4 +1,9 @@
-# Recap Lab CCNA: Il mondo DHCP (Client, Server e Relay)
+# 📘 CCNA Knowledge Base: Recap Lab CCNA: Il mondo DHCP (Client, Server e Relay)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 *📄 **File Esercizio Originale:** [23-1 DHCP Configuration Lab Exercise.pdf](file:///C:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/23-1%20DHCP%20Configuration%20Lab%20Exercise.pdf)*
 
@@ -57,3 +62,9 @@ Smette di funzionare perché il famosissimo messaggio D.O.R.A. iniziale del PC i
 interface f0/1
  ip helper-address 10.10.20.10
 ```
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

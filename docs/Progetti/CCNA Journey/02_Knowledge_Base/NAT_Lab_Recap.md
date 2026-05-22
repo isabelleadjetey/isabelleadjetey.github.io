@@ -1,4 +1,9 @@
-# Recap Lab CCNA: Network Address Translation (NAT)
+# 📘 CCNA Knowledge Base: Recap Lab CCNA: Network Address Translation (NAT)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 *📄 **File Esercizio Originale:** [29-1 NAT Configuration Lab Exercise.pdf](file:///C:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/29-1%20NAT%20Configuration%20Lab%20Exercise.pdf)*
 
@@ -93,3 +98,9 @@ Combinando i termini otteniamo i 4 elementi della tua tabella `show ip nat trans
 2. **Inside Global (Lo Smoking):** L'IP pubblico che ti ha prestato NAT. È la maschera con cui ti vedono i poliziotti su internet prima che tu rientri e ti rimetta il pigiama (es. `203.0.0.1`).
 3. **Outside Global (Il Palazzo Esterno):** L'indirizzo pubblico incancellabile del Server web che stai provando a contattare fuori sede (es. Google `8.8.8.8`).
 4. **Outside Local (L'Ospite Esterno):** L'indirizzo del server esterno così come lo vedi restando in pigiama a casa tua. Nel 99% dei casi e dei lab, è **Esattamente Identico** al Global (continui a vederlo e digitarlo come `8.8.8.8`) perché non devi tradurlo.
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

@@ -1,4 +1,9 @@
-# Recap CCNA: VLAN e Trunking (Dominio 2)
+# 📘 CCNA Knowledge Base: VLAN e Trunking (Dominio 2)
+
+> **Obiettivo:** Documento di revisione rapida e configurazione per l'esame CCNA.
+> **Dominio CCNA:** Core Networking
+
+---
 
 *📚 **Riferimento di Studio:** [Jeremy's IT Lab (Day 11 & 12)](https://www.youtube.com/playlist?list=PLQQoNK6GeB_YfshLIX7YjEq946_S7xT03)*
 
@@ -56,3 +61,9 @@ Se i PC in VLAN 10 non si pingano tra switch diversi, controlla questi comandi:
 3.  **`show vlan id 10`**: Per vedere tutti i dettagli di una singola stanza.
 
 ---
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

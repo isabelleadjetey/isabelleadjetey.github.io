@@ -1,4 +1,4 @@
-# Lab CCNA: Monitoraggio Proattivo (NTP e Syslog)
+# 📘 CCNA Knowledge Base: Lab CCNA: Monitoraggio Proattivo (NTP e Syslog)
 
 *🎯 **Obiettivo:** Trasformare un router "isolato" in un apparato monitorato professionalmente, garantendo che ogni evento sia registrato con la data e l'ora esatta.*
 
@@ -79,3 +79,9 @@ Se durante il turno vedi dei log che iniziano con un asterisco `*` o un punto `.
 *   `.` = L'NTP era sincronizzato ma ha perso il segnale.
 
 **Messaggio per il tuo mentor:** *"Ho notato che alcuni apparati hanno il punto accanto ai timestamp dei log, potrei controllare se i server NTP aziendali sono raggiungibili da quelle zone di rete?"* (Punti bonus assicurati! 🚀)
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*

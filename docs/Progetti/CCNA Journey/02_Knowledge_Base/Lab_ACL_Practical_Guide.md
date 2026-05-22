@@ -1,4 +1,4 @@
-# Lab CCNA: ACL Standard ed Estese (PNETLab)
+# 📘 CCNA Knowledge Base: Lab CCNA: ACL Standard ed Estese (PNETLab)
 
 *🎯 **Obiettivo:** Configurare il "Buttafuori" della rete per proteggere i server aziendali.*
 
@@ -107,3 +107,9 @@ interface Loopback 0
 
 write memory
 ```
+
+
+---
+
+### 🎯 Cheat Sheet per l'Esame
+*(Sezione riservata a comandi rapidi e QCM per il ripasso finale)*
