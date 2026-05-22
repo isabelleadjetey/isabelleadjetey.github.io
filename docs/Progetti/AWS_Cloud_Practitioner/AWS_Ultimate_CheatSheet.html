@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS Cloud Practitioner (CLF-C02) - Ultimate Cheat Sheet</title>
+    <title>AWS Cloud Practitioner (CLF-C02) - L'Enciclopedia Definitiva</title>
     <style>
         :root {
             --primary: #232f3e;
@@ -98,7 +98,6 @@
             li {
                 page-break-inside: avoid;
             }
-            /* Add page breaks before certain sections to keep it clean */
             .page-break {
                 page-break-before: always;
             }
@@ -110,91 +109,132 @@
 <div class="container">
     <header>
         <h1>☁️ AWS Cloud Practitioner (CLF-C02)</h1>
-        <div class="subtitle">Ultimate Cheat Sheet - Associazione Mentale Rapida</div>
+        <div class="subtitle">L'Enciclopedia Definitiva - 100% dei Servizi dell'Esame</div>
     </header>
 
     <h2>1. Compute (Calcolo)</h2>
     <ul>
-        <li><strong>Amazon EC2:</strong> Server virtuale (IaaS). Gestisci tu OS e patch.</li>
-        <li><strong>AWS Lambda:</strong> Serverless / FaaS. Esegui codice senza gestire server. Paghi al millisecondo.</li>
-        <li><strong>AWS Elastic Beanstalk:</strong> PaaS. Carichi il codice, AWS crea tutta l'infrastruttura web in automatico.</li>
-        <li><strong>Amazon ECS / EKS:</strong> Orchestrazione di Container (Docker) / Kubernetes.</li>
+        <li><strong>Amazon EC2:</strong> Server virtuale (IaaS). Gestione totale dell'OS.</li>
+        <li><strong>AWS Lambda:</strong> Serverless / FaaS. Esegui codice a evento, paghi al millisecondo.</li>
+        <li><strong>AWS Elastic Beanstalk:</strong> PaaS. Carichi il codice web, AWS crea l'infrastruttura in automatico.</li>
+        <li><strong>Amazon ECS:</strong> Orchestrazione Container proprietaria AWS (Docker).</li>
+        <li><strong>Amazon EKS:</strong> Orchestrazione Container standard open-source (Kubernetes).</li>
+        <li><strong>AWS Fargate:</strong> Motore Serverless per far girare i container senza gestire le istanze EC2 sottostanti.</li>
+        <li><strong>Amazon Lightsail:</strong> Il server virtuale "per principianti" (VPS preconfigurata a costo fisso).</li>
+        <li><strong>AWS Outposts:</strong> Server fisici AWS installati nel <em>tuo</em> datacenter (Cloud Ibrido).</li>
+        <li><strong>AWS Batch:</strong> Per elaborazioni di dati massicce in parallelo.</li>
     </ul>
 
     <h2>2. Storage</h2>
     <ul>
-        <li><strong>Amazon S3:</strong> Object storage. Usato per backup, immagini, o siti web statici.</li>
-        <li><strong>Amazon EBS:</strong> Block storage. L'hard disk attaccato alla singola istanza EC2.</li>
-        <li><strong>Amazon EFS:</strong> File storage. Disco condiviso a cui possono accedere <em>più</em> istanze EC2 (solo Linux) contemporaneamente.</li>
-        <li><strong>AWS Storage Gateway:</strong> Cloud ibrido. Collega i server on-premise allo storage in cloud (S3).</li>
-        <li><strong>AWS Snowball:</strong> Dispositivo fisico (valigia) per trasferire Petabyte di dati verso AWS senza intasare internet.</li>
+        <li><strong>Amazon S3:</strong> Object storage. Dati piatti, immagini, log, siti web statici. (Classe <em>Standard</em> = default).</li>
+        <li><strong>S3 Standard-IA:</strong> Infrequent Access. Accesso immediato ma file letti raramente (più economico dello Standard).</li>
+        <li><strong>S3 One Zone-IA:</strong> Dati in una sola AZ. Più economico ma meno ridondante.</li>
+        <li><strong>S3 Glacier Flexible Retrieval:</strong> Archiviazione. Recupero da minuti a ore.</li>
+        <li><strong>S3 Glacier Deep Archive:</strong> Archiviazione a lungo termine a costo infimo. Recupero in 12 ore.</li>
+        <li><strong>S3 Intelligent-Tiering:</strong> Sposta i dati tra classi in automatico usando l'AI per risparmiare.</li>
+        <li><strong>Amazon EBS:</strong> Block storage. L'hard disk collegato a 1 singola istanza EC2.</li>
+        <li><strong>Amazon EFS:</strong> File storage (NFS). Disco condiviso a cui accedono <em>molte</em> istanze Linux contemporaneamente.</li>
+        <li><strong>Amazon FSx:</strong> File system nativo ad alte prestazioni per Windows o per HPC (Lustre).</li>
+        <li><strong>AWS Storage Gateway:</strong> Ponte ibrido. Collega i server locali allo storage in cloud (S3).</li>
+        <li><strong>AWS Snow Family:</strong> Valigie fisiche per spostare enormi dati (Snowcone, Snowball Edge, Snowmobile).</li>
     </ul>
 
-    <h2>3. Database</h2>
+    <h2 class="page-break">3. Database</h2>
     <ul>
         <li><strong>Amazon RDS:</strong> Database relazionale (SQL). AWS gestisce backup e patch.</li>
-        <li><strong>Amazon Aurora:</strong> Versione "premium" di RDS (compatibile MySQL/PostgreSQL), molto più veloce e scalabile.</li>
-        <li><strong>Amazon DynamoDB:</strong> Database NoSQL (Key-Value). Serverless, latenza a singola cifra di millisecondo.</li>
-        <li><strong>Amazon Redshift:</strong> Data Warehouse. Usato per Big Data e Analytics (Business Intelligence).</li>
-        <li><strong>Amazon ElastiCache:</strong> Caching in-memory (Redis, Memcached) per velocizzare le letture dei database.</li>
+        <li><strong>Amazon Aurora:</strong> Versione "premium" di RDS proprietaria AWS, ultra veloce.</li>
+        <li><strong>Amazon DynamoDB:</strong> Database NoSQL (Key-Value). Serverless, latenza bassissima, scala all'infinito.</li>
+        <li><strong>Amazon DocumentDB:</strong> Database NoSQL per documenti (Compatibile MongoDB).</li>
+        <li><strong>Amazon Redshift:</strong> Data Warehouse. Big Data e Analytics (es. Data mining storico).</li>
+        <li><strong>Amazon Neptune:</strong> Graph Database (usato per social network, raccomandazioni, engine relazionali complessi).</li>
+        <li><strong>Amazon QLDB:</strong> Database a registro (Ledger). Criptograficamente immutabile (es. per transazioni finanziarie).</li>
+        <li><strong>Amazon ElastiCache:</strong> Caching in-memory (Redis, Memcached) per velocizzare letture estreme.</li>
     </ul>
 
     <h2>4. Networking & Content Delivery</h2>
     <ul>
-        <li><strong>Amazon VPC:</strong> Rete virtuale privata per isolare le tue risorse.</li>
-        <li><strong>Amazon Route 53:</strong> Servizio DNS (Domain Name System). Globalmente distribuito.</li>
-        <li><strong>Amazon CloudFront:</strong> CDN (Content Delivery Network). Usa le <em>Edge Locations</em> per consegnare contenuti agli utenti di tutto il mondo con bassissima latenza.</li>
+        <li><strong>Amazon VPC:</strong> Rete virtuale privata isolata (Subnet, Gateway, Route tables).</li>
+        <li><strong>Amazon Route 53:</strong> Servizio DNS. (Route 53 = DNS sulla porta 53).</li>
+        <li><strong>Amazon CloudFront:</strong> CDN (Content Delivery Network). Usa <em>Edge Locations</em> per latenza nulla globalmente.</li>
+        <li><strong>AWS Direct Connect:</strong> Cavo in fibra ottica fisico e dedicato tra l'ufficio e AWS. Non passa su internet.</li>
+        <li><strong>AWS VPN:</strong> Connessione sicura verso il VPC usando l'Internet pubblico.</li>
+        <li><strong>AWS Transit Gateway:</strong> L'Hub centrale di rete. Connette migliaia di VPC e reti on-premise insieme.</li>
+        <li><strong>AWS Global Accelerator:</strong> Riduce la latenza indirizzando il traffico sul backbone privato di AWS invece che su internet pubblico.</li>
+        <li><strong>Amazon API Gateway:</strong> Crea e protegge API (spesso di fronte alle funzioni Lambda).</li>
     </ul>
 
-    <h2 class="page-break">5. Sicurezza e Identità (Security)</h2>
+    <h2 class="page-break">5. Security, Identity & Compliance</h2>
     <ul>
-        <li><strong>AWS IAM:</strong> Gestione utenti, gruppi, ruoli e policy. (Niente password root usate quotidianamente!).</li>
-        <li><strong>AWS WAF:</strong> Web Application Firewall. Protegge le app (Layer 7) da SQL injection e Cross-Site Scripting (XSS).</li>
-        <li><strong>AWS Shield:</strong> Protezione da attacchi DDoS (Layer 3/4). <em>Shield Standard</em> è gratuito e automatico.</li>
-        <li><strong>AWS KMS:</strong> Key Management Service. Per creare e gestire le chiavi di crittografia.</li>
-        <li><strong>Amazon Macie:</strong> Usa il Machine Learning per trovare dati sensibili (PII, carte di credito) dentro i bucket S3.</li>
-        <li><strong>Amazon GuardDuty:</strong> Rilevamento intelligente delle minacce nel tuo account.</li>
-        <li><strong>Amazon Inspector:</strong> Scansiona le istanze EC2 per trovare vulnerabilità del software.</li>
+        <li><strong>AWS IAM:</strong> Gestione utenti, gruppi, ruoli e policy.</li>
+        <li><strong>AWS IAM Identity Center (ex SSO):</strong> Login singolo per accedere a molteplici account AWS.</li>
+        <li><strong>AWS WAF:</strong> Web Application Firewall. Protegge le app (Layer 7) da SQL injection/XSS.</li>
+        <li><strong>AWS Shield:</strong> Protezione DDoS (Layer 3/4). Lo <em>Standard</em> è automatico e gratuito.</li>
+        <li><strong>AWS KMS:</strong> Key Management Service. Crea e gestisce chiavi crittografiche.</li>
+        <li><strong>AWS CloudHSM:</strong> Crittografia basata su hardware fisico dedicato.</li>
+        <li><strong>AWS Secrets Manager:</strong> Salva e ruota in automatico le password del database in modo sicuro.</li>
+        <li><strong>Amazon Macie:</strong> Intelligenza artificiale per scovare dati sensibili (carte di credito) nascosti in S3.</li>
+        <li><strong>Amazon GuardDuty:</strong> "La guardia giurata". Analizza log per rilevare minacce in background.</li>
+        <li><strong>Amazon Inspector:</strong> Scansiona server EC2 e container per vulnerabilità software.</li>
+        <li><strong>AWS Security Hub:</strong> Il cruscotto centrale per gli avvisi di GuardDuty, Macie e Inspector.</li>
+        <li><strong>AWS Artifact:</strong> Portale per scaricare report legali di conformità di AWS (ISO, SOC).</li>
+        <li><strong>Amazon Cognito:</strong> Gestisce registrazione e login (Identity Pool) per utenti della tua Web App.</li>
     </ul>
 
     <h2>6. Management & Governance</h2>
     <ul>
-        <li><strong>Amazon CloudWatch:</strong> Monitoraggio delle <strong>Performance</strong> (CPU, RAM, allarmi).</li>
-        <li><strong>AWS CloudTrail:</strong> <strong>Auditing e Sicurezza</strong>. Registra tutte le chiamate API fatte nell'account ("Chi ha fatto cosa?").</li>
-        <li><strong>AWS Trusted Advisor:</strong> L'esperto automatico. Controlla il tuo account su 5 pilastri: Costi, Sicurezza, Tolleranza ai guasti, Performance, Service Limits.</li>
-        <li><strong>AWS Config:</strong> Registra e valuta le configurazioni delle tue risorse nel tempo.</li>
+        <li><strong>Amazon CloudWatch:</strong> Monitoraggio <strong>Performance</strong> (CPU, RAM, allarmi).</li>
+        <li><strong>AWS CloudTrail:</strong> Auditing di <strong>Sicurezza</strong>. Registra API calls (Chi ha fatto cosa?).</li>
+        <li><strong>AWS Trusted Advisor:</strong> Controlla costi, sicurezza, fault tolerance, performance, service limits.</li>
+        <li><strong>AWS Config:</strong> Registra storico modifiche (es. "Chi ha cambiato questa regola del firewall 3 giorni fa?").</li>
+        <li><strong>AWS CloudFormation:</strong> Infrastructure as Code (YAML/JSON).</li>
+        <li><strong>AWS Systems Manager (SSM):</strong> Patching e gestione automatizzata di intere flotte di server EC2.</li>
+        <li><strong>AWS Control Tower:</strong> Governance e gestione rapida per decine di account aziendali insieme.</li>
     </ul>
 
-    <h2>7. Billing, Pricing & Support</h2>
+    <h2 class="page-break">7. Analytics & Machine Learning</h2>
     <ul>
-        <li><strong>AWS Organizations:</strong> Più account AWS uniti. Fatturazione consolidata e sconti per volume.</li>
-        <li><strong>AWS Cost Explorer:</strong> Analizza graficamente i costi passati e prevede quelli futuri.</li>
-        <li><strong>AWS Budgets:</strong> Manda un allarme (email/SNS) quando stai per sforare il budget.</li>
-        <li><strong>AWS Pricing Calculator:</strong> Fai preventivi <em>prima</em> di creare le risorse.</li>
+        <li><strong>Amazon Athena:</strong> Fai query SQL sui file parcheggiati su S3 (senza creare server DB).</li>
+        <li><strong>Amazon Kinesis:</strong> Elaborazione e ingestione dati in <em>Real-Time Streaming</em> (es. clickstream live).</li>
+        <li><strong>Amazon EMR:</strong> Big Data framework managed (Hadoop, Spark).</li>
+        <li><strong>Amazon QuickSight:</strong> Business Intelligence (Dashboard interattive per manager).</li>
+        <li><strong>AWS Glue:</strong> Servizio ETL (Extract, Transform, Load) per preparare i dati.</li>
+        <li><strong>Amazon SageMaker:</strong> Sviluppare e allenare modelli Machine Learning.</li>
+        <li><strong>Amazon Rekognition:</strong> Riconoscimento immagini e video (volti, oggetti).</li>
+        <li><strong>Amazon Polly:</strong> Da Testo a Voce (Text-to-Speech).</li>
+        <li><strong>Amazon Transcribe:</strong> Da Voce a Testo (Speech-to-Text).</li>
+        <li><strong>Amazon Comprehend:</strong> NLP. Analisi del testo per capire il "sentimento" (Positivo, Negativo).</li>
+        <li><strong>Amazon Translate:</strong> Traduzione automatica tra decine di lingue.</li>
+    </ul>
+
+    <h2>8. Application Integration</h2>
+    <ul>
+        <li><strong>Amazon SNS:</strong> Simple Notification Service. Spedisce messaggi a pioggia (Pub/Sub) via email o sms.</li>
+        <li><strong>Amazon SQS:</strong> Simple Queue Service. Code di messaggi per "disaccoppiare" le app.</li>
+        <li><strong>AWS Step Functions:</strong> Workflow visivo a cascata (gestisce logiche di errore tra le Lambda).</li>
+    </ul>
+
+    <h2>9. Billing, Pricing & Support</h2>
+    <ul>
+        <li><strong>AWS Organizations:</strong> Fatturazione consolidata (sconti volume) + SCP (Blocca i permessi centralmente).</li>
+        <li><strong>AWS Cost Explorer:</strong> Analisi grafiche storiche + Previsioni.</li>
+        <li><strong>AWS Budgets:</strong> Alert istantanei al superamento spesa.</li>
+        <li><strong>AWS Pricing Calculator:</strong> Simulazioni preventive dei costi.</li>
         <li><strong>Support Plans:</strong>
             <ul>
-                <li><em>Basic:</em> Gratis. No supporto tecnico.</li>
-                <li><em>Developer:</em> Email, orario ufficio.</li>
-                <li><em>Business:</em> Telefono/Chat 24/7. Accesso a tutti i controlli Trusted Advisor.</li>
-                <li><em>Enterprise:</em> Telefono/Chat 24/7. Assegnazione di un TAM (Technical Account Manager).</li>
+                <li><em>Basic:</em> Nessun supporto tecnico.</li>
+                <li><em>Developer:</em> Email business hours.</li>
+                <li><em>Business:</em> Chat 24/7. Trusted Advisor completo.</li>
+                <li><em>Enterprise:</em> Supporto critico 15-min. TAM (Technical Account Manager).</li>
             </ul>
         </li>
     </ul>
 
-    <h2 class="page-break">8. Globale vs Regionale (Fondamentale!)</h2>
+    <h2 class="page-break">10. Global Infrastructure & Frameworks</h2>
     <ul>
-        <li><strong>Servizi Globali:</strong> IAM, Route 53, CloudFront, WAF.</li>
-        <li><strong>Servizi Regionali:</strong> EC2, S3 (il nome del bucket è globale, ma i dati risiedono in una regione), RDS, Lambda.</li>
-    </ul>
-
-    <h2>9. AWS Well-Architected Framework (I 6 Pilastri)</h2>
-    <ul>
-        <li><strong>Operational Excellence:</strong> Eseguire codice ed erogare valore (Infrastructure as Code).</li>
-        <li><strong>Security:</strong> Proteggere informazioni e sistemi.</li>
-        <li><strong>Reliability (Affidabilità):</strong> Riprendersi dai guasti e mitigare problemi.</li>
-        <li><strong>Performance Efficiency:</strong> Usare le risorse IT nel modo più efficiente.</li>
-        <li><strong>Cost Optimization:</strong> Evitare spese inutili.</li>
-        <li><strong>Sustainability:</strong> Minimizzare l'impatto ambientale.</li>
+        <li><strong>Globale:</strong> IAM, Route 53, CloudFront, WAF.</li>
+        <li><strong>Regionale:</strong> S3, EC2, Lambda, DynamoDB, RDS.</li>
+        <li><strong>Well-Architected Framework:</strong> 1) Eccellenza Operativa 2) Sicurezza 3) Affidabilità 4) Efficienza Prestazionale 5) Ottimizzazione Costi 6) Sostenibilità.</li>
     </ul>
 </div>
 
