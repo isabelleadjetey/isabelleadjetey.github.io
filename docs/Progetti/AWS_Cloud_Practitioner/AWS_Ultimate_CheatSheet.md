@@ -1,120 +1,143 @@
 # 🚀 AWS Cloud Practitioner (CLF-C02) - L'Enciclopedia Definitiva
 
-Questo cheat sheet esteso contiene la totalità dei servizi coperti dall'esame CLF-C02. Associa ogni servizio alla sua funzione primaria.
+Questo cheat sheet esteso contiene la totalità dei servizi e dei concetti coperti dall'esame CLF-C02, suddivisi per Dominio. Perfetto per il ripasso finale.
 
 ---
 
-## 🏗️ 1. Compute (Calcolo)
-*   **Amazon EC2:** Server virtuale (IaaS). Gestione totale.
-*   **AWS Lambda:** Serverless. Esegui codice a evento, paghi al millisecondo.
-*   **AWS Elastic Beanstalk:** PaaS. Carichi il codice, lui crea l'infrastruttura (EC2, Load Balancer, Auto Scaling).
-*   **Amazon ECS:** Orchestrazione Container proprietaria AWS (Docker).
-*   **Amazon EKS:** Orchestrazione Container standard open-source (Kubernetes).
-*   **AWS Fargate:** Motore Serverless per far girare i container (lo usi insieme a ECS o EKS per non gestire i server sottostanti).
-*   **Amazon Lightsail:** Il server virtuale "per principianti" (VPS preconfigurata a costo fisso mensile, come Aruba).
-*   **AWS Outposts:** Server fisici AWS installati nel *tuo* datacenter (Cloud Ibrido puro).
-*   **AWS Batch:** Per elaborazioni di dati massicce (batch) in parallelo.
+## ☁️ DOMINIO 1: Concetti Base del Cloud (Cloud Concepts)
 
-## 💾 2. Storage
-*   **Amazon S3:** Object storage. Dati piatti, immagini, log, siti web statici. (Classe *Standard* = default).
-*   **S3 Standard-IA:** Infrequent Access. Dati usati poco ma disponibili immediatamente (costa meno dello Standard).
-*   **S3 One Zone-IA:** Come IA, ma i dati sono in una sola Availability Zone. Più economico, meno sicuro (se il DC brucia, perdi i dati).
-*   **S3 Glacier Flexible Retrieval:** Archiviazione. Recupero da minuti a ore.
-*   **S3 Glacier Deep Archive:** Archiviazione a lungo termine a costo bassissimo. Recupero in 12 ore.
-*   **S3 Intelligent-Tiering:** Sposta i dati tra classi in automatico usando l'Intelligenza Artificiale (ottimizza i costi se non sai quanto accederai ai file).
-*   **Amazon EBS:** Block storage. L'Hard Disk (SSD/HDD) collegato a 1 sola istanza EC2.
-*   **Amazon EFS:** File storage (NFS). Disco di rete Linux condiviso su decine di istanze EC2.
-*   **Amazon FSx:** File system nativo per macchine Windows o per HPC (Lustre).
-*   **AWS Storage Gateway:** Ponte ibrido. Fa credere ai tuoi server locali di salvare su disco locale, ma in realtà carica tutto su S3 in cloud.
-*   **AWS Snow Family:** Dispositivi fisici inviati per posta per spostare enormi moli di dati:
-    *   *Snowcone:* Piccolo (8TB).
-    *   *Snowball Edge:* Valigia gigante (80TB+).
-    *   *Snowmobile:* Un vero tir (100 Petabyte).
+### 1.1 Definizioni Fondamentali
+*   **Cloud Computing:** Fornitura on-demand di risorse IT tramite Internet con prezzi in base al consumo (pay-as-you-go).
+*   **CapEx vs OpEx:** Il Cloud trasforma le spese in conto capitale (CapEx - comprare server fisici) in spese operative (OpEx - pagare solo ciò che si usa).
+*   **High Availability (Alta Affidabilità):** Il sistema funziona senza interruzioni per lunghi periodi (es. architettura Multi-AZ).
+*   **Fault Tolerance (Tolleranza ai guasti):** Capacità di un sistema di continuare a funzionare *anche* se un componente si rompe.
+*   **Scalability (Scalabilità):** Adattarsi al carico. *Verticale (Scale Up):* Aggiungere RAM/CPU a un server. *Orizzontale (Scale Out):* Aggiungere più server.
+*   **Elasticity (Elasticità):** La capacità del cloud di scalare in automatico *sia verso l'alto che verso il basso* (es. Auto Scaling) a seconda della domanda istantanea.
 
-## 🗄️ 3. Database
-*   **Amazon RDS:** Database relazionale (SQL) gestito (MySQL, Postgres, Oracle, SQL Server). Niente patch manuali.
-*   **Amazon Aurora:** Motore relazionale proprietario AWS. Compatibile con MySQL/Postgres ma 5x più veloce.
-*   **Amazon DynamoDB:** Database NoSQL (Key-Value). Millisecondi di latenza, scala all'infinito, serverless.
-*   **Amazon DocumentDB:** Database NoSQL per documenti (Compatibile con MongoDB).
-*   **Amazon Redshift:** Data Warehouse. Analisi dati storici (Analytics/Big Data).
-*   **Amazon Neptune:** Graph Database (utile per i social network o per capire le relazioni, es. "Chi conosce chi").
-*   **Amazon QLDB:** Database a registro (Ledger). Immortale, non si può cancellare lo storico delle transazioni.
-*   **Amazon ElastiCache:** Salva i dati in RAM (Redis, Memcached) per velocizzare letture estreme sul database.
+### 1.2 I Modelli di Servizio (IaaS, PaaS, SaaS, FaaS)
+*   **IaaS (Infrastructure as a Service):** *Es. Amazon EC2.* Ti danno l'hardware virtuale. Tu gestisci OS, database e app.
+*   **PaaS (Platform as a Service):** *Es. Elastic Beanstalk.* Tu scrivi solo il codice. AWS gestisce l'infrastruttura, il server e il sistema operativo.
+*   **SaaS (Software as a Service):** *Es. Gmail, Zoom.* Software pronto all'uso gestito interamente dal fornitore.
+*   **FaaS (Function as a Service / Serverless):** *Es. AWS Lambda.* Esegui singole porzioni di codice a evento, pagando solo i millisecondi di esecuzione. Nessun server da gestire.
 
-## 🌐 4. Networking & Content Delivery
-*   **Amazon VPC:** La tua rete privata virtuale. (Subnet pubbliche/private, Route tables, Internet Gateway).
-*   **Amazon Route 53:** Il DNS di AWS. Traduce i nomi a dominio (es. google.com) in indirizzi IP. (Route 53 = Porta 53).
-*   **Amazon CloudFront:** CDN (Content Delivery Network). Usa le *Edge Locations* globali per scaricare i file statici vicino agli utenti senza dover attraversare l'oceano.
-*   **AWS Direct Connect:** Cavo fisico dedicato dal tuo ufficio diretto ai data center AWS. Privato (non passa su Internet), costante, ultra-sicuro.
-*   **AWS VPN:** Connessione sicura, ma passa tramite l'Internet pubblico.
-*   **AWS Transit Gateway:** Il "Punto centrale" (Hub & Spoke). Connette facilmente migliaia di VPC e reti aziendali insieme.
-*   **AWS Global Accelerator:** Usa l'infrastruttura privata globale di AWS per accelerare il traffico (TCP/UDP) verso la tua app ed evitare internet aperto.
-*   **Amazon API Gateway:** Crea, pubblica e gestisci API in modo sicuro (solitamente si usa per esporre funzioni Lambda).
+### 1.3 Modelli di Distribuzione (Deployment Models)
+*   **Public Cloud:** Tutto gira sui server di AWS.
+*   **Private Cloud (On-Premises):** Server fisici nel tuo datacenter aziendale.
+*   **Hybrid Cloud:** Un mix tra Public e Private (connessi via Direct Connect o VPN).
 
-## 🔒 5. Security, Identity & Compliance
-*   **AWS IAM:** Gestione utenti, password, ruoli temporanei.
-*   **AWS IAM Identity Center (Single Sign-On):** Fai login 1 sola volta e accedi a decine di account AWS aziendali.
-*   **AWS WAF:** Web Application Firewall. Ferma hacker (SQL injection, XSS). Layer 7.
-*   **AWS Shield:** Blocca attacchi DDoS. Layer 3/4. (Lo Standard è gratis per sempre).
-*   **AWS KMS:** Key Management Service. Genera chiavi per criptare i dischi o i file.
-*   **AWS CloudHSM:** Come KMS, ma è hardware fisico dedicato a te.
-*   **AWS Secrets Manager:** Salva e ruota automaticamente (es. ogni 30 giorni) le password del database in modo sicuro.
-*   **Amazon Macie:** Intelligenza artificiale che controlla se hai lasciato carte di credito o documenti d'identità in chiaro su Amazon S3.
-*   **Amazon GuardDuty:** La guardia giurata. Analizza i log in background e ti avvisa se c'è attività sospetta (Intelligent Threat Detection).
-*   **Amazon Inspector:** Entra dentro le istanze EC2 e controlla se i software installati hanno buchi di sicurezza noti (CVE).
-*   **AWS Security Hub:** Un cruscotto gigante che raggruppa tutti gli allarmi di sicurezza di Macie, GuardDuty e Inspector.
-*   **AWS Artifact:** È un portale per scaricare PDF dei report legali e di compliance di AWS (es. ISO, SOC2, PCI-DSS). Serve ai legali dell'azienda.
-*   **AWS Cognito:** Gestisce la registrazione e il login per gli utenti della *tua* app web o app mobile (Login con Facebook/Google/Apple).
+### 1.4 AWS Cloud Adoption Framework (CAF) e Migrazione
+I 6 Pilastri (Prospettive) per adottare il Cloud:
+*   **Business Capabilities:** *Business, People, Governance.*
+*   **Technical Capabilities:** *Platform, Security, Operations.*
+*   **Le 6 R della Migrazione:** 
+    1) *Rehost* (Lift & Shift - sposta così com'è).
+    2) *Replatform* (Lift, tinker & shift - sposta e ottimizza un po', es. verso RDS).
+    3) *Refactor/Re-architect* (Riscrivi il codice per il cloud nativo).
+    4) *Repurchase* (Passa a un SaaS).
+    5) *Retain* (Tieni on-premise per ora).
+    6) *Retire* (Spegni il server inutile).
 
-## 📊 6. Management & Governance
-*   **Amazon CloudWatch:** Monitoraggio e Performance (CPU, Traffico, Errori, Allarmi).
-*   **AWS CloudTrail:** L'Auditor (Sicurezza). "Chi, Come, Quando" ha fatto una chiamata API.
-*   **AWS Trusted Advisor:** Consigliere automatico. Verifica 5 Pilastri (Costi, Sicurezza, Fault Tolerance, Performance, Limiti Servizio).
-*   **AWS Config:** Registra tutte le *modifiche di configurazione* delle risorse (chi ha cambiato le regole del firewall nel tempo?).
-*   **AWS CloudFormation:** Infrastructure as Code. Tu scrivi un documento in formato YAML/JSON, AWS legge il file e costruisce l'infrastruttura da solo.
-*   **AWS Systems Manager (SSM):** Raggruppa e aggiorna flotte giganti di server (EC2) insieme (es. Patching automatico di Windows su 100 macchine).
-*   **AWS Control Tower:** Per le grandissime aziende. Configura una rete multi-account perfetta, sicura e con le regole già impostate.
+---
 
-## 🤖 7. Analytics & Machine Learning (Integration)
-*   **Amazon Athena:** Fai query SQL direttamente dentro i file .csv o .json che hai "buttato" in Amazon S3, senza dover creare un database.
-*   **Amazon Kinesis:** Riceve ed elabora dati in "Streaming" (es. sensori IoT o video live a milioni al secondo).
-*   **Amazon EMR:** Big Data Framework (Hadoop / Apache Spark).
-*   **Amazon QuickSight:** Business Intelligence. Ti crea grafici a torta e diagrammi interattivi (tipo Tableau).
-*   **AWS Glue:** ETL (Extract, Transform, Load). Prende dati sporchi, li pulisce e li mette pronti per essere letti.
-*   **Amazon SageMaker:** Per i Data Scientist. Piattaforma per costruire modelli di Machine Learning.
-*   **Amazon Rekognition:** Riconoscimento facciale (capisce cosa c'è in una foto o video).
-*   **Amazon Polly:** Testo in voce umana (Text-to-Speech).
-*   **Amazon Transcribe:** Voce in Testo (Speech-to-Text, tipo sottotitoli automatici).
-*   **Amazon Comprehend:** Legge le email e capisce il sentimento (NLP) (es. "Il cliente è arrabbiato o felice?").
-*   **Amazon Translate:** Google Translate di AWS.
+## 🔒 DOMINIO 2: Security & Compliance
 
-## 🤝 8. Application Integration (Messaggistica)
-*   **Amazon SNS:** Simple Notification Service. Spedisce messaggi "a tutti" i sottoscrittori (Push, Email, SMS).
-*   **Amazon SQS:** Simple Queue Service. Mette in coda i messaggi in attesa che un server li elabori (Disaccoppiamento).
-*   **AWS Step Functions:** Crea workflow visivi a step (es. fai A, poi se succede B fai C).
+### 2.1 Shared Responsibility Model (Chi fa cosa?)
+*   **Security OF the Cloud (AWS):** Sicurezza FISICA. (I datacenter, l'hardware, i cavi, il software che gestisce la virtualizzazione).
+*   **Security IN the Cloud (Tu/Cliente):** Sicurezza LOGICA. (I tuoi dati, password IAM, aprire porte sul firewall di rete VPC, aggiornare l'antivirus su EC2, crittografare i file).
 
-## 💸 9. Billing, Pricing & Support
-*   **AWS Organizations:** Fatturazione consolidata + Sconti volume + SCP (Service Control Policies) per bloccare le regioni.
-*   **AWS Cost Explorer:** Analizza grafici passati. Forecating.
-*   **AWS Budgets:** Allarmi se sfori la spesa stabilita.
-*   **AWS Pricing Calculator:** Creare preventivi online *prima* dell'acquisto.
-*   **Support Plans:**
-    *   *Basic:* Gratis / Billing help. (I controlli base Trusted Advisor sono 7).
-    *   *Developer:* Email / orario ufficio. (Consigli Cloud generici).
-    *   *Business:* Telefono/Chat 24x7 / Full Trusted Advisor / Supporto terze parti.
-    *   *Enterprise:* Telefono 24x7 / TAM (Technical Account Manager) dedicato / Concierge per il billing.
+### 2.2 Servizi di Sicurezza e Identità
+*   **AWS IAM:** Gestione utenti, gruppi, ruoli (per dare permessi alle istanze EC2) e policy (JSON). MFA obbligatoria per il Root User.
+*   **AWS IAM Identity Center:** (Ex SSO) Login unico per molti account aziendali.
+*   **AWS WAF:** Web Application Firewall. Ferma attacchi Layer 7 (SQL injection, XSS).
+*   **AWS Shield:** Blocca attacchi DDoS Layer 3/4. Lo *Standard* è gratis e automatico.
+*   **AWS KMS:** Crea e gestisce chiavi per criptare dischi EBS o S3.
+*   **AWS CloudHSM:** Come KMS, ma su hardware fisico dedicato.
+*   **AWS Secrets Manager:** Salva e *ruota* in automatico le password dei DB.
+*   **Amazon Macie:** Intelligenza Artificiale per scovare carte di credito o PII in Amazon S3.
+*   **Amazon GuardDuty:** Rilevamento minacce intelligente basato sui log (es. login anomali da paesi strani).
+*   **Amazon Inspector:** Scansiona le tue macchine virtuali EC2 per vulnerabilità software.
+*   **AWS Artifact:** Portale per scaricare PDF dei report legali e certificazioni ISO/SOC di AWS.
+*   **Amazon Cognito:** Sistema di registrazione/login per gli utenti delle tue app web.
 
-## 🏛️ 10. Architettura Globale
-*   **Regione:** Cluster geografico isolato (es. eu-south-1 Milano). Ha al suo interno almeno 3 AZ.
-*   **Availability Zone (AZ):** Un singolo Data Center (o gruppo di DC) distante kilometri dagli altri per resistere a tsunami/incendi.
-*   **Edge Location:** Mini-data center periferici (ci sono in tutto il mondo) usati da CloudFront per cache e Route 53.
-*   **Globali:** IAM, Route 53, CloudFront, WAF.
-*   **Regionali:** EC2, S3 (nome globale ma salvataggio regionale), RDS, VPC.
+---
 
-## 🏗️ 11. AWS Well-Architected Framework (I 6 Pilastri)
-1.  **Operational Excellence:** Infrastructure as Code.
-2.  **Security:** IAM, crittografia, auditing.
-3.  **Reliability:** Auto Scaling, architettura Multi-AZ.
-4.  **Performance Efficiency:** Serverless.
-5.  **Cost Optimization:** Chiudere le risorse non usate (Right Sizing).
-6.  **Sustainability:** Risparmiare corrente elettrica per l'ambiente.
+## 🏗️ DOMINIO 3: Technology and Services
+
+### 3.1 Architettura Globale
+*   **Region:** Area geografica isolata (es. eu-south-1). Composta da minimo 3 AZ.
+*   **Availability Zone (AZ):** Uno o più datacenter separati fisicamente per resistere ai disastri.
+*   **Edge Location:** Mini-datacenter periferici per servire contenuti velocemente (CloudFront).
+*   *Servizi Globali:* IAM, Route 53, CloudFront, WAF.
+*   *Servizi Regionali:* EC2, S3 (nome globale ma file locali), RDS, VPC.
+
+### 3.2 Compute (Calcolo)
+*   **Amazon EC2:** Server virtuale (IaaS).
+*   **AWS Lambda:** Serverless / FaaS.
+*   **Amazon ECS / EKS:** Container (Docker / Kubernetes). **Fargate:** Esegui container senza server.
+*   **Amazon Lightsail:** VPS per principianti a costo fisso mensile.
+*   **AWS Batch:** Elaborazione massiva asincrona.
+
+### 3.3 Storage
+*   **Amazon S3:** Object storage (static web hosting, backup). Classi: *Standard*, *IA* (Infrequent Access), *Glacier* (Archiviazione economica, recupero lento), *Intelligent-Tiering* (Automatico).
+*   **Amazon EBS:** Block storage (Disco primario per EC2).
+*   **Amazon EFS:** File system condiviso per istanze Linux.
+*   **Amazon FSx:** File system nativo per macchine Windows o HPC.
+*   **AWS Storage Gateway:** Cloud Ibrido per i dischi locali.
+*   **Snow Family:** Valigie fisiche per spostare Petabyte di dati off-line.
+
+### 3.4 Database
+*   **Amazon RDS:** Database relazionale (SQL) gestito. Backup e patch automatici. **Aurora:** Più veloce e costoso.
+*   **Amazon DynamoDB:** Database NoSQL. Latenza ms, scala all'infinito.
+*   **Amazon Redshift:** Data Warehouse per Analytics e Big Data.
+*   **Amazon ElastiCache:** Caching in-memory (Redis/Memcached).
+*   **Amazon Neptune / DocumentDB / QLDB:** Grafi / Compatibile MongoDB / Registro immutabile (Ledger).
+
+### 3.5 Networking & Content Delivery
+*   **Amazon VPC:** Rete privata virtuale. (Subnet pubbliche hanno Internet Gateway, le private usano NAT Gateway).
+*   **Amazon Route 53:** Servizio DNS (Porta 53).
+*   **Amazon CloudFront:** CDN globale.
+*   **AWS Direct Connect:** Cavo fisico privato ufficio-AWS.
+*   **AWS Transit Gateway:** Hub centrale per connettere tra loro decine di VPC e reti on-premise.
+*   **AWS Global Accelerator:** Invia il tuo traffico sulla rete in fibra privata di AWS per azzerare la latenza.
+
+### 3.6 Management, Governance & Analytics
+*   **Amazon CloudWatch:** **Performance** (CPU, allarmi).
+*   **AWS CloudTrail:** **Sicurezza e Auditing** (Chi ha fatto quale chiamata API?).
+*   **AWS Trusted Advisor:** Valuta il tuo account su 5 pilastri (Sicurezza, Costi, Performance, Fault Tolerance, Limiti).
+*   **AWS CloudFormation:** Infrastructure as Code (Templates YAML).
+*   **Amazon Athena:** Fai query SQL direttamente sui file di testo in S3.
+*   **Amazon Kinesis / EMR / QuickSight:** Streaming in tempo reale / Big Data Hadoop / Grafici e Business Intelligence.
+*   **Machine Learning:** SageMaker (Creare modelli AI), Rekognition (Immagini), Polly (Testo a Voce), Comprehend (Analisi sentimenti).
+
+---
+
+## 💸 DOMINIO 4: Billing, Pricing & Support
+
+### 4.1 Modelli di Prezzo (Pricing Models)
+*   **On-Demand:** Paghi al secondo. Costoso ma zero impegno. (Ideale per test o app spiky).
+*   **Reserved Instances / Savings Plans:** Impegno di 1 o 3 anni. Sconto massimo (-72%). (Ideale per database sempre accesi).
+*   **Spot Instances:** Aste per server invenduti. Sconto estremo (-90%) ma AWS può spegnerlo in 2 minuti. (Ideale per task in background).
+*   **Dedicated Hosts:** Server fisico intero solo per te. (Per questioni di licenze software vecchie o altissima compliance).
+
+### 4.2 Strumenti per i Costi
+*   **AWS Organizations:** Unisce account. **Consolidated Billing** (Fattura unica) e sconti per volume d'uso totale. Permette le SCP (Service Control Policies) per vietare l'uso di servizi a tutti.
+*   **AWS Pricing Calculator:** Fai un preventivo online *prima* di creare qualcosa.
+*   **AWS Cost Explorer:** Grafici colorati su cosa hai speso e previsioni per i prossimi 12 mesi.
+*   **AWS Budgets:** Imposti un budget (es. $100). Ti invia una mail all'80%.
+
+### 4.3 Support Plans (I 4 Piani)
+*   **Basic:** Gratuito. Supporto solo per fatturazione, no tecnico. Solo 7 controlli base su Trusted Advisor.
+*   **Developer:** Comunicazione via Email in orario d'ufficio.
+*   **Business:** Supporto tecnico 24/7 (Telefono, Chat, Email). Accesso *completo* a tutti i controlli Trusted Advisor.
+*   **Enterprise:** Tutto il resto + un **TAM (Technical Account Manager)** dedicato + tempo di risposta 15 minuti sui guasti critici. Riservato alle multinazionali.
+
+---
+
+## 🏛️ APPENDICE: AWS Well-Architected Framework (I 6 Pilastri)
+I 6 pilastri fondamentali per progettare bene nel Cloud:
+1.  **Operational Excellence:** Automazione (Infrastructure as Code).
+2.  **Security:** IAM, Least Privilege, Protezione dati in transito/riposo.
+3.  **Reliability (Affidabilità):** Auto Scaling, recupero automatico.
+4.  **Performance Efficiency:** Usare architetture Serverless e Globali.
+5.  **Cost Optimization:** Spegnere le istanze non usate.
+6.  **Sustainability:** Scegliere hardware efficiente per ridurre l'impatto sul clima.
