@@ -92,7 +92,7 @@
             body {
                 background-color: white;
                 padding: 0;
-                font-size: 11pt; /* Smaller font for printing */
+                font-size: 11pt;
             }
             .container {
                 box-shadow: none;
@@ -128,19 +128,19 @@
 <div class="container">
     <header>
         <h1>☁️ AWS Cloud Practitioner (CLF-C02)</h1>
-        <div class="subtitle">L'Enciclopedia Definitiva - Tutti i 4 Domini dell'Esame</div>
+        <div class="subtitle">L'Enciclopedia Definitiva - Ottimizzata per l'Esame</div>
     </header>
 
     <h2 class="domain-title">DOMINIO 1: Cloud Concepts</h2>
 
-    <h3>1.1 Definizioni Fondamentali</h3>
+    <h3>1.1 I 6 Vantaggi del Cloud Computing</h3>
     <ul>
-        <li><strong>Cloud Computing:</strong> Fornitura on-demand di risorse IT tramite Internet con prezzi pay-as-you-go.</li>
-        <li><strong>CapEx vs OpEx:</strong> Il Cloud trasforma spese in conto capitale (hardware) in spese operative (affitto al secondo).</li>
-        <li><strong>High Availability:</strong> Sistema funziona senza interruzioni (es. server sparsi su più Availability Zones).</li>
-        <li><strong>Fault Tolerance:</strong> Capacità di continuare a funzionare <em>anche</em> se un componente si rompe.</li>
-        <li><strong>Scalability:</strong> Scalare Verticalmente (Scale Up = CPU/RAM) o Orizzontalmente (Scale Out = più server).</li>
-        <li><strong>Elasticity:</strong> Scalare in automatico sia verso l'alto che verso il basso a seconda della domanda (Auto Scaling).</li>
+        <li><strong>Trade capital expense for variable expense:</strong> Paghi solo per ciò che consumi (OpEx) invece di investire in anticipo (CapEx).</li>
+        <li><strong>Benefit from massive economies of scale:</strong> Prezzi più bassi grazie all'utilizzo condiviso da centinaia di migliaia di clienti.</li>
+        <li><strong>Stop guessing capacity:</strong> Ridimensiona dinamicamente invece di pagare per capacità inattiva o limitare le prestazioni.</li>
+        <li><strong>Increase speed and agility:</strong> Le risorse sono a un clic di distanza (deploy da settimane a minuti).</li>
+        <li><strong>Stop spending money running and maintaining data centers:</strong> Concentrati sui progetti che differenziano il tuo business.</li>
+        <li><strong>Go global in minutes:</strong> Distribuisci le app in tutto il mondo in più Regioni con latenza minima.</li>
     </ul>
 
     <h3>1.2 I Modelli di Servizio</h3>
@@ -155,16 +155,16 @@
         style FaaS fill:#ff9900,stroke:#232f3e,stroke-width:2px,color:#fff
     </div>
     <ul>
-        <li><strong>IaaS (Infrastructure as a Service):</strong> Es. EC2. Hardware virtuale, tu gestisci OS e patch.</li>
-        <li><strong>PaaS (Platform as a Service):</strong> Es. Elastic Beanstalk. Tu scrivi il codice, AWS gestisce l'infrastruttura.</li>
-        <li><strong>SaaS (Software as a Service):</strong> Es. Zoom. Software gestito interamente dal fornitore.</li>
+        <li><strong>IaaS (Infrastructure as a Service):</strong> Es. EC2. Hardware virtuale, tu gestisci OS e patch. Alta flessibilità.</li>
+        <li><strong>PaaS (Platform as a Service):</strong> Es. Elastic Beanstalk. Tu scrivi il codice, AWS gestisce l'infrastruttura sottostante.</li>
+        <li><strong>SaaS (Software as a Service):</strong> Es. Amazon WorkMail, Rekognition. Software gestito interamente dal fornitore.</li>
         <li><strong>FaaS (Serverless):</strong> Es. Lambda. Esegui codice a evento, paghi al millisecondo, zero server da gestire.</li>
     </ul>
 
     <h3>1.3 AWS Cloud Adoption Framework (CAF) e Migrazione</h3>
     <ul>
-        <li><strong>CAF (6 Prospettive):</strong> Business, People, Governance (Business) / Platform, Security, Operations (Tecniche).</li>
-        <li><strong>Le 6 R della Migrazione:</strong> Rehost (Lift & Shift), Replatform (Modifica leggera), Refactor (Riscrivi nativo cloud), Repurchase (Passa a SaaS), Retain (Non spostare), Retire (Spegni).</li>
+        <li><strong>CAF (6 Prospettive):</strong> Business, People, Governance (prospettive Business) / Platform, Security, Operations (prospettive Tecniche).</li>
+        <li><strong>Le 6 R della Migrazione:</strong> Rehost (Lift & Shift), Replatform (Lift, tinker and shift), Refactor/Rearchitect (Riscrivi nativo cloud), Repurchase (Passa a SaaS), Retain (Non spostare), Retire (Spegni).</li>
     </ul>
 
     <h2 class="domain-title page-break">DOMINIO 2: Security & Compliance</h2>
@@ -173,118 +173,136 @@
     <div class="mermaid" style="text-align: center; margin: 20px 0;">
         graph TD
         subgraph Cliente ["Security IN the Cloud (Tuo Compito)"]
-            A(Dati Utente) --> B(IAM / Password)
-            B --> C(OS / Patch EC2 / Firewall)
+            A(Dati Utente / Crittografia) --> B(IAM / Password)
+            B --> C(OS / Patch EC2 / Firewall VPC)
         end
         subgraph AWS ["Security OF the Cloud (Compito AWS)"]
-            D(Hypervisor) --> E(Rete Globale AWS)
+            D(Hypervisor / Edge Locations) --> E(Rete Globale AWS)
             E --> F(Sicurezza Fisica Datacenter)
         end
         Cliente -.-> AWS
     </div>
     <ul>
-        <li><strong>Security OF the Cloud (AWS):</strong> Sicurezza Fisica (Hardware, Datacenter, Rete globale).</li>
-        <li><strong>Security IN the Cloud (Cliente):</strong> Sicurezza Logica (Dati, Password IAM, Firewall VPC, Patch OS).</li>
+        <li><strong>Security OF the Cloud (AWS):</strong> Sicurezza Fisica (Hardware, Datacenter, Rete globale, Infrastruttura fisica).</li>
+        <li><strong>Security IN the Cloud (Cliente):</strong> Sicurezza Logica (Dati, Password IAM, Firewall VPC, Patch OS, Crittografia).</li>
     </ul>
 
-    <h3>2.2 Servizi di Sicurezza</h3>
+    <h3>2.2 Servizi di Sicurezza e Identità</h3>
     <ul>
-        <li><strong>AWS IAM:</strong> Gestione utenti, gruppi, ruoli (permessi per EC2) e policy. MFA obbligatoria per Root.</li>
-        <li><strong>AWS IAM Identity Center:</strong> Login singolo per molti account AWS aziendali.</li>
-        <li><strong>AWS WAF:</strong> Ferma attacchi hacker (SQL injection, XSS) - Layer 7.</li>
-        <li><strong>AWS Shield:</strong> Blocca attacchi DDoS (Layer 3/4). Lo <em>Standard</em> è gratis.</li>
-        <li><strong>AWS KMS & CloudHSM:</strong> Generazione chiavi di crittografia (CloudHSM usa hardware fisico tuo).</li>
-        <li><strong>Amazon Macie:</strong> Intelligenza Artificiale per scovare carte di credito o PII su Amazon S3.</li>
-        <li><strong>Amazon GuardDuty:</strong> Rilevamento minacce intelligente basato sui log.</li>
-        <li><strong>Amazon Inspector:</strong> Scansiona server EC2 per vulnerabilità software (CVE).</li>
-        <li><strong>AWS Artifact:</strong> Portale PDF per scaricare certificazioni legali/compliance di AWS (ISO, SOC).</li>
+        <li><strong>AWS IAM:</strong> Gestione globale utenti, gruppi, ruoli (assunti da risorse o identità esterne) e policy. <em>Best practice: MFA obbligatoria e Principio del privilegio minimo.</em></li>
+        <li><strong>AWS IAM Identity Center (ex SSO):</strong> Login singolo (SSO) per molti account AWS aziendali.</li>
+        <li><strong>Amazon Cognito:</strong> Gestione identità per le tue applicazioni (registrazione/accesso utenti web e mobile).</li>
+        <li><strong>AWS WAF (Web Application Firewall):</strong> Ferma attacchi hacker web comuni (SQL injection, XSS) al livello 7 (HTTP/HTTPS).</li>
+        <li><strong>AWS Shield:</strong> Blocca attacchi DDoS. Lo <em>Standard</em> è gratis ed automatico, l'<em>Advanced</em> è a pagamento con supporto 24/7.</li>
+        <li><strong>AWS KMS & CloudHSM:</strong> Gestione chiavi di crittografia (KMS centralizzato, CloudHSM hardware dedicato conforme a FIPS 140-2 Livello 3).</li>
+        <li><strong>Amazon Macie:</strong> Usa il Machine Learning per scovare e proteggere dati sensibili (PII, carte di credito) nei bucket S3.</li>
+        <li><strong>Amazon GuardDuty:</strong> Rilevamento minacce intelligente basato sui log continui (CloudTrail, VPC Flow Logs, DNS).</li>
+        <li><strong>Amazon Inspector:</strong> Valutazione automatizzata per vulnerabilità software (CVE) e configurazioni errate su EC2 e container.</li>
+        <li><strong>AWS Artifact:</strong> Portale centrale per scaricare certificazioni legali/compliance di AWS (ISO, SOC, PCI) e accordi legali.</li>
     </ul>
 
     <h2 class="domain-title page-break">DOMINIO 3: Technology and Services</h2>
 
-    <h3>3.1 Architettura e Globale vs Regionale</h3>
+    <h3>3.1 Infrastruttura Globale</h3>
     <ul>
-        <li><strong>Region:</strong> Cluster geografico (es. eu-south-1). Minimo 3 Availability Zone (AZ).</li>
-        <li><strong>Edge Location:</strong> Mini-datacenter periferici per CloudFront.</li>
-        <li><strong>Globali:</strong> IAM, Route 53, CloudFront, WAF.</li>
-        <li><strong>Regionali:</strong> EC2, S3 (nome globale ma salvataggio regionale), RDS, VPC.</li>
+        <li><strong>Region:</strong> Area geografica fisica (es. eu-south-1). Composta da minimo 2 Availability Zone (AZ).</li>
+        <li><strong>Availability Zone (AZ):</strong> Uno o più data center fisici interconnessi in una Regione. Elevata ridondanza e isolamento dai guasti.</li>
+        <li><strong>Edge Location:</strong> Endpoint globali per CloudFront (CDN) per caching veloce vicini agli utenti finali.</li>
     </ul>
 
-    <h3>3.2 Compute (Calcolo)</h3>
+    <h3>3.2 Calcolo (Compute)</h3>
     <ul>
-        <li><strong>Amazon EC2:</strong> Server virtuale. <strong>Lambda:</strong> Serverless FaaS.</li>
-        <li><strong>Amazon ECS / EKS:</strong> Orchestrazione Container (Docker / Kubernetes).</li>
-        <li><strong>AWS Fargate:</strong> Motore serverless per Container (non gestisci le istanze sottostanti).</li>
-        <li><strong>Amazon Lightsail:</strong> VPS facile a costo fisso per principianti.</li>
-        <li><strong>AWS Outposts:</strong> Hardware AWS fisico installato nel <em>tuo</em> datacenter (Hybrid).</li>
+        <li><strong>Amazon EC2 (Elastic Compute Cloud):</strong> Server virtuali (IaaS).</li>
+        <li><strong>AWS Lambda:</strong> Elaborazione Serverless. Esegue il codice a eventi, paghi in base ai millisecondi di calcolo.</li>
+        <li><strong>Amazon ECS / EKS:</strong> Orchestrazione Container (ECS per Docker, EKS per Kubernetes).</li>
+        <li><strong>AWS Fargate:</strong> Motore serverless per Container (non devi gestire le istanze EC2 sottostanti).</li>
+        <li><strong>AWS Elastic Beanstalk:</strong> PaaS per deploy e scalabilità automatica (tu carichi il codice, AWS gestisce capacità, bilanciamento, ecc.).</li>
+        <li><strong>AWS Outposts:</strong> Rack fisico AWS installato nel <em>tuo</em> datacenter locale (Hybrid Cloud nativo).</li>
     </ul>
 
-    <h3>3.3 Storage</h3>
+    <h3>3.3 Archiviazione (Storage)</h3>
     <ul>
-        <li><strong>Amazon S3:</strong> Object storage. Classi: Standard, IA (Infrequent Access), Glacier (Archiviazione lenta), Intelligent-Tiering.</li>
-        <li><strong>Amazon EBS:</strong> Block storage. L'hard disk collegato a singola EC2.</li>
-        <li><strong>Amazon EFS:</strong> File system condiviso per N istanze Linux.</li>
-        <li><strong>Amazon FSx:</strong> File system nativo Windows/HPC.</li>
-        <li><strong>AWS Storage Gateway:</strong> Cloud Ibrido (cache locale, dati su S3).</li>
-        <li><strong>Snow Family:</strong> Valigie fisiche per migrazione offline (Snowcone, Snowball, Snowmobile).</li>
+        <li><strong>Amazon S3 (Simple Storage Service):</strong> Object storage (salvataggio a livello di bucket). Classi: Standard, IA (Infrequent Access), Glacier (Archiviazione a lungo termine a basso costo).</li>
+        <li><strong>Amazon EBS (Elastic Block Store):</strong> Block storage. Disco virtuale (Volume) collegato a singola EC2 (stessa AZ). I dati sopravvivono allo spegnimento.</li>
+        <li><strong>Amazon EFS (Elastic File System):</strong> File system condiviso di rete per istanze EC2 Linux (multi-AZ).</li>
+        <li><strong>AWS Storage Gateway:</strong> Gateway cloud ibrido (cache locale su on-premises, dati backuppati e accessibili su S3).</li>
+        <li><strong>AWS Snow Family:</strong> Dispositivi per migrazione offline (Snowcone, Snowball, Snowmobile) bypassando internet (petabytes di dati via posta).</li>
     </ul>
 
     <h3>3.4 Database</h3>
     <ul>
-        <li><strong>Amazon RDS:</strong> Database SQL gestito. <strong>Aurora:</strong> Versione super veloce proprietaria AWS.</li>
-        <li><strong>Amazon DynamoDB:</strong> Database NoSQL. Latenza ms, scala all'infinito.</li>
-        <li><strong>Amazon Redshift:</strong> Data Warehouse per Analytics storici.</li>
-        <li><strong>Amazon ElastiCache:</strong> In-memory caching (Redis/Memcached).</li>
+        <li><strong>Amazon RDS:</strong> Database relazionale (SQL) gestito (motori: MySQL, PostgreSQL, Oracle, MariaDB, SQL Server).</li>
+        <li><strong>Amazon Aurora:</strong> Database relazionale cloud-native di AWS (compatibile MySQL/Postgres), altissime performance e failover automatico.</li>
+        <li><strong>Amazon DynamoDB:</strong> Database NoSQL, fully managed, latenza ms a singola cifra, Key-Value, scala all'infinito.</li>
+        <li><strong>Amazon Redshift:</strong> Data Warehouse (OLAP) per Analytics e Business Intelligence su scala di petabyte.</li>
+        <li><strong>Amazon ElastiCache:</strong> In-memory caching (Redis/Memcached) usato per velocizzare i DB alleviando i carichi di lettura.</li>
     </ul>
 
     <h2 class="page-break">3.5 Networking & Content Delivery</h2>
     <ul>
-        <li><strong>Amazon VPC:</strong> Rete privata virtuale.</li>
-        <li><strong>Amazon Route 53:</strong> Servizio DNS.</li>
-        <li><strong>Amazon CloudFront:</strong> CDN globale.</li>
-        <li><strong>AWS Direct Connect:</strong> Cavo fisico privato ufficio-AWS (no Internet).</li>
-        <li><strong>AWS Transit Gateway:</strong> Hub centrale per decine di VPC e reti on-premise.</li>
+        <li><strong>Amazon VPC (Virtual Private Cloud):</strong> Rete privata virtuale logicamente isolata dove lanciare le tue risorse.</li>
+        <li><strong>Amazon Route 53:</strong> Servizio DNS gestito e scalabile, controlla il traffico a livello globale.</li>
+        <li><strong>Amazon CloudFront:</strong> CDN globale, distribuisce risorse statiche e dinamiche tramite Edge Locations in tutto il mondo a bassissima latenza.</li>
+        <li><strong>AWS Direct Connect:</strong> Connessione fibra dedicata e privata ufficio-AWS (più sicura, affidabile e con throughput costante rispetto a VPN).</li>
+        <li><strong>Elastic Load Balancing (ELB):</strong> Bilanciatore del carico. Distribuisce il traffico in entrata su più target (es. Auto Scaling group di EC2).</li>
     </ul>
 
-    <h3>3.6 Governance & Analytics</h3>
+    <h3>3.6 Gestione, Analisi e Integrazione</h3>
     <ul>
-        <li><strong>CloudWatch:</strong> Performance (CPU, Allarmi).</li>
-        <li><strong>CloudTrail:</strong> Sicurezza/Auditing (Chi ha fatto cosa sulle API?).</li>
-        <li><strong>Trusted Advisor:</strong> Valuta Costi, Sicurezza, Performance, Fault Tolerance, Limiti.</li>
-        <li><strong>CloudFormation:</strong> Infrastructure as Code (YAML).</li>
-        <li><strong>Amazon Athena:</strong> Query SQL dirette su file in S3.</li>
-        <li><strong>Machine Learning:</strong> SageMaker (AI models), Rekognition (Immagini), Polly (Testo a voce).</li>
+        <li><strong>Amazon CloudWatch:</strong> Monitoraggio delle performance. Raccoglie metriche, imposta allarmi (alarms) e log.</li>
+        <li><strong>AWS CloudTrail:</strong> Auditing/Governance. Registra le chiamate API ("chi ha fatto cosa, e quando?").</li>
+        <li><strong>AWS Auto Scaling:</strong> Aggiunge/rimuove istanze EC2 automaticamente in base al carico per garantire Elasticity e High Availability.</li>
+        <li><strong>AWS CloudFormation:</strong> Infrastructure as Code (IaC). Usa template dichiarativi (JSON/YAML) per automatizzare la creazione di infrastrutture.</li>
+        <li><strong>Amazon SNS & SQS:</strong> Servizi di integrazione. SNS per notifiche push (Pub/Sub), SQS per code di messaggi (Disaccoppiamento/Decoupling delle applicazioni).</li>
     </ul>
 
     <h2 class="domain-title page-break">DOMINIO 4: Billing, Pricing & Support</h2>
 
-    <h3>4.1 Modelli di Prezzo</h3>
+    <h3>4.1 Modelli di Prezzo EC2</h3>
     <ul>
-        <li><strong>On-Demand:</strong> Nessun impegno, paghi al secondo (Costoso).</li>
-        <li><strong>Reserved / Savings Plans:</strong> Impegno di 1-3 anni (Fino a -72%).</li>
-        <li><strong>Spot Instances:</strong> Server in eccedenza, AWS te li può spegnere con 2 minuti di preavviso (Fino a -90%).</li>
+        <li><strong>On-Demand:</strong> Nessun impegno a lungo termine, paghi al secondo/ora. Flessibile ma più costoso.</li>
+        <li><strong>Reserved Instances (RI) / Savings Plans:</strong> Impegno di 1-3 anni per carichi di lavoro stabili (sconti fino a -72%).</li>
+        <li><strong>Spot Instances:</strong> Capacità in eccesso, super economica (Fino a -90%), ma AWS può interromperla con 2 minuti di preavviso (ideale per batch/elaborazioni tolleranti ai guasti).</li>
+        <li><strong>Dedicated Hosts:</strong> Server fisici dedicati interamente a te (usati spesso per licenze software legacy per socket/core).</li>
     </ul>
 
-    <h3>4.2 Strumenti per i Costi</h3>
+    <h3>4.2 Strumenti per Gestione Costi e Governance</h3>
     <ul>
-        <li><strong>AWS Organizations:</strong> Fattura unica consolidata, sconti volume, SCP.</li>
-        <li><strong>AWS Pricing Calculator:</strong> Preventivi online <em>prima</em> di comprare.</li>
-        <li><strong>AWS Cost Explorer:</strong> Grafici storici e previsioni future.</li>
-        <li><strong>AWS Budgets:</strong> Allarmi quando sfori il budget.</li>
+        <li><strong>AWS Pricing Calculator:</strong> Stima i costi dell'architettura <em>prima</em> di lanciare effettivamente le risorse.</li>
+        <li><strong>AWS Cost Explorer:</strong> Strumento grafico per analizzare i costi storici (uso dei mesi precedenti) e prevedere l'utilizzo futuro (fino a 12 mesi).</li>
+        <li><strong>AWS Budgets:</strong> Imposta limiti di spesa e ricevi allarmi personalizzati se i costi superano la soglia o le previsioni.</li>
+        <li><strong>AWS Organizations:</strong> Gestione di più account da un nodo master, abilita la <em>Fatturazione Consolidata</em> e garantisce sconti sui volumi aggregati.</li>
+        <li><strong>AWS Trusted Advisor:</strong> Analizza l'account per best practice su 5 pilastri (Ottimizzazione Costi, Sicurezza, Performance, Fault Tolerance, Limiti Servizio).</li>
     </ul>
 
-    <h3>4.3 Support Plans</h3>
+    <h3>4.3 Piani di Supporto (Support Plans)</h3>
     <ul>
-        <li><strong>Basic:</strong> Gratis, no supporto tecnico, solo billing.</li>
-        <li><strong>Developer:</strong> Email in orario ufficio.</li>
-        <li><strong>Business:</strong> Chat/Telefono 24/7. Trusted Advisor completo.</li>
-        <li><strong>Enterprise:</strong> TAM (Technical Account Manager) dedicato.</li>
+        <li><strong>Basic:</strong> Gratis per tutti, supporto tecnico assente, supporto fatturazione/account, controlli essenziali Trusted Advisor.</li>
+        <li><strong>Developer:</strong> Supporto tecnico via email in orario ufficio (per dev/test).</li>
+        <li><strong>Business:</strong> Chat/Telefono 24/7 (per workload in produzione). Accesso totale a tutti i controlli Trusted Advisor.</li>
+        <li><strong>Enterprise (On-Ramp / Enterprise):</strong> Massima priorità, risposta in meno di 15 min per sistemi critici. Include un TAM (Technical Account Manager) dedicato.</li>
     </ul>
 
     <h2 class="domain-title">APPENDICE: AWS Well-Architected Framework</h2>
     <ul>
-        <li>1) Operational Excellence, 2) Security, 3) Reliability, 4) Performance Efficiency, 5) Cost Optimization, 6) Sustainability.</li>
+        <li><strong>6 Pilastri:</strong> 1) Operational Excellence, 2) Security, 3) Reliability, 4) Performance Efficiency, 5) Cost Optimization, 6) Sustainability.</li>
     </ul>
+    
+    <div style="margin-top: 40px; background-color: var(--bg-light); padding: 15px; border-radius: 8px; border-left: 4px solid var(--secondary);">
+        <strong>💡 Suggerimenti Rapidi (Keyword Mapping per l'Esame):</strong><br><br>
+        - <em>Dati PII / Sicurezza dati in S3</em> = Macie<br>
+        - <em>Audit delle API (chi/quando)</em> = CloudTrail<br>
+        - <em>Monitoraggio, Metriche, Allarmi</em> = CloudWatch<br>
+        - <em>Database Key-Value/NoSQL a singola cifra ms</em> = DynamoDB<br>
+        - <em>Data Warehouse / Analytics su Petabyte</em> = Redshift<br>
+        - <em>Migrazione offline petabytes di dati</em> = Snow Family<br>
+        - <em>Infrastructure as Code (IaC)</em> = CloudFormation<br>
+        - <em>Decouple / Disaccoppiare</em> = SQS (Simple Queue Service)<br>
+        - <em>Connessione privata dedicata / Fibra locale verso cloud</em> = Direct Connect<br>
+        - <em>Mitigazione attacchi DDoS</em> = Shield<br>
+        - <em>Gestione SSO multi account</em> = IAM Identity Center<br>
+        - <em>File System condiviso Linux</em> = EFS
+    </div>
 </div>
 
 </body>

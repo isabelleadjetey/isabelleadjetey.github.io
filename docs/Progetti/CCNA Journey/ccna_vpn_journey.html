@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCNA Journey: Architettura VPN & IPsec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --cisco-blue: #00bceb;
+            --cisco-dark: #005073;
+            --accent: #ff6600;
+            --card-bg: #fff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--cisco-dark) 0%, #002d42 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid var(--cisco-blue);
+        }
+
+        h1 { margin: 0; font-size: 2.5rem; font-weight: 800; }
+        .subtitle { font-size: 1.2rem; opacity: 0.9; margin-top: 10px; }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--cisco-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--cisco-dark);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlight {
+            background-color: rgba(0, 188, 235, 0.1);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--cisco-dark);
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background: #eef2f5;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #d6336c;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .comparison-box {
+            background: #fdfdfd;
+            border: 1px solid #e1e8ed;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .comparison-box h3 {
+            color: var(--accent);
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: var(--cisco-dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-back:hover { background-color: var(--cisco-blue); }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CCNA Journey: Le VPN</h1>
+        <p class="subtitle">Appunti di rete: GRE, IPsec, Site-to-Site e Remote Access</p>
+    </header>
+
+    <div class="container">
+        
+        <a href="../../../projects.html" class="btn-back">← Torna ai Progetti</a>
+
+        <div class="module-card">
+            <h2>1. Introduzione alle VPN</h2>
+            <p>Le Virtual Private Network (VPN) permettono di creare un canale di comunicazione sicuro su una rete insicura come Internet. I concetti chiave richiesti per l'esame CCNA 200-301 sono:</p>
+            <ul>
+                <li><strong>Confidenzialità (Encryption):</strong> Nessuno può leggere i dati (es. AES).</li>
+                <li><strong>Integrità (Hashing):</strong> Nessuno ha modificato i dati in transito (es. SHA).</li>
+                <li><strong>Autenticazione:</strong> Verifica dell'identità dei mittenti (es. PSK, Certificati RSA).</li>
+                <li><strong>Anti-Replay:</strong> Protezione contro l'intercettazione e il reinvio di pacchetti vecchi.</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <h2>2. Tipologie di VPN</h2>
+            <div class="grid-2">
+                <div class="comparison-box">
+                    <h3>🏢 Site-to-Site VPN</h3>
+                    <p>Collega intere reti (es. Sede Centrale con Sede Periferica). I router alle estremità (VPN Gateway) si occupano della cifratura in modo trasparente.</p>
+                    <ul>
+                        <li>Gli host interni non sanno che esiste una VPN.</li>
+                        <li>Configurazione statica e sempre attiva (always-on).</li>
+                        <li>Tipicamente usa <strong>IPsec</strong>.</li>
+                    </ul>
+                </div>
+                <div class="comparison-box">
+                    <h3>💻 Remote Access VPN</h3>
+                    <p>Collega un singolo dispositivo (Client) alla rete aziendale. È richiesto un software client (es. Cisco AnyConnect) installato sul PC dell'utente.</p>
+                    <ul>
+                        <li>Il tunnel viene stabilito su richiesta dell'utente.</li>
+                        <li>Utile per lo smart working (telecommuters).</li>
+                        <li>Tipicamente usa <strong>IPsec</strong> o <strong>SSL/TLS</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <h2>3. GRE (Generic Routing Encapsulation)</h2>
+            <p>Sviluppato da Cisco, il protocollo GRE (IP Protocol 47) permette di incapsulare qualsiasi protocollo di rete all'interno di pacchetti IP.</p>
+            <ul>
+                <li><strong>Vantaggio CCNA:</strong> GRE supporta il traffico <span class="highlight">Multicast</span> e <span class="highlight">Broadcast</span>. Questo significa che i protocolli di routing dinamico come <strong>OSPF</strong> o <strong>EIGRP</strong> possono funzionare attraverso un tunnel GRE.</li>
+                <li><strong>Svantaggio:</strong> GRE <strong>NON offre cifratura</strong>. I dati viaggiano in chiaro (plaintext).</li>
+                <li><strong>Soluzione:</strong> Viene combinato con IPsec creando i tunnel <strong>GRE over IPsec</strong> (cifratura + supporto multicast).</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <h2>4. Il Framework IPsec</h2>
+            <p>IPsec non è un singolo protocollo, ma una suite di protocolli standard IETF che garantisce la sicurezza a livello di Rete (Layer 3). Non supporta nativamente il multicast (motivo per cui si usa GRE over IPsec).</p>
+            
+            <h3>Protocolli Principali:</h3>
+            <ul>
+                <li><strong>IKE (Internet Key Exchange - UDP 500):</strong> Gestisce lo scambio sicuro delle chiavi di cifratura e stabilisce le Security Associations (SA). Agisce in due fasi (Fase 1: ISAKMP Tunnel, Fase 2: IPsec Tunnel).</li>
+                <li><strong>ESP (Encapsulating Security Payload - IP Protocol 50):</strong> Fornisce confidenzialità (cifratura), integrità e autenticazione del pacchetto. È il protocollo più usato oggi.</li>
+                <li><strong>AH (Authentication Header - IP Protocol 51):</strong> Fornisce SOLO integrità e autenticazione, <strong>nessuna cifratura</strong>. (Obsoleto in contesti moderni).</li>
+            </ul>
+
+            <h3>Modalità di funzionamento di ESP:</h3>
+            <div class="grid-2">
+                <div class="comparison-box">
+                    <h3>Transport Mode</h3>
+                    <p>Cifra solo il <strong>Payload</strong> (dati) del pacchetto IP. L'header IP originale rimane in chiaro.</p>
+                    <p>Usato tipicamente per connessioni Client-to-Site o quando si usa GRE over IPsec (poiché l'header IP è già mascherato da GRE).</p>
+                </div>
+                <div class="comparison-box">
+                    <h3>Tunnel Mode</h3>
+                    <p>Cifra l'<strong>intero pacchetto IP</strong> (incluso l'header IP originale) e aggiunge un Nuovo Header IP.</p>
+                    <p>Usato tipicamente per connessioni Site-to-Site VPN su Internet per nascondere gli IP privati interni.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

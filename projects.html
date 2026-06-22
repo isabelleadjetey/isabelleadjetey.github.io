@@ -6,6 +6,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Progetti – Isabelle Adjetey</title>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Aggiunte CSS per la struttura ad albero e il menu rapido */
+    .quick-nav {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border-left: 4px solid #333;
+      text-align: center;
+    }
+    .quick-nav a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 8px 16px;
+      background: #e2e8f0;
+      color: #0f172a;
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .quick-nav a:hover {
+      background: #cbd5e1;
+    }
+    
+    .domain-section {
+      margin-bottom: 3rem;
+      padding-top: 1rem;
+    }
+    .domain-title {
+      font-size: 2rem;
+      color: #0f172a;
+      border-bottom: 3px solid #0f172a;
+      padding-bottom: 10px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .sub-domain {
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+      border-left: 2px dashed #cbd5e1;
+      padding-left: 2rem;
+      position: relative;
+    }
+    .sub-domain h3 {
+      font-size: 1.5rem;
+      color: #334155;
+      margin-top: 0;
+      position: relative;
+    }
+    .sub-domain h3::before {
+      content: '';
+      position: absolute;
+      left: -2.75rem;
+      top: 50%;
+      width: 2rem;
+      height: 2px;
+      background: #cbd5e1;
+    }
+    
+    @media (max-width: 768px) {
+      .sub-domain { margin-left: 0; padding-left: 1rem; border-left: 4px solid #cbd5e1; }
+      .sub-domain h3::before { display: none; }
+    }
+  </style>
 </head>
 
 <body>
@@ -27,267 +92,225 @@
   <main class="main-content">
     <section class="projects">
       <div class="container">
-        <h2>📁 Progetti in Cybersecurity</h2>
-        <p>Raccolta di laboratori pratici, simulazioni investigative e progetti di sicurezza applicata. Clicca su ogni
-          scheda per aprire dettagli, PDF o repository.</p>
+        <h2>📁 Portfolio Progetti</h2>
+        <p>Raccolta di laboratori pratici, simulazioni investigative e progetti architetturali, organizzati per dominio di competenza.</p>
+
+        <!-- Quick Navigation -->
+        <div class="quick-nav">
+          <strong>Vai veloce a:</strong>
+          <a href="#sec">🛡️ Security</a>
+          <a href="#cloud">☁️ Cloud</a>
+          <a href="#network">🌐 Network</a>
+        </div>
 
         <div class="projects-list">
 
-          <!-- Panorama degli Attacchi Informatici -->
-          <div class="project-item" id="panorama-attacchi">
-            <h3>📖 Panorama degli Attacchi Informatici: Remediation &amp; Prevenzione</h3>
-            <p><strong>Periodo:</strong> Agosto 2025</p>
-            <p><strong>Ruolo:</strong> Cybersecurity Analyst</p>
-            <ul>
-              <li>Mappatura delle categorie di attacco: Malware, Phishing/Smishing/Vishing, DoS/DDoS, MITM, Web App
-                (SQLi, XSS, CSRF), Zero-Day, Supply Chain, Cloud Misconfiguration, IoT</li>
-              <li>Definizione dei vettori di attacco e raccolta degli IoC (Indicatori di Compromissione)</li>
-              <li>Stesura delle procedure di containment, forensics e recovery</li>
-              <li>Elaborazione delle linee guida di prevenzione: EPP, patch management, policy IAM, network
-                segmentation, framework IaC, security testing</li>
-            </ul>
-            <p><a href="docs/Progetti/Panorama Attachi/Panorama attacchi.pdf" target="_blank">📄 PDF Playbook</a></p>
-            <p class="tags">#Cybersecurity #ThreatPlaybook #Remediation #Prevenzione</p>
-          </div>
-
-          <!-- ANZ – Job Simulation -->
-          <div class="project-item" id="anz">
-            <h3>🛡️ ANZ – Job Simulation</h3>
-            <p><strong>Giugno 2025 – Remoto</strong></p>
-            <ul>
-              <li><strong>Task 1:</strong> Analisi di 7 email simulate, identificazione di link malevoli, allegati
-                compromessi e tattiche di social engineering</li>
-              <li><strong>Task 2:</strong> Analisi di un file PCAP per estrarre immagini nascoste, documenti mascherati
-                e traffico anomalo</li>
-            </ul>
-            <p><strong>Certificato:</strong> <a
-                href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/AKkAyEwWc8wjPxx9n/Hf4QMESoFeQwXPsiH_AKkAyEwWc8wjPxx9n_JnnS6HC3k6choTWuP_1749768064410_completion_certificate.pdf"
-                target="_blank">Visualizza qui</a></p>
-            <h4>Link utili</h4>
-            <ul>
-              <li><a
-                  href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%201"
-                  target="_blank">📧 Task 1 – Analisi Email</a></li>
-              <li><a
-                  href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%202"
-                  target="_blank">📡 Task 2 – Analisi PCAP</a></li>
-            </ul>
-            <p class="tags">#Phishing #PCAP #Steganografia #ANZ #Forage</p>
-          </div>
-
-          <!-- Client-Server Simulation -->
-          <div class="project-item" id="client-server">
-            <h3>🌐 Simulazione Client-Server</h3>
-            <p><strong>Tool:</strong> Kali Linux, Windows 7, BIND9, Apache, Wireshark</p>
-            <ul>
-              <li>Configurazione DNS per epicode.internal</li>
-              <li>Server HTTPS con certificato autofirmato</li>
-              <li>Cattura e analisi differenze tra traffico HTTP e HTTPS</li>
-            </ul>
-            <p>Risultati: handshake TLS visibile, payload HTTP in chiaro</p>
-            <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf"
-                target="_blank">📄 PDF Progetto M1</a></p>
-            <p class="tags">#DNS #HTTPS #HTTP #Wireshark</p>
-          </div>
-
-          <!-- GameShell Familiarization -->
-          <div class="project-item" id="gameshell">
-            <h3>🎮 GameShell – Shell Familiarization</h3>
-            <p><strong>Tool:</strong> Kali Linux, shell utilities, wget</p>
-            <p>Installazione e utilizzo di GameShell per esercitazioni CLI su Kali Linux</p>
-            <p><a
-                href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf"
-                target="_blank">📄 PDF Progetto M2</a></p>
-            <p class="tags">#GameShell #ShellExercise #KaliLinux</p>
-          </div>
-
-          <!-- Vulnerability Assessment -->
-          <div class="project-item" id="vuln">
-            <h3>🔍 Vulnerability Assessment – Metasploitable</h3>
-            <p><strong>Tool:</strong> Nmap, Nessus, iptables</p>
-            <ul>
-              <li>Scansione completa sul target Metasploitable</li>
-              <li>Selezione di 2–4 vulnerabilità critiche</li>
-              <li>Implementazione patch e regole firewall</li>
-              <li>Riesecuzione scansione e confronto risultati</li>
-            </ul>
-            <ul>
-              <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneIniziale.pdf"
-                  target="_blank">📄 Scansione Iniziale</a></li>
-              <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf"
-                  target="_blank">📄 Remediation</a></li>
-              <li><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScansioneFine.pdf"
-                  target="_blank">📄 Scansione Finale</a></li>
-            </ul>
-            <p class="tags">#Metasploitable #Nmap #Nessus #iptables</p>
-          </div>
-
-          <!-- Java RMI Exploitation -->
-          <div class="project-item" id="java-rmi">
-            <h3>🧰 Java RMI Exploitation</h3>
-            <p><strong>Tool:</strong> Metasploit Framework</p>
-            <p>Ottenimento di una sessione Meterpreter sfruttando servizio Java RMI (porta 1099) su Metasploitable</p>
-            <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf"
-                target="_blank">📄 PDF Progetto M4</a></p>
-            <p class="tags">#JavaRMI #Metasploit #Meterpreter</p>
-          </div>
-
-          <!-- Web App Security Analysis -->
-          <div class="project-item" id="webapp-security">
-            <h3>🧱 Web App Security Analysis &amp; Response</h3>
-            <p><strong>Requisiti:</strong> DMZ protection, prevenzione SQLi/XSS, mitigazione DDoS</p>
-            <ul>
-              <li>Filtri WAF e validazione input per SQLi/XSS</li>
-              <li>Mitigazione DDoS (CDN, rate-limiting)</li>
-              <li>Quarantena malware tramite ACL e VLAN dedicate</li>
-            </ul>
-            <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf"
-                target="_blank">📄 PDF Progetto M5</a></p>
-            <p class="tags">#WebSecurity #SQLi #XSS #DDoS</p>
-          </div>
-
-          <!-- SIEM & Splunk Subsection (nested) -->
-          <div class="project-subsection" id="siem-subsection">
-            <h3>📁 SIEM &amp; Splunk Projects</h3>
-            <p>Laboratori pratici e simulazioni investigative con Splunk Enterprise, query SPL e dashboard interattive.
-            </p>
-
-            <div class="projects-list nested">
-
-              <!-- Splunk Log Analysis Lab -->
-              <div class="project-item" id="splunk-log">
-                <h4>📊 Splunk Log Analysis Lab</h4>
-                <p><strong>Tool:</strong> Splunk Enterprise</p>
-                <p>Query SPL su “tutorialdata.zip” per analizzare accessi SSH sospetti ed errori HTTP 500</p>
-                <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf"
-                    target="_blank">📄 PDF Progetto M6</a></p>
-                <p class="tags">#Splunk #LogAnalysis #SIEM</p>
-              </div>
-              <!-- Progetti Challenge SIEM Splunk -->
-              <div class="project-item" id="progetti-challenge-siem-splunk">
-                <h4>📊  Progetti Challenge SIEM Splunk</h4>
-                <p><strong>Tool:</strong> Splunk Enterprise, Docker, PowerShell, Bash, Zeek/Suricata (esempi)</p>
-                <p>Laboratori pratici e riproducibili per dimostrare competenze operative in ingestion, detection e
-                  dashboarding su Splunk.</p>
+          <!-- ==============================================
+               DOMAIN: SECURITY
+          =============================================== -->
+          <div id="sec" class="domain-section">
+            <h2 class="domain-title">🛡️ Security</h2>
+            
+            <div class="sub-domain">
+              <h3>SOC & Incident Response</h3>
+              
+              <div class="project-item">
+                <h4>📊 SIEM & Splunk Projects</h4>
+                <p>Laboratori pratici e simulazioni investigative con Splunk Enterprise, query SPL e dashboard interattive.</p>
                 <ul>
-                  <li><strong>Analisi DNS</strong> — Monitoraggio di risoluzioni DNS per individuare domini anomali,
-                    NXDOMAIN ricorrenti e possibili DGA; dashboard con top queried domains, NXDOMAIN offenders e
-                    timeline.</li>
-                  <li><strong>Detection SSH</strong> — Rilevazione di brute‑force, scanning orizzontale e sequenze
-                    failed→success indicative di takeover; dashboard con top offender, timechart e transaction view.</li>
-                  <li><strong>Analisi HTTP</strong> — Analisi di endpoint ad alto traffico per errori 5xx, user‑agent
-                    sospetti, grandi trasferimenti e pattern di bot; e dashboard.</li>
+                  <li><strong>Analisi DNS:</strong> Monitoraggio DGA e NXDOMAIN ricorrenti.</li>
+                  <li><strong>Detection SSH:</strong> Rilevazione brute-force e scanning orizzontale.</li>
+                  <li><strong>Splunk Log Analysis Lab:</strong> Analisi di accessi SSH sospetti ed errori HTTP 500 su dataset tutorial.</li>
                 </ul>
-
                 <p>
-                  <a href="https://github.com/isabelleadjetey/siem-challenges/releases/download/v1.0/all-projects.zip"
-                    target="_blank" rel="noopener">📥 Scarica ZIP unico: Progetti Challenge SIEM Splunk</a>
+                  <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M6.pdf" target="_blank">📄 PDF Splunk Lab</a> |
+                  <a href="https://github.com/isabelleadjetey/siem-challenges" target="_blank">💻 GitHub Repo SIEM Challenges</a>
                 </p>
-
-                <p class="tags">#Splunk #SIEM #DNS #SSH #HTTP #Detection #Dashboard #Runbook #Dataset</p>
-
-                <p><a href="https://github.com/isabelleadjetey/siem-challenges" target="_blank" rel="noopener">📄
-                    Repository completo su GitHub</a></p>
+                <p class="tags">#Splunk #SIEM #Detection #LogAnalysis #SOC</p>
               </div>
 
-              <!-- Monitoraggio Log con Splunk in Docker -->
-              <!--
-              <div class="project-item" id="splunk-docker">
-                <h4>🖥️ Monitoraggio Log con Splunk in Docker</h4>
-                <p><strong>Periodo:</strong> 2025 – Remoto</p>
-                <p><strong>Tool:</strong> Docker, Splunk Enterprise, PowerShell, Bash</p>
-                <p>Configurazione di Splunk Enterprise in un container Docker per esportare, indicizzare e visualizzare file di log .evtx di Windows tramite interfaccia web</p>
+              <div class="project-item">
+                <h4>📖 Panorama degli Attacchi Informatici: Remediation & Prevenzione</h4>
+                <p><strong>Ruolo:</strong> Cybersecurity Analyst</p>
                 <ul>
-                  <li>Esportazione dei log Windows in formato .evtx usando PowerShell (<code>wevtutil epl</code>)</li>
-                  <li>Avvio del container Splunk con montaggio della directory contenente i file .evtx</li>
-                  <li>Configurazione del monitoraggio in Splunk Web su <code>/hostlogs/System/*.evtx</code></li>
-                  <li>Verifica dell’indicizzazione con query SPL e costruzione di dashboard interattive</li>
+                  <li>Mappatura delle categorie di attacco: Malware, Phishing, DoS/DDoS, MITM, Zero-Day.</li>
+                  <li>Definizione vettori di attacco e raccolta IoC (Indicatori di Compromissione).</li>
+                  <li>Stesura procedure di containment, forensics e recovery.</li>
                 </ul>
-                <p><a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/main/docs/Progetti/Splunk-Docker" target="_blank">📄 Dettagli e script su GitHub</a></p>
-                <p class="tags">#Splunk #Docker #PowerShell #Bash #EVTX #LogAnalysis</p>
+                <p><a href="docs/Progetti/Panorama Attachi/Panorama attacchi.pdf" target="_blank">📄 PDF Threat Playbook</a></p>
+                <p class="tags">#ThreatPlaybook #Remediation #Prevenzione #IoC</p>
               </div>
 
--->
-            </div> <!-- /.projects-list nested -->
-          </div> <!-- /.project-subsection -->
-        <h2>📁 Progetti Cloud security AZ-500</h2>
-        <section class="project">
-           <div class="project-subsection" id="siem-subsection"></div>
-  <h3>Capstone BuyforSure — Protezione immagine riservata</h3>
-  <p><strong>Descrizione:</strong> Progetto per proteggere un’immagine di design riservata in Azure, garantendo accesso sicuro, tracciabile e limitato a tre venditori prima del lancio di un nuovo brand.</p>
-  <p><strong>Tecnologie:</strong> Azure, Azure AD, Key Vault (CMK), Private Endpoint, Defender for Cloud, Azure Sentinel, Logic Apps, Terraform/Azure CLI.</p>
-  <p><strong>Attività principali:</strong></p>
-  <ul>
-    <li>Progettazione architettura di sicurezza e provisioning risorse</li>
-    <li>Implementazione Key Vault e CMK per cifratura a riposo</li>
-    <li>Configurazione Private Endpoint e regole di rete</li>
-    <li>Gestione identità e RBAC per accesso minimo necessario</li>
-    <li>Sviluppo backend per emissione user-delegation SAS o proxy</li>
-    <li>Monitoraggio con Sentinel e playbook per risposta automatica</li>
-  </ul>
-  <p><strong>Deliverable:</strong> README, script Terraform/CLI, configurazioni Key Vault, backend SAS/proxy, regole KQL e playbook, test plan e evidenze.</p>
-</section>
+              <div class="project-item">
+                <h4>🛡️ ANZ – Cybersecurity Job Simulation</h4>
+                <ul>
+                  <li><strong>Task 1:</strong> Analisi di 7 email simulate, identificazione link malevoli e social engineering.</li>
+                  <li><strong>Task 2:</strong> Analisi PCAP per estrarre immagini nascoste e traffico anomalo.</li>
+                </ul>
+                <p>
+                  <a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%201" target="_blank">📧 Analisi Email</a> | 
+                  <a href="https://github.com/isabelleadjetey/isabelleadjetey.github.io/tree/eb65e707200fa51bb7e87d739b14eeb9b6be6e99/docs/Progetti/ANZ%20-%20Cybersecurity%20job%20simulation/Task%202" target="_blank">📡 Analisi PCAP</a>
+                </p>
+                <p class="tags">#Phishing #PCAP #Steganografia #Forage</p>
               </div>
-
-          <!-- Kitchen Manager Cloud Architecture -->
-          <section class="project">
-            <h3>🌩️ Kitchen Manager: Cloud Architecture & Security (AWS / Azure)</h3>
-            <p><strong>Contesto & Origine:</strong> L'applicazione è stata originariamente sviluppata in team come progetto finale per il corso <strong>Edgemony (AWS re/Start)</strong>. Data la sua natura Full-Stack completa per la gestione ristoranti (React + Django), si è rivelata il punto di partenza ideale su cui consolidare in pratica i concetti avanzati di Cloud e Cloud Security.</p>
-            <p><strong>Metodologia Architetturale:</strong> Per la rigida preparazione alle certificazioni (AZ-500 e AWS Cloud Practitioner), lo studio non è stato relegato a laboratori astratti ma implementato rigorosamente su questa app. Isolare le network, testare l'AI disaccoppiata (Comprehend) ed estrarre le API secret in Azure Key Vault / AWS Secrets Manager tramite identità gestite ha garantito delle reali competenze hands-on, andando oltre il puro studio teorico.</p>
-            <p><strong>Tecnologie:</strong> AWS (S3, CloudFront, Elastic Beanstalk, RDS, SQS, Lambda, Secrets Manager, Amazon Comprehend), Azure (App Service, DB for PostgreSQL, Key Vault, Managed Identities, Entra ID).</p>
-            <p><strong>Attività principali:</strong></p>
-            <ul>
-              <li>Configurazione di S3 e CDN globale (Amazon CloudFront) per deployment e caching del frontend React/Vite.</li>
-              <li>Provisioning automatizzato con Elastic Beanstalk (PaaS) per eseguire Django.</li>
-              <li>Connessione sicura al DB PostgreSQL isolando le reti pubbliche tramite Security Groups e VNet Integration.</li>
-              <li>Centralizzazione e protezione di password e API Key dell'AI (<strong>Google Gemini</strong>) lette al volo da Azure Key Vault / AWS Secrets via Managed Identities (Zero-Trust).</li>
-              <li>Sviluppo di modulo AI con Google Gemini; progettazione di ibridazioni cloud per disaccoppiare l'analisi testuale semplice su Amazon Comprehend invocata in background tramite code SQS/Lambda.</li>
-              <li>Configurazione di Conditional Access in Microsoft Entra ID per consentire il login dello staff solo dal Wi-Fi aziendale autorizzato.</li>
-            </ul>
-            <p><strong>Deliverable:</strong> Piani di architettura (diagrammi strutturali), best practices, report di implementazione Cloud AWS/Azure.</p>
-            <ul>
-              <li><a href="docs/Progetti/Cloud Architecture/study_plan_aws_pract_detailed.html" target="_blank">📄 Visualizza AWS Architecture Plan</a></li>
-              <li><a href="docs/Progetti/Cloud Architecture/study_plan_az500_detailed.html" target="_blank">📄 Visualizza Azure Security Plan</a></li>
-              <li><a href="https://github.com/isabelleadjetey/kitchen-manager" target="_blank">💻 Vedi Codice Sorgente su GitHub (React & Django)</a></li>
-            </ul>
-          </section>
-
-          <!-- AWS Practice Exam Lab (Interactive) -->
-          <section class="project" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; border: 2px solid #ff9900;">
-            <h3 style="color: #ff9900;">🚀 AWS Practice Exam Lab (Interactive)</h3>
-            <p style="color: #cbd5e1;"><strong>Tool Interattivo:</strong> Ho sviluppato questo simulatore d'esame per testare la preparazione sui 6 Practice Exams ufficiali del percorso AWS Certified Cloud Practitioner.</p>
-            <p style="color: #cbd5e1;">Questo laboratorio permette di esercitarsi con domande in stile esame, visualizzare spiegazioni dettagliate in tempo reale e monitorare il punteggio finale.</p>
-            <div class="buttons">
-              <a href="aws-quiz.html" class="btn" style="background: #ff9900; color: #fff; border: none;">Inizia il Quiz Interattivo</a>
             </div>
-            <p class="tags" style="background: rgba(255,153,0,0.1); border: 1px solid #ff9900;"><span style="color: #ff9900;">#AWS</span> <span style="color: #ff9900;">#InteractiveLab</span> <span style="color: #ff9900;">#CloudPractitioner</span> <span style="color: #ff9900;">#QuizEngine</span></p>
-          </section>
 
-          <!-- CCNA 200-301 Journey -->
-          <section class="project">
-            <h3>🌐 CCNA 200-301: Enterprise Network Architecture & Routing</h3>
-            <p><strong>Contesto & Origine:</strong> Consolidamento verticale delle basi di Networking per eccellere nelle architetture Cloud ibride (AWS/Azure). Il percorso certificativo ufficiale Cisco mira a dimostrare padronanza pratica assoluta sulle fondamenta del traffico di rete, routing avanzato e security on-premises.</p>
-            <p><strong>Tecnologie:</strong> Cisco IOS, TCP/IP, OSPF, VLAN, STP, HSRP, IPsec, ACLs, NAT, DHCP Snooping, SDN, REST API.</p>
-            <p><strong>Attività principali (Laboratori Packet Tracer & Teoria Applicata):</strong></p>
-            <ul>
-              <li>Progettazione architetture enterprise basate su Spine-Leaf e reti campus scalabili.</li>
-              <li>Segmentazione tramite VLAN e trunking (802.1Q) con mitigazione dei loop via Rapid PVST+.</li>
-              <li>Sviluppo di logiche di routing IPv4 e IPv6 implementando protocolli Link-State come OSPFv2.</li>
-              <li>Hardening dell'infrastruttura L2 (Port Security, DAI, DHCP Snooping) per prevenire attacchi arp-poisoning e rogue DHCP.</li>
-              <li>Implementazione perimetrale aggressiva tramite Access Control Lists (ACL), unita alla traslazione NAT/PAT.</li>
-              <li>Esplorazione e familiarizzazione dell'automazione di rete tramite Cisco DNA Center e interazioni REST.</li>
-            </ul>
-            <p><strong>Deliverable:</strong> Report architetturale delle competenze, design configurazioni e best practices L2/L3 in ambiente Cisco.</p>
-            <ul>
-              <li><a href="docs/Progetti/CCNA Journey/study_plan_ccna_detailed.html" target="_blank">📄 Visualizza CCNA Network Architecture Report</a></li>
-            </ul>
-          </section>
+            <div class="sub-domain">
+              <h3>Vulnerability Management & Offensive Security</h3>
+              
+              <div class="project-item">
+                <h4>🔍 Vulnerability Assessment – Metasploitable</h4>
+                <p><strong>Tool:</strong> Nmap, Nessus, iptables</p>
+                <ul>
+                  <li>Scansione completa sul target Metasploitable.</li>
+                  <li>Implementazione patch e regole firewall (Remediation).</li>
+                  <li>Riesecuzione scansione e confronto risultati.</li>
+                </ul>
+                <p>
+                  <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScanzioneIniziale.pdf" target="_blank">📄 Scan Iniziale</a> | 
+                  <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/RemediationMeta.pdf" target="_blank">📄 Remediation</a> | 
+                  <a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/ScansioneFine.pdf" target="_blank">📄 Scan Finale</a>
+                </p>
+                <p class="tags">#VulnerabilityAssessment #Nessus #Nmap</p>
+              </div>
+
+              <div class="project-item">
+                <h4>🧱 Web App Security Analysis & Response</h4>
+                <ul>
+                  <li>Filtri WAF e validazione input per SQLi/XSS.</li>
+                  <li>Mitigazione DDoS (CDN, rate-limiting).</li>
+                  <li>Quarantena malware tramite ACL e VLAN dedicate.</li>
+                </ul>
+                <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M5.pdf" target="_blank">📄 PDF Web Security</a></p>
+                <p class="tags">#WebSecurity #SQLi #XSS #WAF</p>
+              </div>
+
+              <div class="project-item">
+                <h4>🧰 Java RMI Exploitation</h4>
+                <p>Ottenimento di una sessione Meterpreter sfruttando il servizio Java RMI (porta 1099) su Metasploitable tramite Metasploit Framework.</p>
+                <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M4.pdf" target="_blank">📄 PDF Java RMI</a></p>
+                <p class="tags">#Metasploit #Meterpreter #Exploitation</p>
+              </div>
+
+              <div class="project-item">
+                <h4>🎮 GameShell – Shell Familiarization</h4>
+                <p>Esercitazioni e hardening CLI su ambiente Linux (Kali).</p>
+                <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M2%20-%20Gameshell.pdf" target="_blank">📄 PDF GameShell</a></p>
+                <p class="tags">#LinuxCLI #KaliLinux #GameShell</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==============================================
+               DOMAIN: CLOUD
+          =============================================== -->
+          <div id="cloud" class="domain-section">
+            <h2 class="domain-title">☁️ Cloud</h2>
+            
+            <div class="sub-domain">
+              <h3>Cloud Security (Azure)</h3>
+              
+              <div class="project-item">
+                <h4>🔒 Capstone BuyforSure — Protezione immagine riservata</h4>
+                <p><strong>Tecnologie:</strong> Azure AD, Key Vault (CMK), Private Endpoint, Defender for Cloud, Sentinel, Terraform.</p>
+                <ul>
+                  <li>Implementazione Key Vault e CMK per cifratura a riposo di asset sensibili.</li>
+                  <li>Gestione identità, RBAC e Private Endpoint per l'isolamento di rete.</li>
+                  <li>Sviluppo backend per emissione user-delegation SAS/Proxy.</li>
+                  <li>Monitoraggio e playbook Sentinel per risposta automatica.</li>
+                </ul>
+                <p class="tags">#AZ500 #AzureSecurity #KeyVault #ZeroTrust #Terraform</p>
+              </div>
+            </div>
+
+            <div class="sub-domain">
+              <h3>Cloud Architecture (AWS / Azure)</h3>
+
+              <div class="project-item">
+                <h4>🌩️ Kitchen Manager: Cloud Architecture & Security</h4>
+                <p>Progetto Full-Stack (React/Django) usato come banco di prova per infrastrutture Cloud e Zero-Trust.</p>
+                <ul>
+                  <li>S3 + CloudFront (CDN) per il frontend; Elastic Beanstalk per il backend Django.</li>
+                  <li>Integrazione sicura API Key (Google Gemini) lette al volo da Azure Key Vault e AWS Secrets Manager tramite Managed Identities.</li>
+                  <li>Ibridazione Cloud: disaccoppiamento analisi NLP su Amazon Comprehend via SQS/Lambda.</li>
+                  <li>Microsoft Entra ID Conditional Access per limitare i login allo staff sul Wi-Fi aziendale.</li>
+                </ul>
+                <p>
+                  <a href="docs/Progetti/Cloud Architecture/study_plan_aws_pract_detailed.html" target="_blank">📄 AWS Architecture Plan</a> | 
+                  <a href="docs/Progetti/Cloud Architecture/study_plan_az500_detailed.html" target="_blank">📄 Azure Security Plan</a> | 
+                  <a href="https://github.com/isabelleadjetey/kitchen-manager" target="_blank">💻 GitHub Repo</a>
+                </p>
+                <p class="tags">#AWS #Azure #EntraID #ManagedIdentities #Architecture</p>
+              </div>
+
+              <div class="project-item" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; border: 2px solid #ff9900;">
+                <h4 style="color: #ff9900; margin-top: 0;">🚀 AWS Practice Exam Lab (Interactive)</h4>
+                <p style="color: #cbd5e1;">Simulatore interattivo sviluppato per testare la preparazione sui 6 Practice Exams ufficiali del percorso AWS Certified Cloud Practitioner.</p>
+                <a href="aws-quiz.html" class="btn" style="background: #ff9900; color: #fff; border: none; padding: 5px 15px; border-radius: 4px; text-decoration: none; display: inline-block; margin-top: 10px;">Avvia Simulatore</a>
+                <p class="tags" style="margin-top: 15px;"><span style="color: #ff9900;">#CloudPractitioner #AWSQuiz</span></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==============================================
+               DOMAIN: NETWORK
+          =============================================== -->
+          <div id="network" class="domain-section">
+            <h2 class="domain-title">🌐 Network</h2>
+
+            <div class="sub-domain">
+              <h3>Network Security & NGFW</h3>
+
+              <div class="project-item">
+                <h4>🛡️ Fortinet NSE 4: Network Security Professional</h4>
+                <p>Implementazione, configurazione e gestione operativa dei Next-Generation Firewall (NGFW) FortiGate in ambiente lab (VM).</p>
+                <ul>
+                  <li>Configurazione di policy firewall granulari (Fall-through) e regole NAT (SNAT/DNAT).</li>
+                  <li>Implementazione di Security Profiles (Web Filtering, Application Control, Antivirus).</li>
+                  <li>Provisioning e troubleshooting di tunnel VPN IPsec (Site-to-Site e Remote Access).</li>
+                </ul>
+                <p>
+                  <a href="docs/Progetti/NSE4 Journey/fortigate_vm_esercitazioni.html" target="_blank">📄 Manuale FortiGate Lab</a> | 
+                  <a href="docs/Progetti/NSE4 Journey/ipsec_nse4_admin.html" target="_blank">📄 Guida IPsec NSE 4</a>
+                </p>
+                <p class="tags">#Fortinet #NSE4 #NGFW #IPsec #WebFiltering</p>
+              </div>
+            </div>
+
+            <div class="sub-domain">
+              <h3>Enterprise Routing & Infrastructure</h3>
+
+              <div class="project-item">
+                <h4>🌐 CCNA 200-301: Enterprise Network Architecture</h4>
+                <p>Progettazione e amministrazione di architetture di rete Cisco, Routing, Switching e hardening L2/L3.</p>
+                <ul>
+                  <li>Segmentazione tramite VLAN, Trunking (802.1Q) e Rapid PVST+.</li>
+                  <li>Routing Link-State con OSPFv2 (IPv4/IPv6).</li>
+                  <li>Hardening L2 (Port Security, DAI, DHCP Snooping) e implementazione ACL.</li>
+                </ul>
+                <p>
+                  <a href="docs/Progetti/CCNA Journey/study_plan_ccna_detailed.html" target="_blank">📄 Report Network Architecture</a> | 
+                  <a href="docs/Progetti/CCNA Journey/ccna_vpn_journey.html" target="_blank">📄 Appunti: VPN & IPsec</a>
+                </p>
+                <p class="tags">#Cisco #CCNA #OSPF #VLAN #Routing</p>
+              </div>
+
+              <div class="project-item">
+                <h4>🌐 Simulazione Client-Server & Protocolli</h4>
+                <p><strong>Tool:</strong> BIND9, Apache, Wireshark (su Kali e Windows)</p>
+                <ul>
+                  <li>Configurazione server DNS e Server HTTPS autofirmato.</li>
+                  <li>Cattura pacchetti e analisi differenziale tra payload HTTP (in chiaro) e TLS handshake.</li>
+                </ul>
+                <p><a href="https://github.com/isabelleadjetey/IsabelleAdjetey_Epicode/blob/main/Progetto%20M1.pdf" target="_blank">📄 PDF Client-Server Lab</a></p>
+                <p class="tags">#DNS #HTTP #HTTPS #Wireshark</p>
+              </div>
+            </div>
+          </div>
 
         </div> <!-- /.projects-list -->
         
       </div> <!-- /.container -->
-        
-
     </section>
   </main>
 

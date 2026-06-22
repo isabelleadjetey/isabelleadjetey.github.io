@@ -2,57 +2,177 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>AWS Cloud Architecture - Kitchen Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Architettura AWS per "Kitchen Manager"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
-        h1 { color: #232F3E; border-bottom: 3px solid #FF9900; padding-bottom: 10px; margin-bottom: 20px; }
-        h2 { color: #FF9900; margin-top: 35px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        h3 { color: #232F3E; margin-top: 25px; margin-bottom: 10px; }
-        p { margin-bottom: 15px; text-align: justify; }
-        ul { margin-bottom: 20px; }
-        li { margin-bottom: 10px; }
-        strong { color: #000; }
-        @media print {
-            body { max-width: 100%; border: none; padding: 0; margin: 0; font-size: 11pt; color: #000; }
-            h1 { font-size: 18pt; border-bottom: 2px solid #000; color: #000; page-break-after: avoid; }
-            h2 { font-size: 14pt; color: #333; border-bottom: 1px solid #ccc; margin-top: 20px;}
-            p, ul, li { page-break-inside: avoid; }
-        }
+    :root {
+  --primary: #232f3e;
+  --primary-light: #eaeded;
+  --secondary: #ff9900;
+  --text: #2d3748;
+  --text-muted: #718096;
+  --bg: #ffffff;
+  --bg-alt: #f7fafc;
+  --border: #e2e8f0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-alt);
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px 60px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.2rem;
+  border-bottom: 4px solid var(--secondary);
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  background: var(--primary); 
+  color: white; 
+  padding: 10px 15px; 
+  border-radius: 4px;
+  margin-top: 2em;
+}
+
+h3 {
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+  color: #1a202c;
+  margin-top: 1.5em;
+}
+
+p, li {
+  margin-bottom: 0.8em;
+}
+
+ul {
+  padding-left: 25px;
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--primary-light);
+  border-left: 6px solid var(--secondary);
+  border-radius: 0 8px 8px 0;
+  color: var(--primary);
+}
+
+.highlight {
+  background-color: #fffaf0;
+  border: 1px solid #ed8936;
+  padding: 15px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+.highlight strong {
+  color: #c05621;
+}
+
+@media print {
+  body { background: white; padding: 0; font-size: 11pt; }
+  .container { box-shadow: none; padding: 0; max-width: 100%; margin: 0; }
+  h2 { page-break-after: avoid; }
+}
     </style>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#f8f9fa', primaryBorderColor: '#232f3e', primaryTextColor: '#232f3e', fontSize: '14px'} });
+    </script>
 </head>
 <body>
-    <h1>Architettura AWS Cloud - Kitchen Manager</h1>
-    <p><strong>Report: Migrazione e Implementazione Cloud-Native</strong></p>
-    <p>Il presente documento illustra l'architettura cloud ideata per il progetto <strong>Kitchen Manager (Stack: React, Vite, Django, PostgreSQL)</strong> su infrastruttura Amazon Web Services. L'obiettivo dell'implementazione è mappare un ambiente monolitico locale verso un set di componenti cloud-native per garantire scalabilità, sicurezza ed alta disponibilità.</p>
-    
-    <h2>1. Livello Frontend (React + Vite)</h2>
-    <ul>
-        <li>Il bundle statico autogenerato dal framework frontend risiede all'interno di <strong>Amazon S3</strong>, configurato specificatamente in modalità <em>Static Website Hosting</em>.</li>
-        <li>La distribuzione globale dei contenuti e l'accelerazione delle tempistiche di risposta sono garantite attraverso <strong>Amazon CloudFront (CDN)</strong>, che offre caching a livello globale, crittografia avanzata nativa (HTTPS via ACM) e un primo layer difensivo mediante AWS WAF (Web Application Firewall).</li>
-    </ul>
+    <div class="container">
+        <h1>Case Study AWS: Architettura "Kitchen Manager"</h1>
+        <blockquote>
+            <p><strong>OBIETTIVO DI STUDIO:</strong> Questo documento analizza l'architettura reale del progetto "Kitchen Manager" (React, Django, PostgreSQL) mappandola sui concetti teorici dell'esame <strong>AWS Cloud Practitioner (CLF-C02)</strong>. Capire un'architettura reale è il modo migliore per fissare in memoria i concetti cloud-native per superare l'esame.</p>
+        </blockquote>
 
-    <h2>2. Livello Backend (Compute & PaaS)</h2>
-    <ul>
-        <li>L'applicativo backend Python/Django richiede risorse computazionali in grado di scalare dinamicamente nei picchi di carico. Per l'hosting è impiegato <strong>AWS Elastic Beanstalk</strong>, una nota componente Platform as a Service (PaaS).</li>
-        <li>Il servizio orchestra la fornitura delle istanze <strong>Amazon EC2</strong>, automatizzando il bilanciamento del carico in ingresso per reagire in tempo reale alle variazioni di traffico, assicurando scalabilità orizzontale e massima resilienza.</li>
-    </ul>
+        <div class="mermaid" style="text-align: center; margin: 30px 0;">
+            graph TD
+            User((Utenti Web)) -->|HTTPS| CF[CloudFront CDN + WAF]
+            CF -->|Sito Statico| S3[Amazon S3 Frontend]
+            CF -->|API REST| EB[Elastic Beanstalk Backend]
+            EB -->|Query| RDS[(Amazon RDS PostgreSQL)]
+            EB -.->|Code di task| SQS[Amazon SQS]
+            SQS -.->|Trigger| Lambda[AWS Lambda Elaborazione AI]
+            Lambda -.->|Legge Chiavi| SM[AWS Secrets Manager]
+            style S3 fill:#e2e8f0,stroke:#232f3e
+            style EB fill:#ff9900,stroke:#232f3e,color:#fff
+            style RDS fill:#e2e8f0,stroke:#232f3e
+            style Lambda fill:#ff9900,stroke:#232f3e,color:#fff
+        </div>
 
-    <h2>3. Livello Dati (Relational Database)</h2>
-    <ul>
-        <li>Tutte le transazioni e i dati di gestione sono delegati al servizio gestito <strong>Amazon RDS (PostgreSQL Engine)</strong>.</li>
-        <li>RDS si fa carico dell'automazione integrale dei backup e della manutenzione. La comunicazione Backend-Database avviene sul perimetro di una singola Virtual Private Cloud (VPC), con una rigorosa segregazione via <strong>Security Groups</strong> organizzati in chiave Least Privilege, esponendo la porta 5432 esplicitamente al solo gruppo di sicurezza relativo ai layer computazionali di backend.</li>
-    </ul>
+        <h2>1. Livello Frontend (S3 + CloudFront)</h2>
+        <h3>Il Ruolo dei Servizi</h3>
+        <ul>
+            <li><strong>Amazon S3 (Simple Storage Service):</strong> Ospita i file statici compilati (HTML, CSS, JS creati da React/Vite) usando la feature <em>Static Website Hosting</em>. È una soluzione Serverless, si paga solo per lo storage allocato e i trasferimenti (OpEx).</li>
+            <li><strong>Amazon CloudFront:</strong> È la Content Delivery Network (CDN) globale di AWS. Memorizza in cache le pagine web nelle <em>Edge Locations</em> (data center periferici vicini agli utenti), riducendo drasticamente la latenza (<em>"Go global in minutes"</em>).</li>
+            <li><strong>AWS WAF (Web Application Firewall):</strong> Collegato a CloudFront per filtrare traffico malevolo e attacchi comuni prima ancora che tocchi i server di backend (es. difende da SQL Injection o Cross-Site Scripting a Layer 7).</li>
+        </ul>
+        <div class="highlight">
+            <strong>💡 Focus Esame Cloud Practitioner:</strong> Perché usare S3 per siti statici invece di un classico server EC2? Perché S3 offre scalabilità infinita "out of the box", non richiede patch o aggiornamenti del sistema operativo (ricade nella <em>Security OF the Cloud</em>) ed è estremamente più economico e durevole (99.999999999% durability).
+        </div>
 
-    <h2>4. Integrazione AI e Gestione dei Segreti (Decoupling)</h2>
-    <ul>
-        <li>Al fine di evitare restrizioni o blocchi sui thread dei server Web principali, le funzionalità di elaborazione del linguaggio supportate dall'AI (come l'AI Google Gemini) vengono eseguite fuori dal flusso di richiesta dell'interfaccia utente. Le chiamate sono processate da una coda <strong>Amazon SQS</strong> che scatena le esecuzioni mediante <strong>AWS Lambda</strong>.</li>
-        <li>Rispettando le norme Enterprise zero-trust, le chiavi identificative associate ai modelli AI non vengono hardcodate internamente alle funzioni analizzatrici, ma prelevate contestualmente alle esecuzioni dalle istanze sicure di <strong>AWS Secrets Manager</strong>.</li>
-    </ul>
+        <h2>2. Livello Backend (PaaS con Elastic Beanstalk)</h2>
+        <h3>Il Ruolo dei Servizi</h3>
+        <ul>
+            <li><strong>AWS Elastic Beanstalk:</strong> Servizio <em>PaaS (Platform as a Service)</em>. Tu carichi il codice (es. Python/Django), e AWS gestisce automaticamente sotto il cofano: l'allocazione delle istanze virtuali <strong>Amazon EC2</strong>, il bilanciamento del carico (<strong>Elastic Load Balancing - ELB</strong>), l'<strong>Auto Scaling</strong> (per reagire ai picchi) e il monitoraggio (tramite <strong>CloudWatch</strong>).</li>
+        </ul>
+        <div class="highlight">
+            <strong>💡 Focus Esame Cloud Practitioner:</strong> Elastic Beanstalk è la risposta perfetta alla domanda: "Quale servizio permette agli sviluppatori di fare deploy rapido focalizzandosi solo sul codice senza doversi preoccupare dell'infrastruttura sottostante?". È il concetto chiave del PaaS: "Increase speed and agility".
+        </div>
 
-    <h2>5. Compliance e Security Posture</h2>
-    <ul>
-        <li>L'intera architettura in esenzione si rifà alle stringenti normative del <strong>Well-Architected Framework</strong> delineato da AWS, e segue le corrette attribuzioni descritte nel <em>Shared Responsibility Model</em>.</li>
-        <li>Le configurazioni identitarie seguono policy modulari in ecosistema <strong>AWS IAM</strong>, scongiurando l'abuso dei privilegi da parte di singole classi dell'applicativo (es. operatori in front e backofice).</li>
-    </ul>
+        <h2>3. Livello Dati (Amazon RDS)</h2>
+        <h3>Il Ruolo dei Servizi</h3>
+        <ul>
+            <li><strong>Amazon RDS (Relational Database Service):</strong> Servizio per database SQL completamente gestito. Nel nostro caso ospita il motore PostgreSQL.</li>
+            <li><strong>Security Groups & VPC:</strong> RDS è posizionato in subnet private all'interno della Virtual Private Cloud (VPC) dell'azienda. L'accesso è consentito <em>esclusivamente</em> alle istanze EC2 di backend sulla porta 5432, seguendo le stringenti regole dei firewall virtuali (<strong>Security Groups</strong>) applicando il <em>Principio del privilegio minimo (Least Privilege)</em>.</li>
+        </ul>
+        <div class="highlight">
+            <strong>💡 Focus Esame Cloud Practitioner:</strong> Qual è il vantaggio di usare RDS gestito rispetto ad installare tu PostgreSQL a mano su una tua istanza EC2? RDS automatizza tutti i task noiosi di amministrazione del database: backup automatici, snapshot, patch del sistema operativo del DB, e ti offre failover immediati con l'opzione Multi-AZ. Tu ti occupi solo dei dati e di ottimizzare le query.
+        </div>
+
+        <h2>4. Disaccoppiamento e AI (SQS, Lambda, Secrets Manager)</h2>
+        <h3>Il Ruolo dei Servizi</h3>
+        <ul>
+            <li><strong>Amazon SQS (Simple Queue Service):</strong> Servizio di accodamento messaggi. Viene usato per separare (disaccoppiare) l'app web principale (veloce) dall'elaborazione pesante e potenzialmente lenta dell'Intelligenza Artificiale (Google Gemini).</li>
+            <li><strong>AWS Lambda:</strong> Servizio di calcolo computazionale <em>Serverless (FaaS)</em>. Elabora i messaggi prelevati da SQS ed esegue le chiamate API verso l'AI esterna. Paghi rigorosamente solo per i millisecondi in cui il codice viene eseguito, zero spese per l'inattività.</li>
+            <li><strong>AWS Secrets Manager:</strong> Protegge i segreti (come le password o le API Key di Gemini). Le chiavi sensibili non vengono MAI scritte direttamente nel codice (hardcoded), ma recuperate in modo crittografato e sicuro in tempo reale dalle istanze Lambda.</li>
+        </ul>
+        <div class="highlight">
+            <strong>💡 Focus Esame Cloud Practitioner:</strong> SQS è l'emblema del termine "Decouple" (Disaccoppiamento) e della "Fault Tolerance". Se il sistema AI esterno cade, rallenta, o se ci sono picchi immensi di traffico inaspettati, i messaggi/task vengono accodati in sicurezza su SQS senza bloccare, affaticare o far crashare l'intera app Kitchen Manager.
+        </div>
+
+        <h2>5. Compliance e Security Posture (IAM & Well-Architected)</h2>
+        <ul>
+            <li><strong>AWS IAM (Identity and Access Management):</strong> Gestisce e centralizza chi può fare cosa (Authentication & Authorization). All'infrastruttura Kitchen Manager vengono applicate <em>Policy</em> specifiche basate sui <em>Ruoli IAM</em> (IAM Roles, assunti in modo temporaneo da EC2 e Lambda), anziché usare chiavi d'accesso statiche.</li>
+            <li><strong>AWS Well-Architected Framework:</strong> Questa architettura rispetta in pieno i pilastri dettati da AWS: <em>Operational Excellence</em> (uso di servizi PaaS gestiti), <em>Security</em> (VPC chiuse, WAF per frontend, Secrets Manager), <em>Reliability</em> (Auto-scaling per l'elasticità, SQS per evitare rotture, RDS Multi-AZ) e <em>Performance Efficiency</em> (CloudFront globale, Lambda scalabile).</li>
+        </ul>
+
+    </div>
 </body>
 </html>

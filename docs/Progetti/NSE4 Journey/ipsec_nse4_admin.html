@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortinet NSE 4: IPsec VPN Admin Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --fortinet-red: #ef4444;
+            --accent: #3b82f6;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 { 
+            margin: 0; 
+            font-size: 3rem; 
+            font-weight: 800; 
+            background: linear-gradient(to right, #ef4444, #f87171);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle { font-size: 1.2rem; color: #94a3b8; margin-top: 10px; font-weight: 300; }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--fortinet-red);
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: #ffffff;
+            margin-top: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 { 
+            color: #93c5fd; 
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 12px; }
+        strong { color: #ffffff; }
+
+        .terminal {
+            font-family: 'Fira Code', monospace;
+            background: #000000;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid #333;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .terminal span.cmd { color: #569cd6; font-weight: bold; }
+        .terminal span.arg { color: #ce9178; }
+        .terminal span.comment { color: #6a9955; font-style: italic; }
+
+        .highlight {
+            background-color: rgba(239, 68, 68, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #f87171;
+        }
+
+        .alert-box {
+            background-color: rgba(234, 179, 8, 0.1);
+            border-left: 4px solid #eab308;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            color: #fef08a;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 10px 20px;
+            background-color: rgba(255,255,255,0.05);
+            color: #e2e8f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s;
+        }
+        .btn-back:hover { 
+            background-color: rgba(255,255,255,0.1); 
+            color: #fff;
+        }
+        
+        .quiz-section {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: #3b82f6;
+        }
+        .quiz-section h2 { color: #60a5fa; }
+        
+        details {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        summary {
+            font-weight: 600;
+            color: #e2e8f0;
+            outline: none;
+        }
+        details[open] summary {
+            margin-bottom: 10px;
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>NSE 4: IPsec VPN Administration</h1>
+        <p class="subtitle">Review & Summary - Pronti per l'Esercitazione</p>
+    </header>
+
+    <div class="container">
+        
+        <a href="fortigate_vm_esercitazioni.html" class="btn-back">← Torna alle Esercitazioni</a>
+
+        <div class="module-card">
+            <h2>0. Basi Teoriche: Cos'è una VPN e IPsec?</h2>
+            <p>Prima di entrare nei dettagli di FortiOS, è fondamentale avere chiari i concetti base:</p>
+            
+            <h3>La VPN (Virtual Private Network)</h3>
+            <p>Immagina internet come un'autostrada pubblica. Se un'azienda a Milano vuole comunicare con la sua filiale a Roma, inviare i dati in chiaro è pericoloso. Una <strong>VPN</strong> è come un <em>tunnel privato e blindato</em> costruito sopra questa autostrada. Chi sta fuori dal tunnel vede il traffico, ma non può assolutamente vedere cosa c'è dentro. Le due sedi comunicano come se fossero collegate dallo stesso cavo locale.</p>
+
+            <h3>IPsec (Internet Protocol Security)</h3>
+            <p><strong>IPsec</strong> è la tecnologia (l'insieme di protocolli) che materialmente costruisce e blinda questo tunnel. Garantisce tre elementi essenziali (la triade <strong>CIA</strong>):</p>
+            <ul>
+                <li><strong>C</strong>onfidentiality (Riservatezza): I dati vengono crittografati (es. tramite <strong>AES</strong>). Se intercettati, sono illeggibili.</li>
+                <li><strong>I</strong>ntegrity (Integrità): Usa funzioni di Hash (es. <strong>SHA</strong>) per applicare un "sigillo" ai dati, garantendo che nessuno li abbia manomessi durante il viaggio.</li>
+                <li><strong>A</strong>uthentication (Autenticazione): Garantisce che il router di Roma stia parlando <em>davvero</em> con il router di Milano (di solito tramite una password <strong>PSK</strong> o certificati).</li>
+            </ul>
+
+            <div class="alert-box">
+                <strong>Metafora della Negoziazione:</strong><br>
+                - <strong>Phase 1:</strong> Due spie si incontrano in un bar, si scambiano la parola d'ordine (PSK) e decidono in quale lingua in codice parlare. Creano un canale di controllo sicuro.<br>
+                - <strong>Phase 2:</strong> Le spie iniziano a scambiarsi i veri documenti segreti (il traffico dati degli utenti) usando la lingua in codice appena concordata.
+            </div>
+        </div>
+
+        <div class="module-card">
+            <h2>1. Architettura IPsec: Route-Based è il Re</h2>
+            <p>Per l'esame NSE 4, devi ricordare che FortiGate supporta due tipi di VPN, ma una è lo standard assoluto:</p>
+            <ul>
+                <li><strong>Route-Based VPN (Raccomandato):</strong> FortiOS crea automaticamente un'<strong>interfaccia virtuale</strong> (Tunnel Interface) quando crei la Phase 1. 
+                Il routing (Static Routes o protocolli dinamici) decide quale traffico entra nel tunnel. Le Firewall Policy usano questa interfaccia. Molto più flessibile (supporta SD-WAN, OSPF, ecc.).</li>
+                <li><strong>Policy-Based VPN (Legacy):</strong> Nessuna interfaccia virtuale. Il traffico viene crittografato se fa match su una Firewall Policy con azione "IPsec". Sconsigliata e limitata.</li>
+            </ul>
+            <div class="alert-box">
+                <strong>Da ricordare:</strong> In una Route-Based VPN, hai bisogno di <strong>due</strong> firewall policy per permettere il traffico bidirezionale (una in entrata e una in uscita), oltre alla rotta statica che punta alla tunnel interface.
+            </div>
+        </div>
+
+        <div class="module-card">
+            <h2>2. Negoziazione: Phase 1 (IKE) e Phase 2 (IPsec)</h2>
+            
+            <h3>Phase 1 (IKE) - Autenticazione e Canale Sicuro</h3>
+            <ul>
+                <li><strong>Main Mode vs Aggressive Mode:</strong> Main Mode = 6 messaggi, ID protetto. Aggressive Mode = 3 messaggi, ID in chiaro (spesso usato per Dial-Up/Remote access con IP dinamici in IKEv1).</li>
+                <li><strong>NAT Traversal (NAT-T):</strong> Necessario se c'è un NAT lungo il percorso. Sposta il traffico da ESP (Protocollo 50) a <strong>UDP 4500</strong>. FortiGate lo rileva automaticamente durante la negoziazione.</li>
+                <li><strong>DPD (Dead Peer Detection):</strong> Meccanismo di keepalive. Se il peer non risponde, la Phase 1 viene abbattuta e il routing si aggiorna (fondamentale per le VPN ridondanti).</li>
+            </ul>
+
+            <h3>Phase 2 (IPsec) - Tunnel Dati</h3>
+            <ul>
+                <li><strong>Quick Mode Selectors:</strong> Definiscono quali subnet possono parlarsi. Nelle Route-Based, la best practice è lasciarle a <code>0.0.0.0/0</code> e delegare il controllo al Routing e alle Firewall Policy.</li>
+                <li><strong>PFS (Perfect Forward Secrecy):</strong> Costringe a generare nuove chiavi Diffie-Hellman per la Phase 2. Se abilitato su un peer, <em>deve</em> essere abilitato e coincidere anche sull'altro.</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <h2>3. Routing Avanzato e VPN Ridondanti (Focus Esame)</h2>
+            <p>Spesso all'esame ti chiederanno cosa succede se hai due tunnel VPN verso la stessa destinazione.</p>
+            <ul>
+                <li><strong>Failover (Attivo/Passivo):</strong> Si usano due rotte statiche con la stessa destinazione ma <strong>Distance</strong> diversa. La rotta con Distance minore è attiva. Se il tunnel cade, subentra l'altra.</li>
+                <li><strong>Load Balancing (Attivo/Attivo):</strong> Entrambe le rotte hanno la stessa Distance. Il traffico viene bilanciato. Si può usare l'ECMP o l'SD-WAN per gestire il bilanciamento.</li>
+                <li><strong>Overlapping Subnets:</strong> Se la LAN locale e remota usano lo stesso spazio IP, si deve applicare il NAT all'interno della VPN. Si usano <em>Virtual IPs (VIP)</em> in entrata e <em>IP Pools</em> in uscita per mascherare le reti.</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <h2>4. Troubleshooting CLI (Il Pane Quotidiano)</h2>
+            <p>Se la VPN non sale, questi sono i comandi essenziali:</p>
+            
+            <div class="terminal">
+                <span class="comment"># Controlla lo stato generale dei tunnel (se la rotta non c'è, il tunnel potrebbe non salire)</span><br>
+                <span class="cmd">get vpn ipsec tunnel summary</span><br><br>
+
+                <span class="comment"># Il debug IKE è la risposta a quasi tutte le domande di troubleshooting VPN all'esame</span><br>
+                <span class="cmd">diagnose vpn ike log-filter dst-addr4</span> <span class="arg">x.x.x.x</span><br>
+                <span class="cmd">diagnose debug application ike -1</span><br>
+                <span class="cmd">diagnose debug enable</span>
+            </div>
+            
+            <div class="alert-box">
+                <strong>Errori Comuni:</strong><br>
+                - <code>pre-shared key mismatch</code>: La password PSK è sbagliata.<br>
+                - <code>proposal mismatch</code>: Gli algoritmi di cifratura/hash (es. AES/SHA) non coincidono tra i due peer.<br>
+                - <code>no matching gateway</code>: L'IP remoto non è corretto o l'IKE ID non corrisponde.
+            </div>
+        </div>
+
+        <div class="module-card quiz-section">
+            <h2>5. Auto-Verifica Rapida (Q&A) prima dell'Esercitazione</h2>
+            <p>Clicca sulle domande per vedere le risposte e verificare di aver compreso tutto.</p>
+            
+            <details>
+                <summary>Qual è il protocollo usato se il NAT-T è attivo?</summary>
+                <p>UDP sulla porta 4500. Senza NAT-T, verrebbe usato il protocollo ESP (IP Protocol 50) e UDP 500 per IKE.</p>
+            </details>
+            <details>
+                <summary>In una Route-based VPN, di quante policy hai bisogno minimo per far parlare due LAN?</summary>
+                <p>Due. Una per il traffico dalla LAN al Tunnel, e una per il traffico dal Tunnel alla LAN.</p>
+            </details>
+            <details>
+                <summary>Se vedi l'errore "proposal mismatch" nel debug, cosa controlli?</summary>
+                <p>Devo controllare che Fase 1 e Fase 2 abbiano gli stessi algoritmi di Encryption (es. AES-256) e Authentication (es. SHA-256) configurati su entrambi i firewall, e lo stesso gruppo Diffie-Hellman.</p>
+            </details>
+            <details>
+                <summary>A cosa serve il PFS (Perfect Forward Secrecy)?</summary>
+                <p>Forza la generazione di un nuovo set di chiavi (scambio Diffie-Hellman) dedicato per la Fase 2, anziché derivarle dalla Fase 1, aumentando la sicurezza.</p>
+            </details>
+        </div>
+
+        <div class="module-card">
+            <h2>6. Lab Pratico: Route-Based IPsec VPN (Step-by-Step)</h2>
+            <p><strong>Scenario:</strong> Dobbiamo collegare la sede di Milano (HQ) con quella di Roma (Branch) usando una Route-Based VPN. Questo è l'approccio standard raccomandato da Fortinet.</p>
+            <ul>
+                <li><strong>HQ (Milano):</strong> IP Pubblico WAN: <code>203.0.113.1</code> | Rete LAN: <code>10.0.1.0/24</code></li>
+                <li><strong>Branch (Roma):</strong> IP Pubblico WAN: <code>198.51.100.1</code> | Rete LAN: <code>10.0.2.0/24</code></li>
+                <li><strong>PSK:</strong> <code>FortiSecret123!</code></li>
+            </ul>
+
+            <h3>Step 1: Creazione della Phase 1 (su HQ Milano)</h3>
+            <p>Prima creiamo il canale di controllo verso Roma.</p>
+            <div class="terminal">
+                <span class="comment"># Dalla CLI di HQ (Milano)</span><br>
+                <span class="cmd">config vpn ipsec phase1-interface</span><br>
+                <span class="cmd">edit "VPN-to-Roma"</span><br>
+                <span class="cmd">set interface "wan1"</span><br>
+                <span class="cmd">set peertype any</span><br>
+                <span class="cmd">set net-device disable</span><br>
+                <span class="cmd">set proposal aes256-sha256</span><br>
+                <span class="cmd">set remote-gw 198.51.100.1</span> <span class="comment"># Punta all'IP WAN di Roma</span><br>
+                <span class="cmd">set psksecret FortiSecret123!</span><br>
+                <span class="cmd">next</span><br>
+                <span class="cmd">end</span>
+            </div>
+
+            <h3>Step 2: Creazione della Phase 2 (su HQ Milano)</h3>
+            <p>Leghiamo il tunnel dati alla Fase 1. Lasciamo le subnet a "tutte" (0.0.0.0/0) delegando il controllo al routing.</p>
+            <div class="terminal">
+                <span class="cmd">config vpn ipsec phase2-interface</span><br>
+                <span class="cmd">edit "VPN-to-Roma-P2"</span><br>
+                <span class="cmd">set phase1name "VPN-to-Roma"</span><br>
+                <span class="cmd">set proposal aes256-sha256</span><br>
+                <span class="comment"># src-subnet e dst-subnet rimangono a 0.0.0.0/0 (default)</span><br>
+                <span class="cmd">next</span><br>
+                <span class="cmd">end</span>
+            </div>
+
+            <h3>Step 3: Routing Statico (su HQ Milano)</h3>
+            <p>Diciamo al firewall di Milano: "Se devi inviare dati alla LAN di Roma (10.0.2.0/24), buttali dentro l'interfaccia VPN".</p>
+            <div class="terminal">
+                <span class="cmd">config router static</span><br>
+                <span class="cmd">edit 0</span><br>
+                <span class="cmd">set dst 10.0.2.0 255.255.255.0</span><br>
+                <span class="cmd">set device "VPN-to-Roma"</span><br>
+                <span class="cmd">next</span><br>
+                <span class="cmd">end</span>
+            </div>
+
+            <h3>Step 4: Firewall Policy Bidirezionali (su HQ Milano)</h3>
+            <p>Senza policy il traffico viene droppato. In una VPN Site-to-Site classica, <strong>il NAT deve essere spento</strong> sulla policy.</p>
+            <div class="terminal">
+                <span class="cmd">config firewall policy</span><br>
+                <span class="comment"># Policy 1: Da Milano verso Roma (Outbound)</span><br>
+                <span class="cmd">edit 0</span><br>
+                <span class="cmd">set name "Milano_to_Roma"</span><br>
+                <span class="cmd">set srcintf "lan"</span><br>
+                <span class="cmd">set dstintf "VPN-to-Roma"</span><br>
+                <span class="cmd">set srcaddr "all"</span><br>
+                <span class="cmd">set dstaddr "all"</span><br>
+                <span class="cmd">set action accept</span><br>
+                <span class="cmd">set schedule "always"</span><br>
+                <span class="cmd">set service "ALL"</span><br>
+                <span class="cmd">set nat disable</span> <span class="comment"># Fondamentale!</span><br>
+                <span class="cmd">next</span><br>
+                <br>
+                <span class="comment"># Policy 2: Da Roma verso Milano (Inbound)</span><br>
+                <span class="cmd">edit 0</span><br>
+                <span class="cmd">set name "Roma_to_Milano"</span><br>
+                <span class="cmd">set srcintf "VPN-to-Roma"</span><br>
+                <span class="cmd">set dstintf "lan"</span><br>
+                <span class="cmd">set srcaddr "all"</span><br>
+                <span class="cmd">set dstaddr "all"</span><br>
+                <span class="cmd">set action accept</span><br>
+                <span class="cmd">set schedule "always"</span><br>
+                <span class="cmd">set service "ALL"</span><br>
+                <span class="cmd">set nat disable</span><br>
+                <span class="cmd">next</span><br>
+                <span class="cmd">end</span>
+            </div>
+
+            <div class="alert-box">
+                <strong>Step 5: Configurare Branch (Roma) in modo speculare</strong><br>
+                Ora ripeti gli stessi passaggi sul firewall di Roma. Inverti gli IP e le interfacce:<br>
+                - Fase 1: <code>remote-gw</code> diventa l'IP WAN di Milano (<code>203.0.113.1</code>).<br>
+                - Rotta statica: La destinazione diventa la LAN di Milano (<code>10.0.1.0/24</code>).<br>
+                - Policy: Da LAN Roma a VPN, e da VPN a LAN Roma.
+            </div>
+            
+            <h3>Step 6: Attivazione e Verifica</h3>
+            <p>I tunnel in FortiOS non si alzano da soli (a meno di non attivare <code>auto-negotiate</code>). Si alzano quando arriva il primo pacchetto utile.</p>
+            <div class="terminal">
+                <span class="comment"># Esegui dal PC nella LAN di Milano verso un PC nella LAN di Roma:</span><br>
+                <span class="cmd">ping 10.0.2.10</span><br><br>
+                <span class="comment"># Oppure forzalo dal FortiGate:</span><br>
+                <span class="cmd">diagnose vpn tunnel up VPN-to-Roma</span><br>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

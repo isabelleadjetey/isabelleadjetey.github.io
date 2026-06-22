@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSE 4 - Guida Laboratori Step-by-Step</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --sidebar-bg: #1e293b;
+            --text-color: #cbd5e1;
+            --text-strong: #f8fafc;
+            --accent: #3b82f6;
+            --fortinet-red: #ef4444;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --border: rgba(255,255,255,0.1);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            padding: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem 1rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            color: var(--fortinet-red);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 0.8rem 2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 2rem 4rem;
+            scroll-behavior: smooth;
+        }
+
+        .lab-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .lab-section h2 {
+            color: var(--text-strong);
+            font-size: 2rem;
+            margin-top: 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            color: var(--accent);
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .step {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--fortinet-red);
+        }
+
+        .gui-path {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #93c5fd;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .gui-path::before {
+            content: "🖱️ GUI: ";
+            font-size: 0.9em;
+        }
+
+        .cli-box {
+            background: #000;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            color: #10b981;
+            margin-top: 0.5rem;
+            display: none; /* Hide CLI by default unless needed */
+        }
+        
+        .cli-box.show { display: block; }
+
+        .note {
+            background: rgba(234, 179, 8, 0.1);
+            border-left: 3px solid #eab308;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            color: #fef08a;
+            font-size: 0.95rem;
+        }
+
+        strong { color: var(--text-strong); }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>NSE 4 Labs</h1>
+            <p style="margin: 5px 0 0; font-size: 0.9rem;">Step-by-Step Guide</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#lab1" class="active">1. Configurazione Iniziale</a></li>
+            <li><a href="#lab2">2. Routing e NAT</a></li>
+            <li><a href="#lab3">3. Oggetti e Policy</a></li>
+            <li><a href="#lab4">4. Security Profiles (UTM)</a></li>
+            <li><a href="#lab5">5. VPN (IPsec & SSL)</a></li>
+            <li><a href="#lab6">6. SD-WAN</a></li>
+            <li><a href="#lab7">7. Virtual Domains (VDOM)</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        
+        <div id="lab1" class="lab-section">
+            <h2>1. Configurazione Iniziale e Amministrazione</h2>
+            <p>Obiettivo: Mettere in sicurezza l'accesso al firewall e configurare le interfacce base.</p>
+            
+            <h3>Step 1: Hostname e NTP</h3>
+            <div class="step">
+                <div class="gui-path">System > Settings</div>
+                <p>Nella sezione <strong>System Information</strong>, cambia il campo "Hostname" in `FortiGate-HQ`.<br>
+                Nella sezione <strong>System Time</strong>, seleziona il fuso orario corretto (es. `(GMT+1:00) Rome`) e assicurati che "Synchronize with NTP Server" sia attivo usando i server FortiGuard. Clicca <strong>Apply</strong>.</p>
+            </div>
+
+            <h3>Step 2: Password Policy e Amministratori</h3>
+            <div class="step">
+                <div class="gui-path">System > Administrators</div>
+                <p>Prima clicca in alto su <strong>Password Policy</strong>. Abilita la policy e richiedi almeno 8 caratteri, numeri e maiuscole. Applica.</p>
+                <p>Poi torna su <strong>Administrators</strong>, fai clic su <strong>Create New > Administrator</strong>. Crea l'utente `admin-ro` (Read-Only).<br>
+                Per bloccare l'accesso da IP sconosciuti al tuo admin principale, modifica l'utente `admin`, attiva <strong>Restrict login to trusted hosts</strong> e inserisci la subnet della tua rete di gestione (es. <code>192.168.1.0/24</code>).</p>
+            </div>
+
+            <h3>Step 3: Interfacce e DHCP</h3>
+            <div class="step">
+                <div class="gui-path">Network > Interfaces</div>
+                <p>Fai doppio clic su <strong>port1 (WAN)</strong>. In "Addressing Mode" scegli <strong>DHCP</strong> o <strong>Manual</strong> in base alla tua rete esterna. Abilita l'Administrative Access solo a <code>Ping</code>.</p>
+                <p>Modifica <strong>port2 (LAN)</strong>. Assegna l'IP Manuale <code>10.0.0.254/255.255.255.0</code>. In Administrative Access abilita <code>HTTPS, SSH, Ping</code>.<br>
+                Scorri giù e abilita il <strong>DHCP Server</strong>. Il range IP verrà compilato in automatico (es. <code>10.0.0.1 - 10.0.0.253</code>).</p>
+            </div>
+        </div>
+
+        <div id="lab2" class="lab-section">
+            <h2>2. Routing e NAT</h2>
+            <p>Obiettivo: Far navigare i client su Internet (SNAT) e pubblicare un server interno (DNAT/VIP).</p>
+
+            <h3>Step 1: Rotta Statica (Default Route)</h3>
+            <div class="step">
+                <div class="gui-path">Network > Static Routes</div>
+                <p>Clicca <strong>Create New</strong>.<br>
+                <strong>Destination:</strong> <code>0.0.0.0/0.0.0.0</code> (Subnet)<br>
+                <strong>Gateway Address:</strong> Inserisci l'IP del router del tuo provider (es. <code>192.168.1.1</code> o l'IP fornito dall'ISP).<br>
+                <strong>Interface:</strong> Seleziona <code>port1</code> (WAN). Clicca OK.</p>
+            </div>
+
+            <h3>Step 2: Source NAT (Navigazione Internet)</h3>
+            <div class="step">
+                <div class="gui-path">Policy & Objects > Firewall Policy</div>
+                <p>Clicca <strong>Create New</strong>.<br>
+                <strong>Name:</strong> <code>LAN_to_Internet</code><br>
+                <strong>Incoming Interface:</strong> <code>port2 (LAN)</code><br>
+                <strong>Outgoing Interface:</strong> <code>port1 (WAN)</code><br>
+                <strong>Source:</strong> <code>all</code><br>
+                <strong>Destination:</strong> <code>all</code><br>
+                <strong>Schedule:</strong> <code>always</code><br>
+                <strong>Service:</strong> <code>ALL</code><br>
+                <strong>Action:</strong> <code>ACCEPT</code><br>
+                Scorri fino alla sezione NAT: verifica che <strong>NAT sia abilitato</strong> e seleziona <strong>Use Outgoing Interface Address</strong>. Clicca OK.</p>
+            </div>
+
+            <h3>Step 3: Destination NAT (Pubblicare un Web Server)</h3>
+            <div class="step">
+                <div class="gui-path">Policy & Objects > Virtual IPs</div>
+                <p>Clicca <strong>Create New > Virtual IP</strong>.<br>
+                <strong>Name:</strong> <code>VIP_WebServer</code><br>
+                <strong>Interface:</strong> <code>port1 (WAN)</code><br>
+                <strong>External IP Address:</strong> L'IP pubblico del FortiGate (es. <code>203.0.113.1</code>).<br>
+                <strong>Mapped IP Address:</strong> L'IP privato del server nella DMZ (es. <code>172.16.0.10</code>).<br>
+                Abilita <strong>Port Forwarding</strong>, External Service Port <code>80</code>, Map to Port <code>80</code>.</p>
+                <p><em>Importante:</em> Ora vai su <strong>Firewall Policy</strong> e crea una regola dalla WAN verso la DMZ, usando come "Destination" il <code>VIP_WebServer</code> appena creato. Il NAT nella policy deve essere <strong>spento</strong>.</p>
+            </div>
+        </div>
+
+        <div id="lab3" class="lab-section">
+            <h2>3. Gestione Oggetti e Policy Avanzate</h2>
+            <p>Obiettivo: Creare regole più restrittive usando gruppi e schedule.</p>
+
+            <h3>Step 1: Creazione Oggetti</h3>
+            <div class="step">
+                <div class="gui-path">Policy & Objects > Addresses</div>
+                <p>Crea due oggetti "Address": <code>PC_Marco</code> (IP/Netmask: <code>10.0.0.10/32</code>) e <code>PC_Anna</code> (<code>10.0.0.11/32</code>).<br>
+                Poi clicca <strong>Create New > Address Group</strong>. Chiamalo <code>IT_Team</code> e aggiungi i due PC creati come membri.</p>
+                
+                <div class="gui-path">Policy & Objects > Services</div>
+                <p>Crea un <strong>Service Group</strong> chiamato <code>Admin_Access</code>. Aggiungi come membri: <code>SSH</code>, <code>RDP</code>.</p>
+            </div>
+
+            <h3>Step 2: Policy per IT Team e Log</h3>
+            <div class="step">
+                <div class="gui-path">Policy & Objects > Firewall Policy</div>
+                <p>Crea una nuova policy e <strong>assicurati di spostarla sopra la policy LAN_to_Internet</strong> trascinandola (drag & drop), altrimenti non verrà mai letta (Logica Top-Down).<br>
+                <strong>Source:</strong> <code>IT_Team</code><br>
+                <strong>Service:</strong> <code>Admin_Access</code><br>
+                In fondo, sotto "Logging Options", imposta <strong>Log Allowed Traffic</strong> su <strong>All Sessions</strong> per registrare nel dettaglio queste connessioni.</p>
+            </div>
+        </div>
+
+        <div id="lab4" class="lab-section">
+            <h2>4. Security Profiles e UTM</h2>
+            <p>Obiettivo: Proteggere la rete con Antivirus e Web Filtering.</p>
+
+            <h3>Step 1: Antivirus (EICAR Test)</h3>
+            <div class="step">
+                <div class="gui-path">Security Profiles > AntiVirus</div>
+                <p>Modifica il profilo <code>default</code>. Assicurati che l'azione per virus rilevati sia impostata su <strong>Block</strong> sia per HTTP che per HTTPS.<br>
+                Vai in <strong>Policy & Objects > Firewall Policy</strong>, apri <code>LAN_to_Internet</code>. Nella sezione Security Profiles, abilita AntiVirus e seleziona il profilo <code>default</code>. Abilita anche "SSL Inspection" su <code>certificate-inspection</code>.<br>
+                <em>Test:</em> Dal PC della LAN naviga su eicar.org e scarica il file di test. FortiGate mostrerà una pagina rossa di blocco.</p>
+            </div>
+
+            <h3>Step 2: Web Filtering con Quota</h3>
+            <div class="step">
+                <div class="gui-path">Security Profiles > Web Filter</div>
+                <p>Clona il profilo default o creane uno nuovo chiamato <code>Strict_Web</code>.<br>
+                Cerca la categoria "Social Networking" e "Adult Materials" e imposta l'azione su <strong>Block</strong>.<br>
+                Cerca "Streaming Media", seleziona la categoria, clicca l'icona dell'orologio (Quota) e imposta <code>5 minutes</code>.<br>
+                Applica il profilo <code>Strict_Web</code> alla tua Firewall Policy LAN_to_Internet.</p>
+            </div>
+            
+            <h3>Step 3: Application Control</h3>
+            <div class="step">
+                <div class="gui-path">Security Profiles > Application Control</div>
+                <p>Crea un nuovo profilo <code>Block_P2P</code>. Sotto "Application and Filter Overrides", clicca <strong>Create New</strong>.<br>
+                Cerca <code>BitTorrent</code> e <code>TeamViewer</code>, selezionali e clicca <strong>Add Selected</strong>. Imposta Action su <strong>Block</strong>. Salva e applica il profilo alla Firewall Policy.</p>
+            </div>
+        </div>
+
+        <div id="lab5" class="lab-section">
+            <h2>5. Virtual Private Networks (VPN)</h2>
+            <p>Obiettivo: Accesso remoto tramite SSL VPN e Site-to-Site tramite IPsec.</p>
+
+            <h3>Step 1: SSL VPN (Remote Access)</h3>
+            <div class="step">
+                <div class="gui-path">VPN > SSL-VPN Settings</div>
+                <p><strong>Listen on Interface:</strong> <code>port1 (WAN)</code><br>
+                <strong>Listen on Port:</strong> Cambiala in <code>10443</code> (per sicurezza ed evitare conflitti).<br>
+                <strong>Server Certificate:</strong> Scegli il certificato di default (es. Fortinet_Factory).<br>
+                In fondo, in "Authentication/Portal Mapping", mappa l'utente "All Other Users/Groups" al portale <code>full-access</code>. Applica.</p>
+                <div class="gui-path">Policy & Objects > Firewall Policy</div>
+                <p>Crea una policy chiamata <code>SSLVPN_to_LAN</code>. <strong>Incoming:</strong> <code>SSL-VPN tunnel interface (ssl.root)</code>. <strong>Outgoing:</strong> <code>port2 (LAN)</code>. <strong>Source:</strong> <code>all</code> AND aggiungi un <strong>User Group</strong> creato in precedenza. Action: ACCEPT.</p>
+            </div>
+
+            <h3>Step 2: IPsec Site-to-Site (Usando la GUI)</h3>
+            <div class="step">
+                <div class="note">Nota: Per la configurazione CLI di IPsec fai riferimento al file <em>ipsec_nse4_admin.html</em> generato in precedenza. Qui vediamo l'approccio GUI rapido.</div>
+                <div class="gui-path">VPN > IPsec Wizard</div>
+                <p>Scegli il template <strong>Site to Site</strong> > <strong>FortiGate</strong>. Clicca Next.<br>
+                Inserisci l'IP pubblico del firewall remoto e la <strong>Pre-Shared Key</strong>. Seleziona la porta WAN in uscita. Next.<br>
+                Definisci le reti: <strong>Local Interface</strong> scegli <code>port2 (LAN)</code>. <strong>Remote Subnets</strong> inserisci la subnet remota (es. <code>10.0.2.0/24</code>).<br>
+                Il wizard in automatico creerà: La Phase 1, La Phase 2, le Rotte Statiche e le due Firewall Policy! (Approccio comodissimo rispetto alla CLI).</p>
+            </div>
+        </div>
+
+        <div id="lab6" class="lab-section">
+            <h2>6. SD-WAN</h2>
+            <p>Obiettivo: Bilanciare il traffico tra due link WAN misurandone la qualità.</p>
+
+            <h3>Step 1: Setup SD-WAN Zones</h3>
+            <div class="step">
+                <div class="gui-path">Network > SD-WAN > Zones</div>
+                <p>Clicca <strong>Create New > SD-WAN Zone</strong>. Chiamala <code>Internet_Zone</code>.<br>
+                Poi vai su <strong>SD-WAN Members</strong>. Aggiungi <code>port1</code> (WAN1) assegnandole la zone <code>Internet_Zone</code> e il gateway fornito dall'ISP1.<br>
+                Aggiungi <code>port4</code> (WAN2) sempre alla zone <code>Internet_Zone</code> inserendo il gateway ISP2.</p>
+                <div class="note">Attenzione: Le interfacce non possono essere usate in SD-WAN se sono già in uso in una firewall policy o rotta statica. Devi prima cancellarle! Dopo aver creato l'SD-WAN, ricrea la rotta statica usando come interfaccia "SD-WAN" e ricrea la policy.</div>
+            </div>
+
+            <h3>Step 2: Performance SLAs (Health Check)</h3>
+            <div class="step">
+                <div class="gui-path">Network > SD-WAN > Performance SLAs</div>
+                <p>Clicca <strong>Create New</strong>.<br>
+                <strong>Server:</strong> <code>8.8.8.8</code><br>
+                <strong>Participants:</strong> Scegli <code>port1</code> e <code>port4</code>.<br>
+                Sotto "SLA Targets", crea un target accettabile (es. Latency 50ms, Jitter 10ms, Packet Loss 1%).</p>
+            </div>
+
+            <h3>Step 3: SD-WAN Rules</h3>
+            <div class="step">
+                <div class="gui-path">Network > SD-WAN > Rules</div>
+                <p>Crea una nuova regola chiamata <code>Business_Traffic</code>.<br>
+                <strong>Source:</strong> <code>all</code>. <strong>Destination:</strong> Internet Service <code>Microsoft-Office365</code>.<br>
+                In <strong>Outgoing Interfaces</strong> scegli la strategia <strong>Lowest Cost (SLA)</strong>, seleziona i membri (port1, port4) e seleziona l'SLA Target creato prima. Il firewall manderà il traffico di Office 365 sulla connessione che rispetta l'SLA con il costo (latenza) minore.</p>
+            </div>
+        </div>
+
+        <div id="lab7" class="lab-section">
+            <h2>7. Virtual Domains (VDOM)</h2>
+            <p>Obiettivo: Dividere il FortiGate in più firewall virtuali.</p>
+
+            <h3>Step 1: Abilitazione e Creazione VDOM</h3>
+            <div class="step">
+                <div class="gui-path">System > Settings</div>
+                <p>Sotto "System Operation Settings", abilita <strong>Virtual Domains</strong> (questo disconnetterà l'amministratore e modificherà l'interfaccia GUI).</p>
+                <div class="gui-path">Global > System > VDOM</div>
+                <p><em>(Ora sei nel contesto Global)</em>. Clicca <strong>Create New</strong> e chiama il nuovo VDOM <code>Customer-A</code>. Lascia l'Inspection Mode di default.</p>
+            </div>
+
+            <h3>Step 2: Assegnazione Interfacce</h3>
+            <div class="step">
+                <div class="gui-path">Global > Network > Interfaces</div>
+                <p>Modifica un'interfaccia libera, es. <code>port3</code>.<br>
+                Cambia il campo <strong>Virtual Domain</strong> spostandola da <code>root</code> a <code>Customer-A</code>. Ora la port3 "appartiene" esclusivamente a quel firewall virtuale.</p>
+            </div>
+
+            <h3>Step 3: VDOM Link (Inter-VDOM Routing)</h3>
+            <div class="step">
+                <div class="gui-path">Global > Network > Interfaces</div>
+                <p>Clicca <strong>Create New > VDOM Link</strong>. Chiamalo <code>Link_Root_CustA</code>.<br>
+                Interface 0: Associala al VDOM <code>root</code>.<br>
+                Interface 1: Associala al VDOM <code>Customer-A</code>.<br>
+                Il sistema crea due interfacce virtuali tipo "cavo".<br>
+                Dopodiché, entra nel VDOM <code>root</code> (dal menu a tendina in alto a sinistra), assegna un IP alla parte 0 del link (es. <code>10.99.99.1/30</code>) e crea le policy. Fai la stessa cosa entrando nel VDOM <code>Customer-A</code> (IP <code>10.99.99.2/30</code>). Infine, gestisci le rotte statiche tra i due VDOM.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Semplice script per gestire lo scroll menu e far risaltare il tab attivo
+        const sections = document.querySelectorAll('.lab-section');
+        const navLinks = document.querySelectorAll('.nav-links li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

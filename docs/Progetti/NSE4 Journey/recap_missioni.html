@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recap Missioni NSE 4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --primary-color: #38bdf8;
+            --accent-color: #f43f5e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .concept-item {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .concept-item h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Recap Missioni NSE 4</h1>
+            <div class="subtitle">Laboratorio FortiGate - Sintesi dei concetti avanzati applicati</div>
+        </header>
+
+        <div class="card">
+            <h2>🛡️ Missione 1: Rete Guest Blindata <span class="badge">Completata</span></h2>
+            <p>Configurazione del traffico in uscita (Outbound) con restrizioni rigorose usando i Security Profiles.</p>
+            <div class="concept-grid">
+                <div class="concept-item">
+                    <h3>NAT Overload (IP Pool)</h3>
+                    <p>Abbiamo sganciato l'IP di uscita da quello dell'interfaccia WAN, usando un <b>Dynamic IP Pool</b> per mappare molti host interni su un singolo IP pubblico dedicato agli ospiti.</p>
+                </div>
+                <div class="concept-item">
+                    <h3>Web Filtering vs App Control</h3>
+                    <p>Il <b>Web Filter</b> legge gli URL (es. facebook.com), mentre l'<b>Application Control</b> legge la firma del traffico (es. YouTube App). Entrambi sono necessari per una sicurezza a livello 7.</p>
+                </div>
+                <div class="concept-item">
+                    <h3>L'inganno del QUIC</h3>
+                    <p>Applicazioni come YouTube aggirano l'ispezione standard usando il protocollo UDP (QUIC). Forzando i servizi a <b>HTTP/HTTPS</b> (TCP) si costringe il browser sotto la lente del firewall.</p>
+                </div>
+                <div class="concept-item">
+                    <h3>HSTS (Strict Transport Security)</h3>
+                    <p>Quando il FortiGate intercetta una connessione HTTPS di un sito ad alta sicurezza come YouTube, il browser va in blocco totale (no tasto "Advanced") per prevenire attacchi Man-in-the-Middle.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🌐 Missione 2: Pubblicare un Server <span class="badge">In Corso</span></h2>
+            <p>Configurazione del traffico in ingresso (Inbound) esponendo un servizio privato a Internet.</p>
+            <div class="concept-grid">
+                <div class="concept-item">
+                    <h3>Destination NAT (Virtual IP)</h3>
+                    <p>Al contrario del Source NAT, il VIP prende il traffico che arriva dall'esterno verso un IP Pubblico e lo "gira" in modo trasparente verso l'IP privato del server nella LAN/DMZ.</p>
+                </div>
+                <div class="concept-item">
+                    <h3>Il NAT Spento nella Policy</h3>
+                    <p>Errore classico: accendere il NAT nella policy Inbound. Non va fatto! Il VIP traduce già la destinazione; se accendessimo il NAT, maschereremmo l'IP del cliente e il server vedrebbe tutto il traffico arrivare dal Firewall.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🧠 Pillole di Architettura</h2>
+            <div class="concept-grid">
+                <div class="concept-item">
+                    <h3>CCNA vs NSE 4</h3>
+                    <p>In Cisco (L3/L4) la sicurezza si fa bloccando IP e porte con le ACL. Nel FortiGate (NGFW L7) si usano gli <b>Address Objects</b> e si ispeziona il contenuto del pacchetto, indipendentemente dalla porta, con le Policy Stateful.</p>
+                </div>
+                <div class="concept-item">
+                    <h3>Il Problema del Double NAT</h3>
+                    <p>In un lab casalingo, il FortiGate e il router dell'operatore fanno NAT due volte. In un'azienda reale, il router del provider è in <b>Bridge Mode</b> e il FortiGate riceve direttamente l'IP Pubblico (Single NAT).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

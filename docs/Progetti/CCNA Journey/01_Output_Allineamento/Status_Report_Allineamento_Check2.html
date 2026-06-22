@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Status Report Allineamento Check 2</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333; }
+        h1 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 5px; }
+        h2 { color: #2c3e50; margin-top: 30px; }
+        h3 { color: #e67e22; }
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        .section { background: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 20px; border-left: 5px solid #0056b3; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        code { background-color: #e8f4f8; padding: 2px 5px; border-radius: 3px; font-family: Consolas, monospace; }
+    </style>
+</head>
+<body>
+    <h1>Status Report Allineamento Check 2</h1>
+    <p>Questo documento riassume lo stato dell'arte dello studio e l'allineamento tra <strong>FSSO</strong>, i fondamenti di rete <strong>CCNA</strong> e i concetti <strong>VPN</strong>.</p>
+
+    <div class="section">
+        <h2>1. FSSO (Fortinet Single Sign-On) - Recap</h2>
+        <ul>
+            <li><strong>Architettura a due DC:</strong> Imprescindibile per l'Alta Affidabilità. Richiede un DC Agent su ogni server per non perdere alcun log di autenticazione.</li>
+            <li><strong>Collector Agent:</strong> Server centrale che mappa IP e Utenti (usa la porta TCP 8000 verso il FortiGate e TCP 8002 dai DC).</li>
+            <li><strong>Push vs Polling:</strong>
+                <ul>
+                    <li><em>Push:</em> Il DC Agent invia l'evento al Collector Agent in tempo reale.</li>
+                    <li><em>Polling:</em> Il Collector o il FortiGate interroga attivamente i DC (tramite WMI o WinSecLog) per sapere chi si è loggato.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2. Fondamenti CCNA applicati al Design</h2>
+        <ul>
+            <li><strong>VLAN e Domini di Broadcast:</strong> Il traffico è diviso fisicamente e logicamente. Separando i Server (VLAN 10) dagli Utenti (VLAN 20) si riduce il traffico broadcast e si limitano i rischi di propagazione malware verso i server critici.</li>
+            <li><strong>Inter-VLAN Routing:</strong> Le macchine su reti diverse (es. <code>192.168.1.0/24</code> e <code>10.0.0.0/24</code>) necessitano di un router per comunicare. Il FortiGate svolge questo ruolo, instradando e contemporaneamente ispezionando il traffico.</li>
+            <li><strong>Default Gateway:</strong> La porta d'uscita per i dispositivi della rete. I PC puntano a <code>192.168.1.1</code> (FortiGate), i Server a <code>10.0.0.1</code>.</li>
+            <li><strong>NAT / PAT:</strong> Il FortiGate maschera gli IP privati interni dietro l'unico IP pubblico WAN (<code>1.1.1.2</code>) per permettere la navigazione sicura su Internet.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. Integrazione tra FSSO e VPN</h2>
+        <h3>VPN Remote Access (Smart Working)</h3>
+        <p>L'utente usa il FortiClient per collegarsi da remoto. In questo scenario <strong>l'FSSO solitamente non è necessario</strong>. Il FortiGate richiede username e password all'avvio del tunnel VPN (interrogando direttamente l'Active Directory via protocollo LDAP) e associa l'identità all'IP della pool VPN appena assegnato, applicando le policy di conseguenza.</p>
+        
+        <h3>VPN Site-to-Site (Collegamento Filiali)</h3>
+        <p>Esiste un tunnel IPsec costante tra la Sede Centrale e la Filiale (es. rete <code>172.16.x.x</code>). Gli utenti in filiale fanno il login sul Domain Controller della Sede attraverso il tunnel. In questo caso <strong>l'FSSO è perfetto</strong>: il DC Agent legge l'evento di login e informa il FortiGate della Sede, che applicherà le restrizioni corrette all'IP dell'utente come se si trovasse nella LAN locale.</p>
+    </div>
+</body>
+</html>

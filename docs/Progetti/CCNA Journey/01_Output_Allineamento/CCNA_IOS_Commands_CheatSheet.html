@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cisco IOS Cheat Sheet - CCNA</title>
+    <title>Cisco IOS Cheat Sheet - CCNA Ultimate</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
     :root {
@@ -31,12 +31,12 @@ body {
 
 .container {
   display: flex;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
 .sidebar {
-  width: 300px;
+  width: 320px;
   height: 100vh;
   position: sticky;
   top: 0;
@@ -44,13 +44,13 @@ body {
   border-right: 1px solid var(--border);
   background-color: var(--bg-alt);
   overflow-y: auto;
-  display: none; /* Hidden by default, shown in JS if needed */
+  display: none;
 }
 
 main {
   flex: 1;
   padding: 40px 60px;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 h1, h2, h3 {
@@ -69,16 +69,25 @@ h1 {
 
 h2 {
   font-size: 1.75rem;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 5px;
+  background: var(--primary); 
+  color: white; 
+  padding: 10px 15px; 
+  border-radius: 4px;
 }
 
 h3 {
   font-size: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+  margin-top: 1.5em;
 }
 
-p {
-  margin-bottom: 1.2em;
+p, li {
+  margin-bottom: 0.6em;
+}
+
+ul {
+  padding-left: 25px;
 }
 
 a {
@@ -105,18 +114,11 @@ th {
   color: white;
   padding: 12px 15px;
   text-align: left;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
 }
 
 td {
   padding: 12px 15px;
   border-bottom: 1px solid var(--border);
-}
-
-tr:last-child td {
-  border-bottom: none;
 }
 
 tr:nth-child(even) {
@@ -132,303 +134,279 @@ blockquote {
   color: var(--primary);
 }
 
-blockquote p:last-child {
-  margin-bottom: 0;
-}
-
-pre {
-  background-color: var(--code-bg);
-  color: var(--code-text);
-  padding: 1.5rem;
-  border-radius: 12px;
-  overflow-x: auto;
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-  font-size: 0.9rem;
-  position: relative;
-  margin: 1.5rem 0;
-  border: 1px solid #2d3748;
-}
-
 code {
-  font-family: inherit;
+  font-family: 'JetBrains Mono', monospace;
   background-color: #edf2f7;
   color: #e53e3e;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   font-size: 0.9em;
-}
-
-pre code {
-  background-color: transparent;
-  color: inherit;
-  padding: 0;
-  border-radius: 0;
-}
-
-.copy-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-pre:hover .copy-btn {
-  opacity: 1;
-}
-
-.copy-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 2rem auto;
-  border-radius: 12px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid var(--border);
-  margin: 3rem 0;
-}
-
-/* Callouts */
-.callout {
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 8px;
-  border-left: 4px solid;
-}
-
-.callout-info { background: #e6fffa; border-color: #38b2ac; color: #234e52; }
-.callout-warning { background: #fffaf0; border-color: #ed8936; color: #7b341e; }
-.callout-danger { background: #fff5f5; border-color: #f56565; color: #742a2a; }
-
-}
-
-.badge {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
   font-weight: 600;
-  text-transform: uppercase;
 }
-
-.badge-shutdown { background: #fed7d7; color: #9b2c2c; }
-.badge-restrict { background: #fef3c7; color: #92400e; }
-.badge-protect { background: #e6fffa; color: #234e52; }
 
 @media (max-width: 768px) {
-  main {
-    padding: 20px;
-  }
-  .sidebar {
-    display: none !important;
-  }
+  main { padding: 20px; }
+  .sidebar { display: none !important; }
 }
-
-
-    h2 { background: var(--primary); color: white; padding: 10px; border-radius: 4px; border-bottom: none; }
     </style>
 </head>
 <body>
     <div class="container">
         <aside class="sidebar" id="sidebar">
             <div style="margin-bottom: 2rem;">
-                <h3 style="margin-top: 0; color: var(--primary);">Cheat Sheet</h3>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Cisco IOS Commands</p>
+                <h3 style="margin-top: 0; color: var(--primary); border-bottom: none;">CCNA 200-301</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Ultimate Cheat Sheet</p>
             </div>
             <nav id="toc"></nav>
         </aside>
         <main>
             <article id="content">
-                <h1>Master Cheat Sheet: Cisco IOS Commands (CCNA Comprehensive)</h1>
-<blockquote>
-<p><strong>OBIETTIVO:</strong> Riferimento rapido per configurazione, sicurezza e troubleshooting in ambienti Cisco Enterprise.</p>
-</blockquote>
-<hr>
-<h2>1. Gestione Base e Sicurezza Accessi</h2>
-<ul>
-<li><code>enable</code> / <code>disable</code>: Entra/Esci dalla modalità privilegiata.</li>
-<li><code>configure terminal</code>: Accesso alla configurazione globale.</li>
-<li><code>service password-encryption</code>: Cripta le password in chiaro nel file di config.</li>
-<li><code>enable secret [PASSWORD]</code>: Password criptata per l&#39;accesso privilegiato.</li>
-<li><code>line console 0</code> -&gt; <code>password [PWD]</code> -&gt; <code>login</code>: Protegge l&#39;accesso fisico.</li>
-<li><code>line vty 0 15</code> -&gt; <code>transport input ssh</code> -&gt; <code>login local</code>: Forza l&#39;uso di SSH.</li>
-<li><code>crypto key generate rsa modulus 2048</code>: Genera chiavi per SSH v2.</li>
-<li><code>ip domain-name [DOMINIO]</code>: Necessario per la generazione chiavi SSH.</li>
-</ul>
-<h2>2. Layer 2: Switching, VLAN e STP</h2>
-<ul>
-<li><strong>VLAN &amp; Trunking:</strong><ul>
-<li><code>vlan [ID]</code> -&gt; <code>name [NAME]</code>: Creazione VLAN.</li>
-<li><code>switchport mode access</code> -&gt; <code>switchport access vlan [ID]</code>: Porta utente.</li>
-<li><code>switchport mode trunk</code>: Porta di collegamento tra switch.</li>
-<li><code>switchport trunk native vlan [ID]</code>: Cambia la VLAN nativa (Default 1).</li>
-<li><code>switchport trunk allowed vlan [LIST]</code>: Limita le VLAN sul trunk.</li>
-</ul>
-</li>
-<li><strong>EtherChannel (LACP):</strong><ul>
-<li><code>interface range [INT_LIST]</code> -&gt; <code>channel-group [ID] mode active</code>.</li>
-<li><code>interface port-channel [ID]</code> -&gt; <code>switchport mode trunk</code>.</li>
-</ul>
-</li>
-<li><strong>Spanning Tree (STP):</strong><ul>
-<li><code>spanning-tree vlan [ID] root primary</code>: Forza lo switch a essere Root Bridge.</li>
-<li><code>spanning-tree portfast</code>: Abilita inoltro immediato su porte PC.</li>
-<li><code>spanning-tree bpduguard enable</code>: Spegne la porta se riceve BPDU (Sicurezza).</li>
-</ul>
-</li>
-</ul>
-<h2>3. Layer 3: Routing (IPv4 &amp; IPv6)</h2>
-<ul>
-<li><strong>Interfaccia &amp; Sub-interfaccia:</strong><ul>
-<li><code>ip address [IP] [MASK]</code>: Assegna IP a interfaccia fisica.</li>
-<li><code>interface [INT].[VLAN]</code> -&gt; <code>encapsulation dot1Q [VLAN]</code>: Router-on-a-Stick.</li>
-</ul>
-</li>
-<li><strong>Static Routing:</strong><ul>
-<li><code>ip route 0.0.0.0 0.0.0.0 [NEXT_HOP]</code>: Rotta di default.</li>
-<li><code>ip route [RETE] [MASK] [NEXT_HOP]</code>: Rotta statica specifica.</li>
-</ul>
-</li>
-<li><strong>Dynamic Routing (OSPFv2):</strong><ul>
-<li><code>router ospf [PID]</code>: Avvia OSPF.</li>
-<li><code>network [IP] [WILDCARD] area [ID]</code>: Abilita OSPF su interfaccia.</li>
-<li><code>passive-interface [INT]</code>: Blocca Hello packets verso la LAN.</li>
-<li><code>default-information originate</code>: Propaga la rotta di default.</li>
-</ul>
-</li>
-<li><strong>IPv6:</strong><ul>
-<li><code>ipv6 unicast-routing</code>: Abilita il routing IPv6 globalmente.</li>
-<li><code>ipv6 address [PREFIX::ID]/64</code>: Assegna indirizzo GUA.</li>
-<li><code>ipv6 address fe80::[ID] link-local</code>: Assegna indirizzo Link-Local.</li>
-</ul>
-</li>
-</ul>
-<h2>4. Servizi IP (DHCP, NAT, ACL)</h2>
-<ul>
-<li><strong>DHCP Server:</strong><ul>
-<li><code>ip dhcp pool [NAME]</code> -&gt; <code>network [NET] [MASK]</code> -&gt; <code>default-router [IP]</code>.</li>
-<li><code>ip dhcp excluded-address [START] [END]</code>: Riserva IP (es. per gateway).</li>
-</ul>
-</li>
-<li><strong>NAT / PAT (NAT Overload):</strong><ul>
-<li><code>ip nat inside</code> (su interfaccia LAN) / <code>ip nat outside</code> (su interfaccia WAN).</li>
-<li><code>access-list 1 permit [RETE] [WILDCARD]</code>.</li>
-<li><code>ip nat inside source list 1 interface [WAN_INT] overload</code>.</li>
-</ul>
-</li>
-<li><strong>Access Control Lists (ACL):</strong><ul>
-<li><strong>Standard (1-99):</strong> <code>access-list [ID] permit/deny [RETE] [WILDCARD]</code>.</li>
-<li><strong>Extended (100-199):</strong> <code>access-list [ID] [PROTO] [SRC] [DST] [PORT]</code>.</li>
-<li><code>interface [INT]</code> -&gt; <code>ip access-group [ID] in/out</code>: Applica l&#39;ACL.</li>
-</ul>
-</li>
-</ul>
-<h2>5. Security &amp; Infrastructure Hardening</h2>
-<ul>
-<li><strong>Port Security:</strong><ul>
-<li><code>switchport port-security</code>: Attivazione.</li>
-<li><code>switchport port-security maximum [N]</code>: Limite MAC address.</li>
-<li><code>switchport port-security violation [shutdown|restrict|protect]</code>.</li>
-<li><code>switchport port-security mac-address sticky</code>.</li>
-</ul>
-</li>
-<li><strong>DHCP Snooping:</strong><ul>
-<li><code>ip dhcp snooping</code> -&gt; <code>ip dhcp snooping vlan [ID]</code>.</li>
-<li><code>interface [INT]</code> -&gt; <code>ip dhcp snooping trust</code>: Porta verso il server DHCP.</li>
-</ul>
-</li>
-<li><strong>First Hop Redundancy (HSRP):</strong><ul>
-<li><code>standby [ID] ip [VIRTUAL_IP]</code>.</li>
-<li><code>standby [ID] priority [VAL]</code>: (Default 100, più alto vince).</li>
-<li><code>standby [ID] preempt</code>: Permette al router prioritario di riprendere il ruolo.</li>
-</ul>
-</li>
-</ul>
-<h2>6. VPN &amp; IPsec (Concetti Fondamentali)</h2>
-<ul>
-<li><strong>Site-to-Site VPN</strong>: Connette due sedi (Router-to-Router).</li>
-<li><strong>Remote Access VPN</strong>: Connette utente remoto alla sede (Client-to-Gate).</li>
-<li><strong>I 3 Pilastri di IPsec</strong>:<ul>
-<li><strong>Confidenzialità</strong>: Criptazione dei dati (AES, 3DES).</li>
-<li><strong>Integrità</strong>: Verifica che i dati non siano stati alterati (SHA, MD5).</li>
-<li><strong>Autenticazione</strong>: Verifica l&#39;identità dei peer (Certificati, PSK).</li>
-</ul>
-</li>
-<li><strong>GRE (Generic Routing Encapsulation)</strong>: Tunneling semplice (non criptato) usato per trasportare traffico multicast/routing dentro IPsec.</li>
-</ul>
-<h2>7. Automation &amp; Programmability (Teoria/CLI)</h2>
-<ul>
-<li><strong>JSON (Data Format):</strong> Key-Value pairs, oggetti <code>{ }</code>, array <code>[ ]</code>.</li>
-<li><strong>YAML:</strong> Identazione significativa, usato in Ansible.</li>
-<li><strong>REST API:</strong> Verbi HTTP (GET, POST, PUT, DELETE).</li>
-<li><strong>Cisco DNA Center:</strong> Gestione centralizzata (Intent-Based Networking).</li>
-<li><strong>LLDP / CDP:</strong><ul>
-<li><code>show cdp neighbors</code> / <code>show lldp neighbors</code>: Scoperta vicini.</li>
-</ul>
-</li>
-</ul>
-<h2>7. Master Troubleshooting Table</h2>
-<table>
-<thead>
-<tr>
-<th align="left">Comando</th>
-<th align="left">Cosa verifica</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>show ip interface brief</code></td>
-<td align="left">Stato fisico (Status) e logico (Protocol) interfacce.</td>
-</tr>
-<tr>
-<td align="left"><code>show vlan brief</code></td>
-<td align="left">Corretta assegnazione porte alle VLAN.</td>
-</tr>
-<tr>
-<td align="left"><code>show ip route</code></td>
-<td align="left">Tabella di routing (C=Connected, S=Static, O=OSPF).</td>
-</tr>
-<tr>
-<td align="left"><code>show ip ospf neighbor</code></td>
-<td align="left">Relazione di adiacenza (Stato FULL è l&#39;obiettivo).</td>
-</tr>
-<tr>
-<td align="left"><code>show etherchannel summary</code></td>
-<td align="left">Stato Port-channel (P=Bundled, D=Down, S=Suspended).</td>
-</tr>
-<tr>
-<td align="left"><code>show spanning-tree vlan [ID]</code></td>
-<td align="left">Verifica Root Bridge e stati porte (FWD, BLK).</td>
-</tr>
-<tr>
-<td align="left"><code>show mac address-table</code></td>
-<td align="left">Associazioni MAC-Porta imparate dallo switch.</td>
-</tr>
-<tr>
-<td align="left"><code>show running-config</code></td>
-<td align="left">Configurazione attuale in RAM.</td>
-</tr>
-<tr>
-<td align="left"><code>ping</code> / <code>traceroute</code></td>
-<td align="left">Verifica connettività e percorso.</td>
-</tr>
-</tbody></table>
-<hr>
-<p><em>(Ultimo aggiornamento per Isabelle - CCNA SNOC Readiness 2026)</em></p>
+                <h1>Master Cheat Sheet: CCNA 200-301 Ultimate</h1>
+                <blockquote>
+                    <p><strong>OBIETTIVO:</strong> Riferimento completo e definitivo per l'esame Cisco CCNA 200-301. Copre Device Management, L2, L3, Servizi, Sicurezza, Wireless, Automazione e Troubleshooting.</p>
+                </blockquote>
 
+                <h2>1. Device Management & Sicurezza Accessi</h2>
+                <h3>Navigazione e Modalità</h3>
+                <ul>
+                    <li><code>enable</code>: User EXEC &rarr; Privileged EXEC (<code>#</code>).</li>
+                    <li><code>configure terminal</code>: Privileged EXEC &rarr; Global Configuration (<code>(config)#</code>).</li>
+                    <li><code>copy running-config startup-config</code>: Salva in NVRAM.</li>
+                    <li><code>write memory</code> (o <code>wr</code>): Comando rapido per salvare.</li>
+                    <li><code>erase startup-config</code> seguito da <code>reload</code>: Ripristina alle impostazioni di fabbrica.</li>
+                </ul>
+
+                <h3>Sicurezza Base</h3>
+                <ul>
+                    <li><code>enable secret [PASSWORD]</code>: Password criptata (MD5) per l'accesso privilegiato (sostituisce <code>enable password</code>).</li>
+                    <li><code>service password-encryption</code>: Cripta debolmente (Type 7) le password in chiaro nel file di config.</li>
+                    <li><code>line console 0</code> &rarr; <code>password [PWD]</code> &rarr; <code>login</code>: Protegge la porta console.</li>
+                    <li><code>line vty 0 15</code> &rarr; <code>transport input ssh</code> &rarr; <code>login local</code>: Forza l'uso di SSH per il telnet virtuale e usa il database utenti locale.</li>
+                    <li><code>username [NOME] privilege 15 secret [PWD]</code>: Crea utente amministratore locale.</li>
+                </ul>
+
+                <h3>Configurazione SSH</h3>
+                <ul>
+                    <li><code>ip domain-name [DOMINIO]</code>: Pre-requisito per SSH.</li>
+                    <li><code>crypto key generate rsa modulus 2048</code>: Genera le chiavi per abilitare SSH v2.</li>
+                    <li><code>ip ssh version 2</code>: Forza l'uso di SSHv2 (più sicuro).</li>
+                </ul>
+
+                <h2>2. Layer 2: Switching, VLAN, STP e EtherChannel</h2>
+                <h3>VLAN e Trunking (802.1Q)</h3>
+                <ul>
+                    <li><code>vlan [ID]</code> &rarr; <code>name [NAME]</code>: Crea e rinomina una VLAN.</li>
+                    <li><code>switchport mode access</code> &rarr; <code>switchport access vlan [ID]</code>: Configura una porta verso un PC.</li>
+                    <li><code>switchport voice vlan [ID]</code>: Configura la VLAN per i telefoni IP.</li>
+                    <li><code>switchport mode trunk</code>: Imposta la porta come trunk.</li>
+                    <li><code>switchport trunk encapsulation dot1q</code>: Su alcuni switch vecchi è necessario prima del comando trunk.</li>
+                    <li><code>switchport trunk native vlan [ID]</code>: Cambia la VLAN nativa per ragioni di sicurezza (mitiga gli attacchi di hopping).</li>
+                    <li><code>switchport trunk allowed vlan [LISTA]</code>: Filtra le VLAN sul trunk (es. <code>10,20,30</code>).</li>
+                </ul>
+
+                <h3>EtherChannel (LACP - 802.3ad)</h3>
+                <ul>
+                    <li><code>interface range [INT_LIST]</code> &rarr; <code>channel-group [ID] mode [active|passive]</code>: Configura LACP.</li>
+                    <li><code>channel-group [ID] mode [desirable|auto]</code>: Configura PAgP (proprietario Cisco).</li>
+                    <li><code>channel-group [ID] mode on</code>: EtherChannel statico (nessun protocollo).</li>
+                    <li><code>interface port-channel [ID]</code>: Entra nell'interfaccia logica per configurare il trunk/access.</li>
+                </ul>
+
+                <h3>Spanning Tree Protocol (STP)</h3>
+                <ul>
+                    <li><code>spanning-tree mode rapid-pvst</code>: Abilita RPVST+ (standard raccomandato CCNA).</li>
+                    <li><code>spanning-tree vlan [ID] root primary</code>: Forza lo switch a diventare Root Bridge abbassando la priorità.</li>
+                    <li><code>spanning-tree vlan [ID] priority [VALORE]</code>: Imposta manualmente la priorità (multipli di 4096).</li>
+                    <li><code>spanning-tree portfast</code>: Configura su porte access collegate a PC per bypassare gli stati di Listening e Learning (Subito FWD).</li>
+                    <li><code>spanning-tree bpduguard enable</code>: Da usare insieme a PortFast per disabilitare (err-disable) la porta se riceve BPDU.</li>
+                </ul>
+
+                <h2>3. Layer 3: Routing IPv4, IPv6 e OSPF</h2>
+                <h3>Routing IPv4 Base</h3>
+                <ul>
+                    <li><code>ip route 0.0.0.0 0.0.0.0 [NEXT_HOP_IP o EXIT_INT]</code>: Rotta statica di default.</li>
+                    <li><code>ip route [RETE_DESTINAZIONE] [SUBNET_MASK] [NEXT_HOP_IP] [AD]</code>: Rotta statica specifica. Aggiungendo un numero AD alla fine crei una <em>Floating Static Route</em> (backup).</li>
+                    <li><strong>Router-on-a-Stick:</strong> <code>interface [INT].[VLAN_ID]</code> &rarr; <code>encapsulation dot1Q [VLAN_ID]</code> &rarr; <code>ip address [IP] [MASK]</code>.</li>
+                    <li><code>interface vlan [ID]</code> &rarr; <code>ip address [IP] [MASK]</code> &rarr; <code>no shutdown</code>: Configura una SVI (Switch Virtual Interface) per routing su Multilayer Switch.</li>
+                    <li><code>ip routing</code>: Abilita il routing IP sugli switch Layer 3.</li>
+                </ul>
+
+                <h3>Routing IPv6</h3>
+                <ul>
+                    <li><code>ipv6 unicast-routing</code>: <strong>Fondamentale!</strong> Abilita il routing IPv6 sul router.</li>
+                    <li><code>ipv6 address [PREFIX::ID]/64</code>: Assegna un indirizzo Global Unicast.</li>
+                    <li><code>ipv6 address fe80::[ID] link-local</code>: Assegna manualmente un indirizzo Link-Local.</li>
+                    <li><code>ipv6 route ::/0 [NEXT_HOP_IPv6]</code>: Rotta di default IPv6.</li>
+                </ul>
+
+                <h3>OSPFv2 (Single Area)</h3>
+                <ul>
+                    <li><code>router ospf [PROCESS_ID]</code>: Avvia il processo OSPF.</li>
+                    <li><code>router-id [IP_FORMAT]</code>: Assegna un ID manuale (es. <code>1.1.1.1</code>).</li>
+                    <li><code>network [RETE_IP] [WILDCARD_MASK] area [AREA_ID]</code>: Dichiara le reti da includere nel processo OSPF.</li>
+                    <li><code>passive-interface [INT]</code>: Impedisce l'invio di pacchetti Hello su interfacce LAN per sicurezza (mantiene la rete nel database routing).</li>
+                    <li><code>default-information originate</code>: Inietta la rotta statica di default nel dominio OSPF.</li>
+                    <li><code>auto-cost reference-bandwidth [Mbps]</code>: Adeguamento del calcolo metrico per link veloci (es. gigabit o 10G).</li>
+                </ul>
+
+                <h2>4. Servizi IP: DHCP, NAT, NTP, CDP/LLDP</h2>
+                <h3>DHCP Server & Relay</h3>
+                <ul>
+                    <li><code>ip dhcp excluded-address [START_IP] [END_IP]</code>: Esclude IP dall'assegnazione automatica.</li>
+                    <li><code>ip dhcp pool [NAME]</code> &rarr; <code>network [RETE] [MASK]</code> &rarr; <code>default-router [GW_IP]</code> &rarr; <code>dns-server [DNS_IP]</code>.</li>
+                    <li><code>ip helper-address [DHCP_SERVER_IP]</code>: Usato sulle interfacce Router (o SVI) per inoltrare le richieste broadcast DHCP verso server in un'altra subnet.</li>
+                </ul>
+
+                <h3>NAT (Network Address Translation)</h3>
+                <ul>
+                    <li><strong>Static NAT:</strong> <code>ip nat inside source static [PRIVATE_IP] [PUBLIC_IP]</code></li>
+                    <li><strong>PAT (NAT Overload):</strong> 
+                        <ul>
+                            <li>Crea ACL: <code>access-list 1 permit [RETE_PRIVATA] [WILDCARD]</code></li>
+                            <li>Attiva PAT: <code>ip nat inside source list 1 interface [WAN_INT] overload</code></li>
+                        </ul>
+                    </li>
+                    <li>Non dimenticare di configurare le interfacce: <code>ip nat inside</code> (su LAN) e <code>ip nat outside</code> (su WAN).</li>
+                </ul>
+
+                <h3>Gestione e Discovery</h3>
+                <ul>
+                    <li><strong>NTP:</strong> <code>ntp server [IP]</code> imposta il router per sincronizzare l'orologio.</li>
+                    <li><strong>CDP (Proprietario Cisco):</strong> <code>cdp run</code> (globale), <code>cdp enable</code> (interfaccia).</li>
+                    <li><strong>LLDP (Standard IEEE):</strong> <code>lldp run</code> (globale), <code>lldp transmit</code> / <code>lldp receive</code> (interfaccia).</li>
+                    <li><strong>Syslog:</strong> <code>logging host [IP_SYSLOG]</code> &rarr; <code>logging trap [LEVEL 0-7]</code>.</li>
+                </ul>
+
+                <h2>5. Security & Infrastructure Hardening</h2>
+                <h3>Access Control Lists (ACL)</h3>
+                <ul>
+                    <li><strong>Standard ACL (1-99)</strong>: Filtrano SOLO in base all'IP di origine. Posizionale il più <em>vicino possibile alla destinazione</em>.
+                        <br><code>access-list 10 permit [IP_ORIGINE] [WILDCARD]</code>
+                    </li>
+                    <li><strong>Extended ACL (100-199)</strong>: Filtrano su IP Origine, IP Destinazione e Porte (TCP/UDP). Posizionale il più <em>vicino possibile all'origine</em>.
+                        <br><code>access-list 101 deny tcp host [IP_SRC] host [IP_DST] eq 80</code><br>
+                        <code>access-list 101 permit ip any any</code> (Impedisce la <em>Implicit Deny</em> finale).
+                    </li>
+                    <li><code>interface [INT]</code> &rarr; <code>ip access-group [ID] [in|out]</code>: Applica l'ACL.</li>
+                </ul>
+
+                <h3>L2 Security (Port Security & DHCP Snooping)</h3>
+                <ul>
+                    <li><strong>Port Security:</strong> 
+                        <ul>
+                            <li><code>switchport mode access</code> (Richiesto prima di attivare)</li>
+                            <li><code>switchport port-security</code> (Attiva)</li>
+                            <li><code>switchport port-security maximum [N]</code> (Limite MAC)</li>
+                            <li><code>switchport port-security mac-address sticky</code> (Memorizza dinamicamente i MAC in config)</li>
+                            <li><code>switchport port-security violation [shutdown | restrict | protect]</code>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>DHCP Snooping:</strong> Protegge contro Rogue DHCP server.
+                        <ul>
+                            <li><code>ip dhcp snooping</code> &rarr; <code>ip dhcp snooping vlan [ID]</code>.</li>
+                            <li><code>interface [INT]</code> (porta collegata al Server DHCP legittimo) &rarr; <code>ip dhcp snooping trust</code>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Dynamic ARP Inspection (DAI):</strong> Dipende dal DHCP Snooping per fermare l'ARP Poisoning. <code>ip arp inspection vlan [ID]</code>.</li>
+                </ul>
+
+                <h2>6. Wireless, QoS e FHRP</h2>
+                <h3>Wireless LAN (WLAN)</h3>
+                <ul>
+                    <li><strong>Architettura:</strong> WLC (Wireless LAN Controller) gestisce i LAP (Lightweight Access Point) usando tunnel <strong>CAPWAP</strong>.</li>
+                    <li><strong>Sicurezza Wireless:</strong> WPA2 usa AES, WPA3 usa SAE (Simultaneous Authentication of Equals). <em>Enterprise</em> richiede server RADIUS (802.1X).</li>
+                    <li>WLC GUI: Per creare una WLAN serve un Profilo, associarlo a un'interfaccia WLC (VLAN), e configurare la sicurezza (es. PSK o 802.1x).</li>
+                </ul>
+
+                <h3>Quality of Service (QoS)</h3>
+                <ul>
+                    <li><strong>Classification:</strong> Identifica il tipo di traffico.</li>
+                    <li><strong>Marking:</strong> <code>DSCP</code> (L3) raccomandato. Es: EF (Expedited Forwarding = Voice), AF (Assured Forwarding = Video/Data). Cos (L2).</li>
+                    <li><strong>Queuing/Scheduling:</strong> CQ, PQ, WFQ, CBWFQ, LLQ (Low Latency Queuing = Migliore per la voce).</li>
+                </ul>
+
+                <h3>FHRP (First Hop Redundancy Protocol)</h3>
+                <ul>
+                    <li><strong>HSRP (Cisco Proprietary):</strong> <code>standby [ID] ip [VIRTUAL_IP]</code>. Router Active e Standby.</li>
+                    <li><strong>VRRP (Open Standard):</strong> Router Master e Backup.</li>
+                    <li><strong>GLBP (Cisco Proprietary):</strong> Offre bilanciamento del carico attivo (Load Balancing) tra i vari router (AVG/AVF).</li>
+                </ul>
+
+                <h2>7. Network Architecture, SDN & Automation</h2>
+                <ul>
+                    <li><strong>Spine-and-Leaf Architecture:</strong> Nessun collegamento tra Leaf o tra Spine. Tutti i Leaf sono connessi a tutti gli Spine (ottimizzato per traffico Est-Ovest tipico dei Datacenter).</li>
+                    <li><strong>Cisco DNA Center:</strong> Controller per reti Enterprise (SD-Access). Fornisce Intent-based Networking e Assurance. Usa API verso il nord (Applicazioni) e CLI/NETCONF/RESTCONF verso il sud (Apparati).</li>
+                    <li><strong>JSON (JavaScript Object Notation):</strong> Usa <code>{}</code> per oggetti (coppie chiave:valore) e <code>[]</code> per array. Tipicamente usato dalle API REST.</li>
+                    <li><strong>REST API:</strong>
+                        <ul>
+                            <li><code>GET</code> (Leggere)</li>
+                            <li><code>POST</code> (Creare nuovo elemento)</li>
+                            <li><code>PUT/PATCH</code> (Aggiornare o modificare elemento esistente)</li>
+                            <li><code>DELETE</code> (Eliminare elemento)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Puppet / Chef / Ansible:</strong> Strumenti di Configuration Management. Ansible usa SSH e YAML (Agentless). Chef/Puppet usano Ruby e spesso richiedono Agent sugli switch.</li>
+                </ul>
+
+                <h2>8. Master Troubleshooting (T-Shoot)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Comando</th>
+                            <th>Cosa Mostra e a cosa Serve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>show ip interface brief</code></td>
+                            <td>Stato L1/L2 (Status e Protocol), IP assegnati. Primo comando per capire se le porte sono UP/UP.</td>
+                        </tr>
+                        <tr>
+                            <td><code>show interfaces [INT]</code></td>
+                            <td>Statistiche, Errori (CRC, Input/Output), MAC Address, Bandwidth e MTU.</td>
+                        </tr>
+                        <tr>
+                            <td><code>show vlan brief</code></td>
+                            <td>Elenco VLAN e quali porte in modalità <em>access</em> vi appartengono (Non mostra i trunk!).</td>
+                        </tr>
+                        <tr>
+                            <td><code>show interfaces trunk</code></td>
+                            <td>Quali porte sono Trunk, la VLAN nativa impostata, e le VLAN consentite sul link.</td>
+                        </tr>
+                        <tr>
+                            <td><code>show ip route</code></td>
+                            <td>Tabella di routing L3. Mostra le rotte (C=Connected, S=Static, O=OSPF).</td>
+                        </tr>
+                        <tr>
+                            <td><code>show ip ospf neighbor</code></td>
+                            <td>Mostra i vicini OSPF. Lo stato ideale per reti Ethernet broadcast è <code>FULL/DR</code> o <code>FULL/BDR</code> o <code>FULL/DROTHER</code> (se tra drother allora <code>2WAY</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><code>show mac address-table</code></td>
+                            <td>Mostra le associazioni MAC-Porta (L2 forwarding table dello switch).</td>
+                        </tr>
+                        <tr>
+                            <td><code>show etherchannel summary</code></td>
+                            <td>Stato del LACP/PAgP. Controlla che le porte fisiche abbiano il flag <code>P</code> (Bundled in port-channel) e non <code>S</code> (Suspended).</td>
+                        </tr>
+                        <tr>
+                            <td><code>show spanning-tree vlan [ID]</code></td>
+                            <td>Mostra chi è il Root Bridge (<em>This bridge is the root</em>), lo stato delle porte (FWD, BLK) e la priorità dello switch.</td>
+                        </tr>
+                        <tr>
+                            <td><code>show cdp neighbors detail</code></td>
+                            <td>Rivela hostname, IP di management, modello hw, e porte usate dall'apparato collegato. <em>Must have</em> se non sai come è cablata la rete.</td>
+                        </tr>
+                        <tr>
+                            <td><code>show ip nat translations</code></td>
+                            <td>Verifica la tabella NAT (es. vedi il mapping Inside Local verso Inside Global).</td>
+                        </tr>
+                        <tr>
+                            <td><code>show access-lists</code></td>
+                            <td>Mostra le righe ACL e il conteggio di quanti pacchetti hanno fatto <em>match</em> su ogni regola.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </article>
         </main>
     </div>
@@ -441,17 +419,36 @@ hr {
 
         if (headers.length > 0) {
             sidebar.style.display = 'block';
+            let currentList = null;
+            
             headers.forEach((header, index) => {
                 const id = 'header-' + index;
                 header.id = id;
-                const link = document.createElement('a');
-                link.href = '#' + id;
-                link.textContent = header.textContent;
-                link.style.display = 'block';
-                link.style.padding = '5px 0';
-                link.style.fontSize = '0.8rem';
-                link.style.color = 'var(--text-muted)';
-                toc.appendChild(link);
+                
+                if (header.tagName.toLowerCase() === 'h2') {
+                    const link = document.createElement('a');
+                    link.href = '#' + id;
+                    link.textContent = header.textContent;
+                    link.style.display = 'block';
+                    link.style.padding = '8px 0';
+                    link.style.fontSize = '0.9rem';
+                    link.style.fontWeight = '600';
+                    link.style.color = 'var(--primary)';
+                    toc.appendChild(link);
+                    
+                    currentList = document.createElement('div');
+                    currentList.style.paddingLeft = '15px';
+                    toc.appendChild(currentList);
+                } else if (header.tagName.toLowerCase() === 'h3' && currentList) {
+                    const link = document.createElement('a');
+                    link.href = '#' + id;
+                    link.textContent = header.textContent;
+                    link.style.display = 'block';
+                    link.style.padding = '4px 0';
+                    link.style.fontSize = '0.8rem';
+                    link.style.color = 'var(--text-muted)';
+                    currentList.appendChild(link);
+                }
             });
         }
     </script>

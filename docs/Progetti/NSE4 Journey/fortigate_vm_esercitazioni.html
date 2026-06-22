@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering FortiGate NSE 4 - Lab Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fortinet-red: #D22630;
+            --bg-dark: #0F172A;
+            --card-bg: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --accent: #38BDF8;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(210, 38, 48, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--fortinet-red);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: white;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 1rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .intro {
+            background: rgba(56, 189, 248, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 4rem;
+            font-size: 1.15rem;
+        }
+
+        .module-group {
+            margin-bottom: 4rem;
+        }
+
+        .module-group-title {
+            font-size: 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--fortinet-red);
+            border-radius: 12px 0 0 12px;
+        }
+
+        .card-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge.fondamenti { color: var(--success); background: rgba(16, 185, 129, 0.1); }
+        .badge.sicurezza { color: var(--warning); background: rgba(245, 158, 11, 0.1); }
+        .badge.infrastruttura { color: #8B5CF6; background: rgba(139, 92, 246, 0.1); }
+        .badge.troubleshooting { color: var(--fortinet-red); background: rgba(210, 38, 48, 0.1); }
+
+        ul {
+            padding-left: 1.2rem;
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .cli-box {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: monospace;
+            color: #0F0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mastering FortiGate NSE 4</h1>
+        <p>Il percorso di laboratorio definitivo per diventare pienamente operativi</p>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            Questa guida copre il <strong>100% degli argomenti pratici richiesti per la certificazione NSE 4 (FCP FortiOS Administrator)</strong> e per gestire in autonomia un firewall aziendale. È divisa in quattro macro-aree logiche. Esegui questi test in sequenza sulla tua VM.
+            <br><br>
+            <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--success); padding: 15px; border-radius: 4px;">
+                <strong>💡 Novità:</strong> Ti sei bloccato su un laboratorio? Ho preparato la <a href="nse4_labs_guide.html" style="color: var(--accent); font-weight: bold; text-decoration: none;">Guida alle Soluzioni Step-by-Step</a> con tutti i passaggi da seguire nella GUI del FortiGate per risolvere i laboratori 1-7!
+            </div>
+        </div>
+
+        <!-- SEZIONE 1 -->
+        <div class="module-group">
+            <h2 class="module-group-title">🛡️ Modulo 1: Fondamenti e Sicurezza Iniziale</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>1. System & Admin Setup</h2>
+                        <span class="badge fondamenti">System</span>
+                    </div>
+                    <ul>
+                        <li><strong>System Settings:</strong> Imposta Hostname, NTP (sincronizzazione orario vitale per i certificati), e Idle Timeout.</li>
+                        <li><strong>Admin Profiles:</strong> Crea un profilo "Read-Only" e un utente associato. Verifica cosa può (e non può) fare.</li>
+                        <li><strong>Admin Access:</strong> Usa i <em>Trusted Hosts</em> sull'utente admin per limitare il login a uno specifico IP (es. il tuo PC). Disabilita PING sulla porta WAN.</li>
+                        <li><strong>Configuration Backup:</strong> Esegui un backup cifrato (con password) e prova a ripristinarlo.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>2. Network Base & DHCP</h2>
+                        <span class="badge fondamenti">Network</span>
+                    </div>
+                    <ul>
+                        <li><strong>Interfacce:</strong> Configura WAN (DHCP o Statica) e LAN (Statica, es. 10.0.0.254/24). Aggiungi gli alias (es. "Rete_Uffici").</li>
+                        <li><strong>DHCP Server:</strong> Abilitato sulla LAN. Configura la DHCP Reservation (MAC Binding) per dare a un PC un IP fisso garantito tramite DHCP.</li>
+                        <li><strong>DNS:</strong> Configura i FortiGuard DNS. Imposta il FortiGate come <em>DNS Server</em> locale per la LAN.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>3. Policy & Address Objects</h2>
+                        <span class="badge fondamenti">Firewall</span>
+                    </div>
+                    <ul>
+                        <li><strong>Address & Groups:</strong> Crea subnet objects, FQDN objects (es. `*.microsoft.com`) e raggruppali in un Address Group.</li>
+                        <li><strong>Services:</strong> Crea un servizio custom TCP con una porta non standard (es. 8443).</li>
+                        <li><strong>Policy Sequence:</strong> Crea regole granulari e posizionale in cima. Verifica il concetto di <em>Fall-through</em> (se una regola non matcha, passa alla successiva).</li>
+                        <li><strong>Schedules:</strong> Crea un orario "Pausa Pranzo" (Recurring) o un evento specifico (One-time) e applicalo a una policy.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 2 -->
+        <div class="module-group">
+            <h2 class="module-group-title">🔒 Modulo 2: NGFW, Autenticazione e NAT</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>4. Network Address Translation (NAT)</h2>
+                        <span class="badge sicurezza">NAT</span>
+                    </div>
+                    <ul>
+                        <li><strong>Source NAT (SNAT):</strong> Usa "Outgoing Interface Address" per mascherare la LAN. Poi testa un "Dynamic IP Pool" per mascherare il traffico usando un IP pubblico diverso da quello dell'interfaccia.</li>
+                        <li><strong>Central SNAT:</strong> (Avanzato) Abilitalo in Settings. Separa la tabella NAT dalle policy di sicurezza.</li>
+                        <li><strong>Destination NAT (VIP):</strong> Crea un Virtual IP per esporre un server web interno sulla porta WAN 80. Fai Port Forwarding (es. dalla porta esterna 8080 alla interna 80).</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>5. User Authentication (Captive Portal)</h2>
+                        <span class="badge sicurezza">Identity</span>
+                    </div>
+                    <ul>
+                        <li><strong>Local Users:</strong> Crea utenti locali e inseriscili in un User Group.</li>
+                        <li><strong>Active Authentication:</strong> Modifica una policy LAN-WAN aggiungendo lo User Group in "Source". Prova a navigare dal client e verifica che appaia la schermata di login (Captive Portal).</li>
+                        <li><strong>FSSO (Concetto):</strong> Documentati su Fortinet Single Sign-On per autenticare gli utenti in modo trasparente tramite Active Directory senza che debbano inserire password.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>6. Certificati e SSL Inspection</h2>
+                        <span class="badge sicurezza">Crypto</span>
+                    </div>
+                    <ul>
+                        <li><strong>Certificate Inspection:</strong> Analizza solo l'SNI (Server Name Indication) del traffico HTTPS (metodo base, nessun errore sui client).</li>
+                        <li><strong>Deep Packet Inspection (DPI):</strong> Il FortiGate decifra tutto il traffico HTTPS. Installa il certificato <em>Fortinet_CA_SSL</em> sul tuo client (Lubuntu/Windows) per non avere errori di sicurezza nei browser.</li>
+                        <li><strong>Exemptions:</strong> Metti in esclusione i domini bancari e sanitari dalla Deep Inspection per motivi di privacy.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>7. Security Profiles (UTM)</h2>
+                        <span class="badge sicurezza">UTM</span>
+                    </div>
+                    <ul>
+                        <li><strong>Antivirus:</strong> Blocca virus basati su firme. Prova a scaricare il file di test *EICAR*.</li>
+                        <li><strong>Web Filtering:</strong> Blocca "Adult" e "Gambling" tramite i server FortiGuard. Metti un sito in "Allow" tramite l'URL Filter locale. Usa i "Warning" per avvisare l'utente.</li>
+                        <li><strong>Application Control:</strong> Blocca YouTube o BitTorrent. Noterai che Application Control se ne frega delle porte usate (blocca anche se mascherato su porta 443).</li>
+                        <li><strong>IPS (Intrusion Prevention):</strong> Blocca tentativi di brute force e vulnerabilità note.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 3 -->
+        <div class="module-group">
+            <h2 class="module-group-title">🌐 Modulo 3: Infrastruttura di Rete Avanzata</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>8. Routing Avanzato</h2>
+                        <span class="badge infrastruttura">Routing</span>
+                    </div>
+                    <ul>
+                        <li><strong>Static Routing & ECMP:</strong> Aggiungi due rotte statiche di default con stessa "Distance". Il firewall farà <em>Equal Cost Multi-Path</em> (bilanciamento).</li>
+                        <li><strong>Policy Routing:</strong> Crea una Policy Route per forzare tutto il traffico di uno specifico PC su una porta WAN secondaria, ignorando la tabella di routing classica.</li>
+                        <li><strong>Routing Monitor:</strong> Usa la GUI per capire esattamente quale rotta è attiva (FIB).</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>9. SD-WAN (Software-Defined WAN)</h2>
+                        <span class="badge infrastruttura">SD-WAN</span>
+                    </div>
+                    <ul>
+                        <li><strong>Zone:</strong> Inserisci le tue due porte WAN in una zona SD-WAN virtuale (ATTENZIONE: non puoi farlo se le porte sono in uso da policy!).</li>
+                        <li><strong>Performance SLA:</strong> Imposta un ping costante verso 8.8.8.8. SD-WAN calcolerà Packet Loss, Latency e Jitter dei tuoi link.</li>
+                        <li><strong>SD-WAN Rules:</strong> Crea una regola "Maximize Bandwidth" o "Lowest Cost" per far scegliere dinamicamente al firewall il link migliore.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>10. VPN Site-to-Site (IPsec)</h2>
+                        <span class="badge infrastruttura">VPN</span>
+                    </div>
+                    <ul>
+                        <li><strong>Custom IPsec:</strong> Crea un tunnel manuale tra due siti. Fai attenzione alla Fase 1 (IKE) e Fase 2 (IPsec ESP). Fai combaciare le Pre-shared key.</li>
+                        <li><strong>Routing e Policy:</strong> Ricorda che una VPN IPsec Route-Based crea un'interfaccia virtuale. Devi creare rotte verso la subnet remota usando il tunnel IPsec come gateway, e fare policy bidirezionali.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>11. SSL VPN (Remote Access)</h2>
+                        <span class="badge infrastruttura">VPN</span>
+                    </div>
+                    <ul>
+                        <li><strong>VPN Settings:</strong> Definisci il range di IP da assegnare ai dipendenti remoti (es. 10.212.134.10-100).</li>
+                        <li><strong>Web Portal:</strong> Configura i bookmark per RDP o SSH accessibili via Browser senza installare nulla.</li>
+                        <li><strong>Tunnel Mode:</strong> Usa FortiClient. Crea una regola che permetta all'interfaccia <em>ssl.root</em> di accedere alla LAN interna.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 4 -->
+        <div class="module-group">
+            <h2 class="module-group-title">🛠️ Modulo 4: Architettura e Troubleshooting</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>12. VDOM (Virtual Domains) e Layer 2</h2>
+                        <span class="badge troubleshooting">Architettura</span>
+                    </div>
+                    <ul>
+                        <li><strong>VDOM:</strong> Abilita i Multi-VDOM. Crea un VDOM "Guest" completamente separato dalla rete aziendale "Root". Configura un inter-vdom link per farli comunicare tramite policy.</li>
+                        <li><strong>Transparent Mode:</strong> Configura un VDOM in modalità Layer 2 (senza indirizzi IP sulle porte). Funzionerà come uno switch invisibile che applica l'Antivirus a pacchetti di passaggio.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>13. High Availability (HA)</h2>
+                        <span class="badge troubleshooting">Resilienza</span>
+                    </div>
+                    <ul>
+                        <li><strong>Active-Passive:</strong> Unisci due FortiGate in Cluster. Usa una porta dedicata (Heartbeat). Spegni il Master e guarda i ping del client che si riprendono dopo 1-2 secondi mentre passa allo Slave.</li>
+                        <li><strong>Sync:</strong> Verifica la sincronizzazione delle configurazioni e delle sessioni attive.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>14. Diagnostica e CLI (Fondamentale NSE4)</h2>
+                        <span class="badge troubleshooting">Troubleshooting</span>
+                    </div>
+                    <ul>
+                        <li>Impara a catturare i pacchetti al volo (come Wireshark) usando la CLI. Dal terminale prova: <code>diag sniffer packet any 'host 8.8.8.8' 4 0 l</code></li>
+                        <li>Usa il Debug Flow per capire perché un pacchetto viene scartato dal firewall:
+                            <code>diag debug flow filter daddr 8.8.8.8</code><br>
+                            <code>diag debug flow show function-name enable</code><br>
+                            <code>diag debug enable</code>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>
