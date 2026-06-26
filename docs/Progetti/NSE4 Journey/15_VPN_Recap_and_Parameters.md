@@ -1,6 +1,6 @@
 # Guida Pratica: Architettura e Troubleshooting VPN (FortiGate)
 
-Questa è la tua "Cheat Sheet definitiva". Contiene la teoria essenziale, il significato pratico dei parametri e la risoluzione dei problemi più comuni incontrati sul campo.
+Il presente documento costituisce una guida di riferimento. Contiene i principi teorici essenziali, l'analisi dei parametri di configurazione e le procedure di risoluzione per le criticità più comuni in ambiente di produzione.
 
 ---
 
