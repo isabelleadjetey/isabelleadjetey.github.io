@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Pratica: Architettura e Troubleshooting VPN</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 900px; margin: 0 auto; padding: 2rem; background: #f6f8fa; }
+        .markdown-body { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h1, h2, h3 { border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; margin-top: 1.5em; }
+        h1 { border-bottom: 2px solid #eaecef; font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.25em; }
+        table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
+        th, td { border: 1px solid #dfe2e5; padding: 10px 16px; text-align: left; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(even) { background-color: #fcfcfc; }
+        code { background-color: rgba(27,31,35,0.05); padding: 0.2em 0.4em; border-radius: 3px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 85%; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        .alert { padding: 15px; margin: 1.5rem 0; border-radius: 6px; border-left: 5px solid; }
+        .alert-NOTE { background-color: #f1f8ff; border-left-color: #0366d6; color: #24292e; }
+        .alert-WARNING { background-color: #fffbdd; border-left-color: #d73a49; color: #24292e; }
+        .alert-TIP { background-color: #f0fff4; border-left-color: #28a745; color: #24292e; }
+        .alert-IMPORTANT { background-color: #fdf8f5; border-left-color: #e36209; color: #24292e; }
+        .alert strong { display: block; margin-bottom: 5px; }
+        ul, ol { padding-left: 2em; }
+        li { margin-bottom: 0.25em; }
+    </style>
+    <!-- Manteniamo solo mermaid per caricare il grafico visivo -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+</head>
+<body>
+    <div class="markdown-body">
+        <h1>Guida Pratica: Architettura e Troubleshooting VPN (FortiGate)</h1>
+        <p>Questa è la tua "Cheat Sheet definitiva". Contiene la teoria essenziale, il significato pratico dei parametri e la risoluzione dei problemi più comuni incontrati sul campo.</p>
+        
+        <hr>
+
+        <h2>Obiettivo e Metodologia</h2>
+        <p><strong>Scenario:</strong> Configurare da zero tunnel VPN IPsec e portali SSL VPN su FortiOS.<br>
+        <strong>Metodologia:</strong> Approccio <em>Hands-on</em>. Si usa la CLI (Command Line Interface) per forzare configurazioni e provocare errori intenzionali. Imparare a decifrare i log di debug (es. IKE) è l'unica via per diagnosticare problemi reali quando le VPN falliscono in produzione.</p>
+
+        <div class="alert alert-NOTE">
+            <strong>Nota:</strong>
+            All'esame NSE4 e nel lavoro quotidiano, la teoria serve a capire <em>dove</em> guardare. La pratica ti insegna <em>come</em> correggere l'errore.
+        </div>
+
+        <hr>
+
+        <h2>1. VPN IPsec (Site-to-Site)</h2>
+        <p>Collega due reti fisiche (es. Ufficio A e Ufficio B) in modo trasparente per gli utenti. Lavora a livello di rete (Network-to-Network).</p>
+
+        <div class="mermaid">
+        graph LR
+            LAN_A[LAN Ufficio A<br/>192.168.1.0/24] --- FGT_A(FortiGate A<br/>IP: 10.0.0.1)
+            FGT_A == "Tunnel IPsec (Internet)" ==> FGT_B(FortiGate B<br/>IP: 203.0.113.100)
+            FGT_B --- LAN_B[LAN Ufficio B<br/>10.100.0.0/16]
+        </div>
+
+        <h3>Fase 1: IKE (Il Canale Sicuro)</h3>
+        <p>Crea il canale di comunicazione cifrato iniziale tra i due firewall.</p>
+
+        <table>
+            <thead>
+                <tr><th>Parametro</th><th>Descrizione Pratica</th><th>Cosa succede se sbagli</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Interface</strong></td><td>Interfaccia del tuo FortiGate affacciata su Internet.</td><td>Il firewall non ascolta sulla porta giusta (UDP 500).</td></tr>
+                <tr><td><strong>Remote Gateway</strong></td><td>L'IP Pubblico dell'altro firewall.</td><td>I pacchetti non sanno dove andare.</td></tr>
+                <tr><td><strong>Pre-Shared Key (PSK)</strong></td><td>La password segreta condivisa.</td><td>Errore: <code>possible pre-shared secret mismatch</code></td></tr>
+                <tr><td><strong>Proposal</strong></td><td>Algoritmi di cifratura (es. AES) e integrità (es. SHA).</td><td>Errore: <code>NO_PROPOSAL_CHOSEN</code></td></tr>
+                <tr><td><strong>IKE Version & Mode</strong></td><td>Main Mode (più sicuro, IP statici) o Aggressive Mode (IP dinamici).</td><td>Errore negoziazione iniziale.</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Fase 2: Quick Mode (Il Traffico Dati)</h3>
+        <p>Definisce quali reti locali sono autorizzate ad attraversare il tunnel.</p>
+
+        <div class="alert alert-WARNING">
+            <strong>Attenzione:</strong><br>
+            <strong>Subnet Speculari:</strong> Le reti dichiarate (Local e Remote) devono combaciare esattamente a specchio tra i due firewall. Una <code>/24</code> da una parte deve essere dichiarata come <code>/24</code> dall'altra, altrimenti la VPN cade con errore <code>proxy id mismatch</code>.
+        </div>
+
+        <h3>Routing e Policy</h3>
+        <table>
+            <thead>
+                <tr><th>Requisito</th><th>Scopo</th><th>Dettaglio Importante</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Rotta verso Internet</strong></td><td>Permette al demone IKE di trovare il Remote Gateway.</td><td>Serve una rotta di default (<code>0.0.0.0/0</code>).</td></tr>
+                <tr><td><strong>Rotta verso la VPN</strong></td><td>Inoltra i dati della LAN verso l'interfaccia virtuale VPN.</td><td>Rotta statica verso la Remote Subnet.</td></tr>
+                <tr><td><strong>Firewall Policy</strong></td><td>Autorizza il traffico ad attraversare il firewall.</td><td><strong>Disabilita il NAT!</strong> I PC devono mantenere il loro IP originale.</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>2. Troubleshooting IPsec (La CLI)</h2>
+
+        <div class="alert alert-TIP">
+            <strong>Suggerimento (Tip):</strong><br>
+            I veri ingegneri non si fidano dei semafori verdi della GUI. Usa sempre i debug per leggere i messaggi del demone IKE.
+        </div>
+
+        <p><strong>Comandi Essenziali:</strong></p>
+        <ol>
+            <li><code>diagnose debug application ike -1</code> (Verbosità massima)</li>
+            <li><code>diagnose debug enable</code> (Mostra i log a schermo)</li>
+            <li><code>diagnose vpn tunnel up &lt;NOME_FASE_2&gt;</code> (Forza l'avvio immediato)</li>
+        </ol>
+
+        <h3>Decifrare i Sintomi</h3>
+        <ul>
+            <li><strong>Nessun log visibile:</strong> Problema di Routing. Il firewall non sa come raggiungere l'IP remoto.</li>
+            <li><strong>Timeout & Retransmit:</strong> Nessuna risposta dall'altro lato. IP errato, firewall spento o porta UDP 500 bloccata dal provider.</li>
+            <li><strong><code>NO_PROPOSAL_CHOSEN</code>:</strong> Configurazioni crittografiche (AES/SHA/DH) diverse in Fase 1 o Fase 2.</li>
+            <li><strong><code>proxy id mismatch</code>:</strong> Le subnet dichiarate in Fase 2 non sono speculari.</li>
+        </ul>
+
+        <hr>
+
+        <h2>3. SSL VPN (Client-to-Site / Smartworker)</h2>
+        <p>Collega un singolo utente remoto alla rete aziendale. Lavora a livello applicativo e usa la porta HTTPS.</p>
+
+        <div class="mermaid">
+        graph LR
+            USER[Utente Smartworker<br/>Browser o FortiClient] == "HTTPS (es. Porta 10443)" ==> FGT(FortiGate<br/>port1)
+            FGT --- LAN[LAN Aziendale<br/>Server Interni]
+        </div>
+
+        <h3>I 5 Pilastri della Configurazione</h3>
+
+        <table>
+            <thead>
+                <tr><th>Componente</th><th>Ruolo</th><th>Dettagli Tecnici</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1. User & Groups</strong></td><td><strong>L'Identità</strong></td><td>Mai usare i singoli utenti nelle regole. Inserisci gli utenti in un <strong>Gruppo</strong> per rendere la configurazione scalabile.</td></tr>
+                <tr><td><strong>2. SSL-VPN Portals</strong></td><td><strong>Il Cruscotto</strong></td><td><strong>Web-Mode</strong>: Accesso via Browser (senza client).<br><strong>Tunnel-Mode</strong>: Usa FortiClient (assegna un IP virtuale aziendale al PC).</td></tr>
+                <tr><td><strong>3. SSL-VPN Settings</strong></td><td><strong>L'Ascolto</strong></td><td>Devi definire <code>source-interface</code> (dove ascoltare), <code>source-address</code> (da dove accettare, es. <code>all</code>), la porta e il <code>Server Certificate</code>.</td></tr>
+                <tr><td><strong>4. Authentication Rule</strong></td><td><strong>Il Cervello</strong></td><td>Mappa logica essenziale: <em>Associa un Gruppo Utenti al suo Portale dedicato</em>.</td></tr>
+                <tr><td><strong>5. Firewall Policy</strong></td><td><strong>Il Vigile</strong></td><td>Consente il traffico da <code>ssl.root</code> alla LAN interna. Senza questa policy, il login fallisce.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-IMPORTANT">
+            <strong>Importante:</strong><br>
+            Se manca l'Authentication Rule, il demone della SSL VPN (<code>sslvpnd</code>) si spegne per risparmiare risorse, causando errori di connessione.
+        </div>
+
+        <hr>
+
+        <h2>4. Gli Imprevisti Reali e i Limiti delle Licenze</h2>
+        <p>La pratica sul campo nasconde insidie non menzionate nei manuali:</p>
+
+        <ul>
+            <li><strong>GUI Bloccata (<code>Connection Lost</code>):</strong> Se crei una IPsec sulla stessa interfaccia e porta (<code>443</code>) usata per l'amministrazione, IKE sequestra la porta e chiude fuori l'admin.<br><em>Soluzione CLI:</em> <code>config system global</code> -> <code>set admin-sport 8443</code>.</li>
+            <li><strong>Limiti Policy (Error -4):</strong> Le licenze <em>Evaluation</em> gratuite permettono un massimo di 3 Firewall Policy totali. Oltre, il sistema dà errore.</li>
+            <li><strong>Problemi SSL VPN (ERR_CONNECTION_REFUSED):</strong>
+                <ul>
+                    <li><em>Errore Geografico:</em> Il browser punta alla porta sbagliata rispetto a dove la VPN è in ascolto.</li>
+                    <li><em>Regola Mancante:</em> Il demone <code>sslvpnd</code> è morto o addormentato perché non c'è nessuna <em>Authentication Rule</em> configurata.</li>
+                </ul>
+            </li>
+            <li><strong>Il Blocco Finale (Low Encryption):</strong> Se hai configurato la SSL VPN in modo impeccabile ma la porta non si apre (<code>tcpsock</code> non la vede) e non ci sono crash log, sei vittima delle leggi sull'esportazione crittografica. Le versioni Trial "Low Encryption" bloccano l'avvio del demone <code>sslvpnd</code> in modo <em>hardcoded</em>.</li>
+        </ul>
+    </div>
+</body>
+</html>

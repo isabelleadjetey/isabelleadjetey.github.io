@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPN Troubleshooting Masterclass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-glass: rgba(30, 41, 59, 0.85);
+            --primary: #f43f5e;
+            --secondary: #fb923c;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --code-bg: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(244, 63, 94, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(251, 146, 60, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .glass-panel {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+        }
+
+        .glass-panel.ssl-panel {
+            border-left-color: var(--success);
+        }
+
+        h2 {
+            color: var(--text-main);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            color: #fca5a5;
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: '⚡';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .ssl-panel h3 { color: #6ee7b7; }
+        .ssl-panel h3::before { content: '🔒'; }
+
+        p, ul {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .terminal {
+            background: var(--code-bg);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            margin: 20px 0;
+            overflow-x: auto;
+            border: 1px solid #334155;
+            position: relative;
+        }
+
+        .terminal::before {
+            content: 'CLI Output';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #334155;
+            color: #94a3b8;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .prompt { color: #10b981; font-weight: bold; }
+        .error-log { color: #ef4444; }
+        .highlight-log { color: #facc15; }
+
+        .symptom-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .symptom-box strong {
+            color: var(--warning);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>VPN Troubleshooting Masterclass</h1>
+            <div class="subtitle">Manuale Avanzato per Network Engineer</div>
+            <p style="margin-top: 15px; color: var(--text-muted);">La capacità di diagnosticare rapidamente un problema leggendo l'output crudo della CLI è ciò che separa un amministratore base da un Senior Engineer. Questa guida contiene i log reali che affronterai in produzione.</p>
+        </header>
+
+        <div class="glass-panel">
+            <h2>1. IPsec: Analizzare la Fase 1 (IKE)</h2>
+            <p>Se la Fase 1 fallisce, il tunnel è completamente "Down". Prima di lanciare il debug, devi <strong>sempre</strong> filtrare per l'IP remoto, altrimenti la tua console impazzirà sommersa dai log di altre VPN.</p>
+            
+            <div class="terminal">
+                <span class="prompt">FortiGate #</span> diagnose vpn ike log-filter dst-addr4 &lt;IP_DEL_PEER&gt;<br>
+                <span class="prompt">FortiGate #</span> diagnose debug application ike -1<br>
+                <span class="prompt">FortiGate #</span> diagnose debug enable
+            </div>
+
+            <h3>Scenario A: La Pre-Shared Key (PSK) errata</h3>
+            <div class="symptom-box">
+                <strong>Il Sintomo:</strong> Il tunnel prova a salire ma si disconnette immediatamente.
+            </div>
+            <div class="terminal">
+                ike 0:VPN_AWS:43: <span class="error-log">PSK authentication failed</span><br>
+                ike 0:VPN_AWS:43: <span class="error-log">possible pre-shared secret mismatch</span>
+            </div>
+            <p><strong>La Soluzione:</strong> L'errore è cristallino. Tu o l'amministratore dell'altra sede avete digitato male la password. Reinseritela su entrambi i firewall e assicuratevi che non ci siano spazi vuoti alla fine.</p>
+
+            <h3>Scenario B: IKE Proposal Mismatch</h3>
+            <div class="symptom-box">
+                <strong>Il Sintomo:</strong> Il firewall invia richieste all'infinito ma l'altro firewall le rifiuta seccamente.
+            </div>
+            <div class="terminal">
+                ike 0:VPN_AWS:44: peer responded with error: <span class="error-log">NO_PROPOSAL_CHOSEN</span><br>
+                ike 0:VPN_AWS:44: <span class="error-log">no SA proposal chosen</span>
+            </div>
+            <p><strong>La Soluzione:</strong> Non siete d'accordo sulla crittografia. Tu hai proposto <code>AES256-SHA256</code>, ma l'altro firewall supporta solo <code>AES128-SHA1</code>. Controlla le impostazioni di Fase 1 su entrambi gli apparati per trovare un algoritmo in comune.</p>
+        </div>
+
+        <div class="glass-panel">
+            <h2>2. IPsec: Analizzare la Fase 2 (ESP)</h2>
+            <p>Se la Fase 1 va a buon fine, ma la Fase 2 fallisce, la VPN apparirà in uno stato ibrido ingannevole (spesso verde sull'interfaccia, ma i ping falliscono).</p>
+
+            <h3>Scenario C: Quick Mode Selector (Proxy ID) Mismatch</h3>
+            <div class="symptom-box">
+                <strong>Il Sintomo:</strong> Tipico delle VPN con Cisco. La Fase 1 è UP, ma i pacchetti non passano.
+            </div>
+            <div class="terminal">
+                ike 0:VPN_AWS:50: failed to negotiate IPsec SA<br>
+                ike 0:VPN_AWS:50: <span class="error-log">proxy id mismatch</span>
+            </div>
+            <p><strong>La Soluzione:</strong> I selettori della Fase 2 non coincidono perfettamente. Le dichiarazioni di quali reti possono attraversare il tunnel (Local Subnet e Remote Subnet) devono essere identiche e speculari. Controlla le maschere di sottorete (es. /24 vs /16)!</p>
+        </div>
+
+        <div class="glass-panel">
+            <h2>3. Traffico Fantasma (Routing & MTU)</h2>
+            <p>La VPN è UP (sia Fase 1 che Fase 2), ma l'esperienza utente è disastrosa.</p>
+
+            <h3>Scenario D: Asymmetric Routing (Uso del Debug Flow)</h3>
+            <div class="symptom-box">
+                <strong>Il Sintomo:</strong> Fai un ping verso la sede remota e non ricevi risposta.
+            </div>
+            <div class="terminal">
+                <span class="prompt">FortiGate #</span> diagnose debug flow filter addr 10.100.0.5<br>
+                <span class="prompt">FortiGate #</span> diagnose debug flow show function-name enable<br>
+                <span class="prompt">FortiGate #</span> diagnose debug flow trace start 10<br><br>
+                id=20085 trace_id=3 msg="vd-root: <span class="highlight-log">route to 10.100.0.5 via VPN_AWS</span>"<br>
+                id=20085 trace_id=3 msg="<span class="highlight-log">encapsulated and sent out</span>"<br>
+                <span style="color: #64748b;">... (Nessun pacchetto in entrata ricevuto) ...</span>
+            </div>
+            <p><strong>La Soluzione:</strong> Il Debug Flow dimostra che il pacchetto è entrato nel tunnel in uscita. Se non torna indietro, il routing dall'altra parte è rotto. Il firewall remoto non ha la rotta statica di ritorno e sta gettando le risposte su Internet.</p>
+
+            <h3>Scenario E: Il Congelamento da MTU</h3>
+            <div class="symptom-box">
+                <strong>Il Sintomo:</strong> Il Ping funziona perfettamente, ma siti web intranet o connessioni RDP si "congelano".
+            </div>
+            <p><strong>La Soluzione:</strong> I pacchetti grandi vengono frammentati perché l'header IPsec ruba spazio. Vai sulla CLI e abbassa il TCP Maximum Segment Size sulla policy che gestisce la VPN:</p>
+            <div class="terminal">
+                <span class="prompt">FortiGate #</span> config firewall policy<br>
+                <span class="prompt">FortiGate (policy) #</span> edit &lt;id_policy&gt;<br>
+                <span class="prompt">FortiGate (id) #</span> set tcp-mss-sender 1350<br>
+                <span class="prompt">FortiGate (id) #</span> set tcp-mss-receiver 1350<br>
+                <span class="prompt">FortiGate (id) #</span> end
+            </div>
+        </div>
+
+        <div class="glass-panel ssl-panel">
+            <h2>4. SSL VPN: Diagnosi Avanzata</h2>
+            <p>La SSL VPN usa TLS/SSL. I problemi qui si concentrano su utenze Active Directory, portali e Firewall Policy.</p>
+
+            <h3>Scenario F: Autenticazione Fallita in FortiClient</h3>
+            <div class="symptom-box">
+                <strong>Il Sintomo:</strong> La connessione si ferma al 10% o 40% con errore di login.
+            </div>
+            <div class="terminal">
+                <span class="prompt">FortiGate #</span> diagnose debug application fnbamd -1<br>
+                <span class="prompt">FortiGate #</span> diagnose debug enable<br><br>
+                [102] fnbamd_ldap_parse_response: <span class="error-log">Invalid credentials</span><br>
+                [874] fnbamd_auth_poll_ldap: Result: 1 <span class="error-log">(Authentication failed)</span>
+            </div>
+            <p><strong>La Soluzione:</strong> Il demone <em>fnbamd</em> ci dice che il server LDAP (Active Directory) ha rifiutato la password. L'utente ha sbagliato a digitare, ha l'account bloccato su Windows, oppure il FortiGate non riesce a contattare il Domain Controller.</p>
+
+            <h3>Scenario G: L'Utente si logga ma non va da nessuna parte</h3>
+            <div class="symptom-box">
+                <strong>Il Sintomo:</strong> FortiClient arriva al 100%, riceve un IP, ma tutto il traffico interno fallisce.
+            </div>
+            <p><strong>La Soluzione:</strong> Hai configurato perfettamente il portale, ma ti sei dimenticato la <strong>Firewall Policy</strong>. Controlla i <em>Forward Traffic Log</em> filtrando per l'IP appena assegnato all'utente: vedrai una strage di pacchetti rossi "Deny: Implicit Deny". Crea la regola da <code>ssl.root</code> alla tua <code>LAN</code> specificando il Gruppo Utenti, e tutto prenderà vita.</p>
+        </div>
+    </div>
+
+</body>
+</html>

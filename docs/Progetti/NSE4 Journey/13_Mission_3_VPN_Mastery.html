@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missione 3: Dominare le VPN (IPsec e SSL)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-glass: rgba(30, 41, 59, 0.7);
+            --primary: #0ea5e9;
+            --secondary: #6366f1;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --danger: #f43f5e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+            background-attachment: fixed;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .glass-panel {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--text-main);
+            font-size: 1.8rem;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #38bdf8;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: #e2e8f0;
+        }
+
+        .terminal {
+            background: #000;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #4ade80;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+
+        .terminal .prompt { color: #38bdf8; }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(14, 165, 233, 0.2);
+            color: #38bdf8;
+            margin-bottom: 15px;
+        }
+        .badge-ssl { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Missione 3: Dominare le VPN</h1>
+            <div class="subtitle">Laboratorio Pratico: IPsec Site-to-Site & SSL VPN</div>
+        </header>
+
+        <div class="glass-panel">
+            <h2>Lo Scenario Aziendale</h2>
+            <p style="color: var(--text-muted); margin-bottom: 15px;">La tua azienda ha appena firmato due nuovi contratti cruciali:</p>
+            <ol>
+                <li><strong>Connessione Cloud (IPsec):</strong> L'azienda ha affittato un server su AWS e vuole che la tua LAN e il cloud siano uniti in modo sicuro e invisibile agli utenti.</li>
+                <li><strong>Smart Working (SSL VPN):</strong> I dirigenti vogliono poter lavorare da casa collegandosi dal loro portatile personale per raggiungere il server interno in sicurezza.</li>
+            </ol>
+            <p style="color: var(--warning); margin-top: 15px; font-weight: 600;">Nota di Laboratorio: Avendo a disposizione un solo FortiGate, testeremo la SSL VPN dal vivo, mentre per l'IPsec faremo una simulazione "a vuoto" imparando il fondamentale troubleshooting CLI da veri sistemisti.</p>
+        </div>
+
+        <div class="glass-panel">
+            <span class="badge">IPsec VPN</span>
+            <h2>Sfida 1: Il Tunnel "Fantasma"</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Configurerai un tunnel IPsec verso un IP fittizio. Il tunnel rimarrà down, ma configurerai tutta l'infrastruttura necessaria e imparerai come analizzare gli errori.</p>
+            
+            <h3>1. La Configurazione Base</h3>
+            <ul>
+                <li>Vai su <strong>VPN > IPsec Tunnels</strong> e clicca <strong>Create New > IPsec Tunnel</strong>.</li>
+                <li>Scegli un nome (es. <code>VPN_AWS</code>) e seleziona <strong>Custom</strong> (fondamentale per l'esame).</li>
+                <li><em>Remote Gateway:</em> Imposta un IP pubblico statico fittizio (es. <code>203.0.113.100</code>).</li>
+                <li><em>Interface:</em> Seleziona la tua porta WAN.</li>
+                <li><em>Pre-Shared Key:</em> Inserisci una password a tua scelta (es. <code>fortinet123</code>).</li>
+            </ul>
+
+            <h3>2. Fase 1 e Fase 2</h3>
+            <ul>
+                <li>Assicurati di usare <strong>Main Mode</strong> nella Fase 1.</li>
+                <li>Nella Fase 2, definisci cosa può passare in <em>Quick Mode Selectors</em>:
+                    <ul>
+                        <li>Local Subnet: <code>192.168.1.0/24</code> (la tua LAN).</li>
+                        <li>Remote Subnet: <code>10.100.0.0/16</code> (la presunta rete AWS).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>3. Routing e Policy</h3>
+            <ul>
+                <li>Crea una <strong>Static Route</strong>. Destination: <code>10.100.0.0/16</code>. Interface: <code>VPN_AWS</code>.</li>
+                <li>Crea una <strong>Firewall Policy</strong> chiamata <code>LAN_to_AWS</code>. Incoming: <code>port_LAN</code>. Outgoing: <code>VPN_AWS</code>.</li>
+                <li><strong>Disabilita il NAT!</strong> Nelle VPN Site-to-Site vogliamo che le reti parlino con i loro veri IP privati.</li>
+            </ul>
+
+            <h3>4. Il Troubleshooting (Azione CLI)</h3>
+            <p style="color: var(--text-muted);">Lancia questo comando per forzare l'accensione:</p>
+            <div class="terminal">
+                <span class="prompt">FortiGate #</span> diagnose vpn tunnel up VPN_AWS
+            </div>
+            <p style="color: var(--text-muted);">Per vedere in tempo reale gli errori di Fase 1 (IKE) come un vero amministratore, usa il Debug Mode:</p>
+            <div class="terminal">
+                <span class="prompt">FortiGate #</span> diagnose vpn ike log-filter dst-addr4 203.0.113.100<br>
+                <span class="prompt">FortiGate #</span> diagnose debug application ike -1<br>
+                <span class="prompt">FortiGate #</span> diagnose debug enable
+            </div>
+            <p style="color: var(--text-muted);">Guarda i pacchetti IKE che tentano di uscire verso AWS senza ricevere risposta (Timeout). Ferma i log scrivendo <code>diagnose debug disable</code>.</p>
+        </div>
+
+        <div class="glass-panel">
+            <span class="badge badge-ssl">SSL VPN</span>
+            <h2>Sfida 2: Lo Smart Working Reale</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Qui farai sul serio. Configurerai il FortiGate affinché tu possa collegarti ad esso in remoto dal tuo PC fisico.</p>
+
+            <h3>1. Creare gli Utenti e il Gruppo</h3>
+            <ul>
+                <li>Vai su <strong>User & Authentication > User Definition</strong>. Crea l'utente <code>smartworker</code>.</li>
+                <li>Vai su <strong>User Groups</strong>, crea <code>Gruppo_Smart</code> e aggiungi l'utente appena creato.</li>
+            </ul>
+
+            <h3>2. Configurare il Portale e Settings</h3>
+            <ul>
+                <li>In <strong>VPN > SSL-VPN Portals</strong>, modifica il portale <code>web-access</code> e aggiungi un Bookmark al tuo finto server (es. <code>http://192.168.1.200</code>).</li>
+                <li>In <strong>VPN > SSL-VPN Settings</strong>, imposta <em>Listen on Interface</em> sulla WAN e usa la porta <code>10443</code>.</li>
+                <li>Mappa il <code>Gruppo_Smart</code> al portale <code>web-access</code> in fondo alla pagina.</li>
+            </ul>
+
+            <h3>3. La Firewall Policy (Vitale)</h3>
+            <ul>
+                <li>Crea la policy <code>Accesso_SmartWorking</code>.</li>
+                <li>Incoming Interface: <code>SSL-VPN tunnel interface (ssl.root)</code>.</li>
+                <li>Outgoing Interface: <code>port_LAN</code>.</li>
+                <li>Source: <strong>All (IP) + Gruppo_Smart</strong>.</li>
+                <li>Destination: La tua LAN o l'IP del server. NAT: Disabilitato.</li>
+            </ul>
+
+            <h3>4. Il Test Finale</h3>
+            <p style="color: var(--text-muted);">Apri il browser dal tuo PC FISICO (Windows) e vai a questo indirizzo:</p>
+            <div class="terminal" style="text-align: center; font-size: 1.1rem; color: #fff;">
+                https://&lt;IP-WAN-FortiGate&gt;:10443
+            </div>
+            <p style="color: var(--text-muted); text-align: center;">Accedi e clicca sul Bookmark. Se raggiungi la pagina interna, la missione è compiuta!</p>
+        </div>
+
+        <div class="glass-panel">
+            <span class="badge" style="background: rgba(244, 63, 94, 0.2); color: #f43f5e;">Real World Scenarios</span>
+            <h2>Il Diario del Network Engineer</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Ecco i 4 problemi VPN più frequenti che affronterai lavorando in produzione (e come risolverli):</p>
+
+            <h3>1. Ping funziona, ma RDP/Siti Web si bloccano (Problema di MTU)</h3>
+            <ul>
+                <li><strong>Il Sintomo:</strong> Il tunnel IPsec è UP. Fai un ping tra le sedi e risponde. Provi ad aprire una pagina web o una sessione Desktop Remoto (RDP) e la connessione va in timeout.</li>
+                <li><strong>La Causa:</strong> L'incapsulamento IPsec (l'aggiunta dell'header ESP) ingrandisce i pacchetti. I pacchetti già grandi (1500 byte) diventano troppo grossi, vengono frammentati e spesso scartati dai router su Internet.</li>
+                <li><strong>La Soluzione:</strong> Attivare il comando <code>tcp-mss</code> (TCP Maximum Segment Size) a 1350 sulla firewall policy del FortiGate per forzare i PC a usare pacchetti leggermente più piccoli.</li>
+            </ul>
+
+            <h3>2. Phase 2 "Quick Mode Selector" Mismatch</h3>
+            <ul>
+                <li><strong>Il Sintomo:</strong> La Fase 1 sale perfettamente, ma la Fase 2 fallisce costantemente. Nei log vedi l'errore <code>proxy id mismatch</code>.</li>
+                <li><strong>La Causa:</strong> Tipico delle VPN tra brand diversi (es. Fortinet verso Cisco). Tu hai dichiarato che la tua rete locale è <code>192.168.1.0/24</code>, ma il sistemista dell'altra azienda ha configurato le regole aspettandosi <code>192.168.0.0/16</code>. Poiché le dichiarazioni non sono <em>identiche e speculari</em>, il tunnel rifiuta di aprirsi.</li>
+            </ul>
+
+            <h3>3. Asymmetric Routing (La risposta non torna)</h3>
+            <ul>
+                <li><strong>Il Sintomo:</strong> Dal tuo PC fai ping verso il server remoto. Usando il Packet Sniffer (o i log) del FortiGate, vedi il pacchetto "uscire" nel tunnel IPsec (Echo Request), ma non c'è nessuna risposta in "entrata" (Echo Reply).</li>
+                <li><strong>La Causa:</strong> Il server remoto riceve il tuo ping, ma l'amministratore dell'altra sede si è dimenticato di inserire la <strong>rotta statica di ritorno</strong>. Il server remoto risponde al tuo ping inviando il pacchetto su Internet (dove viene buttato via) invece di infilarlo di nuovo nel tunnel.</li>
+            </ul>
+
+            <h3>4. L'Utente si logga ma il portale è vuoto (SSL VPN)</h3>
+            <ul>
+                <li><strong>Il Sintomo:</strong> Il dipendente riesce ad accedere al portale SSL VPN dal web, ma riceve "Access Denied" se tenta di pingare la LAN o non vede link utili.</li>
+                <li><strong>La Causa:</strong> L'autenticazione ha funzionato, ma l'autorizzazione è bloccata. Ti sei dimenticato di creare la <strong>Firewall Policy</strong> che permette il traffico da <code>ssl.root</code> alla porta <code>LAN</code> per quello specifico Gruppo Utenti.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

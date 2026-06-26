@@ -235,6 +235,7 @@
             <h2>Quiz Completato!</h2>
             <p class="subtitle">Hai affrontato tutti gli scenari di troubleshooting.</p>
             <h1 id="final-score" style="margin: 30px 0; font-size: 4rem;">0/0</h1>
+            <p id="final-advice" style="margin-bottom: 30px; font-size: 1.2rem; line-height: 1.6;"></p>
             <button class="btn-next" style="display:inline-block;" onclick="location.reload()">Riprova la Sfida</button>
         </div>
     </div>
@@ -300,6 +301,126 @@
                 ],
                 correct: 2,
                 feedback: "<strong>Esatto! Concetto base CCNA vitale:</strong> Il router conosce solo le reti a cui è direttamente collegato (LAN e WAN). Se gli chiedi di inviare un pacchetto a 8.8.8.8 (Internet), guarda la tabella di routing, non lo trova, e lo scarta. Devi sempre impostare una rotta di default (Quad Zero Route: `0.0.0.0 0.0.0.0 82.50.10.1`) per dirgli: 'Se non conosci la destinazione, invia tutto al Provider'."
+            },
+            {
+                badge: "badge-nse4",
+                topic: "NSE 4",
+                title: "Il Tunnel IPsec Crollato",
+                desc: "Stai configurando una VPN Site-to-Site tra l'Headquarter e una filiale. Il tunnel non sale. Nei log del FortiGate (Log & Report > VPN Events) vedi il messaggio 'negotiation error' nella Fase 1.",
+                terminal: "ike 0:VPN_Filiale:441: <span class=\"error\">negotiation failure</span>\nike 0:VPN_Filiale:441: possible pre-shared secret mismatch",
+                options: [
+                    "La Phase 2 (IPsec) ha i parametri di crittografia sbagliati.",
+                    "La Pre-Shared Key (PSK) inserita nelle due sedi è diversa o errata.",
+                    "Il NAT-Traversal è abilitato ma non ci sono router in mezzo.",
+                    "Manca la policy per permettere il traffico dalla LAN alla WAN."
+                ],
+                correct: 1,
+                feedback: "<strong>Esatto!</strong> La Fase 1 (IKE) si occupa di autenticare i due gateway e creare il canale sicuro primario. Se c'è un 'secret mismatch', significa che la password pre-condivisa (PSK) non coincide. Se la Fase 1 fallisce, la Fase 2 non proverà nemmeno a partire."
+            },
+            {
+                badge: "badge-ccna",
+                topic: "CCNA",
+                title: "VLAN Isolate",
+                desc: "Hai due PC collegati a uno switch Cisco Layer 2. PC1 è sulla VLAN 10 (192.168.10.5) e PC2 è sulla VLAN 20 (192.168.20.5). Le porte dello switch sono configurate correttamente con i 'switchport access vlan'. Tuttavia, i due PC non riescono a comunicare.",
+                terminal: "PC1> ping 192.168.20.5\n<span class=\"error\">Request timed out.</span>",
+                options: [
+                    "Le porte dello switch devono essere configurate come Trunk, non come Access.",
+                    "Lo switch sta bloccando il traffico ICMP di default.",
+                    "Manca un dispositivo Layer 3 (Router o Switch L3) per fare routing tra le due VLAN.",
+                    "Gli IP dei PC devono appartenere alla stessa sottorete per parlarsi su VLAN diverse."
+                ],
+                correct: 2,
+                feedback: "<strong>Esatto! Concetto fondamentale CCNA:</strong> Le VLAN separano i domini di broadcast. Uno switch Layer 2 non può far comunicare due VLAN diverse perché non sa leggere gli indirizzi IP (livello 3). Serve un router configurato con sub-interfaces ('Router on a Stick') o uno Switch Layer 3 per fare da ponte tra le due reti."
+            },
+            {
+                badge: "badge-nse4",
+                topic: "NSE 4 / CCNA",
+                title: "Lo Smart Worker senza Internet",
+                desc: "Hai appena configurato una SSL VPN per i dipendenti in smart working. Si collegano tramite FortiClient con successo e accedono ai server aziendali. Tuttavia, mentre sono collegati alla VPN, perdono completamente l'accesso a Internet (es. Google non carica).",
+                terminal: "Routing Table (PC Dipendente):\n0.0.0.0/0 -> <span class=\"prompt\">Fortinet SSL VPN Virtual Adapter</span>\n0.0.0.0/0 -> Wi-Fi Adapter (Metric 50)",
+                options: [
+                    "L'IP Pool della SSL VPN si sovrappone a quello della LAN aziendale.",
+                    "Split Tunneling è SPENTO e manca una policy dal tunnel SSL-VPN verso la WAN.",
+                    "Il FortiClient sta bloccando il traffico web per motivi di sicurezza.",
+                    "Il provider Internet del dipendente sta bloccando il traffico VPN."
+                ],
+                correct: 1,
+                feedback: "<strong>Bravissimo!</strong> Se lo Split Tunneling è spento (comportamento di default in molti ambienti securizzati), TUTTO il traffico del dipendente (incluso quello personale verso Google) viene infilato nel tunnel e mandato al FortiGate. Il FortiGate riceve la richiesta per Google sull'interfaccia 'ssl.root', ma siccome non hai creato una Firewall Policy per permettere il traffico da 'ssl.root' a 'port1' (WAN), lo scarta. La soluzione è attivare lo Split Tunneling o creare la policy mancante!"
+            },
+            {
+                badge: "badge-nse4",
+                topic: "NSE 4",
+                title: "L'SD-WAN Testarda",
+                desc: "Hai due linee WAN (Fibra e 4G) configurate in SD-WAN. Hai creato una Performance SLA per monitorare il ping verso 8.8.8.8. La fibra sta perdendo pacchetti (Packet Loss > 10%), ma noti che il traffico aziendale continua a uscire dalla Fibra e non viene spostato sul 4G. Perché?",
+                terminal: "<span class=\"prompt\">FortiGate-HQ #</span> diag sys sdwan health-check\nSLA state: <span class=\"error\">Dead</span> (Packet loss 15%)",
+                options: [
+                    "L'interfaccia 4G non è stata aggiunta alla zona SD-WAN.",
+                    "La Performance SLA serve solo a monitorare, devi creare una 'SD-WAN Rule' che utilizzi quella SLA per spostare il traffico.",
+                    "Il FortiGate richiede una licenza separata per il bilanciamento SD-WAN.",
+                    "Il NAT è spento sulla policy in uscita."
+                ],
+                correct: 1,
+                feedback: "<strong>Esatto!</strong> Questo è un concetto cardine SD-WAN. La 'Performance SLA' fa solo da sensore (misura ping, jitter, packet loss). Per far sì che il FortiGate agisca in base a quei dati (es. spostando il traffico se la latenza è alta), DEVI creare una 'SD-WAN Rule' che richiama quella specifica SLA. Se manca la regola, il traffico segue la 'Implicit Rule' che usa l'algoritmo di bilanciamento standard."
+            },
+            {
+                badge: "badge-nse4",
+                topic: "NSE 4",
+                title: "Il Cluster Bifronte (Split-Brain)",
+                desc: "Hai configurato due FortiGate in un cluster High Availability (HA) Active-Passive. Improvvisamente, la rete aziendale impazzisce con conflitti IP e MAC address duplicati. Entrambi i FortiGate pensano di essere il 'Master'.",
+                terminal: "<span class=\"prompt\">FortiGate-1 #</span> get system ha status\nRole: <span class=\"error\">Primary</span>\n\n<span class=\"prompt\">FortiGate-2 #</span> get system ha status\nRole: <span class=\"error\">Primary</span>",
+                options: [
+                    "Hai inserito una priorità uguale (es. 128) su entrambi gli apparati.",
+                    "L'override della HA è stato abilitato senza motivo.",
+                    "Il cavo dedicato allo scambio degli 'Heartbeat' tra i due FortiGate è interrotto o configurato male.",
+                    "I due apparati hanno versioni di firmware diverse."
+                ],
+                correct: 2,
+                feedback: "<strong>Esatto!</strong> Il temuto Split-Brain! I due FortiGate comunicano costantemente tramite l'interfaccia 'Heartbeat' (messaggi 'ci sei? ci sono!'). Se questo cavo si rompe, il FortiGate secondario smette di sentire il Master, crede che sia morto e si auto-promuove a Master. Ora hai due Master sulla stessa rete che usano gli stessi indirizzi virtuali, scatenando il caos."
+            },
+            {
+                badge: "badge-ccna",
+                topic: "CCNA",
+                title: "Adiacenze OSPF Congelate",
+                desc: "Stai configurando OSPF tra due router Cisco collegati direttamente. Hai annunciato le reti correttamente, ma l'adiacenza OSPF non arriva mai allo stato 'FULL'. Rimane perennemente bloccata nello stato 'EXSTART'.",
+                terminal: "Router1# show ip ospf neighbor\nNeighbor ID     Pri   State           Dead Time   Address         Interface\n10.255.255.2      1   <span class=\"error\">EXSTART/DR</span>      00:00:35    192.168.1.2     GigabitEthernet0/0",
+                options: [
+                    "I due router si trovano in Aree OSPF diverse.",
+                    "C'è una differenza (mismatch) nel valore MTU configurato sulle due interfacce collegate.",
+                    "I timer Hello/Dead non corrispondono.",
+                    "L'autenticazione OSPF è fallita."
+                ],
+                correct: 1,
+                feedback: "<strong>Esatto! Un classico trabocchetto Cisco.</strong> Se l'adiacenza si blocca nello stato 'EXSTART' o 'EXCHANGE', è quasi sempre colpa di un MTU (Maximum Transmission Unit) mismatch. Nello stato EXSTART, i router decidono chi inizierà a inviare i database description packets; se l'MTU non coincide, la negoziazione fallisce in silenzio. Mismatch di Aree o Hello timer bloccano l'adiacenza ancora prima, allo stato 'INIT' o '2-WAY'."
+            },
+            {
+                badge: "badge-nse4",
+                topic: "NSE 4",
+                title: "L'Identità Nascosta (FSSO)",
+                desc: "Hai configurato FSSO (Fortinet Single Sign-On) in modalità 'Collector Agent'. Gli utenti accedono al PC inserendo la password di dominio, ma il FortiGate non riconosce i loro gruppi e li blocca, trattandoli come utenti non autenticati.",
+                terminal: "<span class=\"prompt\">FortiGate-HQ #</span> diag debug authd fsso list\n<span class=\"error\">No users logged in</span>",
+                options: [
+                    "Gli utenti stanno usando un browser non supportato.",
+                    "Il Collector Agent (installato sul server Windows) non riesce a comunicare con i Domain Controller (es. manca il DC Agent) o con il FortiGate.",
+                    "Gli utenti devono inserire la password anche nel browser per far funzionare l'FSSO.",
+                    "I PC degli utenti non hanno l'IP fisso."
+                ],
+                correct: 1,
+                feedback: "<strong>Corretto!</strong> Il bello dell'FSSO è la trasparenza: l'utente fa il login su Windows e basta. Come fa il FortiGate a saperlo? I Domain Controller registrano il login nei log di Windows, il Collector Agent legge questi log e spiffera al FortiGate 'L'utente Mario è sull'IP 192.168.1.50'. Se Mario risulta sconosciuto, il Collector Agent non sta leggendo i log (manca il DC Agent) o il firewall non riesce a parlare con il Collector!"
+            },
+            {
+                badge: "badge-ccna",
+                topic: "CCNA",
+                title: "L'Enigma dell'IPv6",
+                desc: "Hai configurato due router con indirizzi IPv6 Global Unicast (es. 2001:DB8::1/64 e 2001:DB8::2/64). Fai un ping tra i due IPv6, ma fallisce. Eppure, le interfacce sono 'up/up'.",
+                terminal: "Router1# ping ipv6 2001:DB8::2\n<span class=\"error\">% No valid route for destination</span>\nRouter1# show run\ninterface GigabitEthernet0/0\n ipv6 address 2001:DB8::1/64",
+                options: [
+                    "Gli indirizzi Link-Local (FE80::) devono essere identici su entrambi i router.",
+                    "Il routing IPv6 è disabilitato di default sui router Cisco e devi abilitarlo globalmente.",
+                    "IPv6 richiede l'uso del NAT per comunicare punto-punto.",
+                    "Il subnet mask /64 è troppo piccolo."
+                ],
+                correct: 1,
+                feedback: "<strong>Perfetto!</strong> Sui router Cisco (e molti altri apparati), il supporto al routing IPv6 è SPENTO di default. Anche se assegni un indirizzo IPv6 all'interfaccia (che la fa salire up/up), il router non saprà come instradare i pacchetti finché non digiti il magico comando globale `ipv6 unicast-routing`. Senza quello, il router agisce come un semplice PC cieco."
             }
         ];
 
@@ -381,10 +502,26 @@
             document.getElementById('progress').style.width = '100%';
             const resultsPanel = document.getElementById('results');
             resultsPanel.classList.add('active');
-            document.getElementById('final-score').innerText = `${score} / ${scenarios.length}`;
             
-            if(score === scenarios.length) {
-                document.getElementById('final-score').style.color = 'var(--success)';
+            const scoreDisplay = document.getElementById('final-score');
+            const adviceDisplay = document.getElementById('final-advice');
+            
+            scoreDisplay.innerText = `${score} / ${scenarios.length}`;
+            
+            const percentage = (score / scenarios.length) * 100;
+            
+            if(percentage === 100) {
+                scoreDisplay.style.color = 'var(--success)';
+                adviceDisplay.innerHTML = "<strong>Livello Ingegneria raggiunto!</strong><br>Non ti è sfuggito nulla. Sei assolutamente padrone dell'architettura di rete (CCNA) e delle dinamiche NGFW (NSE 4). L'esame ti aspetta.";
+            } else if (percentage >= 80) {
+                scoreDisplay.style.color = '#38bdf8';
+                adviceDisplay.innerHTML = "<strong>Ottimo Lavoro! (Promosso)</strong><br>Hai una solida base su quasi tutti gli argomenti avanzati. Ripassa solo gli scenari in cui sei caduto e sarai pronto per la certificazione vera.";
+            } else if (percentage >= 50) {
+                scoreDisplay.style.color = '#fbbf24';
+                adviceDisplay.innerHTML = "<strong>Sulla buona strada.</strong><br>La base teorica c'è, ma i 'trabocchetti' avanzati come SD-WAN o Routing L3 ti fanno ancora vacillare. Nessun problema: usa questi errori per capire dove focalizzare le prossime ore di studio.";
+            } else {
+                scoreDisplay.style.color = 'var(--danger)';
+                adviceDisplay.innerHTML = "<strong>Houston, abbiamo un problema.</strong><br>Ci sono parecchie lacune nei concetti chiave (routing, NAT, VPN). Il consiglio è di riaprire i laboratori pratici (Missione 1 e 2) e testare fisicamente queste configurazioni sul FortiGate prima di riprovare il test.";
             }
         }
 
