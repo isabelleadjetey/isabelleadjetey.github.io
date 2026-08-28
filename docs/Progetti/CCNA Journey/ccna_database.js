@@ -44,15 +44,15 @@ const ccnaDatabase = [
     { 
         id: "NF-004",
         domain: "Network Fundamentals", 
-        q: "Which two fields are present in an Ethernet frame header? (Choose two)", 
+        q: "Which of the following fields is present in an Ethernet frame header?", 
         options: [
             "Source IP Address", 
             "Destination MAC Address", 
             "Time to Live (TTL)", 
-            "Type/Length"
+            "TCP Window Size"
         ], 
-        correct: [1, 3], // Note: UI currently supports single choice, I'll adapt to single choice.
-        exp: "Il frame Ethernet Layer 2 contiene: Preamble, Destination MAC, Source MAC, Type/Length, Data (Payload), e FCS. Gli IP e il TTL appartengono al pacchetto Layer 3." 
+        correct: 1, 
+        exp: "Il frame Ethernet Layer 2 contiene: Preamble, Destination MAC, Source MAC, Type/Length, Data (Payload), e FCS. Gli indirizzi IP e il TTL appartengono al pacchetto Layer 3, mentre il Window Size appartiene al Layer 4." 
     },
 
     // ----------------------------------------------------
