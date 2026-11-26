@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCNA Knowledge Base: VPN Concepts & Fundamentals</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 900px; margin: 0 auto; padding: 2rem; background: #f6f8fa; }
+        .markdown-body { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h1, h2, h3 { border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; margin-top: 1.5em; }
+        h1 { border-bottom: 2px solid #eaecef; font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.25em; }
+        table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
+        th, td { border: 1px solid #dfe2e5; padding: 10px 16px; text-align: left; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(even) { background-color: #fcfcfc; }
+        code { background-color: rgba(27,31,35,0.05); padding: 0.2em 0.4em; border-radius: 3px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 85%; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        .alert { padding: 15px; margin: 1.5rem 0; border-radius: 6px; border-left: 5px solid; }
+        .alert-NOTE { background-color: #f1f8ff; border-left-color: #0366d6; color: #24292e; }
+        .alert-WARNING { background-color: #fffbdd; border-left-color: #d73a49; color: #24292e; }
+        .alert-TIP { background-color: #f0fff4; border-left-color: #28a745; color: #24292e; }
+        .alert-IMPORTANT { background-color: #fdf8f5; border-left-color: #e36209; color: #24292e; }
+        .alert strong { display: block; margin-bottom: 5px; }
+        ul, ol { padding-left: 2em; }
+        li { margin-bottom: 0.25em; }
+        hr { height: 0.25em; padding: 0; margin: 24px 0; background-color: #e1e4e8; border: 0; }
+    </style>
+</head>
+<body>
+    <div class="markdown-body">
+        <h1>CCNA Knowledge Base: VPN Concepts & Fundamentals (5.5)</h1>
+        
+        <div class="alert alert-NOTE">
+            <strong>Obiettivo:</strong> Documento di revisione rapida e configurazione per l'esame CCNA.<br>
+            <strong>Dominio CCNA:</strong> Core Networking
+        </div>
+
+        <hr>
+
+        <p>Le VPN (Virtual Private Networks) sono la tecnologia che permette alle aziende di far comunicare le proprie sedi o i propri dipendenti remoti usando Internet come se fosse un cavo privato e sicuro.</p>
+
+        <hr>
+
+        <h2>1. L'Analogia: Il "Tunnel Invisibile"</h2>
+        <p>Immagina di voler mandare una lettera segreta attraversando una piazza affollatissima (Internet).</p>
+        <ul>
+            <li><strong>Senza VPN:</strong> Chiunque nella piazza può intercettare la lettera e leggerla.</li>
+            <li><strong>Con VPN:</strong> È come se costruissi un tunnel sotterraneo blindato che attraversa la piazza. Tu vedi la folla, ma nessuno può vedere cosa passa dentro il tunnel.</li>
+        </ul>
+
+        <hr>
+
+        <h2>2. Tipologie di VPN</h2>
+
+        <h3>A. Site-to-Site VPN (Sede-a-Sede)</h3>
+        <p>Collega intere reti tra loro. I router alle due estremità si occupano di tutto.</p>
+        <ul>
+            <li><strong>Esempio:</strong> La sede di Sorint Lab (Milano) collegata alla sede di un cliente (Roma).</li>
+            <li><strong>Tecnologia:</strong> Solitamente si usa <strong>IPsec</strong>.</li>
+        </ul>
+
+        <h3>B. Remote Access VPN (Lavoro Agile)</h3>
+        <p>Collega un singolo dispositivo alla rete aziendale.</p>
+        <ul>
+            <li><strong>Esempio:</strong> Tu da casa che usi il PC per collegarti ai server dell'ufficio.</li>
+            <li><strong>Tecnologia:</strong> Solitamente si usa <strong>AnyConnect</strong> (SSL/TLS) o IPsec nel client.</li>
+        </ul>
+
+        <hr>
+
+        <h2>3. I Pilastri di IPsec (L'Armatura del Tunnel)</h2>
+        <p>Per essere sicuro, un tunnel IPsec deve garantire 4 cose:</p>
+        <ol>
+            <li><strong>Confidenzialità:</strong> Nessuno può leggere i dati (Crittografia: AES, DES, 3DES).</li>
+            <li><strong>Integrità:</strong> I dati non sono stati manomessi durante il viaggio (Hashing: SHA-1, SHA-256).</li>
+            <li><strong>Autenticazione:</strong> Sono sicuro di parlare con chi dico di parlare (Certificati o PSK - Pre-Shared Key).</li>
+            <li><strong>Anti-Replay:</strong> Nessuno può intercettare un pacchetto e rinviarlo per "imitare" un utente legittimo.</li>
+        </ol>
+
+        <hr>
+
+        <h2>4. IPsec vs GRE: La differenza che conta</h2>
+        <ul>
+            <li><strong>GRE (Generic Routing Encapsulation):</strong> È bravo a creare tunnel, ma <strong>non cripta nulla</strong>. Però permette di far passare il traffico di routing (come OSPF).</li>
+            <li><strong>IPsec:</strong> È il re della crittografia, ma non ama il traffico multicast (routing).</li>
+            <li><strong>La Soluzione SNOC:</strong> Spesso si usa <strong>GRE over IPsec</strong>. GRE crea il tunnel e permette il routing, IPsec avvolge tutto e lo cripta. È il "match perfetto".</li>
+        </ul>
+
+        <hr>
+
+        <h2>5. Terminologia da SNOC</h2>
+        <ul>
+            <li><strong>Public IP:</strong> L'indirizzo "esterno" dei due router che creano il tunnel.</li>
+            <li><strong>Private Segment:</strong> Le reti locali (es. 192.168.10.0/24) che devono parlare tra loro attraverso il tunnel.</li>
+            <li><strong>Tunnel Interface:</strong> L'interfaccia "virtuale" che il tecnico vede sul router per gestire il traffico VPN.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Cheat Sheet per l'Esame</h2>
+        <ul>
+            <li><strong>IPsec:</strong> Cripta, Autentica, Integra, Anti-Replay.</li>
+            <li><strong>GRE:</strong> Crea tunnel e supporta multicast/routing, ma NON cripta.</li>
+            <li><strong>GRE over IPsec:</strong> Il mix perfetto usato nelle aziende.</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCNA 200-301 Baseline Assessment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary: #00b4db;
+            --secondary: #0083b0;
+            --dark: #121212;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --correct: #27ae60;
+            --wrong: #e74c3c;
+            --text: #f0f0f0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+            font-weight: 600;
+        }
+
+        .text-center { text-align: center; }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 180, 219, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .domain-badge {
+            display: inline-block;
+            background: rgba(0, 180, 219, 0.2);
+            color: #00b4db;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-text {
+            font-size: 20px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .option-btn.correct {
+            background: rgba(39, 174, 96, 0.2);
+            border-color: var(--correct);
+            color: #2ecc71;
+        }
+
+        .option-btn.wrong {
+            background: rgba(231, 76, 60, 0.2);
+            border-color: var(--wrong);
+            color: #ff7675;
+        }
+
+        .explanation {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 10px 10px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .explanation strong {
+            color: var(--primary);
+        }
+
+        #quiz-screen, #result-screen {
+            display: none;
+        }
+
+        .domain-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+        
+        .score-percentage {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .good-score { color: #2ecc71; }
+        .mid-score { color: #f1c40f; }
+        .bad-score { color: #e74c3c; }
+
+        .recommendation {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Start Screen -->
+    <div id="start-screen" class="glass-card text-center">
+        <h1 style="color: var(--primary); font-size: 32px;">CCNA 200-301</h1>
+        <h2>Baseline Assessment</h2>
+        <p style="color: #bbb; line-height: 1.6; margin: 20px 0;">
+            Questo test diagnostico contiene <strong>30 domande</strong>, suddivise esattamente secondo i 6 domini ufficiali dell'esame Cisco. Ti servirà per capire quali capitoli saltare e quali ripassare.
+        </p>
+        <p style="color: #bbb; font-size: 14px;">Domande in Inglese (stile esame reale), spiegazioni in Italiano.</p>
+        <button class="btn" onclick="startQuiz()" style="margin-top: 20px; font-size: 17px;">Inizia il Test Base (30 Q)</button>
+        <a href="CCNA_Study_Hub.html" class="btn" style="margin-top: 15px; font-size: 16px; background: linear-gradient(45deg, #f39c12, #e67e22); text-decoration: none; display: block; box-sizing: border-box;">🚀 Apri CCNA Study Hub PRO (60+ Q &bull; Timer &bull; Solo Errori)</a>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="glass-card">
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div id="domain-badge" class="domain-badge">Network Fundamentals</div>
+            <div style="color: #888; font-size: 14px;">Domanda <span id="current-q">1</span>/30</div>
+        </div>
+        
+        <div id="question-text" class="question-text">Question goes here?</div>
+        
+        <div id="options-grid" class="options-grid">
+            <!-- Options dynamically injected -->
+        </div>
+
+        <div id="explanation" class="explanation">
+            <strong>Spiegazione:</strong> <span id="exp-text"></span>
+        </div>
+
+        <button id="next-btn" class="btn" onclick="nextQuestion()" style="display: none;">Prossima Domanda &rarr;</button>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="glass-card">
+        <div class="text-center mb-4">
+            <h1 style="color: var(--primary);">Assessment Completato!</h1>
+            <p>Punteggio Totale: <span id="total-score" style="font-size: 28px; font-weight: bold; color: white;">0%</span></p>
+        </div>
+
+        <h3 style="margin-top: 30px; margin-bottom: 20px;">Dettaglio per Dominio:</h3>
+        <div id="domain-results-container">
+            <!-- Results dynamically injected -->
+        </div>
+
+        <div id="recommendation-box" class="recommendation">
+            <!-- Recommendation dynamically injected -->
+        </div>
+
+        <button class="btn" onclick="location.reload()" style="margin-top: 30px; background: #333;">Rifai il Test</button>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        // Network Fundamentals (6)
+        { domain: "Network Fundamentals", q: "What is the primary purpose of the Spanning Tree Protocol (STP)?", options: ["To route packets between different subnets", "To prevent Layer 2 loops in a switched network", "To encrypt wireless traffic", "To assign IP addresses dynamically"], correct: 1, exp: "STP (802.1D) blocca le porte ridondanti in una rete Layer 2 per evitare loop di broadcast che distruggerebbero la rete." },
+        { domain: "Network Fundamentals", q: "Which IPv6 prefix is designated for link-local addresses?", options: ["fc00::/7", "2001::/3", "fe80::/10", "ff00::/8"], correct: 2, exp: "Gli indirizzi IPv6 Link-Local iniziano sempre con fe80::/10 e sono obbligatori su ogni interfaccia IPv6. Servono per la comunicazione nella stessa subnet." },
+        { domain: "Network Fundamentals", q: "Which layer of the TCP/IP model is responsible for logical addressing and routing?", options: ["Application", "Transport", "Internet", "Network Access"], correct: 2, exp: "Nel modello TCP/IP, il routing e l'indirizzamento IP avvengono al layer 'Internet' (corrispondente al Layer 3 Network del modello OSI)." },
+        { domain: "Network Fundamentals", q: "What is the decimal equivalent of the /26 subnet mask?", options: ["255.255.255.128", "255.255.255.192", "255.255.255.224", "255.255.255.240"], correct: 1, exp: "Una subnet /26 ha 26 bit a uno. Gli ultimi 2 bit dell'ultimo ottetto valgono 128 + 64 = 192. Quindi 255.255.255.192." },
+        { domain: "Network Fundamentals", q: "Which cable type is typically used to connect a PC's terminal emulator directly to a Cisco router's console port?", options: ["Straight-through", "Crossover", "Rollover", "Fiber optic"], correct: 2, exp: "Il cavo Console (celeste) è di tipo Rollover: i pin da un lato sono invertiti specularmente rispetto all'altro lato." },
+        { domain: "Network Fundamentals", q: "During the TCP 3-way handshake, which packet is sent by the server in response to the initial client request?", options: ["ACK", "SYN", "FIN", "SYN-ACK"], correct: 3, exp: "L'handshake TCP prevede: 1) SYN dal client. 2) SYN-ACK dal server. 3) ACK dal client." },
+        
+        // Network Access (6)
+        { domain: "Network Access", q: "Which IEEE standard is used to define VLAN tagging on Ethernet frames?", options: ["802.1Q", "802.1D", "802.3ad", "802.11ax"], correct: 0, exp: "802.1Q (Dot1q) è lo standard universale per il tagging delle VLAN sui link di Trunk, inserendo un tag di 4 byte nel frame Ethernet." },
+        { domain: "Network Access", q: "What happens when a Cisco switch receives an untagged frame on an 802.1Q trunk port?", options: ["It drops the frame", "It forwards the frame to the Native VLAN", "It forwards the frame to VLAN 1 only", "It broadcasts the frame to all VLANs"], correct: 1, exp: "Su un trunk 802.1Q, tutto il traffico untagged viene associato automaticamente alla Native VLAN (che per default è la VLAN 1, ma può essere modificata)." },
+        { domain: "Network Access", q: "In a Cisco wireless architecture, what is the primary role of the WLC?", options: ["To act as a firewall for wireless clients", "To manage and configure lightweight APs centrally", "To perform routing between wireless and wired networks", "To provide POE to Access Points"], correct: 1, exp: "Il WLC (Wireless LAN Controller) gestisce centralmente i Lightweight Access Point (LAP) tramite il protocollo CAPWAP." },
+        { domain: "Network Access", q: "Which state in Rapid PVST+ (802.1w) actively populates the MAC address table but does NOT forward user data frames?", options: ["Blocking", "Listening", "Learning", "Forwarding"], correct: 2, exp: "Nello stato 'Learning', lo switch impara i MAC address per riempire la tabella CAM, ma ancora non inoltra traffico dati per evitare loop." },
+        { domain: "Network Access", q: "What is dynamically negotiated by DTP (Dynamic Trunking Protocol)?", options: ["VLAN IDs", "Trunking status between two switches", "Spanning tree root bridge", "Port channel load balancing"], correct: 1, exp: "DTP permette a due switch Cisco collegati di negoziare automaticamente se la porta deve diventare in modalità Trunk (Dynamic Desirable / Dynamic Auto)." },
+        { domain: "Network Access", q: "Which PoE standard provides up to 30W of power per port?", options: ["PoE (802.3af)", "PoE+ (802.3at)", "UPOE", "PoE++ (802.3bt)"], correct: 1, exp: "802.3af dà 15.4W, 802.3at (PoE+) dà 30W, 802.3bt dà fino a 60W o 90W." },
+        
+        // IP Connectivity (7)
+        { domain: "IP Connectivity", q: "What is the default administrative distance of an OSPF route?", options: ["1", "90", "110", "120"], correct: 2, exp: "Le Administrative Distance base: Direttamente Connesse = 0, Statiche = 1, EIGRP = 90, OSPF = 110, RIP = 120." },
+        { domain: "IP Connectivity", q: "Which command configures a default static route pointing to next-hop 192.168.1.254?", options: ["ip route 0.0.0.0 255.255.255.255 192.168.1.254", "ip default-network 192.168.1.254", "ip route 0.0.0.0 0.0.0.0 192.168.1.254", "ip route any any 192.168.1.254"], correct: 2, exp: "La default route in IPv4 si indica con la destinazione 0.0.0.0 e la mask 0.0.0.0 (tutti gli zeri), seguita dal next-hop IP." },
+        { domain: "IP Connectivity", q: "In OSPF, what is the default hello interval on a broadcast multi-access network (like Ethernet)?", options: ["5 seconds", "10 seconds", "30 seconds", "40 seconds"], correct: 1, exp: "Su reti Broadcast e Point-to-Point, l'hello timer di OSPF è 10 secondi (il dead timer è 40). Su reti NBMA l'hello è 30." },
+        { domain: "IP Connectivity", q: "If the 'router-id' command is not used in OSPF, how does a Cisco router select its Router ID?", options: ["Highest MAC address", "Lowest IP address of any active interface", "Highest IP address of any active Loopback interface", "Lowest IP address of any active Loopback interface"], correct: 2, exp: "Priorità Router ID OSPF: 1) Comando manuale, 2) IP Loopback più alto, 3) IP interfaccia fisica attiva più alto." },
+        { domain: "IP Connectivity", q: "A router receives a packet and has multiple routes to the destination in its routing table. Which route does it choose first?", options: ["The route with the lowest metric", "The route with the lowest administrative distance", "The route with the longest prefix match", "The route that was learned first"], correct: 2, exp: "La regola d'oro del routing: la corrispondenza col prefisso più lungo (Longest Prefix Match) vince sempre su qualsiasi metrica o AD." },
+        { domain: "IP Connectivity", q: "Which command reveals the State (e.g., FULL/BDR) of OSPF neighbors?", options: ["show ip protocols", "show ip route ospf", "show ip ospf database", "show ip ospf neighbor"], correct: 3, exp: "Il comando 'show ip ospf neighbor' mostra lo stato delle adiacenze (Init, 2-Way, Full), chi è il DR/BDR e il dead timer rimanente." },
+        { domain: "IP Connectivity", q: "What is a 'Floating Static Route'?", options: ["A route that changes its next hop automatically", "A backup static route configured with a higher Administrative Distance", "A route used only for multicast traffic", "A static route configured without a subnet mask"], correct: 1, exp: "Una floating static route è una rotta di backup. Si configura assegnandole un'AD più alta di quella del protocollo di routing principale (es. AD 130 per fare backup a OSPF)." },
+
+        // IP Services (3)
+        { domain: "IP Services", q: "Which NAT type allows multiple private internal hosts to share a single public IP address using different port numbers?", options: ["Static NAT", "Dynamic NAT", "PAT (NAT Overload)", "NAT64"], correct: 2, exp: "PAT (Port Address Translation), o NAT Overload, usa le porte TCP/UDP per mappare migliaia di host interni su 1 o pochi IP pubblici." },
+        { domain: "IP Services", q: "What is the primary function of DHCP Snooping?", options: ["To compress DHCP packets over WAN links", "To filter untrusted DHCP messages and prevent rogue DHCP servers", "To relay DHCP requests to another subnet", "To automatically configure VLANs based on MAC addresses"], correct: 1, exp: "DHCP Snooping blocca i messaggi DHCP Offer/Ack provenienti da porte untrusted (non sicure), proteggendo la rete da falsi server DHCP." },
+        { domain: "IP Services", q: "Which protocol is used to synchronize the clocks of network devices?", options: ["SNMP", "NTP", "CDP", "LLDP"], correct: 1, exp: "L'NTP (Network Time Protocol) usa UDP sulla porta 123 per sincronizzare gli orologi di sistema dei device, fondamentale per i log e la crittografia." },
+
+        // Security Fundamentals (4)
+        { domain: "Security Fundamentals", q: "Which type of ACL can filter traffic based on source IP, destination IP, AND port numbers?", options: ["Standard ACL", "Extended ACL", "MAC ACL", "Dynamic ACL"], correct: 1, exp: "Le ACL Standard (1-99) filtrano solo per IP sorgente. Le ACL Estese (100-199) filtrano per Sorgente, Destinazione, Protocollo e Porte." },
+        { domain: "Security Fundamentals", q: "What is implicitly applied at the very end of every Cisco Access Control List (ACL)?", options: ["permit ip any any", "deny ip any any", "deny tcp any any", "permit icmp any any"], correct: 1, exp: "Esiste sempre un 'Implicit Deny' invisibile alla fine di ogni ACL. Se un pacchetto non fa match con nessuna regola precedente, viene droppato." },
+        { domain: "Security Fundamentals", q: "Which global configuration command securely encrypts all clear-text passwords in the running configuration?", options: ["enable secret", "password encryption on", "service password-encryption", "security passwords enable"], correct: 2, exp: "'service password-encryption' applica una crittografia debole (Type 7) a tutte le password in chiaro presenti nella configurazione." },
+        { domain: "Security Fundamentals", q: "In WPA3 wireless security, which mechanism replaces the vulnerable Pre-Shared Key (PSK) exchange?", options: ["AES", "SAE (Simultaneous Authentication of Equals)", "TKIP", "802.1X"], correct: 1, exp: "SAE (Simultaneous Authentication of Equals) nel WPA3 previene gli attacchi 'dictionary' offline che affliggevano il WPA2-PSK." },
+
+        // Automation and Programmability (4)
+        { domain: "Automation and Programmability", q: "Which data formatting language uses key-value pairs enclosed in curly braces { } ?", options: ["XML", "YAML", "JSON", "Python"], correct: 2, exp: "JSON (JavaScript Object Notation) usa { } per gli oggetti, [ ] per gli array, e coppie 'chiave': 'valore'." },
+        { domain: "Automation and Programmability", q: "In a Software-Defined Networking (SDN) architecture, what is completely centralized in the Controller?", options: ["Data Plane", "Control Plane", "Management Plane", "Forwarding Plane"], correct: 1, exp: "In SDN, il Control Plane (il cervello che decide le rotte) viene spostato dagli switch fisici al Controller centralizzato. Agli switch resta solo il Data/Forwarding Plane." },
+        { domain: "Automation and Programmability", q: "Which HTTP method in a REST API is typically used to completely replace an existing resource?", options: ["GET", "POST", "PUT", "PATCH"], correct: 2, exp: "Nelle REST API: GET = Legge, POST = Crea nuovo, PUT = Sostituisce/Aggiorna interamente, PATCH = Aggiorna parzialmente, DELETE = Cancella." },
+        { domain: "Automation and Programmability", q: "Which configuration management tool uses an agentless architecture primarily based on SSH and Python?", options: ["Puppet", "Chef", "Ansible", "SaltStack"], correct: 2, exp: "Ansible è famoso per essere 'agentless'. Si collega ai device tramite SSH e non richiede l'installazione di software sul device remoto, a differenza di Puppet e Chef." }
+    ];
+
+    let currentQuestion = 0;
+    let scores = {};
+    let totals = {};
+
+    // Inizializza contatori
+    quizData.forEach(q => {
+        scores[q.domain] = 0;
+        totals[q.domain] = totals[q.domain] ? totals[q.domain] + 1 : 1;
+    });
+
+    function startQuiz() {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const q = quizData[currentQuestion];
+        document.getElementById('domain-badge').innerText = q.domain;
+        document.getElementById('current-q').innerText = currentQuestion + 1;
+        document.getElementById('question-text').innerText = q.q;
+        document.getElementById('explanation').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'none';
+        
+        // Aggiorna progress bar
+        const progress = (currentQuestion / quizData.length) * 100;
+        document.getElementById('progress-bar').style.width = progress + '%';
+
+        const optionsGrid = document.getElementById('options-grid');
+        optionsGrid.innerHTML = '';
+        
+        q.options.forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => selectAnswer(index, btn);
+            optionsGrid.appendChild(btn);
+        });
+    }
+
+    function selectAnswer(index, btn) {
+        const q = quizData[currentQuestion];
+        const buttons = document.querySelectorAll('.option-btn');
+        
+        // Disabilita tutti i bottoni
+        buttons.forEach(b => b.disabled = true);
+        
+        if (index === q.correct) {
+            btn.classList.add('correct');
+            scores[q.domain]++;
+        } else {
+            btn.classList.add('wrong');
+            buttons[q.correct].classList.add('correct');
+        }
+
+        document.getElementById('exp-text').innerText = q.exp;
+        document.getElementById('explanation').style.display = 'block';
+        document.getElementById('next-btn').style.display = 'block';
+        
+        if (currentQuestion === quizData.length - 1) {
+            document.getElementById('next-btn').innerText = 'Vedi Risultati';
+        }
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        document.getElementById('quiz-screen').style.display = 'none';
+        document.getElementById('result-screen').style.display = 'block';
+
+        let totalCorrect = 0;
+        const container = document.getElementById('domain-results-container');
+        let lowestDomain = "";
+        let lowestScore = 100;
+
+        for (const [domain, max] of Object.entries(totals)) {
+            const score = scores[domain];
+            totalCorrect += score;
+            const percentage = Math.round((score / max) * 100);
+            
+            if (percentage < lowestScore) {
+                lowestScore = percentage;
+                lowestDomain = domain;
+            }
+
+            let colorClass = 'bad-score';
+            if (percentage >= 80) colorClass = 'good-score';
+            else if (percentage >= 60) colorClass = 'mid-score';
+
+            container.innerHTML += `
+                <div class="domain-result">
+                    <span style="font-weight: 600;">${domain}</span>
+                    <div>
+                        <span style="color: #888; font-size: 14px; margin-right: 15px;">${score}/${max} corrette</span>
+                        <span class="score-percentage ${colorClass}">${percentage}%</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        const totalPercentage = Math.round((totalCorrect / quizData.length) * 100);
+        const totalEl = document.getElementById('total-score');
+        totalEl.innerText = totalPercentage + '%';
+        if (totalPercentage >= 80) totalEl.style.color = '#2ecc71';
+        else if (totalPercentage >= 60) totalEl.style.color = '#f1c40f';
+        else totalEl.style.color = '#e74c3c';
+
+        // Genera recommendation
+        const recBox = document.getElementById('recommendation-box');
+        if (totalPercentage >= 85) {
+            recBox.style.background = 'rgba(39, 174, 96, 0.1)';
+            recBox.style.borderColor = 'rgba(39, 174, 96, 0.3)';
+            recBox.innerHTML = `<strong>🏆 Risultato Eccellente!</strong> Sei praticamente pronta. Fai ancora un po' di test su Pearson e prenota l'esame.`;
+        } else if (totalPercentage >= 65) {
+            recBox.style.background = 'rgba(241, 196, 15, 0.1)';
+            recBox.style.borderColor = 'rgba(241, 196, 15, 0.3)';
+            recBox.innerHTML = `<strong>⚠️ Buone basi, ma serve ripasso.</strong> Vai bene su alcune cose, ma hai punti deboli. Il tuo punto critico assoluto è <strong>${lowestDomain}</strong>. Ripassa questo capitolo per primo!`;
+        } else {
+            recBox.innerHTML = `<strong>🚨 Allarme Rosso!</strong> Il tuo punteggio è basso. La tua priorità assoluta di studio deve essere <strong>${lowestDomain}</strong>. Apri il libro ufficiale su questo capitolo stasera stessa.`;
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -11,6 +11,8 @@ Il presente documento costituisce una guida di riferimento. Contiene i principi 
 > [!NOTE]
 > All'esame NSE4 e nel lavoro quotidiano, la teoria serve a capire *dove* guardare. La pratica ti insegna *come* correggere l'errore.
 
+**🔗 Ripasso Teorico Consigliato:** Prima di affrontare il troubleshooting avanzato, è raccomandata la revisione dei fondamenti nel documento [CCNA Knowledge Base: VPN Concepts & Fundamentals](file:///C:/Users/isabe/.gemini/antigravity/scratch/portfolio-repo/docs/Progetti/CCNA%20Journey/02_Knowledge_Base/VPN_Concepts_Fundamentals_Recap.html).
+
 ---
 
 ## 1. VPN IPsec (Site-to-Site)

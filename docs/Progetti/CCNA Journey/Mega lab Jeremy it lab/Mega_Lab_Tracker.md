@@ -11,8 +11,8 @@ Questo documento riassume tutte le istruzioni del Mega Lab. Usalo come checklist
 - [ ] Configurare la console: `login local`, `exec-timeout 30 0`, `logging synchronous`.
 
 ## Part 2 - VLANs, Layer-2 EtherChannel
-- [ ] Office A: L2 EtherChannel 'PortChannel1' (PAgP) tra DSW-A1 e DSW-A2.
-- [ ] Office B: L2 EtherChannel 'PortChannel1' (LACP) tra DSW-B1 e DSW-B2.
+- [x] Office A: L2 EtherChannel 'PortChannel1' (PAgP) tra DSW-A1 e DSW-A2.
+- [x] Office B: L2 EtherChannel 'PortChannel1' (LACP) tra DSW-B1 e DSW-B2.
 - [ ] Trunk links (Access to Distribution): disabilitare DTP (`switchport nonegotiate`), Native VLAN 1000, allowed VLANs (A: 10,20,40,99 | B: 10,20,30,99).
 - [ ] VTPv2: DSW come Server (Domain `JeremysITLab`), ASW come Client.
 - [ ] Creare le VLAN: 10 (PCs), 20 (Phones), 30 (Servers B), 40 (Wi-Fi A), 99 (Management).

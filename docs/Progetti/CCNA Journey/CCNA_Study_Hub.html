@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCNA Study Hub PRO</title>
+    <title>CCNA Study Hub PRO - Exam Sprint Edition</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
 
         :root {
             --primary: #00b4db;
+            --primary-glow: rgba(0, 180, 219, 0.4);
             --secondary: #0083b0;
             --dark: #0f2027;
             --card-bg: rgba(255, 255, 255, 0.05);
-            --border: rgba(255, 255, 255, 0.1);
+            --card-border: rgba(255, 255, 255, 0.12);
             --correct: #27ae60;
+            --correct-bg: rgba(39, 174, 96, 0.2);
             --wrong: #e74c3c;
+            --wrong-bg: rgba(231, 76, 60, 0.2);
             --text: #f0f0f0;
+            --text-muted: #a0aec0;
+            --badge-bg: rgba(0, 180, 219, 0.15);
+            --cli-bg: #0a0e14;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0b1319 0%, #11222c 50%, #1a3344 100%);
             color: var(--text);
             min-height: 100vh;
             display: flex;
@@ -32,197 +42,430 @@
 
         .container {
             width: 95%;
-            max-width: 900px;
-            margin: 40px auto;
+            max-width: 950px;
+            margin: 30px auto;
         }
 
         .glass-card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 30px 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 35px 40px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
             position: relative;
         }
 
-        h1, h2, h3 { margin-top: 0; font-weight: 600; }
+        h1, h2, h3 { margin-top: 0; font-weight: 700; }
         .text-center { text-align: center; }
         .text-primary { color: var(--primary); }
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .module-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .module-card:hover {
-            background: rgba(0, 180, 219, 0.1);
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .module-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .module-stats {
-            font-size: 14px;
-            color: #aaa;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .best-score { font-weight: bold; color: #2ecc71; }
-
+        /* Pulsanti e Controlli */
         .btn {
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             border: none;
             color: white;
-            padding: 12px 24px;
+            padding: 14px 24px;
             font-size: 16px;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s ease;
             font-weight: 600;
-            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px var(--primary-glow);
         }
 
-        .btn:hover {
+        .btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 180, 219, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 180, 219, 0.6);
         }
-        
+
+        .btn:disabled {
+            background: #333a42;
+            color: #77838f;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .btn-full { width: 100%; }
+
+        .btn-accent {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.35);
+        }
+        .btn-accent:hover:not(:disabled) {
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.55);
+        }
+
         .btn-outline {
             background: transparent;
-            border: 1px solid var(--primary);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
             color: var(--primary);
-            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.2);
         }
 
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
+        /* Banner Principale Dashboard */
+        .hero-banner {
+            text-align: center;
             margin-bottom: 25px;
-            overflow: hidden;
         }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .domain-badge {
+        .hero-badge {
             display: inline-block;
-            background: rgba(0, 180, 219, 0.2);
-            color: #00b4db;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
         }
 
-        .question-text {
-            font-size: 18px;
+        /* Opzioni Rapide Dashboard */
+        .action-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 15px;
+            margin: 25px 0 35px 0;
+        }
+        @media (max-width: 680px) {
+            .action-row { grid-template-columns: 1fr; }
+            .glass-card { padding: 25px 20px; }
+        }
+
+        .timer-toggle-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 25px;
-            line-height: 1.5;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333;
+            transition: .3s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        /* Dashboard Grid Domini */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
 
-        /* Stile per i blocchi di codice (CLI Output e JSON) */
-        pre {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-            overflow-x: auto;
-            margin: 15px 0;
-        }
-        
-        code {
-            font-family: 'Fira Code', monospace;
-            font-size: 14px;
-            color: #00ff00; /* Stile terminale */
-        }
-
-        .options-grid {
+        .module-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            justify-content: space-between;
         }
-
-        .option-btn {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            padding: 15px 20px;
-            border-radius: 10px;
-            color: var(--text);
-            font-size: 15px;
-            cursor: pointer;
-            text-align: left;
-            transition: all 0.2s;
+        .module-card:hover {
+            background: rgba(0, 180, 219, 0.08);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-
-        .option-btn:hover:not(:disabled) {
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .module-title {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .module-weight {
+            font-size: 11px;
+            font-weight: 700;
             background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.3);
+            color: #ddd;
+            padding: 3px 7px;
+            border-radius: 6px;
+            white-space: nowrap;
         }
-
-        .option-btn.correct { background: rgba(39, 174, 96, 0.2); border-color: var(--correct); color: #2ecc71; }
-        .option-btn.wrong { background: rgba(231, 76, 60, 0.2); border-color: var(--wrong); color: #ff7675; }
-
-        .explanation {
-            margin-top: 25px;
-            padding: 20px;
-            background: rgba(255,255,255,0.03);
-            border-left: 4px solid var(--primary);
-            border-radius: 0 10px 10px 0;
-            font-size: 14px;
-            line-height: 1.5;
-            display: none;
+        .module-stats {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 10px;
         }
+        .best-score { font-weight: 700; }
 
-        /* Viste App */
-        #dashboard-screen, #quiz-screen, #result-screen { display: none; }
-        #dashboard-screen { display: block; }
-        
+        /* Schermata Quiz */
         .header-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--card-border);
             padding-bottom: 15px;
         }
-        
         .back-link {
-            color: #aaa;
+            color: var(--text-muted);
             text-decoration: none;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
         }
         .back-link:hover { color: white; }
+
+        .timer-badge {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--card-border);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #00e5ff;
+        }
+        .timer-warning {
+            color: #ff4757 !important;
+            border-color: #ff4757 !important;
+            animation: pulse-red 1s infinite;
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+        }
+
+        .domain-badge {
+            display: inline-block;
+            background: var(--badge-bg);
+            color: var(--primary);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 4px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #00e5ff);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* CLI Code Exhibits */
+        pre {
+            background: var(--cli-bg);
+            padding: 16px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 180, 219, 0.25);
+            overflow-x: auto;
+            margin: 15px 0 20px 0;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 13.5px;
+            color: #00ff66;
+            line-height: 1.45;
+        }
+
+        /* Opzioni di Risposta */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .option-btn {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--card-border);
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 15px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.4;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateX(3px);
+        }
+        .opt-letter {
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(0, 180, 219, 0.1);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .option-btn.correct {
+            background: var(--correct-bg);
+            border-color: var(--correct);
+            color: #4ade80;
+        }
+        .option-btn.correct .opt-letter {
+            background: var(--correct);
+            color: white;
+        }
+        .option-btn.wrong {
+            background: var(--wrong-bg);
+            border-color: var(--wrong);
+            color: #f87171;
+        }
+        .option-btn.wrong .opt-letter {
+            background: var(--wrong);
+            color: white;
+        }
+
+        .explanation {
+            margin-top: 25px;
+            padding: 20px 24px;
+            background: rgba(0, 180, 219, 0.05);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            font-size: 14.5px;
+            line-height: 1.6;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .explanation strong { color: var(--primary); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .shortcut-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Schermata Risultati */
+        .score-circle {
+            font-size: 64px;
+            font-weight: 800;
+            margin: 15px 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .domain-results-list {
+            margin: 25px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+        .domain-result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Sezione Revisione Risposte */
+        .review-section {
+            margin-top: 35px;
+            text-align: left;
+            border-top: 1px solid var(--card-border);
+            padding-top: 25px;
+        }
+        .review-card {
+            background: rgba(0,0,0,0.25);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .review-card.review-correct { border-left: 5px solid var(--correct); }
+        .review-card.review-wrong { border-left: 5px solid var(--wrong); }
+        .review-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .review-answer-tag {
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .tag-user-correct { background: var(--correct-bg); color: #4ade80; }
+        .tag-user-wrong { background: var(--wrong-bg); color: #f87171; }
+        .tag-correct-key { background: rgba(39, 174, 96, 0.1); border: 1px dashed var(--correct); color: #4ade80; }
+
+        /* Viste App */
+        #dashboard-screen, #quiz-screen, #result-screen { display: none; }
+        #dashboard-screen { display: block; }
     </style>
 </head>
 <body>
@@ -231,228 +474,378 @@
     
     <!-- DASHBOARD -->
     <div id="dashboard-screen" class="glass-card">
-        <div class="text-center">
-            <h1 class="text-primary">CCNA Study Hub <span style="font-size: 14px; background: red; padding: 2px 6px; border-radius: 4px; color: white;">PRO</span></h1>
-            <p>Database Esterno | CLI Code Blocks | Spaced Repetition (Weakness Targeting)</p>
+        <div class="hero-banner">
+            <span class="hero-badge">Cisco 200-301 CCNA &bull; Esame Sprint</span>
+            <h1 class="text-primary">CCNA Study Hub PRO</h1>
+            <p style="color: var(--text-muted); font-size: 15px; max-width: 650px; margin: 0 auto;">
+                Simulatore d'esame professionale: <strong id="total-db-count">60+</strong> domande reali, estratti CLI Cisco, Spaced Repetition e revisione dettagliata degli errori.
+            </p>
+        </div>
+
+        <div class="action-row">
+            <button class="btn btn-full" onclick="startQuiz('All')" style="padding: 18px 20px; font-size: 17px;">
+                <span>🚀 Inizia Full Simulation Exam (30 Domande)</span>
+            </button>
+            <button id="weakness-btn" class="btn btn-accent btn-full" onclick="startWeaknessQuiz()" style="padding: 18px 20px; font-size: 16px;">
+                <span>🎯 Ripasso Solo Errori (<span id="weakness-count">0</span>)</span>
+            </button>
+        </div>
+
+        <div class="timer-toggle-card">
+            <div>
+                <strong style="font-size: 15px;">⏱️ Timer Esame a Tempo</strong>
+                <p style="margin: 3px 0 0 0; font-size: 12.5px; color: var(--text-muted);">
+                    Simula la pressione reale Cisco: 1 minuto a domanda (es. 30 min per 30 domande).
+                </p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="timer-toggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 30px;">
+            <h3>Esercitazioni per Singolo Dominio (Drills)</h3>
+            <span style="font-size: 13px; color: var(--text-muted);">Clicca su un dominio per allenarti</span>
         </div>
         
-        <button class="btn" onclick="startQuiz('All')" style="margin-top: 20px; padding: 15px;">🚀 Inizia Full Simulation Exam</button>
-
-        <h3 style="margin-top: 40px; margin-bottom: 10px;">Domain Drills</h3>
         <div class="dashboard-grid" id="modules-container"></div>
         
-        <button class="btn btn-outline" onclick="resetStats()" style="margin-top: 40px; width: auto; font-size: 12px; padding: 8px 15px;">Reset Dati (Scores & Weaknesses)</button>
+        <div style="margin-top: 35px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="btn btn-outline" onclick="resetStats()" style="font-size: 12.5px; padding: 8px 15px;">
+                🗑️ Reset Punteggi e Lacune
+            </button>
+            <span style="font-size: 12px; color: #667;">v2.0 Exam Sprint Edition</span>
+        </div>
     </div>
 
     <!-- QUIZ SCREEN -->
     <div id="quiz-screen" class="glass-card">
         <div class="header-nav">
-            <a class="back-link" onclick="goHome()">&larr; Abbandona Test</a>
+            <a class="back-link" onclick="confirmAbandon()">&larr; Abbandona Test</a>
+            <div id="timer-container" class="timer-badge" style="display: none;">
+                ⏱️ <span id="timer-display">30:00</span>
+            </div>
             <div id="domain-badge" class="domain-badge">Domain</div>
         </div>
         
         <div class="progress-container">
             <div id="progress-bar" class="progress-bar"></div>
         </div>
-        <div style="color: #888; font-size: 14px; margin-bottom: 15px;">Domanda <span id="current-q">1</span> di <span id="total-q">10</span></div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="color: var(--text-muted); font-size: 14px;">Domanda <strong id="current-q" style="color: white;">1</strong> di <strong id="total-q" style="color: white;">10</strong></span>
+            <span id="question-id-badge" style="font-family: 'Fira Code', monospace; font-size: 12px; color: #889;">NF-001</span>
+        </div>
         
-        <div id="question-text" class="question-text">Question?</div>
+        <div id="question-text" class="question-text">Caricamento domanda...</div>
         
         <div id="options-grid" class="options-grid"></div>
 
         <div id="explanation" class="explanation">
-            <strong>Spiegazione:</strong> <span id="exp-text"></span>
+            <strong>Spiegazione Tecnica:</strong> <span id="exp-text"></span>
         </div>
 
-        <button id="next-btn" class="btn" onclick="nextQuestion()" style="display: none; margin-top: 25px;">Prossima Domanda &rarr;</button>
+        <div class="shortcut-hint">💡 Premi <strong>1, 2, 3, 4</strong> (o A, B, C, D) per rispondere &bull; Premi <strong>Invio</strong> per avanzare</div>
+
+        <button id="next-btn" class="btn btn-full" onclick="nextQuestion()" style="display: none; margin-top: 20px;">
+            Prossima Domanda &rarr;
+        </button>
     </div>
 
     <!-- RESULT SCREEN -->
     <div id="result-screen" class="glass-card text-center">
-        <h1 class="text-primary">Test Completato</h1>
-        <h3 id="result-domain" style="color: #aaa;">Domain</h3>
+        <h1 class="text-primary" id="result-title">Assessment Completato!</h1>
+        <h3 id="result-domain" style="color: var(--text-muted); font-weight: 500;">Simulazione</h3>
         
-        <div style="font-size: 60px; font-weight: bold; margin: 20px 0;">
+        <div class="score-circle">
             <span id="final-score" style="color: white;">0%</span>
         </div>
-        <p id="result-msg" style="font-size: 16px; margin-bottom: 40px; color: #ccc;"></p>
 
-        <button class="btn" onclick="goHome()">Torna alla Dashboard</button>
+        <p id="result-msg" style="font-size: 16px; margin: 15px auto 25px auto; max-width: 600px; line-height: 1.5; color: #ddd;"></p>
+
+        <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;">
+            <div style="background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 10px; border: 1px solid var(--card-border);">
+                <div style="font-size: 12px; color: var(--text-muted);">Corrette</div>
+                <div id="stat-correct" style="font-size: 20px; font-weight: 700; color: #4ade80;">0</div>
+            </div>
+            <div style="background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 10px; border: 1px solid var(--card-border);">
+                <div style="font-size: 12px; color: var(--text-muted);">Sbagliate</div>
+                <div id="stat-wrong" style="font-size: 20px; font-weight: 700; color: #f87171;">0</div>
+            </div>
+            <div id="time-spent-box" style="background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 10px; border: 1px solid var(--card-border);">
+                <div style="font-size: 12px; color: var(--text-muted);">Tempo</div>
+                <div id="stat-time" style="font-size: 20px; font-weight: 700; color: #00e5ff;">--:--</div>
+            </div>
+        </div>
+
+        <h3 style="text-align: left; margin-top: 30px;">Rendimento per Dominio:</h3>
+        <div class="domain-results-list" id="domain-results-container"></div>
+
+        <div style="display: flex; gap: 15px; margin-top: 30px;">
+            <button class="btn btn-full" onclick="goHome()">🏠 Torna alla Dashboard</button>
+            <button id="retry-mistakes-btn" class="btn btn-accent btn-full" onclick="retryMistakes()" style="display: none;">
+                🎯 Riprova Solo gli Errori del Test
+            </button>
+        </div>
+
+        <!-- Sezione Revisione Dettagliata -->
+        <div class="review-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>🔍 Revisione Dettagliata delle Domande</h3>
+                <span style="font-size: 13px; color: var(--text-muted);">Tutte le risposte e spiegazioni</span>
+            </div>
+            <div id="review-cards-container"></div>
+        </div>
     </div>
 
 </div>
 
-<!-- INCLUSIONE DEL DATABASE ESTERNO (Local JS Bypass CORS) -->
+<!-- INCLUSIONE DATABASE ESTERNO -->
 <script src="ccna_database.js"></script>
 
 <script>
-    const domains = [
-        "Network Fundamentals",
-        "Network Access",
-        "IP Connectivity",
-        "IP Services",
-        "Security Fundamentals",
-        "Automation and Programmability"
+    const domainsConfig = [
+        { name: "Network Fundamentals", weight: "20%" },
+        { name: "Network Access", weight: "20%" },
+        { name: "IP Connectivity", weight: "25% ⭐" },
+        { name: "IP Services", weight: "10%" },
+        { name: "Security Fundamentals", weight: "15%" },
+        { name: "Automation and Programmability", weight: "10%" }
     ];
 
     let currentMode = ""; 
     let activeQuizData = [];
     let currentQuestionIndex = 0;
     let score = 0;
+    let userAnswersHistory = []; // Memorizza { qObj, chosenIndex, isCorrect }
+    let lastExamErrors = [];
+
+    // Timer state
+    let timerInterval = null;
+    let secondsRemaining = 0;
+    let totalSecondsElapsed = 0;
+    let isTimerActive = false;
 
     // Load LocalStorage Data
     let stats = JSON.parse(localStorage.getItem("ccna_stats_pro")) || {};
-    let weaknesses = JSON.parse(localStorage.getItem("ccna_weaknesses_pro")) || {}; // Traccia { "ID-Domanda": errorCount }
+    let weaknesses = JSON.parse(localStorage.getItem("ccna_weaknesses_pro")) || {}; 
 
     function initDashboard() {
+        if (typeof ccnaDatabase !== 'undefined') {
+            document.getElementById('total-db-count').innerText = ccnaDatabase.length;
+        }
+
+        const totalWeaknesses = Object.keys(weaknesses).length;
+        const weaknessBadge = document.getElementById('weakness-count');
+        const weaknessBtn = document.getElementById('weakness-btn');
+        if (weaknessBadge) weaknessBadge.innerText = totalWeaknesses;
+        if (weaknessBtn) {
+            weaknessBtn.disabled = (totalWeaknesses === 0);
+            if (totalWeaknesses === 0) {
+                weaknessBtn.title = "Nessun errore salvato! Fai una simulazione per identificare le tue lacune.";
+            } else {
+                weaknessBtn.title = `Focalizzati sulle ${totalWeaknesses} domande in cui hai trovato difficoltà.`;
+            }
+        }
+
         const container = document.getElementById('modules-container');
         container.innerHTML = '';
 
-        domains.forEach(d => {
-            const best = stats[d] !== undefined ? `${stats[d]}%` : '---';
+        domainsConfig.forEach(d => {
+            const best = stats[d.name] !== undefined ? `${stats[d.name]}%` : '---';
+            const countInDomain = (typeof ccnaDatabase !== 'undefined') ? ccnaDatabase.filter(q => q.domain === d.name).length : 0;
+            
             const card = document.createElement('div');
             card.className = 'module-card';
-            card.onclick = () => startQuiz(d);
+            card.onclick = () => startQuiz(d.name);
             card.innerHTML = `
                 <div>
-                    <div class="module-title">${d}</div>
+                    <div class="module-header">
+                        <div class="module-title">${d.name}</div>
+                        <span class="module-weight">${d.weight}</span>
+                    </div>
                 </div>
-                <div class="module-stats" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
-                    <span>Best Score:</span>
-                    <span class="best-score" style="color: ${stats[d] >= 80 ? '#2ecc71' : (stats[d] >= 60 ? '#f1c40f' : '#e74c3c')}">${best}</span>
+                <div class="module-stats">
+                    <span>${countInDomain} domande</span>
+                    <span>Best: <span class="best-score" style="color: ${stats[d.name] >= 80 ? '#4ade80' : (stats[d.name] >= 65 ? '#facc15' : '#f87171')}">${best}</span></span>
                 </div>
             `;
             container.appendChild(card);
         });
     }
 
-    // Weakness Targeting (Spaced Repetition Algorithm)
-    // Le domande che sono in `weaknesses` vengono moltiplicate (duplicate) temporaneamente nell'array,
-    // così hanno una probabilità matematica molto più alta di essere pescate dal randomizzatore.
-    function applySpacedRepetition(questionsArray) {
-        let enhancedPool = [];
-        questionsArray.forEach(q => {
-            enhancedPool.push(q); // Inserimento base
-            if (weaknesses[q.id]) {
-                // Aggiunge la domanda al pool X volte extra in base a quante volte l'ha sbagliata
-                for(let i=0; i<weaknesses[q.id]; i++) {
-                    enhancedPool.push(q);
-                }
-            }
-        });
-        // Rimuove duplicati solo al momento della selezione finale
-        return enhancedPool;
+    function shuffleArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
     }
 
-    function shuffleArray(array) {
-        let curId = array.length;
-        while (0 !== curId) {
-            let randId = Math.floor(Math.random() * curId);
-            curId -= 1;
-            let tmp = array[curId];
-            array[curId] = array[randId];
-            array[randId] = tmp;
+    // Modalità "Ripasso Solo Errori"
+    function startWeaknessQuiz() {
+        if (typeof ccnaDatabase === 'undefined') return;
+        const errorIds = Object.keys(weaknesses);
+        if (errorIds.length === 0) {
+            alert("Non hai ancora accumulato errori registrati! Fai prima un test generale.");
+            return;
         }
-        return array;
+
+        const questions = ccnaDatabase.filter(q => errorIds.includes(q.id));
+        launchQuizSession("Weakness Focus", shuffleArray(questions));
     }
 
     function startQuiz(mode) {
         if (typeof ccnaDatabase === 'undefined') {
-            alert("Errore: Il file ccna_database.js non è stato caricato. Assicurati che i due file siano nella stessa cartella.");
+            alert("Errore: Il database delle domande (ccna_database.js) non è stato caricato. Verifica che sia presente nella cartella.");
             return;
         }
 
-        currentMode = mode;
-        score = 0;
-        currentQuestionIndex = 0;
-        
-        // 1. Filtro le domande per dominio
-        let domainQuestions = (mode === "All") ? ccnaDatabase : ccnaDatabase.filter(q => q.domain === mode);
-        
-        // 2. Applico l'algoritmo Spaced Repetition (aumenta probabilità delle sbagliate)
-        let weightedPool = applySpacedRepetition(domainQuestions);
-        weightedPool = shuffleArray(weightedPool);
+        let selection = [];
+        if (mode === "All") {
+            // Simulazione Esame Bilanciata (30 domande pescate equamente)
+            const byDomain = {};
+            ccnaDatabase.forEach(q => {
+                if (!byDomain[q.domain]) byDomain[q.domain] = [];
+                byDomain[q.domain].push(q);
+            });
 
-        // 3. Estraggo N domande univoche per il test
-        let finalSelection = [];
-        let numQs = (mode === "All") ? 30 : Math.min(10, domainQuestions.length); // Max 10 domande nei drill
-        
-        for (let i = 0; i < weightedPool.length && finalSelection.length < numQs; i++) {
-            if (!finalSelection.find(q => q.id === weightedPool[i].id)) {
-                finalSelection.push(weightedPool[i]);
-            }
+            // 5 domande per ciascuno dei 6 domini = 30 domande esatte
+            Object.keys(byDomain).forEach(dom => {
+                const shuffledDom = shuffleArray(byDomain[dom]);
+                selection.push(...shuffledDom.slice(0, 5));
+            });
+            selection = shuffleArray(selection);
+        } else {
+            // Drill per singolo dominio (fino a 10 domande)
+            const domainQs = ccnaDatabase.filter(q => q.domain === mode);
+            selection = shuffleArray(domainQs).slice(0, 10);
         }
-        activeQuizData = finalSelection;
+
+        launchQuizSession(mode, selection);
+    }
+
+    function launchQuizSession(modeName, questions) {
+        currentMode = modeName;
+        activeQuizData = questions;
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswersHistory = [];
+        totalSecondsElapsed = 0;
+
+        // Gestione Timer
+        const timerEnabled = document.getElementById('timer-toggle').checked;
+        const timerDisplay = document.getElementById('timer-container');
+        if (timerInterval) clearInterval(timerInterval);
+
+        if (timerEnabled) {
+            isTimerActive = true;
+            secondsRemaining = activeQuizData.length * 60; // 1 minuto a domanda
+            timerDisplay.style.display = 'block';
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                secondsRemaining--;
+                totalSecondsElapsed++;
+                updateTimerDisplay();
+                if (secondsRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Tempo scaduto! Invio automatico delle risposte.");
+                    showResults();
+                }
+            }, 1000);
+        } else {
+            isTimerActive = false;
+            timerDisplay.style.display = 'none';
+        }
 
         document.getElementById('dashboard-screen').style.display = 'none';
         document.getElementById('result-screen').style.display = 'none';
         document.getElementById('quiz-screen').style.display = 'block';
-        
-        document.getElementById('domain-badge').innerText = mode === "All" ? "Full Simulation" : mode;
+
+        document.getElementById('domain-badge').innerText = modeName === "All" ? "Full Simulation (30 Q)" : modeName;
         document.getElementById('total-q').innerText = activeQuizData.length;
-        
+
         loadQuestion();
+    }
+
+    function updateTimerDisplay() {
+        const mins = Math.floor(secondsRemaining / 60);
+        const secs = secondsRemaining % 60;
+        const text = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        const el = document.getElementById('timer-display');
+        el.innerText = text;
+
+        if (secondsRemaining <= 300) { // Meno di 5 minuti
+            document.getElementById('timer-container').classList.add('timer-warning');
+        } else {
+            document.getElementById('timer-container').classList.remove('timer-warning');
+        }
     }
 
     function loadQuestion() {
         const q = activeQuizData[currentQuestionIndex];
         document.getElementById('current-q').innerText = currentQuestionIndex + 1;
-        document.getElementById('question-text').innerHTML = q.q; // innerHTML per renderizzare <pre> e <br>
+        document.getElementById('question-id-badge').innerText = q.id || '';
+        document.getElementById('question-text').innerHTML = q.q;
         document.getElementById('explanation').style.display = 'none';
         document.getElementById('next-btn').style.display = 'none';
-        
-        const progress = (currentQuestionIndex / activeQuizData.length) * 100;
+
+        const progress = ((currentQuestionIndex) / activeQuizData.length) * 100;
         document.getElementById('progress-bar').style.width = progress + '%';
 
         const optionsGrid = document.getElementById('options-grid');
         optionsGrid.innerHTML = '';
-        
-        // Randomizza l'ordine delle opzioni mantenendo la referenza a quale fosse quella corretta
-        let opts = q.options.map((text, index) => ({ text, isCorrect: (index === q.correct) }));
-        opts = shuffleArray(opts);
 
-        opts.forEach((opt) => {
+        const letters = ['A', 'B', 'C', 'D'];
+        q.options.forEach((optText, index) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
-            btn.innerText = opt.text;
-            btn.onclick = () => selectAnswer(btn, opt.isCorrect, q);
+            btn.setAttribute('data-index', index);
+            btn.innerHTML = `<span class="opt-letter">${letters[index]}</span> <span>${optText}</span>`;
+            btn.onclick = () => selectAnswer(index, btn, q);
             optionsGrid.appendChild(btn);
         });
     }
 
-    function selectAnswer(btn, isCorrect, qObj) {
+    function selectAnswer(selectedIndex, btn, qObj) {
         const buttons = document.querySelectorAll('.option-btn');
         buttons.forEach(b => b.disabled = true);
-        
+
+        const isCorrect = (selectedIndex === qObj.correct);
+
         if (isCorrect) {
             btn.classList.add('correct');
             score++;
-            // Rimuovi dai weaknesses se hai risposto giusto
+            // Se la domanda era tra le lacune e ora è corretta, decrementa o rimuovi
             if (weaknesses[qObj.id]) {
                 weaknesses[qObj.id]--;
-                if(weaknesses[qObj.id] <= 0) delete weaknesses[qObj.id];
+                if (weaknesses[qObj.id] <= 0) delete weaknesses[qObj.id];
             }
         } else {
             btn.classList.add('wrong');
-            // Aggiungi ai weaknesses per lo Spaced Repetition
+            // Evidenzia quella corretta
+            buttons[qObj.correct].classList.add('correct');
+            // Aggiungi o incrementa nelle debolezze
             weaknesses[qObj.id] = (weaknesses[qObj.id] || 0) + 1;
-            
-            // Trova e colora quella corretta
-            buttons.forEach(b => {
-                let opts = qObj.options;
-                if (b.innerText === opts[qObj.correct]) b.classList.add('correct');
-            });
         }
-        
-        // Salva le debolezze nel LocalStorage
+
         localStorage.setItem("ccna_weaknesses_pro", JSON.stringify(weaknesses));
 
-        document.getElementById('exp-text').innerText = qObj.exp;
+        // Salva cronologia per la revisione finale
+        userAnswersHistory.push({
+            qObj: qObj,
+            selectedIndex: selectedIndex,
+            isCorrect: isCorrect
+        });
+
+        document.getElementById('exp-text').innerHTML = qObj.exp;
         document.getElementById('explanation').style.display = 'block';
         document.getElementById('next-btn').style.display = 'block';
-        
+
         if (currentQuestionIndex === activeQuizData.length - 1) {
-            document.getElementById('next-btn').innerText = 'Vedi Risultati';
+            document.getElementById('next-btn').innerText = 'Visualizza Risultati Finali 🏆';
         } else {
             document.getElementById('next-btn').innerText = 'Prossima Domanda \u2192';
         }
@@ -463,6 +856,7 @@
         if (currentQuestionIndex < activeQuizData.length) {
             loadQuestion();
         } else {
+            if (timerInterval) clearInterval(timerInterval);
             showResults();
         }
     }
@@ -472,39 +866,142 @@
         document.getElementById('result-screen').style.display = 'block';
 
         const percentage = Math.round((score / activeQuizData.length) * 100);
-        
-        document.getElementById('result-domain').innerText = currentMode === "All" ? "Full Simulation Completata" : `Drill: ${currentMode}`;
-        
         const finalScoreEl = document.getElementById('final-score');
         finalScoreEl.innerText = percentage + '%';
-        
+
+        document.getElementById('result-domain').innerText = currentMode === "All" ? "Simulazione d'Esame Completa" : `Sessione: ${currentMode}`;
+        document.getElementById('stat-correct').innerText = score;
+        document.getElementById('stat-wrong').innerText = activeQuizData.length - score;
+
+        // Tempo impiegato
+        const mins = Math.floor(totalSecondsElapsed / 60);
+        const secs = totalSecondsElapsed % 60;
+        document.getElementById('stat-time').innerText = `${mins}m ${secs}s`;
+
+        // Messaggio e colore punteggio
         const msgEl = document.getElementById('result-msg');
         if (percentage >= 85) {
-            finalScoreEl.style.color = '#2ecc71';
-            msgEl.innerHTML = "L'algoritmo di Weakness Tracking segna che non hai più lacune qui!";
+            finalScoreEl.style.color = '#4ade80';
+            document.getElementById('result-title').innerText = "🏆 Risultato Eccellente!";
+            msgEl.innerHTML = `Punteggio solido da superamento esame! Hai dimostrato ottima padronanza dei concetti chiave.`;
+        } else if (percentage >= 65) {
+            finalScoreEl.style.color = '#facc15';
+            document.getElementById('result-title').innerText = "⚠️ Buona base, serve affilare i dettagli!";
+            msgEl.innerHTML = `Sei vicino al target d'esame (~825/1000). Consulta la revisione qui sotto per comprendere a fondo le trappole che ti hanno tratto in inganno.`;
         } else {
-            finalScoreEl.style.color = '#e74c3c';
-            msgEl.innerHTML = "Il sistema ha registrato le domande che hai sbagliato. Le riproporrà più frequentemente nei prossimi Drill.";
+            finalScoreEl.style.color = '#f87171';
+            document.getElementById('result-title').innerText = "🚨 Attenzione: Focus Ripasso!";
+            msgEl.innerHTML = `Ci sono diverse lacune critiche. Usa il tasto <strong>"Riprova Solo gli Errori del Test"</strong> qui sotto per fissare i concetti.`;
         }
 
-        if (currentMode !== "All") {
-            const prevBest = stats[currentMode] || 0;
-            if (percentage > prevBest) {
+        // Salva best score se non era modalità 'All' o 'Weakness Focus'
+        if (currentMode !== "All" && currentMode !== "Weakness Focus") {
+            const prev = stats[currentMode] || 0;
+            if (percentage > prev) {
                 stats[currentMode] = percentage;
                 localStorage.setItem("ccna_stats_pro", JSON.stringify(stats));
             }
         }
+
+        // Dettaglio Domini
+        const domainBreakdown = {};
+        userAnswersHistory.forEach(item => {
+            const dom = item.qObj.domain;
+            if (!domainBreakdown[dom]) domainBreakdown[dom] = { correct: 0, total: 0 };
+            domainBreakdown[dom].total++;
+            if (item.isCorrect) domainBreakdown[dom].correct++;
+        });
+
+        const domainContainer = document.getElementById('domain-results-container');
+        domainContainer.innerHTML = '';
+        Object.entries(domainBreakdown).forEach(([dom, data]) => {
+            const domPct = Math.round((data.correct / data.total) * 100);
+            const row = document.createElement('div');
+            row.className = 'domain-result-row';
+            row.innerHTML = `
+                <span style="font-weight: 500;">${dom}</span>
+                <div>
+                    <span style="color: var(--text-muted); font-size: 13px; margin-right: 12px;">${data.correct}/${data.total} corrette</span>
+                    <strong style="color: ${domPct >= 80 ? '#4ade80' : (domPct >= 65 ? '#facc15' : '#f87171')}">${domPct}%</strong>
+                </div>
+            `;
+            domainContainer.appendChild(row);
+        });
+
+        // Pulsante Riprova Errori di questa sessione
+        lastExamErrors = userAnswersHistory.filter(item => !item.isCorrect).map(item => item.qObj);
+        const retryBtn = document.getElementById('retry-mistakes-btn');
+        if (lastExamErrors.length > 0) {
+            retryBtn.style.display = 'block';
+            retryBtn.innerText = `🎯 Riprova gli ${lastExamErrors.length} Errori Fatti`;
+        } else {
+            retryBtn.style.display = 'none';
+        }
+
+        // Genera Sezione Revisione Risposte Completa
+        buildReviewSection();
+    }
+
+    function retryMistakes() {
+        if (lastExamErrors.length === 0) return;
+        launchQuizSession("Revisione Errori Test", shuffleArray(lastExamErrors));
+    }
+
+    function buildReviewSection() {
+        const container = document.getElementById('review-cards-container');
+        container.innerHTML = '';
+        const letters = ['A', 'B', 'C', 'D'];
+
+        userAnswersHistory.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = `review-card ${item.isCorrect ? 'review-correct' : 'review-wrong'}`;
+
+            const q = item.qObj;
+            const userChoiceText = q.options[item.selectedIndex];
+            const correctChoiceText = q.options[q.correct];
+
+            card.innerHTML = `
+                <div class="review-meta">
+                    <span><strong>#${idx + 1}</strong> &bull; ${q.domain} (${q.id || ''})</span>
+                    <strong style="color: ${item.isCorrect ? '#4ade80' : '#f87171'};">${item.isCorrect ? '✓ CORRETTA' : '✗ SBAGLIATA'}</strong>
+                </div>
+                <div style="font-size: 15px; font-weight: 500; margin-bottom: 10px; line-height: 1.5;">${q.q}</div>
+                
+                <div class="review-answer-tag ${item.isCorrect ? 'tag-user-correct' : 'tag-user-wrong'}">
+                    <strong>La tua risposta:</strong> (${letters[item.selectedIndex]}) ${userChoiceText}
+                </div>
+
+                ${!item.isCorrect ? `
+                <div class="review-answer-tag tag-correct-key">
+                    <strong>Risposta corretta:</strong> (${letters[q.correct]}) ${correctChoiceText}
+                </div>
+                ` : ''}
+
+                <div style="margin-top: 12px; font-size: 13.5px; color: #ccd; line-height: 1.5; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 10px;">
+                    <strong style="color: var(--primary);">Spiegazione:</strong> ${q.exp}
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function confirmAbandon() {
+        if (confirm("Vuoi abbandonare il test in corso e tornare alla dashboard? I progressi di questa sessione andranno persi.")) {
+            if (timerInterval) clearInterval(timerInterval);
+            goHome();
+        }
     }
 
     function goHome() {
+        if (timerInterval) clearInterval(timerInterval);
         document.getElementById('quiz-screen').style.display = 'none';
         document.getElementById('result-screen').style.display = 'none';
         document.getElementById('dashboard-screen').style.display = 'block';
-        initDashboard(); 
+        initDashboard();
     }
 
     function resetStats() {
-        if(confirm("Attenzione: Vuoi cancellare lo storico dei punteggi E azzerare l'algoritmo che si ricorda le tue lacune?")) {
+        if (confirm("Attenzione: vuoi azzerare tutti i migliori punteggi registrati e ripulire lo storico degli errori?")) {
             localStorage.removeItem("ccna_stats_pro");
             localStorage.removeItem("ccna_weaknesses_pro");
             stats = {};
@@ -513,6 +1010,37 @@
         }
     }
 
+    // Supporto Scorciatoie da Tastiera (1, 2, 3, 4 o A, B, C, D e Invio)
+    document.addEventListener('keydown', (e) => {
+        const quizScreen = document.getElementById('quiz-screen');
+        if (quizScreen.style.display !== 'block') return;
+
+        const nextBtn = document.getElementById('next-btn');
+        // Se il bottone 'Prossima Domanda' è visibile, premi Invio o Spazio per avanzare
+        if (nextBtn.style.display === 'block') {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                nextQuestion();
+                return;
+            }
+        }
+
+        // Se le opzioni non sono ancora disabilitate, seleziona tramite tasto
+        const buttons = document.querySelectorAll('.option-btn');
+        if (buttons.length >= 4 && !buttons[0].disabled) {
+            let keyIndex = -1;
+            if (e.key === '1' || e.key.toLowerCase() === 'a') keyIndex = 0;
+            else if (e.key === '2' || e.key.toLowerCase() === 'b') keyIndex = 1;
+            else if (e.key === '3' || e.key.toLowerCase() === 'c') keyIndex = 2;
+            else if (e.key === '4' || e.key.toLowerCase() === 'd') keyIndex = 3;
+
+            if (keyIndex >= 0 && keyIndex < buttons.length) {
+                buttons[keyIndex].click();
+            }
+        }
+    });
+
+    // Inizializzazione Dashboard
     initDashboard();
 </script>
 </body>
