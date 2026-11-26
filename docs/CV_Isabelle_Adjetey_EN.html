@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Isabelle Adjetey</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #0d9488;
+            --secondary-color: #f0fdfa;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --text-dark: #0f172a;
+            --bg-sidebar: #0f172a;
+            --text-sidebar: #f8fafc;
+            --sidebar-accent: #2dd4bf;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #cbd5e1;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+        }
+
+        .cv-container {
+            width: 210mm;
+            min-height: 297mm;
+            background-color: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .sidebar {
+            width: 32%;
+            background-color: var(--bg-sidebar);
+            color: var(--text-sidebar);
+            padding: 28px 22px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-name {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: white;
+            line-height: 1.1;
+        }
+
+        .profile-title {
+            font-size: 13px;
+            color: var(--sidebar-accent);
+            font-weight: 600;
+            margin-bottom: 22px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 22px;
+        }
+
+        .sidebar-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            border-bottom: 2px solid var(--sidebar-accent);
+            padding-bottom: 5px;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item {
+            font-size: 11.5px;
+            margin-bottom: 8px;
+            line-height: 1.35;
+            color: #cbd5e1;
+        }
+
+        .contact-item strong {
+            color: white;
+            display: block;
+            margin-bottom: 1px;
+        }
+
+        .contact-item a {
+            color: var(--sidebar-accent);
+            text-decoration: none;
+        }
+
+        .skill-group {
+            margin-bottom: 12px;
+        }
+
+        .skill-group-title {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--sidebar-accent);
+            margin-bottom: 3px;
+        }
+
+        .skill-list {
+            margin: 0;
+            padding-left: 14px;
+            font-size: 11.5px;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        .language-item {
+            font-size: 11.5px;
+            margin-bottom: 6px;
+            color: #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .language-level {
+            color: var(--sidebar-accent);
+            font-weight: 600;
+        }
+
+        .main-content {
+            width: 68%;
+            padding: 28px 30px;
+            box-sizing: border-box;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 4px;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .profile-text {
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 0 0 18px 0;
+            text-align: justify;
+        }
+
+        .experience-item {
+            margin-bottom: 14px;
+        }
+
+        .job-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 2px 0;
+        }
+
+        .job-company {
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .job-date {
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 11.5px;
+        }
+
+        .job-description {
+            margin: 0;
+            padding-left: 15px;
+            font-size: 11.5px;
+            line-height: 1.4;
+            color: var(--text-main);
+        }
+
+        .job-description li {
+            margin-bottom: 3px;
+        }
+
+        .education-item, .cert-item {
+            margin-bottom: 10px;
+        }
+
+        .edu-title {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 2px 0;
+        }
+
+        .edu-school {
+            font-size: 11.5px;
+            color: var(--text-light);
+            margin: 0 0 3px 0;
+        }
+
+        .edu-desc {
+            font-size: 11px;
+            line-height: 1.35;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .privacy-note {
+            font-size: 9.5px;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 14px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 8px;
+        }
+
+        .cert-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 6px 0 0 0;
+        }
+
+        .cert-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 7px;
+            font-size: 12px;
+            gap: 10px;
+        }
+
+        .cert-icon {
+            height: 22px;
+            width: 24px;
+            display: block;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .cert-status {
+            font-size: 11px;
+            color: var(--text-light);
+            font-style: italic;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            body { background-color: white; }
+            .cv-container {
+                margin: 0;
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                min-height: 297mm;
+                max-height: 297mm;
+            }
+            .sidebar {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: var(--bg-sidebar) !important;
+                color: var(--text-sidebar) !important;
+            }
+            .sidebar-title { color: white !important; }
+            .contact-item strong { color: white !important; }
+            .cert-icon {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cv-container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h1 class="profile-name">ISABELLE<br>ADJETEY</h1>
+            <div class="profile-title">NETWORK ENGINEER | CLOUD SECURITY</div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Contact</h2>
+                <div class="contact-item">
+                    <strong>Location</strong>
+                    85028, PZ, Italy (Available remote / hybrid)
+                </div>
+                <div class="contact-item">
+                    <strong>Phone</strong>
+                    +39 389 594 6126
+                </div>
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    isabelle_adjetey@outlook.com<br>
+                    adjeteyisabelle@gmail.com
+                </div>
+                <div class="contact-item">
+                    <strong>LinkedIn</strong>
+                    <a href="https://linkedin.com/in/isabelle-adjetey" target="_blank">linkedin.com/in/isabelle-adjetey</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Portfolio</strong>
+                    <a href="https://isabelleadjetey.github.io/" target="_blank">isabelleadjetey.github.io/</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Credly</strong>
+                    <a href="https://www.credly.com/users/isabelle-adjetey" target="_blank">credly.com/users/isabelle-adjetey</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Hard Skills</h2>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Networking & Monitoring</div>
+                    <ul class="skill-list">
+                        <li>TCP/IP, VLAN (802.1Q), STP, Rapid PVST+</li>
+                        <li>Routing L2/L3, Static Routing, OSPF</li>
+                        <li>Checkmk, SNMP, Syslog (Alerts & Metrics)</li>
+                        <li>DHCP, DNS, ARP, GRE</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Network & Cyber Security</div>
+                    <ul class="skill-list">
+                        <li>Palo Alto Networks, FortiGate, Check Point</li>
+                        <li>Firewall Security Policies, NAT, ACL, Zero Trust</li>
+                        <li>VPN IPsec / SSL, Split-Tunneling</li>
+                        <li>Wireshark, Nmap, Nessus, Splunk (SIEM)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Cloud & DevSecOps</div>
+                    <ul class="skill-list">
+                        <li>Azure (Entra ID, Defender, Key Vault, NSG)</li>
+                        <li>AWS (VPC, EC2, S3, IAM)</li>
+                        <li>Azure DevOps, Git, CI/CD, Docker</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Scripting, Dev & OS</div>
+                    <ul class="skill-list">
+                        <li>Bash, PowerShell, Python (basic scripting), SQL</li>
+                        <li>Linux (Kali/Ubuntu), Windows Server</li>
+                        <li>C/AL, AL (Microsoft Dynamics NAV/BC)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Languages</h2>
+                <div class="language-item">
+                    <span>Italian</span>
+                    <span class="language-level">C2 (Bilingual)</span>
+                </div>
+                <div class="language-item">
+                    <span>French</span>
+                    <span class="language-level">C2 (Native)</span>
+                </div>
+                <div class="language-item">
+                    <span>English</span>
+                    <span class="language-level">C1 (Professional)</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section" style="margin-top: auto; margin-bottom: 0; text-align: center;">
+                <p style="font-size: 10.5px; color: #94a3b8; font-style: italic; margin: 0;">
+                    Date of Birth: 22-02-1994 &bull; Driving License: B
+                </p>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+
+            <h2 class="section-title">Professional Summary</h2>
+            <p class="profile-text">
+                Network Engineer with a Computer Science degree, focused on growing into Cloud Security. I work on Enterprise infrastructures (L2/L3 routing and switching, VLAN, OSPF, Palo Alto Networks, FortiGate and Check Point firewalls, VPN, Checkmk monitoring): a solid networking foundation on which to build cloud security. Trained on AWS (re/Start) and Azure (AZ-500, official exam in preparation), CompTIA Security+ and Fortinet certified. Software development background (Dynamics NAV/BC, Azure DevOps, Docker) with a focus on automation and documentation.
+            </p>
+
+            <h2 class="section-title">Work Experience</h2>
+
+            <div class="experience-item">
+                <h3 class="job-title">Network Engineer</h3>
+                <div class="job-company">
+                    <span>Sorint.lab | Remote</span>
+                    <span class="job-date">02/2026 - Present</span>
+                </div>
+                <ul class="job-description">
+                    <li><strong>Enterprise Networking &amp; Monitoring:</strong> Proactive monitoring of the Enterprise network infrastructure with Checkmk, timely management and triage of operational alerts on devices (switches, routers, firewalls) and redundant links.</li>
+                    <li><strong>Configuration &amp; Network Security:</strong> Configuration of VLANs (802.1Q), interfaces, access rules (ACL), NAT, policies on perimeter NGFWs (Palo Alto Networks, Check Point, FortiGate) and VPN tunnels.</li>
+                    <li><strong>Troubleshooting L2/L3:</strong> Diagnosis and resolution of connectivity, routing and security issues raised by monitoring tickets; traffic flow analysis and reachability checks.</li>
+                    <li><strong>Network Documentation:</strong> Architecture analysis, updating of hardware/logical topologies and writing of operating procedures.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="job-title">System Support Engineer</h3>
+                <div class="job-company">
+                    <span>Swisslog | Maranello</span>
+                    <span class="job-date">05/2023 - 07/2024</span>
+                </div>
+                <ul class="job-description">
+                    <li><strong>System Support &amp; Optimization:</strong> Operational and system support for the Autostore warehouse automation infrastructure, optimizing troubleshooting procedures and reducing plant downtime.</li>
+                    <li><strong>Troubleshooting &amp; Maintenance:</strong> Fault analysis, diagnosis of system anomalies, monitoring and fast restoration of operations in a high-criticality environment.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="job-title">NAV/Business Central Developer</h3>
+                <div class="job-company">
+                    <span>ALTEN SpA | Remote</span>
+                    <span class="job-date">10/2021 - 05/2023</span>
+                </div>
+                <ul class="job-description">
+                    <li><strong>ERP Development &amp; Integrations:</strong> Requirements analysis and development on Microsoft Dynamics NAV/Business Central (C/AL, AL), complex SQL queries and automations with Power Automate.</li>
+                    <li><strong>DevOps &amp; Container:</strong> Application lifecycle management with Azure DevOps (Git, CI/CD) and use of Docker containerized environments.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="job-title">NAV/Business Central Developer</h3>
+                <div class="job-company">
+                    <span>EOS Solutions SpA | Hybrid</span>
+                    <span class="job-date">09/2019 - 09/2021</span>
+                </div>
+                <ul class="job-description">
+                    <li><strong>Development &amp; Versioning:</strong> Design of modules for Microsoft NAV/Business Central (C/AL, AL) and adoption of Azure DevOps for version control and build automation.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">Cloud Projects</h2>
+
+            <p class="profile-text" style="margin-bottom: 14px;">Cloud Security on Azure and Cloud Architecture on AWS/Azure: documented projects and labs in my portfolio, <a href="https://isabelleadjetey.github.io/" target="_blank">isabelleadjetey.github.io</a>.</p>
+
+            <h2 class="section-title">Education &amp; Training</h2>
+
+            <div class="education-item">
+                <h3 class="edu-title">AWS re/Start Graduate – Dev, Cloud &amp; Product Academy</h3>
+                <div class="edu-school">Edgemony (AWS Training Partner) | 11/2025 - 03/2026</div>
+                <p class="edu-desc">Intensive AWS-certified program focused on Cloud architectures, DevOps practices, SysOps, network security and modern development.</p>
+            </div>
+
+            <div class="education-item">
+                <h3 class="edu-title">Cyber Security &amp; Ethical Hacking Course</h3>
+                <div class="edu-school">EPICODE (Remote) | 11/2024 - 04/2025</div>
+                <p class="edu-desc">Network Security, Application Security, Vulnerability Assessment, Forensics, Cloud Security, SIEM (Splunk) and Incident Response.</p>
+            </div>
+
+            <div class="education-item">
+                <h3 class="edu-title">Master's Degree in Electronic and Computer Engineering (In progress / Final year)</h3>
+                <div class="edu-school">University of Trieste &bull; <strong>Erasmus+</strong> project at University College Dublin (Master in Electronic and Computer Engineering)</div>
+            </div>
+
+            <div class="education-item">
+                <h3 class="edu-title">Bachelor's Degree in Computer Science</h3>
+                <div class="edu-school">University of Ferrara | Graduated: 07/2016</div>
+            </div>
+
+            <h2 class="section-title">Certifications</h2>
+
+            <div class="cert-item">
+                <ul class="cert-list">
+                    <li>
+                        <svg class="cert-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><text x="12" y="13" text-anchor="middle" font-family="Arial" font-weight="700" font-size="11" fill="#FF9900">aws</text><path d="M3 17c5 3 13 3 18 0" stroke="#FF9900" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+                        <span>AWS re/Start Graduate</span>
+                        <span class="cert-status">04/2026</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" style="fill: #0078D4;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.379 23.343a1.62 1.62 0 0 0 1.536-2.14v.002L17.35 1.76A1.62 1.62 0 0 0 15.816.657H8.184A1.62 1.62 0 0 0 6.65 1.76L.086 21.204a1.62 1.62 0 0 0 1.536 2.139h4.741a1.62 1.62 0 0 0 1.535-1.103l.977-2.892 4.947 3.675c.28.208.618.32.966.32m-3.084-12.531 3.624 10.739a.54.54 0 0 1-.51.713v-.001h-.03a.54.54 0 0 1-.322-.106l-9.287-6.9h4.853m6.313 7.006c.116-.326.13-.694.007-1.058L9.79 1.76a1.722 1.722 0 0 0-.007-.02h6.034a.54.54 0 0 1 .512.366l6.562 19.445a.54.54 0 0 1-.338.684"/></svg>
+                        <span>AZ-500 Microsoft Azure Security Technologies – Course Certificate (Coursera); Microsoft exam in preparation</span>
+                        <span class="cert-status">11/2025</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" style="fill: #C81326;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 9.785h6.788v4.454H0zm8.666-6.33h6.668v4.453H8.666zm0 12.637h6.668v4.454H8.666zm8.522-6.307H24v4.454h-6.812zM2.792 3.455C1.372 3.814.265 5.404 0 7.425v.506h6.788V3.454zM0 16.091v.554c.24 1.926 1.276 3.466 2.624 3.9h4.188v-4.454zm24-8.184v-.506c-.265-1.998-1.372-3.587-2.792-3.972h-4.02v4.454H24zM21.376 20.57c1.324-.458 2.36-1.974 2.624-3.9v-.554h-6.812v4.454Z"/></svg>
+                        <span>Fortinet Certified Associate Cybersecurity / FortiGate Operator</span>
+                        <span class="cert-status">01/2025</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" style="fill: #C8202F;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.8292 11.7067v1.8524a.608.608 0 0 1-.6016-.6136v-1.2366a.5728.5728 0 0 0-1.1428 0v1.8502a.5988.5988 0 0 1-.5998-.5978v-1.2524a.5746.5746 0 0 0-1.1455 0v1.2431a.608.608 0 0 1-.5998.6071V11.709c.0097-.6352.5325-1.1422 1.1676-1.1325h.0013c.331-.0046.6486.1302.8754.3713a1.1752 1.1752 0 0 1 .868-.3713c.6372-.013 1.1642.493 1.1772 1.1303zm7.0156-2.2917v3.563a.597.597 0 0 0 .6006.5811v-3.563a.5969.5969 0 0 0-.6006-.5811zM24 13.5258c-.324.0269-.675-.0697-.8011-.3435l-.3185-.6852h-2.1306l-.3157.7037c-.1494.2785-.544.3667-.8476.3667l1.738-3.8063a.5292.5292 0 0 1 .4762-.3435.5367.5367 0 0 1 .481.3435L24 13.5258zm-1.3759-1.6182-.8059-1.7671-.8038 1.767h1.6097zm-19.166.6387a1.8463 1.8463 0 0 1-1.1817.4373c-.9312 0-1.6888-.6824-1.6888-1.5133s.7604-1.5058 1.6888-1.5058c.501.0002.98.2055 1.3257.5682a.5812.5812 0 0 0 .7417.0827c-.362-.7502-1.1763-1.2376-2.0693-1.2376C1.0212 9.3778 0 10.3164 0 11.4722c0 1.1558 1.0175 2.0953 2.2745 2.0953a2.3846 2.3846 0 0 0 1.2885-.3713c.2605-.162.4823-.379.6499-.636a.5886.5886 0 0 0-.7548-.0139zm11.43-2.539h1.2877v2.9512a.5904.5904 0 0 0 .5728.6006h.0278v-3.5518h1.284a.5941.5941 0 0 0 .5932-.5932h-4.3503a.5904.5904 0 0 0 .5848.5932zm-7.3108 2.0665c0 .8364-.726 1.4853-1.6507 1.4853-.9283 0-1.6505-.6498-1.6505-1.4853s.725-1.4947 1.6505-1.4947c.9256 0 1.6507.6583 1.6507 1.4947zm-.6007-.0028c0-.5004-.4641-.894-1.05-.894-.5876 0-1.0509.3927-1.0509.894 0 .5013.4643.8875 1.051.8875s1.05-.387 1.05-.8875zm6.7975-1.5002c-.9506 0-1.6395.6433-1.6395 1.5178v2.5335a.596.596 0 0 0 .6016-.5857v-1.9496c0-.6313.5162-.9172 1.038-.9172.5486 0 .9812.3982.9812.9051 0 .4874-.4326.8754-.9813.8754-.3686 0-.6452-.0928-.8132-.2785v.0056a.7503.7503 0 0 0-.0381.1068.596.596 0 0 0 .4112.7241c.1462.0314.2953.0463.4447.0446.8885 0 1.581-.6508 1.5736-1.4761a1.4647 1.4647 0 0 0-.4642-1.075 1.642 1.642 0 0 0-1.114-.4308z"/></svg>
+                        <span>CompTIA Security+ (SY0-701)</span>
+                        <span class="cert-status">12/2024</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="privacy-note">
+                I authorize the processing of my personal data for recruitment purposes, pursuant to EU Regulation 2016/679 (GDPR).
+            </div>
+
+        </div><!-- fine main-content -->
+    </div><!-- fine cv-container -->
+
+</body>
+
+</html>
